@@ -1,5 +1,6 @@
 distinction <- function(x) { #distinction centrality function
    n <- vcount(x)
+   V(x)$name <- 1:vcount(x)
    s <- eigen_centrality(x)$vector
    d <- 0
    u <- 0
