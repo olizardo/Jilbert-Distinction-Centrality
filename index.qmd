@@ -1,0 +1,190 @@
+---
+title: "Jilbert's Distinction Centrality"
+execute: 
+  eval: true
+  echo: true
+  output: true
+  warning: false
+  message: false
+format: 
+   html:
+      code-line-numbers: true
+bibliography: networks.bib
+---
+
+```{r Loading Functions}
+   library(igraph)
+   library(ggraph)
+   library(here)
+   library(networkdata)
+   source("distinction.R")
+```
+
+
+According to @jilbert24, the Distinction Centrality of a node is a function of the status of each focal node and the degree of status independence of its alters. 
+
+It is given by:
+
+$$
+   D_i = S_i(G)  + \frac{\sum_{j \in N(i)} S_j(G - i)}{N} 
+$$
+
+Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of node $i$ computed in the full graph $G$, $N(i)$ is the set of $i$'s neighbors, and $S_j(G -i)$ is the eigenvector centrality of node $j$ in the node deleted subgraph of $G$ that excludes $i$. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.
+
+```{r Custom Functions}
+#| echo: false
+   plot.graph <- function(x, l, vs = 12, ts = 6) { #plotting function
+      library(ggraph)
+      d <- distinction(x)$d
+      nc <- rep("", length(d))
+      nc[which(d < -0.05)] <- "red"
+      nc[which(d > 0.05)] <- "blue"
+      nc[which(d <= 0.05 & d >= -0.05)] <- "purple"
+      if (is.null(V(x)$name) == TRUE) {
+         n <- 1:vcount(x)
+         tc <- "white"
+         s <- vs
+         }
+      if (is.null(V(x)$name) == FALSE) {
+         n <- V(x)$name
+         tc <- nc
+         vs <- 0
+         }
+      p <- ggraph(x, layout = l)
+      p <- p + geom_edge_link(color = "steelblue", edge_width = 0.5)
+      p <- p + geom_node_point(aes(x = x, y = y), size = vs, color = nc) 
+      p <- p + geom_node_text(aes(label = n), size = ts, color = tc)
+      p <- p + theme_graph() 
+   return(p)
+   }
+   
+   tab.cent <- function(x) { #table function
+   library(kableExtra)
+   t <- kbl(x, 
+       digits = 2, row.names = FALSE,
+       col.names = c("Node", "Distinction", "Status", "Constraint")) %>% 
+      kable_styling(bootstrap_options = c("hover", "condensed", "responsive"))
+   return(t)
+   }
+
+
+```
+
+```{r}
+    g1 <- make_star(7, mode = "undirected") # star graph
+    g2 <- g1 + edge(2,3)
+    g2 <- g2 + edge(2,4)
+    g2 <- g2 + edge(3,4)
+    g2 <- g2 + edge(5,6)
+    g2 <- g2 + edge(5,7)
+    g2 <- g2 + edge(6,7) # structural fold
+    g3 <- g1 + edge(2,4)
+    g3 <- g3 + edge(3,4)
+    g3 <- g3 + edge(5,6)
+    g3 <- g3 + edge(5,7) # intra-connected clusters
+    g4 <- g3 + edge(2,7) # inter-connected clusters
+```
+
+
+```{r}
+#| fig-cap: "A star graph with seven nodes."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g1, "star")
+   ggsave(here("Plots", "star.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Star Graph."
+   tab.cent(distinction(g1))
+```
+
+
+```{r}
+#| fig-cap: "A structural fold with seven nodes."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g2, "kk")
+   ggsave(here("Plots", "sfold.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold."
+   tab.cent(distinction(g2))
+```
+
+
+```{r}
+#| fig-cap: "Intraconnected Clusters."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g3, "star")
+   ggsave(here("Plots", "intra-clusters.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in Intraconnected Clusters."
+   tab.cent(distinction(g3))
+```
+
+```{r}
+#| fig-cap: "Interconnected Clusters."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g4, "star")
+   ggsave(here("Plots", "inter-clusters.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in Interconnected Clusters."
+   tab.cent(distinction(g4))
+```
+
+
+```{r}
+#| fig-cap: "Regular Graph."
+#| fig-height: 5
+#| fig-width: 5
+   set.seed(1234)
+   g5 <- sample_k_regular(7, 4)
+   plot.graph(g5, "circle")
+   ggsave(here("Plots", "regular.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in a Regular Graph."
+   tab.cent(distinction(g5))
+```
+
+```{r}
+#| fig-cap: "Karate Club Graph."
+#| fig-height: 8
+#| fig-width: 8
+   set.seed(1234)
+   plot.graph(karate, "dh", vs = 8, ts = 4)
+   ggsave(here("Plots", "karate.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Karate Club."
+   tab.cent(distinction(karate))
+```
+
+```{r}
+#| fig-cap: "Florentine Families Graph."
+#| fig-height: 12
+#| fig-width: 12
+   set.seed(1234)
+   iso <- which(degree(flo_marriage) == 0)
+   g <- delete_vertices(flo_marriage, iso)
+   plot.graph(g, "star", ts = 8)
+   ggsave(here("Plots", "flo-marriage.png"), width = 12, height = 12)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Florentine Families."
+   tab.cent(distinction(g))
+```
+
+
+Jilbert's Distinction Equivalence
