@@ -1,0 +1,143 @@
+---
+title: "Jilbert's Distinction Centrality"
+execute: 
+  eval: true
+  echo: true
+  output: true
+  warning: false
+  message: false
+format: 
+   html:
+      code-line-numbers: true
+---
+
+```{r}
+   library(igraph)
+   library(ggraph)
+```
+
+
+According to @jilbert24, the Distinction Centrality of a node is a function of the status of each focal node and the degree of status independence of its alters. 
+
+It is given by:
+
+$$
+   D_i = \alpha S_i(G)  + (1-\alpha) \frac{\sum_{j \in N(i)} S_j(G - i)}{N} 
+$$
+
+Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of node $i$ computed in the full graph $G$, $N(i)$ is the set of $i$'s neighbors, and $S_j(G -i)$ is the eigenvector centrality of node $j$ in the node deleted subgraph of $G$ that excludes $i$. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.
+
+```{r}
+   plot.graph <- function(x, l) { #plotting function
+      library(ggraph)
+      if (is.null(V(x)$name) == TRUE) {
+         n <- 1:vcount(x)
+         c <- "white"
+         s <- 12
+         }
+      if (is.null(V(x)$name) == FALSE) {
+         n <- V(x)$name
+         c <- "blue"
+         s <- 0
+         }
+      p <- ggraph(x, layout = l)
+      p <- p + geom_edge_link(color = "steelblue", edge_width = 0.5)
+      p <- p + geom_node_point(aes(x = x, y = y), size = s, color = "tan2") 
+      p <- p + geom_node_text(aes(label = n), size = 6, color = c)
+      p <- p + theme_graph() 
+   return(p)
+   }
+   
+   tab.cent <- function(x) { #table function
+   library(kableExtra)
+   t <- kbl(x, 
+       digits = 2, 
+       col.names = c("Node", "Distinction", "Status", "Constraint")) %>% 
+      kable_styling(bootstrap_options = c("hover", "condensed", "responsive"))
+   return(t)
+   }
+
+
+```
+
+```{r}
+    g1 <- make_star(7, mode = "undirected") # star graph
+    g2 <- g1 + edge(2,3)
+    g2 <- g2 + edge(2,4)
+    g2 <- g2 + edge(3,4)
+    g2 <- g2 + edge(5,6)
+    g2 <- g2 + edge(5,7)
+    g2 <- g2 + edge(6,7) # structural fold
+    g3 <- g1 + edge(2,3)
+    g3 <- g3 + edge(3,4)
+    g3 <- g3 + edge(5,6)
+    g3 <- g3 + edge(5,7) # intra-connected clusters
+    g4 <- g3 + edge(2,7) # inter-connected clusters
+```
+
+
+```{r}
+#| fig-cap: "A star graph with seven nodes."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g1, "star")
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Star Graph."
+   tab.cent(distinction(g1))
+```
+
+
+```{r}
+#| fig-cap: "A structural fold with seven nodes."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g2, "kk")
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold"
+   tab <- data.frame(distinction(g2)[1:4])
+   tab.cent(tab)
+```
+
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold"
+   tab <- data.frame(distinction(g3)[1:4])
+   tab.cent(tab)
+```
+
+
+```{r}
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g3)
+```
+
+```{r}
+   library(networkdata)
+   g <- flo_marriage
+   plot.graph(g, l = "kk")
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold"
+   tab <- data.frame(distinction(g)[1:4])
+   tab.cent(tab)
+```
+
+
+```{r}
+   library(kableExtra)
+   kbl(d[,c(1, 3:5)], 
+       digits = 2, 
+       col.names = c("Node", "Distinction", "Status", "Uniqueness")) %>% 
+      kable_styling(bootstrap_options = c("hover", "condensed", "responsive"))
+```
+
+
+
+
+Jilbert's Distinction Equivalence
