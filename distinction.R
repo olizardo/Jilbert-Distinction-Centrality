@@ -1,14 +1,15 @@
 distinction <- function(x) { #distinction centrality function
-   n <- vcount(x)
-   V(x)$name <- 1:vcount(x)
+   if (is.null(V(x)$name) == TRUE) {
+      V(x)$name <- 1:vcount(x)
+      }
    s <- eigen_centrality(x)$vector
    d <- 0
    u <- 0
-   for (i in 1:n) {
+   for (i in 1:vcount(x)) {
       j <- names(neighbors(x, i))
       x.d <- x - i
-      c <- as.numeric(is_connected(x.d) == TRUE)
-      e <- as.numeric(ecount(x.d) != 0)
+      c <- as.numeric(is_connected(x.d) == TRUE) #checking for connectedness
+      e <- as.numeric(ecount(x.d) != 0) #checking for empty
       if (c == 1 & e == 1) { #connected non-empty graph
          s.a <- eigen_centrality(x.d)$vector[j]
          } #end if
@@ -28,12 +29,6 @@ distinction <- function(x) { #distinction centrality function
    } #end i for loop
    d[is.na(d)] <- 0
    u[is.na(u)] <- 0
-   if (is.null(V(x)$name) == TRUE) {
-      lab <- 1:vcount(x)
-      }
-   else if (is.null(V(x)$name) == FALSE) {
-      lab <- V(x)$name
-      }
-   dat <- data.frame(n = lab, d = d, s = s, u = u)
+   dat <- data.frame(n = V(x)$name, d = d, s = s, u = u)
    return(dat)
 } #end function

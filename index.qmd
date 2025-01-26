@@ -17,6 +17,7 @@ bibliography: networks.bib
    library(ggraph)
    library(here)
    library(networkdata)
+   library(ggpubr)
    source("distinction.R")
 ```
 
@@ -58,16 +59,14 @@ Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of
    return(p)
    }
    
-   tab.cent <- function(x) { #table function
+   tab.cent <- function(x, d = 3) { #table function
    library(kableExtra)
    t <- kbl(x, 
-       digits = 2, row.names = FALSE,
+       digits = d, row.names = FALSE,
        col.names = c("Node", "Distinction", "Status", "Constraint")) %>% 
       kable_styling(bootstrap_options = c("hover", "condensed", "responsive"))
    return(t)
    }
-
-
 ```
 
 ```{r}
@@ -157,6 +156,22 @@ Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of
 ```
 
 ```{r}
+#| fig-cap: "Small World Graph."
+#| fig-height: 5
+#| fig-width: 5
+   set.seed(1234)
+   g6 <- sample_smallworld(dim = 1, 7, 2, 0.05)
+   plot.graph(g6, "circle")
+   ggsave(here("Plots", "sw.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in a Small World Graph."
+   tab.cent(distinction(g6))
+```
+
+
+```{r}
 #| fig-cap: "Karate Club Graph."
 #| fig-height: 8
 #| fig-width: 8
@@ -185,6 +200,22 @@ Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of
 #| tbl-cap: "Distinction Centrality Scores of Nodes in the Florentine Families."
    tab.cent(distinction(g))
 ```
+
+```{r}
+   p <- seq(0.1, 0.9, 0.01)
+   r <- rep(0, length(p))
+   for (i in 1:length(p)) {
+      set.seed(123)
+      g <- sample_smallworld(dim = 1, 15, 3, p[i]) 
+      d <- distinction(g)$u
+      b <- betweenness(g)
+      r[i] <- cor(d, b)
+      }
+   dat <- data.frame(p, r)
+   ggscatter(data = dat, "p", "r", add = "loess") 
+```
+
+
 
 
 Jilbert's Distinction Equivalence
