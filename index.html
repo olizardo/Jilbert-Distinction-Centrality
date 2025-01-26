@@ -155,9 +155,9 @@ div.csl-indent {
 <span id="cb1-6"><a href="#cb1-6"></a>   <span class="fu">source</span>(<span class="st">"distinction.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>According to <span class="citation" data-cites="jilbert24">Jilbert (<a href="#ref-jilbert24" role="doc-biblioref">2024</a>)</span>, the Distinction Centrality of a node is a function of the status of each focal node and the degree of status independence of its alters.</p>
-<p>It is given by:</p>
+<p>It is given by the difference between <span class="math inline">\(i\)</span>’s own status and the average status of <span class="math inline">\(i\)</span>’s neighbor in the node deleted subgraph that excludes <span class="math inline">\(i\)</span>:</p>
 <p><span class="math display">\[
-   D_i = S_i(G)  + \frac{\sum_{j \in N(i)} S_j(G - i)}{N}
+   D_i = S_i(G)  - \frac{\sum_{j \in N(i)} S_j(G - i)}{N}
 \]</span></p>
 <p>Where <span class="math inline">\(S_i(G)\)</span> is the (normalized to have maximum 1.0) eigenvector centrality of node <span class="math inline">\(i\)</span> computed in the full graph <span class="math inline">\(G\)</span>, <span class="math inline">\(N(i)\)</span> is the set of <span class="math inline">\(i\)</span>’s neighbors, and <span class="math inline">\(S_j(G -i)\)</span> is the eigenvector centrality of node <span class="math inline">\(j\)</span> in the node deleted subgraph of <span class="math inline">\(G\)</span> that excludes <span class="math inline">\(i\)</span>. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.</p>
 <div class="cell">
