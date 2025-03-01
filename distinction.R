@@ -1,4 +1,4 @@
-distinction <- function(x) { #distinction centrality function
+distinction <- function(x, norm = FALSE) { #distinction centrality function
    if (is.null(V(x)$name) == TRUE) {
       V(x)$name <- 1:vcount(x)
       }
@@ -9,14 +9,14 @@ distinction <- function(x) { #distinction centrality function
       j <- names(neighbors(x, i))
       x.d <- x - i
       c <- as.numeric(is_connected(x.d) == TRUE) #checking for connectedness
-      e <- as.numeric(ecount(x.d) != 0) #checking for empty
-      if (c == 1 & e == 1) { #connected non-empty graph
+      e <- as.numeric(ecount(x.d) == 0) #checking for empty
+      if (c == 1 & e == 0) { #connected non-empty graph
          s.a <- eigen_centrality(x.d)$vector[j]
          } #end if
-      else if (c == 0 & e == 0) { #empty graph
+      else if (c == 0 & e == 1) { #empty graph
          s.a <- 0
          } #end else 1
-      else if (c == 0 & e == 1) { #disconnected non-empty graph
+      else if (c == 0 & e == 0) { #disconnected non-empty graph
          C <- components(x.d)$membership
          s.a <- eigen_centrality(subgraph(x.d, which(C == 1)))$vector
          for (k in 2:max(C)) {
@@ -29,6 +29,11 @@ distinction <- function(x) { #distinction centrality function
    } #end i for loop
    d[is.na(d)] <- 0
    u[is.na(u)] <- 0
-   dat <- data.frame(n = V(x)$name, d = d, s = s, u = u)
+   scalar <- (mean(u)/mean(s))
+   if (norm == TRUE) {
+      s <- s * scalar
+      }
+   d <- s - u
+   dat <- data.frame(n = V(x)$name, d = d, s = s, u = u, scalar = scalar)
    return(dat)
 } #end function

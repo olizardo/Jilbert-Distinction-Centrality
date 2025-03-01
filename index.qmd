@@ -22,15 +22,31 @@ bibliography: networks.bib
 ```
 
 
-According to @jilbert24, the Distinction Centrality of a node is a function of the status of each focal node and the degree of status independence of its alters. 
-
-It is given by the difference between $i$'s own status and the average status of $i$'s neighbor in the node deleted subgraph that excludes $i$:
+According to @jilbert24, the Distinction Centrality ($D_i$) of a node is given by the difference between the *status* ($S_i(G)$) and the *constraint* ($C_i(G)$) experienced by each node:
 
 $$
-   D_i = S_i(G)  - \frac{\sum_{j \in N(i)} S_j(G - i)}{N} 
+   D_i = S_i(G)  - C_i(G)
 $$
 
-Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of node $i$ computed in the full graph $G$, $N(i)$ is the set of $i$'s neighbors, and $S_j(G -i)$ is the eigenvector centrality of node $j$ in the node deleted subgraph of $G$ that excludes $i$. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.
+Status is measured using the usual Bonacich eigenvector centrality (normalized to have maximum 1.0) computed in the full graph $G$. Constraint, in turn, is given by the average status of $i$'s neighbor in the *node deleted subgraph* that excludes $i$. 
+
+$$
+C_i(G) = \frac{\sum_{j \in N(i)} S_j(G - i)}{N} 
+$$
+
+Where $N(i)$ is the set of $i$'s neighbors, and $S_j(G -i)$ is the eigenvector centrality of node $j$ in the node deleted subgraph of $G$ that excludes $i$. Nodes are more constrained to the extent that others gain status in their absence. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.
+
+The normalized version of Distinction Centrality ($D^*$) multiplies each node's status score by the parameter $\theta$, which is ratio of the average of constrain scores and the average of status scores of each node in the the network:
+
+$$
+\gamma = \frac{\frac{1}{N}\sum_i C_i(G)}{\frac{1}{N}\sum_i S_i(G)}
+$$
+
+The normalized distinction is then given by:
+
+$$
+D^*_i = \gamma S_i(G)  - C_i(G)
+$$
 
 ```{r Custom Functions}
 #| echo: false
@@ -58,7 +74,31 @@ Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of
       p <- p + theme_graph() 
    return(p)
    }
-   
+   plot.graph.norm <- function(x, l, vs = 12, ts = 6) { #plotting function
+      library(ggraph)
+      d <- distinction(x, norm = TRUE)$d
+      nc <- rep("", length(d))
+      nc[which(d < -0.05)] <- "red"
+      nc[which(d > 0.05)] <- "blue"
+      nc[which(d <= 0.05 & d >= -0.05)] <- "purple"
+      if (is.null(V(x)$name) == TRUE) {
+         n <- 1:vcount(x)
+         tc <- "white"
+         s <- vs
+         }
+      if (is.null(V(x)$name) == FALSE) {
+         n <- V(x)$name
+         tc <- nc
+         vs <- 0
+         }
+      p <- ggraph(x, layout = l)
+      p <- p + geom_edge_link(color = "steelblue", edge_width = 0.5)
+      p <- p + geom_node_point(aes(x = x, y = y), size = vs, color = nc) 
+      p <- p + geom_node_text(aes(label = n), size = ts, color = tc)
+      p <- p + theme_graph() 
+   return(p)
+   }
+
    tab.cent <- function(x, d = 3) { #table function
    library(kableExtra)
    t <- kbl(x, 
@@ -85,137 +125,25 @@ Where $S_i(G)$ is the (normalized to have maximum 1.0) eigenvector centrality of
 ```
 
 
-```{r}
-#| fig-cap: "A star graph with seven nodes."
-#| fig-height: 5
-#| fig-width: 5
-   plot.graph(g1, "star")
-   ggsave(here("Plots", "star.png"), width = 6, height = 6)
-```
 
 ```{r}
 #| tbl-cap: "Distinction Centrality Scores of Nodes in the Star Graph."
-   tab.cent(distinction(g1))
+   tab.cent(distinction(g1)[, 1:4])
 ```
 
-
 ```{r}
-#| fig-cap: "A structural fold with seven nodes."
-#| fig-height: 5
-#| fig-width: 5
-   plot.graph(g2, "kk")
-   ggsave(here("Plots", "sfold.png"), width = 6, height = 6)
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Star Graph (Normalized)."
+   tab.cent(distinction(g1, norm = TRUE)[, 1:4])
 ```
 
 ```{r}
 #| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold."
-   tab.cent(distinction(g2))
-```
-
-
-```{r}
-#| fig-cap: "Intraconnected Clusters."
-#| fig-height: 5
-#| fig-width: 5
-   plot.graph(g3, "star")
-   ggsave(here("Plots", "intra-clusters.png"), width = 6, height = 6)
+   tab.cent(distinction(g2)[, 1:4])
 ```
 
 ```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in Intraconnected Clusters."
-   tab.cent(distinction(g3))
-```
-
-```{r}
-#| fig-cap: "Interconnected Clusters."
-#| fig-height: 5
-#| fig-width: 5
-   plot.graph(g4, "star")
-   ggsave(here("Plots", "inter-clusters.png"), width = 6, height = 6)
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in Interconnected Clusters."
-   tab.cent(distinction(g4))
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold (Normalized)."
+   tab.cent(distinction(g2, norm = TRUE)[, 1:4])
 ```
 
 
-```{r}
-#| fig-cap: "Regular Graph."
-#| fig-height: 5
-#| fig-width: 5
-   set.seed(1234)
-   g5 <- sample_k_regular(7, 4)
-   plot.graph(g5, "circle")
-   ggsave(here("Plots", "regular.png"), width = 6, height = 6)
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in a Regular Graph."
-   tab.cent(distinction(g5))
-```
-
-```{r}
-#| fig-cap: "Small World Graph."
-#| fig-height: 5
-#| fig-width: 5
-   set.seed(1234)
-   g6 <- sample_smallworld(dim = 1, 7, 2, 0.05)
-   plot.graph(g6, "circle")
-   ggsave(here("Plots", "sw.png"), width = 6, height = 6)
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in a Small World Graph."
-   tab.cent(distinction(g6))
-```
-
-
-```{r}
-#| fig-cap: "Karate Club Graph."
-#| fig-height: 8
-#| fig-width: 8
-   set.seed(1234)
-   plot.graph(karate, "dh", vs = 8, ts = 4)
-   ggsave(here("Plots", "karate.png"), width = 6, height = 6)
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in the Karate Club."
-   tab.cent(distinction(karate))
-```
-
-```{r}
-#| fig-cap: "Florentine Families Graph."
-#| fig-height: 12
-#| fig-width: 12
-   set.seed(1234)
-   iso <- which(degree(flo_marriage) == 0)
-   g <- delete_vertices(flo_marriage, iso)
-   plot.graph(g, "star", ts = 8)
-   ggsave(here("Plots", "flo-marriage.png"), width = 12, height = 12)
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in the Florentine Families."
-   tab.cent(distinction(g))
-```
-
-```{r}
-   p <- seq(0.1, 0.9, 0.01)
-   r <- rep(0, length(p))
-   for (i in 1:length(p)) {
-      set.seed(123)
-      g <- sample_smallworld(dim = 1, 15, 3, p[i]) 
-      d <- distinction(g)$u
-      b <- betweenness(g)
-      r[i] <- cor(d, b)
-      }
-   dat <- data.frame(p, r)
-   ggscatter(data = dat, "p", "r", add = "loess") 
-```
-
-
-
-
-Jilbert's Distinction Equivalence

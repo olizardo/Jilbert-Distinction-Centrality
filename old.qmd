@@ -1,0 +1,143 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+#| fig-cap: "A star graph with seven nodes."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g1, "star")
+   ggsave(here("Plots", "star.png"), width = 6, height = 6)
+```
+
+```{r}
+#| fig-cap: "A star graph with seven nodes."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph.norm(g1, "star")
+   ggsave(here("Plots", "star.png"), width = 6, height = 6)
+```
+
+
+```{r}
+#| fig-cap: "A structural fold with seven nodes."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g2, "kk")
+   ggsave(here("Plots", "sfold.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold."
+   tab.cent(distinction(g2))
+```
+
+
+```{r}
+#| fig-cap: "Intraconnected Clusters."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g3, "star")
+   ggsave(here("Plots", "intra-clusters.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in Intraconnected Clusters."
+   tab.cent(distinction(g3))
+```
+
+```{r}
+#| fig-cap: "Interconnected Clusters."
+#| fig-height: 5
+#| fig-width: 5
+   plot.graph(g4, "star")
+   ggsave(here("Plots", "inter-clusters.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in Interconnected Clusters."
+   tab.cent(distinction(g4))
+```
+
+
+```{r}
+#| fig-cap: "Regular Graph."
+#| fig-height: 5
+#| fig-width: 5
+   set.seed(1234)
+   g5 <- sample_k_regular(7, 4)
+   plot.graph(g5, "circle")
+   ggsave(here("Plots", "regular.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in a Regular Graph."
+   tab.cent(distinction(g5))
+```
+
+```{r}
+#| fig-cap: "Small World Graph."
+#| fig-height: 5
+#| fig-width: 5
+   set.seed(1234)
+   g6 <- sample_smallworld(dim = 1, 7, 2, 0.05)
+   plot.graph(g6, "circle")
+   ggsave(here("Plots", "sw.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in a Small World Graph."
+   tab.cent(distinction(g6))
+```
+
+
+```{r}
+#| fig-cap: "Karate Club Graph."
+#| fig-height: 8
+#| fig-width: 8
+   set.seed(1234)
+   plot.graph(karate, "dh", vs = 8, ts = 4)
+   ggsave(here("Plots", "karate.png"), width = 6, height = 6)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Karate Club."
+   tab.cent(distinction(karate))
+```
+
+```{r}
+#| fig-cap: "Florentine Families Graph."
+#| fig-height: 12
+#| fig-width: 12
+   set.seed(1234)
+   iso <- which(degree(flo_marriage) == 0)
+   g <- delete_vertices(flo_marriage, iso)
+   plot.graph(g, "star", ts = 8)
+   ggsave(here("Plots", "flo-marriage.png"), width = 12, height = 12)
+```
+
+```{r}
+#| tbl-cap: "Distinction Centrality Scores of Nodes in the Florentine Families."
+   tab.cent(distinction(g))
+```
+
+```{r}
+   p <- seq(0.1, 0.9, 0.01)
+   r <- rep(0, length(p))
+   for (i in 1:length(p)) {
+      set.seed(123)
+      g <- sample_smallworld(dim = 1, 15, 3, p[i]) 
+      d <- distinction(g)$u
+      b <- betweenness(g)
+      r[i] <- cor(d, b)
+      }
+   dat <- data.frame(p, r)
+   ggscatter(data = dat, "p", "r", add = "loess") 
+```
+
+
+
+
+Jilbert's Distinction Equivalence

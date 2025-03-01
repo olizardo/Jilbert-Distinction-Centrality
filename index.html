@@ -154,12 +154,23 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5"></a>   <span class="fu">library</span>(ggpubr)</span>
 <span id="cb1-6"><a href="#cb1-6"></a>   <span class="fu">source</span>(<span class="st">"distinction.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>According to <span class="citation" data-cites="jilbert24">Jilbert (<a href="#ref-jilbert24" role="doc-biblioref">2024</a>)</span>, the Distinction Centrality of a node is a function of the status of each focal node and the degree of status independence of its alters.</p>
-<p>It is given by the difference between <span class="math inline">\(i\)</span>’s own status and the average status of <span class="math inline">\(i\)</span>’s neighbor in the node deleted subgraph that excludes <span class="math inline">\(i\)</span>:</p>
+<p>According to <span class="citation" data-cites="jilbert24">Jilbert (<a href="#ref-jilbert24" role="doc-biblioref">2024</a>)</span>, the Distinction Centrality (<span class="math inline">\(D_i\)</span>) of a node is given by the difference between the <em>status</em> (<span class="math inline">\(S_i(G)\)</span>) and the <em>constraint</em> (<span class="math inline">\(C_i(G)\)</span>) experienced by each node:</p>
 <p><span class="math display">\[
-   D_i = S_i(G)  - \frac{\sum_{j \in N(i)} S_j(G - i)}{N}
+   D_i = S_i(G)  - C_i(G)
 \]</span></p>
-<p>Where <span class="math inline">\(S_i(G)\)</span> is the (normalized to have maximum 1.0) eigenvector centrality of node <span class="math inline">\(i\)</span> computed in the full graph <span class="math inline">\(G\)</span>, <span class="math inline">\(N(i)\)</span> is the set of <span class="math inline">\(i\)</span>’s neighbors, and <span class="math inline">\(S_j(G -i)\)</span> is the eigenvector centrality of node <span class="math inline">\(j\)</span> in the node deleted subgraph of <span class="math inline">\(G\)</span> that excludes <span class="math inline">\(i\)</span>. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.</p>
+<p>Status is measured using the usual Bonacich eigenvector centrality (normalized to have maximum 1.0) computed in the full graph <span class="math inline">\(G\)</span>. Constraint, in turn, is given by the average status of <span class="math inline">\(i\)</span>’s neighbor in the <em>node deleted subgraph</em> that excludes <span class="math inline">\(i\)</span>.</p>
+<p><span class="math display">\[
+C_i(G) = \frac{\sum_{j \in N(i)} S_j(G - i)}{N}
+\]</span></p>
+<p>Where <span class="math inline">\(N(i)\)</span> is the set of <span class="math inline">\(i\)</span>’s neighbors, and <span class="math inline">\(S_j(G -i)\)</span> is the eigenvector centrality of node <span class="math inline">\(j\)</span> in the node deleted subgraph of <span class="math inline">\(G\)</span> that excludes <span class="math inline">\(i\)</span>. Nodes are more constrained to the extent that others gain status in their absence. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.</p>
+<p>The normalized version of Distinction Centrality (<span class="math inline">\(D^*\)</span>) multiplies each node’s status score by the parameter <span class="math inline">\(\theta\)</span>, which is ratio of the average of constrain scores and the average of status scores of each node in the the network:</p>
+<p><span class="math display">\[
+\gamma = \frac{\frac{1}{N}\sum_i C_i(G)}{\frac{1}{N}\sum_i S_i(G)}
+\]</span></p>
+<p>The normalized distinction is then given by:</p>
+<p><span class="math display">\[
+D^*_i = \gamma S_i(G)  - C_i(G)
+\]</span></p>
 <div class="cell">
 
 </div>
@@ -178,19 +189,7 @@ div.csl-indent {
 <span id="cb2-12"><a href="#cb2-12"></a>    g4 <span class="ot">&lt;-</span> g3 <span class="sc">+</span> <span class="fu">edge</span>(<span class="dv">2</span>,<span class="dv">7</span>) <span class="co"># inter-connected clusters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>   <span class="fu">plot.graph</span>(g1, <span class="st">"star"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="480"></p>
-<p></p><figcaption class="figure-caption">A star graph with seven nodes.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"star.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g1)[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in the Star Graph.</caption>
@@ -251,19 +250,68 @@ div.csl-indent {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>   <span class="fu">plot.graph</span>(g2, <span class="st">"kk"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g1, <span class="at">norm =</span> <span class="cn">TRUE</span>)[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="480"></p>
-<p></p><figcaption class="figure-caption">A structural fold with seven nodes.</figcaption><p></p>
-</figure>
+
+<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in the Star Graph (Normalized).</caption>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Node </th>
+   <th style="text-align:right;"> Distinction </th>
+   <th style="text-align:right;"> Status </th>
+   <th style="text-align:right;"> Constraint </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1.739 </td>
+   <td style="text-align:right;"> 1.739 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> -0.290 </td>
+   <td style="text-align:right;"> 0.710 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> -0.290 </td>
+   <td style="text-align:right;"> 0.710 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> -0.290 </td>
+   <td style="text-align:right;"> 0.710 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> -0.290 </td>
+   <td style="text-align:right;"> 0.710 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> -0.290 </td>
+   <td style="text-align:right;"> 0.710 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> -0.290 </td>
+   <td style="text-align:right;"> 0.710 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"sfold.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g2)[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in the Structural Fold.</caption>
@@ -324,22 +372,10 @@ div.csl-indent {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>   <span class="fu">plot.graph</span>(g3, <span class="st">"star"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="480"></p>
-<p></p><figcaption class="figure-caption">Intraconnected Clusters.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"intra-clusters.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g2, <span class="at">norm =</span> <span class="cn">TRUE</span>)[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in Intraconnected Clusters.</caption>
+<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in the Structural Fold (Normalized).</caption>
  <thead>
   <tr>
    <th style="text-align:right;"> Node </th>
@@ -351,651 +387,51 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.195 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.805 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -0.257 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.757 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> -0.257 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.757 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0.048 </td>
-   <td style="text-align:right;"> 0.618 </td>
-   <td style="text-align:right;"> 0.570 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0.048 </td>
-   <td style="text-align:right;"> 0.618 </td>
-   <td style="text-align:right;"> 0.570 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> -0.257 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.757 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> -0.257 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.757 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>   <span class="fu">plot.graph</span>(g4, <span class="st">"star"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="480"></p>
-<p></p><figcaption class="figure-caption">Interconnected Clusters.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"inter-clusters.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in Interconnected Clusters.</caption>
- <thead>
-  <tr>
-   <th style="text-align:right;"> Node </th>
-   <th style="text-align:right;"> Distinction </th>
-   <th style="text-align:right;"> Status </th>
-   <th style="text-align:right;"> Constraint </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.251 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.749 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -0.047 </td>
-   <td style="text-align:right;"> 0.654 </td>
-   <td style="text-align:right;"> 0.701 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> -0.299 </td>
-   <td style="text-align:right;"> 0.465 </td>
-   <td style="text-align:right;"> 0.765 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> -0.025 </td>
-   <td style="text-align:right;"> 0.612 </td>
-   <td style="text-align:right;"> 0.637 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> -0.025 </td>
-   <td style="text-align:right;"> 0.612 </td>
-   <td style="text-align:right;"> 0.637 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> -0.299 </td>
-   <td style="text-align:right;"> 0.465 </td>
-   <td style="text-align:right;"> 0.765 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> -0.047 </td>
-   <td style="text-align:right;"> 0.654 </td>
-   <td style="text-align:right;"> 0.701 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>   <span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>   g5 <span class="ot">&lt;-</span> <span class="fu">sample_k_regular</span>(<span class="dv">7</span>, <span class="dv">4</span>)</span>
-<span id="cb15-3"><a href="#cb15-3"></a>   <span class="fu">plot.graph</span>(g5, <span class="st">"circle"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="480"></p>
-<p></p><figcaption class="figure-caption">Regular Graph.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"regular.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g5))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in a Regular Graph.</caption>
- <thead>
-  <tr>
-   <th style="text-align:right;"> Node </th>
-   <th style="text-align:right;"> Distinction </th>
-   <th style="text-align:right;"> Status </th>
-   <th style="text-align:right;"> Constraint </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.787 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.787 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.787 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.787 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.787 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.787 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.787 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>   <span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>   g6 <span class="ot">&lt;-</span> <span class="fu">sample_smallworld</span>(<span class="at">dim =</span> <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="fl">0.05</span>)</span>
-<span id="cb18-3"><a href="#cb18-3"></a>   <span class="fu">plot.graph</span>(g6, <span class="st">"circle"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="480"></p>
-<p></p><figcaption class="figure-caption">Small World Graph.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"sw.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g6))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in a Small World Graph.</caption>
- <thead>
-  <tr>
-   <th style="text-align:right;"> Node </th>
-   <th style="text-align:right;"> Distinction </th>
-   <th style="text-align:right;"> Status </th>
-   <th style="text-align:right;"> Constraint </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> -0.182 </td>
-   <td style="text-align:right;"> 0.639 </td>
-   <td style="text-align:right;"> 0.821 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.125 </td>
-   <td style="text-align:right;"> 0.785 </td>
-   <td style="text-align:right;"> 0.660 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.035 </td>
-   <td style="text-align:right;"> 0.868 </td>
-   <td style="text-align:right;"> 0.833 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0.035 </td>
-   <td style="text-align:right;"> 0.868 </td>
-   <td style="text-align:right;"> 0.833 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> -0.009 </td>
-   <td style="text-align:right;"> 0.874 </td>
-   <td style="text-align:right;"> 0.882 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0.220 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.780 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 0.069 </td>
-   <td style="text-align:right;"> 0.812 </td>
-   <td style="text-align:right;"> 0.743 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>   <span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>   <span class="fu">plot.graph</span>(karate, <span class="st">"dh"</span>, <span class="at">vs =</span> <span class="dv">8</span>, <span class="at">ts =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
-<p></p><figcaption class="figure-caption">Karate Club Graph.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"karate.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(karate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in the Karate Club.</caption>
- <thead>
-  <tr>
-   <th style="text-align:right;"> Node </th>
-   <th style="text-align:right;"> Distinction </th>
-   <th style="text-align:right;"> Status </th>
-   <th style="text-align:right;"> Constraint </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.504 </td>
-   <td style="text-align:right;"> 0.952 </td>
-   <td style="text-align:right;"> 0.448 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.377 </td>
-   <td style="text-align:right;"> 0.712 </td>
-   <td style="text-align:right;"> 0.336 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.454 </td>
-   <td style="text-align:right;"> 0.850 </td>
-   <td style="text-align:right;"> 0.396 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0.118 </td>
-   <td style="text-align:right;"> 0.566 </td>
-   <td style="text-align:right;"> 0.448 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> -0.201 </td>
-   <td style="text-align:right;"> 0.203 </td>
-   <td style="text-align:right;"> 0.405 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> -0.094 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 0.307 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> -0.094 </td>
-   <td style="text-align:right;"> 0.213 </td>
-   <td style="text-align:right;"> 0.307 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> -0.150 </td>
-   <td style="text-align:right;"> 0.458 </td>
-   <td style="text-align:right;"> 0.608 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> -0.192 </td>
-   <td style="text-align:right;"> 0.609 </td>
-   <td style="text-align:right;"> 0.802 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> -0.644 </td>
-   <td style="text-align:right;"> 0.275 </td>
-   <td style="text-align:right;"> 0.919 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> -0.201 </td>
-   <td style="text-align:right;"> 0.203 </td>
-   <td style="text-align:right;"> 0.405 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> -0.776 </td>
-   <td style="text-align:right;"> 0.142 </td>
-   <td style="text-align:right;"> 0.918 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> -0.470 </td>
-   <td style="text-align:right;"> 0.226 </td>
-   <td style="text-align:right;"> 0.695 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> -0.096 </td>
-   <td style="text-align:right;"> 0.607 </td>
-   <td style="text-align:right;"> 0.702 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> -0.596 </td>
-   <td style="text-align:right;"> 0.272 </td>
-   <td style="text-align:right;"> 0.868 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> -0.596 </td>
-   <td style="text-align:right;"> 0.272 </td>
-   <td style="text-align:right;"> 0.868 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:right;"> -0.137 </td>
-   <td style="text-align:right;"> 0.063 </td>
-   <td style="text-align:right;"> 0.200 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:right;"> -0.512 </td>
-   <td style="text-align:right;"> 0.247 </td>
-   <td style="text-align:right;"> 0.760 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> -0.596 </td>
-   <td style="text-align:right;"> 0.272 </td>
-   <td style="text-align:right;"> 0.868 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> -0.463 </td>
-   <td style="text-align:right;"> 0.396 </td>
-   <td style="text-align:right;"> 0.859 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> -0.596 </td>
-   <td style="text-align:right;"> 0.272 </td>
-   <td style="text-align:right;"> 0.868 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 22 </td>
-   <td style="text-align:right;"> -0.512 </td>
-   <td style="text-align:right;"> 0.247 </td>
-   <td style="text-align:right;"> 0.760 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:right;"> -0.596 </td>
-   <td style="text-align:right;"> 0.272 </td>
-   <td style="text-align:right;"> 0.868 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> -0.044 </td>
-   <td style="text-align:right;"> 0.402 </td>
-   <td style="text-align:right;"> 0.446 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 25 </td>
-   <td style="text-align:right;"> -0.166 </td>
-   <td style="text-align:right;"> 0.153 </td>
-   <td style="text-align:right;"> 0.319 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 26 </td>
-   <td style="text-align:right;"> -0.172 </td>
-   <td style="text-align:right;"> 0.159 </td>
-   <td style="text-align:right;"> 0.331 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 27 </td>
-   <td style="text-align:right;"> -0.457 </td>
-   <td style="text-align:right;"> 0.202 </td>
-   <td style="text-align:right;"> 0.659 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 28 </td>
-   <td style="text-align:right;"> -0.197 </td>
-   <td style="text-align:right;"> 0.357 </td>
-   <td style="text-align:right;"> 0.554 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 29 </td>
-   <td style="text-align:right;"> -0.407 </td>
-   <td style="text-align:right;"> 0.351 </td>
-   <td style="text-align:right;"> 0.758 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 30 </td>
-   <td style="text-align:right;"> -0.158 </td>
-   <td style="text-align:right;"> 0.361 </td>
-   <td style="text-align:right;"> 0.519 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 31 </td>
-   <td style="text-align:right;"> -0.251 </td>
-   <td style="text-align:right;"> 0.468 </td>
-   <td style="text-align:right;"> 0.719 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 32 </td>
-   <td style="text-align:right;"> -0.018 </td>
-   <td style="text-align:right;"> 0.512 </td>
-   <td style="text-align:right;"> 0.529 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 33 </td>
-   <td style="text-align:right;"> 0.569 </td>
-   <td style="text-align:right;"> 0.827 </td>
-   <td style="text-align:right;"> 0.258 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 0.825 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.175 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>   <span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a>   iso <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">degree</span>(flo_marriage) <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb24-3"><a href="#cb24-3"></a>   g <span class="ot">&lt;-</span> <span class="fu">delete_vertices</span>(flo_marriage, iso)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>   <span class="fu">plot.graph</span>(g, <span class="st">"star"</span>, <span class="at">ts =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1152"></p>
-<p></p><figcaption class="figure-caption">Florentine Families Graph.</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>   <span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"Plots"</span>, <span class="st">"flo-marriage.png"</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>   <span class="fu">tab.cent</span>(<span class="fu">distinction</span>(g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<table class="table table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"><caption>Distinction Centrality Scores of Nodes in the Florentine Families.</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Node </th>
-   <th style="text-align:right;"> Distinction </th>
-   <th style="text-align:right;"> Status </th>
-   <th style="text-align:right;"> Constraint </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Acciaiuoli </td>
-   <td style="text-align:right;"> -0.693 </td>
-   <td style="text-align:right;"> 0.307 </td>
+   <td style="text-align:right;"> 0.026 </td>
+   <td style="text-align:right;"> 1.026 </td>
    <td style="text-align:right;"> 1.000 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Albizzi </td>
-   <td style="text-align:right;"> -0.217 </td>
-   <td style="text-align:right;"> 0.567 </td>
-   <td style="text-align:right;"> 0.784 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Barbadori </td>
-   <td style="text-align:right;"> -0.283 </td>
-   <td style="text-align:right;"> 0.492 </td>
-   <td style="text-align:right;"> 0.775 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bischeri </td>
-   <td style="text-align:right;"> 0.274 </td>
-   <td style="text-align:right;"> 0.657 </td>
-   <td style="text-align:right;"> 0.383 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Castellani </td>
-   <td style="text-align:right;"> 0.230 </td>
-   <td style="text-align:right;"> 0.602 </td>
-   <td style="text-align:right;"> 0.372 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ginori </td>
-   <td style="text-align:right;"> -0.340 </td>
-   <td style="text-align:right;"> 0.174 </td>
-   <td style="text-align:right;"> 0.515 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guadagni </td>
-   <td style="text-align:right;"> 0.047 </td>
-   <td style="text-align:right;"> 0.672 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> -0.004 </td>
    <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 0.628 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Lamberteschi </td>
-   <td style="text-align:right;"> -0.390 </td>
-   <td style="text-align:right;"> 0.206 </td>
-   <td style="text-align:right;"> 0.597 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> -0.004 </td>
+   <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 0.628 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Medici </td>
-   <td style="text-align:right;"> 0.455 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.545 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> -0.004 </td>
+   <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 0.628 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Pazzi </td>
-   <td style="text-align:right;"> -0.204 </td>
-   <td style="text-align:right;"> 0.104 </td>
-   <td style="text-align:right;"> 0.308 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> -0.004 </td>
+   <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 0.628 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Peruzzi </td>
-   <td style="text-align:right;"> 0.306 </td>
-   <td style="text-align:right;"> 0.641 </td>
-   <td style="text-align:right;"> 0.335 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> -0.004 </td>
+   <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 0.628 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Ridolfi </td>
-   <td style="text-align:right;"> -0.045 </td>
-   <td style="text-align:right;"> 0.794 </td>
-   <td style="text-align:right;"> 0.839 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Salviati </td>
-   <td style="text-align:right;"> -0.655 </td>
-   <td style="text-align:right;"> 0.339 </td>
-   <td style="text-align:right;"> 0.994 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Strozzi </td>
-   <td style="text-align:right;"> 0.543 </td>
-   <td style="text-align:right;"> 0.827 </td>
-   <td style="text-align:right;"> 0.284 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tornabuoni </td>
-   <td style="text-align:right;"> 0.211 </td>
-   <td style="text-align:right;"> 0.757 </td>
-   <td style="text-align:right;"> 0.546 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> -0.004 </td>
+   <td style="text-align:right;"> 0.624 </td>
+   <td style="text-align:right;"> 0.628 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>   p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.01</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>   r <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(p))</span>
-<span id="cb27-3"><a href="#cb27-3"></a>   <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(p)) {</span>
-<span id="cb27-4"><a href="#cb27-4"></a>      <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb27-5"><a href="#cb27-5"></a>      g <span class="ot">&lt;-</span> <span class="fu">sample_smallworld</span>(<span class="at">dim =</span> <span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">3</span>, p[i]) </span>
-<span id="cb27-6"><a href="#cb27-6"></a>      d <span class="ot">&lt;-</span> <span class="fu">distinction</span>(g)<span class="sc">$</span>u</span>
-<span id="cb27-7"><a href="#cb27-7"></a>      b <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g)</span>
-<span id="cb27-8"><a href="#cb27-8"></a>      r[i] <span class="ot">&lt;-</span> <span class="fu">cor</span>(d, b)</span>
-<span id="cb27-9"><a href="#cb27-9"></a>      }</span>
-<span id="cb27-10"><a href="#cb27-10"></a>   dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(p, r)</span>
-<span id="cb27-11"><a href="#cb27-11"></a>   <span class="fu">ggscatter</span>(<span class="at">data =</span> dat, <span class="st">"p"</span>, <span class="st">"r"</span>, <span class="at">add =</span> <span class="st">"loess"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Jilbert’s Distinction Equivalence</p>
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
