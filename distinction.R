@@ -1,4 +1,5 @@
-distinction <- function(x, norm = FALSE) { #distinction centrality function
+distinction <- function(x, scale = FALSE) { #distinction centrality function
+   library(igraph)
    if (is.null(V(x)$name) == TRUE) {
       V(x)$name <- 1:vcount(x)
       }
@@ -30,7 +31,7 @@ distinction <- function(x, norm = FALSE) { #distinction centrality function
    d[is.na(d)] <- 0
    u[is.na(u)] <- 0
    scalar <- (mean(u)/mean(s))
-   if (norm == TRUE) {
+   if (scale == TRUE) {
       s <- s * scalar
       }
    d <- s - u
