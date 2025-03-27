@@ -4,6 +4,10 @@
 \usepackage{verbatim}
 \usepackage{setspace}
 \usepackage{booktabs}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{subfigure}
 \bibpunct[: ]{(}{)}{;}{a}{}{,} 
 \usepackage{authblk}
 \renewcommand\Authfont{\normalsize}
@@ -43,6 +47,33 @@ To simplify a bit for argument's sake, as we have intimated, the first aspect of
 The second aspect of social distinction is \textit{autonomy}, which is the absence of network constraint. Being structurally unique minimizes the social constraints placed on an individual. The tighter the interconnections of the group, the more its pressures constrain the individual. In politics, this aspect of distinction takes the form of constraint. When an actor is one of many densely interconnected individuals, their ability to act contrary to their networked group is greatly weakened. However, when one is only a weakly dependent and connected member of a group, they have a greater ability to operate independently. Their ability to act is a source of distinction as they are able to take independent action. The question of structural uniqueness and autonomy is the same underlying consideration as captured by measures of path centrality. The more critical one is to bridge connections between individuals within a network, the greater one's importance, and the lower their constraint \citep{burt92}. 
 
 \citet[1263-4]{padgett_ansell94} were the first to bring attention to how the cohesion of those around a broker can structure their own decisions. Cosimo de Medici, acting as a broker between two antagonistic groups, was constrained in the actions he could take because strong actions favoring one side would upset the other side. However, such a constraint was not an issue because Medici’s interests were in perpetuating his central role as broker, and, as the only source of interest, he was able to maintain the position. With regard to conceptualizing distinction, the theory of robust action puts forward that those at the center of political networks, as long as their interests derive solely from maintaining that position, engage in moderate strategies that do not overly antagonize either side. The decisions derive from ensuring the continuation of their position at the center of the network. 
+
+\begin{figure}[ht!]
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/star.png}
+            \caption{Star Graph}
+            \label{fig:star}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/sf.png}
+            \caption{Structural Fold}
+            \label{fig:sf}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/inter.png}
+            \caption{Interconnected Clusters}
+            \label{fig:inter}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/intra.png}
+            \caption{Intraconnected clusters}
+            \label{fig:intra}
+    \end{subfigure}
+    \caption{}
+    \label{fig:toys}
+\end{figure}
 
 \input{Tabs/star}
 \input{Tabs/structfold.tex}
