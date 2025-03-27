@@ -18,6 +18,7 @@ bibliography: networks.bib
    library(here)
    library(networkdata)
    library(ggpubr)
+   library(here)
    source("distinction.R")
 ```
 
@@ -99,13 +100,13 @@ $$
    return(p)
    }
 
-   tab.cent <- function(x, d = 3) { #table function
+   tab.cent <- function(x, d = 3, name = "name") { #table function
    library(kableExtra)
    t <- kbl(x, 
        digits = d, row.names = FALSE,
-       col.names = c("Node", "Distinction", "Status", "Constraint")) %>% 
-      kable_styling(bootstrap_options = c("hover", "condensed", "responsive"))
-   return(t)
+       col.names = c("Node", "Distinction", "SDistinction", "Status", "Constraint", "Scalar")) %>% 
+      kable_styling(bootstrap_options = c("hover", "condensed", "responsive")) 
+   save_kable(file = paste(name, ".pdf", sep = ""))
    }
 ```
 
@@ -122,6 +123,19 @@ $$
     g3 <- g3 + edge(5,6)
     g3 <- g3 + edge(5,7) # intra-connected clusters
     g4 <- g3 + edge(2,7) # inter-connected clusters
+```
+
+```{r}
+   medici1 <- as.matrix(read.csv(here("MediciEdgeList.csv")))
+   medici1 <- graph_from_edgelist(medici1, directed = FALSE)
+   medici2 <- as.matrix(read.csv(here("MediciEdgeListMarriageCut.csv")))
+   medici2 <- graph_from_edgelist(medici2, directed = FALSE)
+   nomedici <- as.matrix(read.csv(here("NoMediciEdgeList.csv")))
+   nomedici <- graph_from_edgelist(nomedici, directed = FALSE)
+   distinction(medici1)
+   distinction(medici2)
+   distinction(nomedici)
+   tab.cent(distinction(medici1))
 ```
 
 

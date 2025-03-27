@@ -30,11 +30,13 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
    } #end i for loop
    d[is.na(d)] <- 0
    u[is.na(u)] <- 0
-   scalar <- (mean(u)/mean(s))
+   scalar <- mean(u)/mean(s)
    if (scale == TRUE) {
       s <- s * scalar
       }
    d <- s - u
-   dat <- data.frame(n = V(x)$name, d = d, s = s, u = u, scalar = scalar)
+   sd <- (s*scalar) - u
+   dat <- data.frame(n = V(x)$name, d = d, sd = sd, s = s, u = u, scalar = scalar)
+   rownames(dat) <- 1:nrow(dat)
    return(dat)
 } #end function
