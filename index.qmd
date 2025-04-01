@@ -49,68 +49,23 @@ $$
 D^*_i = \gamma S_i(G)  - C_i(G)
 $$
 
-```{r Custom Functions}
-#| echo: false
-   plot.graph <- function(x, l, vs = 12, ts = 6) { #plotting function
-      library(ggraph)
-      d <- distinction(x)$d
-      nc <- rep("", length(d))
-      nc[which(d < -0.05)] <- "red"
-      nc[which(d > 0.05)] <- "blue"
-      nc[which(d <= 0.05 & d >= -0.05)] <- "purple"
-      if (is.null(V(x)$name) == TRUE) {
-         n <- 1:vcount(x)
-         tc <- "white"
-         s <- vs
-         }
-      if (is.null(V(x)$name) == FALSE) {
-         n <- V(x)$name
-         tc <- nc
-         vs <- 0
-         }
-      p <- ggraph(x, layout = l)
-      p <- p + geom_edge_link(color = "steelblue", edge_width = 0.5)
-      p <- p + geom_node_point(aes(x = x, y = y), size = vs, color = nc) 
-      p <- p + geom_node_text(aes(label = n), size = ts, color = tc)
-      p <- p + theme_graph() 
-   return(p)
-   }
-   plot.graph.norm <- function(x, l, vs = 12, ts = 6) { #plotting function
-      library(ggraph)
-      d <- distinction(x, norm = TRUE)$d
-      nc <- rep("", length(d))
-      nc[which(d < -0.05)] <- "red"
-      nc[which(d > 0.05)] <- "blue"
-      nc[which(d <= 0.05 & d >= -0.05)] <- "purple"
-      if (is.null(V(x)$name) == TRUE) {
-         n <- 1:vcount(x)
-         tc <- "white"
-         s <- vs
-         }
-      if (is.null(V(x)$name) == FALSE) {
-         n <- V(x)$name
-         tc <- nc
-         vs <- 0
-         }
-      p <- ggraph(x, layout = l)
-      p <- p + geom_edge_link(color = "steelblue", edge_width = 0.5)
-      p <- p + geom_node_point(aes(x = x, y = y), size = vs, color = nc) 
-      p <- p + geom_node_text(aes(label = n), size = ts, color = tc)
-      p <- p + theme_graph() 
-   return(p)
-   }
 
-   tab.cent <- function(x, d = 3, name = "name") { #table function
+```{r}
+   tab.cent <- function(x, d = 3, name = "name", caption = "", label = "label") { #table function
    library(kableExtra)
    t <- kbl(x, 
-       digits = d, row.names = FALSE,
-       col.names = c("Node", "Distinction", "SDistinction", "Status", "Constraint", "Scalar")) %>% 
-      kable_styling(bootstrap_options = c("hover", "condensed", "responsive")) 
-   save_kable(file = paste(name, ".pdf", sep = ""))
+            format = "latex", booktabs = TRUE, linesep = "",
+            digits = d, row.names = FALSE,
+            col.names = c("Node", "Distinction", "SDistinction", "Status", "Constraint", "Scalar"),
+            caption = caption, label = label
+            ) %>% 
+            kable_styling(bootstrap_options = c("hover", "condensed", "responsive")) %>% 
+            save_kable(file = here("Tabs", paste(name, ".tex", sep = "")))
    }
 ```
 
-```{r}
+
+```{r Toy Examples}
     g1 <- make_star(7, mode = "undirected") # star graph
     g2 <- g1 + edge(2,3)
     g2 <- g2 + edge(2,4)
@@ -123,41 +78,71 @@ $$
     g3 <- g3 + edge(5,6)
     g3 <- g3 + edge(5,7) # intra-connected clusters
     g4 <- g3 + edge(2,7) # inter-connected clusters
+    tab.cent(distinction(g1), name = "star", label = "tab:star")
+    tab.cent(distinction(g2), name = "structfold", label = "tab:sf")
+    tab.cent(distinction(g3), name = "intraclust", label = "tab:intra")
+    tab.cent(distinction(g4), name = "interclust", label = "tab:inter")
 ```
 
 ```{r}
-   medici1 <- as.matrix(read.csv(here("MediciEdgeList.csv")))
+   plot.graph.norm <- function(x, l = "kk", vs = 12, ts = 6) { #plotting function
+      library(ggraph)
+      d <- distinction(x)[,3]
+      nc <- rep("", length(d))
+      nc[which(d < -0.05)] <- "red"
+      nc[which(d > 0.05)] <- "blue"
+      nc[which(d <= 0.05 & d >= -0.05)] <- "purple"
+      if (is.null(V(x)$name) == TRUE) {
+         n <- 1:vcount(x)
+         tc <- "white"
+         s <- vs
+         }
+      if (is.null(V(x)$name) == FALSE) {
+         n <- V(x)$name
+         tc <- nc
+         vs <- 0
+         }
+      p <- ggraph(x, layout = l)
+      p <- p + geom_edge_link(color = "steelblue", edge_width = 0.5)
+      p <- p + geom_node_point(aes(x = x, y = y), size = vs, color = nc) 
+      p <- p + geom_node_text(aes(label = n), size = ts, color = tc, fontface = "bold")
+      p <- p + theme_graph() 
+   return(p)
+   }
+```
+
+```{r}
+   png(here("Plots", "star.png"))
+   plot.graph.norm(g1)
+   dev.off()
+   png(here("Plots", "sf.png"))
+   plot.graph.norm(g2)
+   dev.off()
+   png(here("Plots", "intra.png"))
+   plot.graph.norm(g3)
+   dev.off()
+   png(here("Plots", "inter.png"))
+   plot.graph.norm(g4)
+   dev.off()
+```
+
+
+```{r}
+   medici1 <- as.matrix(read.csv(here("Data", "MediciEdgeList.csv")))
    medici1 <- graph_from_edgelist(medici1, directed = FALSE)
-   medici2 <- as.matrix(read.csv(here("MediciEdgeListMarriageCut.csv")))
+   medici2 <- as.matrix(read.csv(here("Data", "MediciEdgeListMarriageCut.csv")))
    medici2 <- graph_from_edgelist(medici2, directed = FALSE)
-   nomedici <- as.matrix(read.csv(here("NoMediciEdgeList.csv")))
+   nomedici <- as.matrix(read.csv(here("Data", "NoMediciEdgeList.csv")))
    nomedici <- graph_from_edgelist(nomedici, directed = FALSE)
-   distinction(medici1)
-   distinction(medici2)
-   distinction(nomedici)
-   tab.cent(distinction(medici1))
+   png(here("Plots", "medici.png"), height = 600, width = 1000)
+      plot.graph.norm(medici1, ts = 5)
+   dev.off()
+   png(here("Plots", "nomedici.png"), height = 600, width = 1000)
+      plot.graph.norm(nomedici, ts = 5)
+   dev.off()
+   
 ```
 
 
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in the Star Graph."
-   tab.cent(distinction(g1)[, 1:4])
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in the Star Graph (Normalized)."
-   tab.cent(distinction(g1, scale = TRUE)[, 1:4])
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold."
-   tab.cent(distinction(g2)[, 1:4])
-```
-
-```{r}
-#| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold (Normalized)."
-   tab.cent(distinction(g2, scale = TRUE)[, 1:4])
-```
 
 

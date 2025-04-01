@@ -20,7 +20,6 @@ editor: visual
    ggsave(here("Plots", "star.png"), width = 6, height = 6)
 ```
 
-
 ```{r}
 #| fig-cap: "A structural fold with seven nodes."
 #| fig-height: 5
@@ -33,7 +32,6 @@ editor: visual
 #| tbl-cap: "Distinction Centrality Scores of Nodes in the Structural Fold."
    tab.cent(distinction(g2))
 ```
-
 
 ```{r}
 #| fig-cap: "Intraconnected Clusters."
@@ -60,7 +58,6 @@ editor: visual
 #| tbl-cap: "Distinction Centrality Scores of Nodes in Interconnected Clusters."
    tab.cent(distinction(g4))
 ```
-
 
 ```{r}
 #| fig-cap: "Regular Graph."
@@ -91,7 +88,6 @@ editor: visual
 #| tbl-cap: "Distinction Centrality Scores of Nodes in a Small World Graph."
    tab.cent(distinction(g6))
 ```
-
 
 ```{r}
 #| fig-cap: "Karate Club Graph."
@@ -136,8 +132,5 @@ editor: visual
    dat <- data.frame(p, r)
    ggscatter(data = dat, "p", "r", add = "loess") 
 ```
-
-
-
 
 Jilbert's Distinction Equivalence
