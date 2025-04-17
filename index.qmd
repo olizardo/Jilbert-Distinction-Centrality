@@ -143,6 +143,13 @@ $$
    
 ```
 
+```{r}
+   source("distinction2.R")
+   g <- as.matrix(read.csv(here("Data", "searchmodeltest.csv")))
+   g <- graph_from_edgelist(g, directed = FALSE)
+   distinction2(g)
+```
+
 
 
 

@@ -6,7 +6,7 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
    s <- eigen_centrality(x)$vector
    d <- 0
    u <- 0
-   for (i in 1:vcount(x)) {
+   for (i in V(x)$name) {
       j <- names(neighbors(x, i))
       x.d <- x - i
       c <- as.numeric(is_connected(x.d) == TRUE) #checking for connectedness
@@ -38,5 +38,5 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
    sd <- (s*scalar) - u
    dat <- data.frame(n = V(x)$name, d = d, sd = sd, s = s, u = u, scalar = scalar)
    rownames(dat) <- 1:nrow(dat)
-   return(dat)
+   return(round(dat, 4))
 } #end function
