@@ -1,6 +1,12 @@
 distinction <- function(x, scale = FALSE) { #distinction centrality function
    library(igraph)
-   if (is.null(V(x)$name) == TRUE) {
+   has.labels <- as.numeric(is.null(V(x)$name) == FALSE)
+   if (has.labels == 0) {
+      V(x)$name <- 1:vcount(x)
+      names <- V(x)$name 
+      }
+   if (has.labels == 1) {
+      names <- V(x)$name 
       V(x)$name <- 1:vcount(x)
       }
    s <- eigen_centrality(x)$vector
@@ -33,8 +39,6 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
       u[i] <- sum(s.a)/length(s.a) #average neighbor centrality
       d[i] <- s[i] - u[i] #distinction centrality
    } #end i for loop
-   print(s)
-   print(u)
    d[is.na(d)] <- 0
    u[is.na(u)] <- 0
    scalar <- mean(u)/mean(s)
@@ -43,7 +47,9 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
       }
    d <- s - u
    sd <- (s*scalar) - u
-   dat <- data.frame(n = V(x)$name, d = d, sd = sd, s = s, u = u, scalar = scalar)
+   dat <- data.frame(d = d, sd = sd, s = s, u = u, scalar = scalar)
+   dat <- round(dat, 4)
+   dat <- data.frame(n = names, dat)
    rownames(dat) <- 1:nrow(dat)
-   return(round(dat, 4))
+   return(dat)
 } #end function
