@@ -5,10 +5,10 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
       }
    s <- eigen_centrality(x)$vector
    d <- 0
-   u <- 0
-   for (i in V(x)$name) {
+   u <- rep(vcount(x), 0)
+   for (i in as.character(V(x)$name)) {
       j <- names(neighbors(x, i))
-      x.d <- x - i
+      x.d <- delete_vertices(x, i)
       c <- as.numeric(is_connected(x.d) == TRUE) #checking for connectedness
       e <- as.numeric(ecount(x.d) == 0) #checking for empty
       if (c == 1 & e == 0) { #connected non-empty graph
@@ -19,15 +19,22 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
          } #end else 1
       else if (c == 0 & e == 0) { #disconnected non-empty graph
          C <- components(x.d)$membership
-         s.a <- eigen_centrality(subgraph(x.d, which(C == 1)))$vector
-         for (k in 2:max(C)) {
-            s.a <- c(s.a, eigen_centrality(subgraph(x.d, which(C == k)))$vector)
+         names(C) <- V(x)$name[-as.numeric(i)]
+         s.a <- rep(0, length(C))
+         for (k in unique(C)) {
+            sub.g <- subgraph(x.d, names(which(C == k)))
+            if (vcount(sub.g) > 1) {
+               s.a[which(C == k)] <- eigen_centrality(sub.g)$vector
+               }
             }
+         names(s.a) <- names(C)
          s.a <- s.a[j]
          } #end else 2
-      u[i] <- sum(s.a) * 1/length(s.a) #average neighbor centrality
+      u[i] <- sum(s.a)/length(s.a) #average neighbor centrality
       d[i] <- s[i] - u[i] #distinction centrality
    } #end i for loop
+   print(s)
+   print(u)
    d[is.na(d)] <- 0
    u[is.na(u)] <- 0
    scalar <- mean(u)/mean(s)
