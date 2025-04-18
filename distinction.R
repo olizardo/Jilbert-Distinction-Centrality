@@ -1,17 +1,18 @@
-distinction <- function(x, scale = FALSE) { #distinction centrality function
+distinction <- function(x) { #distinction centrality function
    library(igraph)
    has.labels <- as.numeric(is.null(V(x)$name) == FALSE)
+   V <- vcount(x)
    if (has.labels == 0) {
-      V(x)$name <- 1:vcount(x)
+      V(x)$name <- 1:V
       names <- V(x)$name 
       }
    if (has.labels == 1) {
       names <- V(x)$name 
-      V(x)$name <- 1:vcount(x)
+      V(x)$name <- 1:V
       }
    s <- eigen_centrality(x)$vector
-   d <- 0
-   u <- rep(vcount(x), 0)
+   d <- rep(V, 0)
+   u <- rep(V, 0)
    for (i in as.character(V(x)$name)) {
       j <- names(neighbors(x, i))
       x.d <- delete_vertices(x, i)
@@ -22,7 +23,7 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
          } #end if
       else if (c == 0 & e == 1) { #empty graph
          s.a <- 0
-         } #end else 1
+         } #end first else 
       else if (c == 0 & e == 0) { #disconnected non-empty graph
          C <- components(x.d)$membership
          names(C) <- V(x)$name[-as.numeric(i)]
@@ -35,17 +36,14 @@ distinction <- function(x, scale = FALSE) { #distinction centrality function
             }
          names(s.a) <- names(C)
          s.a <- s.a[j]
-         } #end else 2
-      u[i] <- sum(s.a)/length(s.a) #average neighbor centrality
-      d[i] <- s[i] - u[i] #distinction centrality
+         } #end second else
+      print(i)
+      print(s.a)
+      u[i] <- sum(s.a)/length(s.a) #i's average neighbor centrality in node deleted subgraph
+      d[i] <- s[i] - u[i] #i's distinction centrality
    } #end i for loop
-   d[is.na(d)] <- 0
    u[is.na(u)] <- 0
    scalar <- mean(u)/mean(s)
-   if (scale == TRUE) {
-      s <- s * scalar
-      }
-   d <- s - u
    sd <- (s*scalar) - u
    dat <- data.frame(d = d, sd = sd, s = s, u = u, scalar = scalar)
    dat <- round(dat, 4)
