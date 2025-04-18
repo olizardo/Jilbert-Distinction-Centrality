@@ -42,6 +42,7 @@ distinction <- function(x) { #distinction centrality function
       u[i] <- sum(s.a)/length(s.a) #i's average neighbor centrality in node deleted subgraph
       d[i] <- s[i] - u[i] #i's distinction centrality
    } #end i for loop
+   d[is.na(d)] <- 0
    u[is.na(u)] <- 0
    scalar <- mean(u)/mean(s)
    sd <- (s*scalar) - u
