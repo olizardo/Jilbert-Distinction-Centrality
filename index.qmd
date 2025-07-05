@@ -18,7 +18,6 @@ bibliography: networks.bib
    library(here)
    library(networkdata)
    library(ggpubr)
-   library(here)
    source("distinction.R")
 ```
 
@@ -82,6 +81,12 @@ $$
     tab.cent(distinction(g2), name = "structfold", label = "tab:sf")
     tab.cent(distinction(g3), name = "intraclust", label = "tab:intra")
     tab.cent(distinction(g4), name = "interclust", label = "tab:inter")
+```
+
+```{r}
+   source("distinction.new.R")
+   distinction.new(g1, norm = TRUE)
+   distinction.new(g1, norm = FALSE)
 ```
 
 ```{r}
