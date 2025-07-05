@@ -85,8 +85,8 @@ $$
 
 ```{r}
    source("distinction.new.R")
-   distinction.new(g1, norm = TRUE)
-   distinction.new(g1, norm = FALSE)
+   distinction.new(g2, norm = TRUE)
+   distinction.new(g2, norm = FALSE)
 ```
 
 ```{r}

@@ -28,10 +28,7 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
       if (c == 1 & e == 0) { #connected non-empty graph
          s.a <- eigen_centrality(x.d)$vector[j]
           if (norm == FALSE) {
-             A <- as.matrix(as_adjacency_matrix(x.d))
-             rownames(A) <- V(x.d)$name
-             colnames(A) <- V(x.d)$name
-             s.a <- abs(eigen(A)$vectors[, 1])
+             s.a <- abs(eigen(as.matrix(as_adjacency_matrix(x.d)))$vectors[, 1])
              #print(s.a)
           } #end sub if
         } #end main if
@@ -47,10 +44,7 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
             if (vcount(sub.g) > 1) {
                s.a[which(C == k)] <- eigen_centrality(sub.g)$vector
               if (norm == FALSE) {
-                  A <- as.matrix(as_adjacency_matrix(sub.g))
-                  rownames(A) <- V(sub.g)$name
-                  colnames(A) <- V(sub.g)$name
-                  s.a[which(C == k)] <- abs(eigen(A)$vectors[, 1])
+                  s.a[which(C == k)] <- abs(eigen(as.matrix(as_adjacency_matrix(sub.g)))$vectors[, 1])
                 } #end sub if
             } #end main if
             }
