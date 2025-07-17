@@ -14,24 +14,10 @@ execute:
    library(here)
    library(networkdata)
    library(ggpubr)
-   source("distinction.R")
+   source(here("Functions", "distinction.R"))
+   source(here("Functions", "plot.graph.norm.R"))
+   source(here("Functions", "tab.cent.R"))
 ```
-
-
-```{r}
-   tab.cent <- function(x, d = 3, name = "name", caption = "", label = "label") { #table function
-   library(kableExtra)
-   t <- kbl(x, 
-            format = "latex", booktabs = TRUE, linesep = "",
-            digits = d, row.names = FALSE,
-            col.names = c("Node", "Distinction", "SDistinction", "Status", "Constraint", "Scalar"),
-            caption = caption, label = label
-            ) %>% 
-            kable_styling(bootstrap_options = c("hover", "condensed", "responsive")) %>% 
-            save_kable(file = here("Tabs", paste(name, ".tex", sep = "")))
-   }
-```
-
 
 ```{r Toy Examples}
     g1 <- make_star(7, mode = "undirected") # star graph
@@ -52,34 +38,7 @@ execute:
     tab.cent(distinction(g4), name = "interclust", label = "tab:inter")
 ```
 
-```{r}
-   plot.graph.norm <- function(x, l = "kk", vs = 12, ts = 6) { #plotting function
-      library(ggraph)
-      d <- distinction(x)[,3]
-      nc <- rep("", length(d))
-      nc[which(d < -0.05)] <- "red"
-      nc[which(d > 0.05)] <- "blue"
-      nc[which(d <= 0.05 & d >= -0.05)] <- "purple"
-      if (is.null(V(x)$name) == TRUE) {
-         n <- 1:vcount(x)
-         tc <- "white"
-         s <- vs
-         }
-      if (is.null(V(x)$name) == FALSE) {
-         n <- V(x)$name
-         tc <- nc
-         vs <- 0
-         }
-      p <- ggraph(x, layout = l)
-      p <- p + geom_edge_link(color = "steelblue", edge_width = 0.5)
-      p <- p + geom_node_point(aes(x = x, y = y), size = vs, color = nc) 
-      p <- p + geom_node_text(aes(label = n), size = ts, color = tc, fontface = "bold")
-      p <- p + theme_graph() 
-   return(p)
-   }
-```
-
-```{r}
+```{r Toy Networks Plots}
    png(here("Plots", "star.png"))
    plot.graph.norm(g1)
    dev.off()
@@ -94,8 +53,7 @@ execute:
    dev.off()
 ```
 
-
-```{r}
+```{r Medici Distinction Plots}
    medici1 <- as.matrix(read.csv(here("Data", "MediciEdgeList.csv")))
    medici1 <- graph_from_edgelist(medici1, directed = FALSE)
    medici2 <- as.matrix(read.csv(here("Data", "MediciEdgeListMarriageCut.csv")))
@@ -111,11 +69,89 @@ execute:
    
 ```
 
-```{r}
+```{r Search Model Distinction}
    g <- as.matrix(read.csv(here("Data", "searchmodeltest.csv")))
    g <- graph_from_edgelist(g, directed = FALSE)
    distinction(g)
 ```
 
 
+```{r}
+   make.broker.graphs <- function(n = 10) {
+      g <- make_empty_graph(9, directed = FALSE)
+      g <- g + edge(1,2)
+      g <- g + edge(1,3)
+      g <- g + edge(2,4)
+      g <- g + edge(2,5)
+      g <- g + edge(2,6)
+      g <- g + edge(3,7)
+      g <- g + edge(3,8)
+      g <- g + edge(3,9)
+      el <- vector(mode = "list", length = n)
+      el[[1]] <- g
+      a <- 10
+      b <- 11
+      c <- 12
+      d <- 13
+      for (i in 2:n) {
+         g <- add_vertices(g, 4)
+         g <- g + edge(1,a)
+         g <- g + edge(a,b)
+         g <- g + edge(a,c)
+         g <- g + edge(a,d)
+         el[[i]] <- g
+         a <- a + 4
+         b <- b + 4
+         c <- c + 4
+         d <- d + 4
+      }
+   return(el)
+   }
+   b <- make.broker.graphs(30)
+   c <- lapply(b, distinction)
+   d <- sapply(c, function(x) {x[2, 2]})
+```
 
+    p <- p + geom_node_point(aes(x = x, y = y), size = 18, color = "tan2") 
+
+
+```{r}
+   library(patchwork)
+   library(ggplotify)
+   library(ggraph)
+   gg <- function(x) {
+      n <- vcount(x)
+      V(x)$name <- 1:n
+      w <- ggraph(x, layout = "kk") + 
+      geom_edge_link(color = "steelblue") + theme_graph() +
+      geom_node_point(size = 5, color = c("blue", rep("tan2", n - 1))) + 
+      geom_node_text(aes(label = name), color = "white", size = 3) +
+      ylim(-4,4) + xlim(-4,4) 
+      return(w)
+      }
+   p.list <- lapply(b, gg)
+   for (i in 1:length(p.list)) {
+      p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
+         theme(plot.title = element_text(size = 11))
+      }
+   wrap_plots(p.list[c(1:6)], nrow = 2)
+   ggsave(here("Plots", "tree-examples.png"), width = 10, height = 7, units = "in")
+```
+
+
+
+```{r}
+   dat <- data.frame(d = d, n = 1:length(d))
+   p <- ggplot(dat, aes(n, d, group = 1)) 
+   p <- p + geom_point(size = 3, color = "blue")
+   p <- p + geom_line(linewidth = 0.75, color = "blue")
+   p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
+   p <- p + labs(y = "Gatekeeper Distinction", x = "Number of Branches")
+   p <- p + ylim(-0.1, 1)
+   p <- p + theme_minimal()
+   p <- p + theme(axis.text = element_text(size = 12),
+                  axis.title = element_text(size = 14, face = "bold"))
+   p
+   
+
+```
