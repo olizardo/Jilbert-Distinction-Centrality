@@ -1,15 +1,11 @@
 ---
-title: "Jilbert's Distinction Centrality"
+title: "Distinction Centrality Analysis"
 execute: 
   eval: true
-  echo: true
+  echo: false
   output: true
   warning: false
   message: false
-format: 
-   html:
-      code-line-numbers: true
-bibliography: networks.bib
 ---
 
 ```{r Loading Functions}
@@ -20,33 +16,6 @@ bibliography: networks.bib
    library(ggpubr)
    source("distinction.R")
 ```
-
-
-According to @jilbert24, the Distinction Centrality ($D_i$) of a node is given by the difference between the *status* ($S_i(G)$) and the *constraint* ($C_i(G)$) experienced by each node:
-
-$$
-   D_i = S_i(G)  - C_i(G)
-$$
-
-Status is measured using the usual Bonacich eigenvector centrality (normalized to have maximum 1.0) computed in the full graph $G$. Constraint, in turn, is given by the average status of $i$'s neighbor in the *node deleted subgraph* that excludes $i$. 
-
-$$
-C_i(G) = \frac{\sum_{j \in N(i)} S_j(G - i)}{N} 
-$$
-
-Where $N(i)$ is the set of $i$'s neighbors, and $S_j(G -i)$ is the eigenvector centrality of node $j$ in the node deleted subgraph of $G$ that excludes $i$. Nodes are more constrained to the extent that others gain status in their absence. The Distinction of a node thus increases with its own status and decreases to the extent that others would gain status if that node was not around.
-
-The normalized version of Distinction Centrality ($D^*$) multiplies each node's status score by the parameter $\theta$, which is ratio of the average of constrain scores and the average of status scores of each node in the the network:
-
-$$
-\gamma = \frac{\frac{1}{N}\sum_i C_i(G)}{\frac{1}{N}\sum_i S_i(G)}
-$$
-
-The normalized distinction is then given by:
-
-$$
-D^*_i = \gamma S_i(G)  - C_i(G)
-$$
 
 
 ```{r}
@@ -81,12 +50,6 @@ $$
     tab.cent(distinction(g2), name = "structfold", label = "tab:sf")
     tab.cent(distinction(g3), name = "intraclust", label = "tab:intra")
     tab.cent(distinction(g4), name = "interclust", label = "tab:inter")
-```
-
-```{r}
-   source("distinction.new.R")
-   distinction.new(g2, norm = TRUE)
-   distinction.new(g2, norm = FALSE)
 ```
 
 ```{r}
@@ -149,12 +112,10 @@ $$
 ```
 
 ```{r}
-   source("distinction.R")
    g <- as.matrix(read.csv(here("Data", "searchmodeltest.csv")))
    g <- graph_from_edgelist(g, directed = FALSE)
    distinction(g)
 ```
-
 
 
 

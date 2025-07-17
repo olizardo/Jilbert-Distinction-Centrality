@@ -1,4 +1,4 @@
-distinction <- function(x) { #distinction centrality function
+distinction <- function(x) { 
    library(igraph)
    has.labels <- as.numeric(is.null(V(x)$name) == FALSE)
    V <- vcount(x)
