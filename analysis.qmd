@@ -109,7 +109,8 @@ execute:
    }
    b <- make.broker.graphs(30)
    c <- lapply(b, distinction)
-   d <- sapply(c, function(x) {x[2, 2]})
+   e <- sapply(c, function(x) {x[nrow(x), 2]})
+
 ```
 
     p <- p + geom_node_point(aes(x = x, y = y), size = 18, color = "tan2") 
@@ -141,17 +142,56 @@ execute:
 
 
 ```{r}
-   dat <- data.frame(d = d, n = 1:length(d))
+   d <- sapply(c, function(x) {x[1, 3]})
+   dat <- data.frame(d = d, n = 1:length(d)) |> 
+      mutate(n = n + 1)
    p <- ggplot(dat, aes(n, d, group = 1)) 
    p <- p + geom_point(size = 3, color = "blue")
    p <- p + geom_line(linewidth = 0.75, color = "blue")
    p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
    p <- p + labs(y = "Gatekeeper Distinction", x = "Number of Branches")
-   p <- p + ylim(-0.1, 1)
+   p <- p + scale_x_continuous(breaks = seq(2, length(d), by = 2))
+   #p <- p + ylim(-0.1, 1)
+   p <- p + theme_minimal()
+   p <- p + theme(axis.text = element_text(size = 12),
+                  axis.title = element_text(size = 14, face = "bold"))
+   p <- p + ggtitle("Scalar Distinction of Star Node")
+   p
+   ggsave(here("Plots", "star-by-nbranches.png"), width = 7, height = 7, units = "in")
+```
+
+```{r}
+   d <- sapply(c, function(x) {x[2, 3]})
+   dat <- data.frame(d = d, n = 1:length(d)) |> 
+      mutate(n = n + 1)
+   p <- ggplot(dat, aes(n, d, group = 1)) 
+   p <- p + geom_point(size = 3, color = "blue")
+   p <- p + geom_line(linewidth = 0.75, color = "blue")
+   p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
+   p <- p + labs(y = "Gatekeeper Distinction", x = "Number of Branches")
+   p <- p + scale_x_continuous(breaks = seq(2, length(d), by = 2))
+   #p <- p + ylim(-0.1, 1)
+   p <- p + theme_minimal()
+   p <- p + theme(axis.text = element_text(size = 12),
+                  axis.title = element_text(size = 14, face = "bold"))
+   p <- p + ggtitle("Scalar Distinction of Star Node")
+   p
+   ggsave(here("Plots", "gatekeeper-by-nbranches.png"), width = 7, height = 7, units = "in")
+```
+
+```{r}
+   d <- sapply(c, function(x) {x[nrow(x), 3]})
+   dat <- data.frame(d = d, n = 1:length(d)) |> 
+      mutate(n = n + 1)
+   p <- ggplot(dat, aes(n, d, group = 1)) 
+   p <- p + geom_point(size = 3, color = "blue")
+   p <- p + geom_line(linewidth = 0.75, color = "blue")
+   p <- p + geom_vline(xintercept = 3, color = "red", linetype = 2)
+   p <- p + labs(y = "Gatekeeper Distinction", x = "Number of Branches")
+   p <- p + scale_x_continuous(breaks = seq(2, length(d), by = 2))
    p <- p + theme_minimal()
    p <- p + theme(axis.text = element_text(size = 12),
                   axis.title = element_text(size = 14, face = "bold"))
    p
-   
-
+   ggsave(here("Plots", "pendant-by-nbranches.png"), width = 7, height = 7, units = "in")
 ```
