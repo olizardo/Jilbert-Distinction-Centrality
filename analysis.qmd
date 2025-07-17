@@ -174,7 +174,7 @@ execute:
    p <- p + theme_minimal()
    p <- p + theme(axis.text = element_text(size = 12),
                   axis.title = element_text(size = 14, face = "bold"))
-   p <- p + ggtitle("Scalar Distinction of Star Node")
+   p <- p + ggtitle("Scalar Distinction of Gatekeeper Node")
    p
    ggsave(here("Plots", "gatekeeper-by-nbranches.png"), width = 7, height = 7, units = "in")
 ```
@@ -192,6 +192,7 @@ execute:
    p <- p + theme_minimal()
    p <- p + theme(axis.text = element_text(size = 12),
                   axis.title = element_text(size = 14, face = "bold"))
+   p <- p + ggtitle("Scalar Distinction of Peripheral Node")
    p
    ggsave(here("Plots", "pendant-by-nbranches.png"), width = 7, height = 7, units = "in")
 ```
