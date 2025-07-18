@@ -39,14 +39,18 @@ execute:
    g5 <- make_ring(7) #circle graph
    g6 <- add_vertices(g5, 1)
    g6 <- g6 + edge(8,1) #circle graph wit pendant
+   g7 <- make_full_graph(4, directed = FALSE)
+   g7 <- add_vertices(g7, 1)
+   g7 <- g7 + edge(1,5)
+   plot(g7)
 ```
 
 ```{r Toy Networks Plots}
    png(here("Plots", "star.png"))
-   plot.graph.norm(g1, l = "auto")
+   plot.graph.norm(g1, l = "kk")
    dev.off()
    png(here("Plots", "sf.png"))
-   plot.graph.norm(g2, l = "auto")
+   plot.graph.norm(g2, l = "kk")
    dev.off()
    png(here("Plots", "intra.png"))
    plot.graph.norm(g3, l = "auto")
@@ -60,6 +64,9 @@ execute:
    png(here("Plots", "circle-plus-one.png"))
    plot.graph.norm(g6, l = "circle")
    dev.off()
+   png(here("Plots", "kite.png"))
+   plot.graph.norm(g7, l = "kk")
+   dev.off()
 ```
 
 ```{r Toy Network Distinction Tables}
@@ -69,7 +76,7 @@ execute:
     tab.cent(distinction(g4), name = "interclust", label = "tab:inter")
     tab.cent(distinction(g5), name = "circle", label = "tab:circle")
     tab.cent(distinction(g6), name = "circleplus", label = "tab:circleplus")
-
+    tab.cent(distinction(g6), name = "kite", label = "tab:kite")
 ```
 
 ## Medici
