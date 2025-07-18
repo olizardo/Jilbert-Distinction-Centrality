@@ -7,6 +7,10 @@
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{listings}
+\usepackage{courier}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{framextopmargin=50pt,frame=bottomline}
 \usepackage[hidelinks]{hyperref}
 \bibpunct[: ]{(}{)}{;}{a}{}{,} 
 \usepackage{authblk}
@@ -33,7 +37,7 @@ This paper introduces the concept of \textit{distinction centrality}, developing
 \section{Distinction Beyond Taste}
 Popular within cultural sociology, the concept of distinction has generated a rich body of literature aimed at explaining cultural differentiation within social fields. From this perspective, the pursuit of distinction, as the expression of an actor's status and uniqueness, is an end in itself, providing the basic motivation for action \citep{martin2003field}. The question of cultural distinction is often treated empirically as a matter of the deference given to symbolic forms of differentiation enacted by designated institutional authorities \citep{bourdieu1984distinction}. 
 
-In this last respect, the more encompassing notion of \textit{social} distinction, implying an actor's embeddedness in a relational field \citep{erikson2013formalist-400, fuhse2021social-9cb}, is often measured as the shadow counterpart of cultural distinction or collapsed into the concept of status more generally \citep{podolny2010status-1a6}. This approach overlooks questions of how network constraints impact the capacity of actors to be distinct. A generalized, measured ordering of social distinction that is derivative from a network of concrete social relations would give Bourdieu's generalized conception of distinction a broader methodological base from which to conduct empirical analysis. 
+In this last respect, the more encompassing notion of \textit{social} distinction, implying an actor's embeddedness in a relational field \citep{erikson2013formalist-400, fuhse2021social-9cb}, is often measured as the shadow counterpart of cultural distinction or collapsed into the concept of status more generally \citep{podolny2010status-1a6}. This approach overlooks questions of how network constraints produced by other agents impact the capacity of actors to be distinct. A generalized, measured ordering of social distinction that is derivative from a network of concrete social relations would give Bourdieu's generalized conception of distinction a broader methodological base from which to conduct empirical analysis. 
 
 \subsection{What is Distinction?}
 Bourdieu was primarily interested in the competition among actors for positions within the hierarchy implied by the field \citep{anheier1995forms, bourdieu1993field-8ad}. Bourdieu defined the field as a social space where actors operate within socially negotiated boundaries that arbitrate relevant competitive claims over position \citep{bourdieu1996rules-393}. In interplay with the field, individuals develop a habitus of embodied dispositions, expressed as cognitive ease with particular types of settings, objects, and performances. An actor's position in the field influences their habitus. Similarly, their habitus determines their future possibilities within the field, while also shaping the opportunities available to others in the field. Actors compete for positions in the field via various forms of capital or resources that are socially agreed upon as desirable within a field \citep{martin2003field}, thereby facilitating the formation of connections that both order and reflect the hierarchy of the field. The interaction of the desirability and uniqueness of the capitals possessed by an individual determines their place in the field's positional hierarchy.   
@@ -55,12 +59,14 @@ To establish a firm theoretical foundation for the measure of distinction, it is
 
 The first aspect of social distinction is \textit{status}. Status refers to the internal stratification of all network members, along with the connections of deference and obligation. In the case of politics, status refers to the ability to access those who themselves have higher levels of access, with those most central to the access network having the authority to make decisions. This can be captured traditionally by measures of status such as eigenvector centrality \citep{bonacich1972norms}. Status is higher for actors when the people they are connected to are themselves influential, and accessibility is merely a political reframe of the context. The internal stratification of individuals is determined by who has greater connections to those with even greater connections, with those having few connections to other important people being at the bottom of the hierarchy \citep{bonacich1972norms}. 
 
-The second aspect of social distinction is \textit{autonomy}, which is the absence of network constraint. Being structurally unique minimizes the social constraints placed on an individual. The tighter the interconnections of the group, the more its pressures constrain the individual. In politics, this aspect of distinction takes the form of constraint. When an actor is one of many densely interconnected individuals, their ability to act contrary to their networked group is greatly weakened. However, when one is only a weakly dependent and connected member of a group, they have a greater ability to operate independently. Their ability to act is a source of distinction as they are able to take independent action. The question of structural uniqueness and autonomy is the same underlying consideration as captured by measures of path centrality. The more critical one is to bridge connections between individuals within a network, the greater one's importance, and the lower their constraint \citep{burt92}. \citet[1263-4]{padgett_ansell94} were the first to bring attention to how the cohesion of those around a broker can structure their own decisions. Cosimo de Medici, acting as a broker between two antagonistic groups, was constrained in the actions he could take because strong actions favoring one side would upset the other side. However, such a constraint was not an issue because Medici’s interests were in perpetuating his central role as broker, and, as the only source of interest, he was able to maintain the position. With regard to conceptualizing distinction, the theory of robust action puts forward that those at the center of political networks, as long as their interests derive solely from maintaining that position, engage in moderate strategies that do not overly antagonize either side. The decisions derive from ensuring the continuation of their position at the center of the network. 
+The second aspect of social distinction is \textit{autonomy}, which is the absence of network constraint \citep{burt1980autonomy}. Being structurally unique minimizes the social constraints placed on an individual. The tighter the interconnections of the group, the more its pressures constrain the individual. In politics, this aspect of distinction takes the form of constraint. When an actor is one of many densely interconnected individuals, their ability to act contrary to their networked group is greatly weakened. However, when one is only a weakly dependent and connected member of a group, they have a greater ability to operate independently. Their ability to act is a source of distinction as they are able to take independent action. The question of structural uniqueness and autonomy is the same underlying consideration as captured by measures of path centrality. The more critical one is to bridge connections between individuals within a network, the greater one's importance, and the lower their constraint \citep{burt1995structural-5e8}. 
+
+\citet[1263-4]{padgett1993robust} were the first to bring attention to how the cohesion of those around a broker can structure their own decisions. Cosimo de Medici, acting as a broker between two antagonistic groups, was constrained in the actions he could take because strong actions favoring one side would upset the other side. However, such a constraint was not an issue because Medici’s interests were in perpetuating his central role as broker, and, as the only source of interest, he was able to maintain the position. With regard to conceptualizing distinction, the theory of robust action puts forward that those at the center of political networks, as long as their interests derive solely from maintaining that position, engage in moderate strategies that do not overly antagonize either side. The decisions derive from ensuring the continuation of their position at the center of the network. 
 
 The interaction of influence and autonomy combines to create an actor’s overall distinction in the network. The combination of influence and autonomy results in capacity, and the social reward for this capacity is distinction. An increase in one aspect can often, but not necessarily, lead to a decrease in the other. For example, a connection with someone with high accessibility can lead to a decrease in one’s autonomy, and new access comes with new constraints. However, the trade-off can maximize one’s overall distinction, so there are gains from the connection. Without such gains, the connection would not be formed.
 
 \section{A Generalized Measure of Network Distinction}
-Below, we present a measure of distinction centrality, determine the appropriate application of a scalar factor, and indicate the availability of an R program to facilitate easy implementation of the measure in further wok.
+Below, we present a measure of distinction centrality, determine the appropriate application of a scalar factor, and indicate the availability of an R program to facilitate easy implementation of the measure in further work.
 
 \subsection{Distinction Centrality}
 
@@ -71,16 +77,16 @@ Distinction centrality can be measured using the following expression:
 \beta_i=Sx_i-{\frac{1}{n_{j=i}}\sum_{{j}\in{A},i\neq{j}}x_{j}} 
 \end{equation}
 
-Let $\beta_i$ be the distinction centrality of a given individual \textit{i}. The first term captures the status of a given actor. Let \textit{x} be the eigenvector centrality \citep{bonacich72} of the designated individual. Let S be a scalar that adjusts the social value placed on status relative to constraint, as discussed below. The second terms captures the element of autonomy. Removing individual \textit{i} from the network, compute the eigenvectors of the remaining individuals and sum those that are connected to individual \textit{i}, taking the average eigenvector of neighbors \textit{j} as the constraint confronting node \textit{i} in the network. This is substantively the same mechanism as conducted in a jackknife resampling procedure, except that rather than forming a sampling distribution, we are measuring local constraint. Finally, subtract the status of the average neighbor connected to \textit{i} from \textit{i}’s scalar adjusted eigenvector centrality in the whole network. 
+Let $\beta_i$ be the distinction centrality of a given individual \textit{i}. The first term captures the status of a given actor. Let \textit{x} be the eigenvector centrality of the designated individual. Let S be a scalar that adjusts the social value placed on status relative to constraint, as discussed below. The second term captures the element of autonomy. Removing individual \textit{i} from the network, compute the eigenvectors of the remaining individuals and sum those that are connected to individual \textit{i}, taking the average eigenvector of neighbors \textit{j} as the constraint confronting node \textit{i} in the network. This is substantively the same mechanism as conducted in a jackknife resampling procedure, except that rather than forming a sampling distribution, we are measuring local constraints. Finally, subtract the status of the average neighbor connected to \textit{i} from \textit{i}’s scalar-adjusted eigenvector centrality in the whole network. 
 
-If a node is an isolate, its eigenvector centrality should be set at 0. In the case of a network with no connections (such as a star graph), it can be accidentally calculated as 1.00 in programs. However, given that it is still a network with no connections, setting isolates at 0.00 is theoretically appropriate, considering that status is a reflection of connections. It would be inappropriate for an isolate to have the same status as the highest status node in a large network. Additionally, given the second step of subtraction, it is only theoretically meaningful if set as 0 in the case of distinction centrality.
+When a node is an isolate, we set its eigenvector centrality to $x_i =0$. In the case of a network with no connections (such as an empty graph), some routines calculate it as $x_i =1.0$. However, given that it is still a network with no connections, setting isolates at $x_i =0$ is theoretically appropriate, considering that status is a reflection of connections. It would be inappropriate for an isolate to have the same status as the highest-status node in a large network. Additionally, given the second step of subtraction, it is only theoretically meaningful if set as $x_i =0$ in the case of distinction centrality.
 
 \subsection{Scalar Adjustment}
 First, a scalar is required because the relative value of status and autonomy is not inherently fixed in a social system. We might imagine situations where one desires more status at the expense of autonomy if the rewards to status are higher, or values autonomy more highly if the rewards to status are low. There cannot be an assumed unadjusted equivalence between the resulting eigenvectors of the two terms for this theoretical level.
 
 Additionally, due to the hierarchical nature of networks, the average constraint in the network is greater than the average status. The high average constraint of their neighbors is often much larger than the impact of status. The result is that, at the level of the entire network, those who are deeply embedded among the most elite, without a basis of supporters, are very indistinct when considering the high constraints placed on them by their high-status alters. Thus, the calculated results without a scalar may fail to capture the appropriate value of status compared to the constraint.
 
-While an arbitrary scalar is possible, it can yield erroneous results when applied to empirical networks. However, a scalar can be derived from the network itself due to the field positional interplay between status and constraint. Imagining two actors of equal status and personal constraint, one in an averagely more constrained system and the other in a less averagely constrained system, with average status otherwise equal. In such a case, the status of an actor in the more constrained system has a greater impact on their social distinction than in the less constrained system. With high constraint, status takes on greater importance in determining social distinction because it compels deference. In other words, it is the difference between a hierarchical system with and without constraints. Status with a weak constraint means a weaker compulsion of deference. The structure of constraint redounds into the impact of status on social distinction beyond its contribution.
+While an arbitrary scalar is possible, it can yield erroneous results when applied to empirical networks. However, a scalar can be derived from the network itself due to the field positional interplay between status and constraint. Imagining two actors of equal status and personal constraint, one in an averagely more constrained system and the other in a less averagely constrained system, with average status otherwise equal. In such a case, the status of an actor in the more constrained system has a greater impact on their social distinction than in the less constrained system. With high constraint, status takes on greater importance in determining social distinction because it compels deference. In other words, it is the difference between a hierarchical system with and without constraints. Status with a weak constraint means a weaker compulsion of deference. The structure of constraint has a reverberative impact on social distinction beyond its contribution.
 
 With this social understanding of how constraint interacts with the transmission of status, an endogenous scalar can be derived from the network. The average constraint of actors within the network divided by the average status of actors in the network creates a scalar that reflects the relationship between status and constraint. 
 
@@ -96,13 +102,6 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
 \textit{Model (a)} is a star graph where node 1 is completely connected to all other nodes, yet the other nodes share no connections. Under such conditions, node 1's eigenvector centrality is 1.00. Yet, node 1's constraint is 0.00 because, when node 1 is removed from the network, all of node 1's neighbors have no connections and thus an eigenvector centrality of 0.00. Table 1 displays the various measurements for each node. The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks. A network composed of a dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes. 
 
 \textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a bit more privilege, but also demonstrating the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
-
-\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
-
-\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.   
-
-\subsection{Implementation}
-To conduct the analyses below, we use a custom function written for the \textit{R} statistical computing environment \citep{R} software.\footnote{The function can be found here \href{https://github.com/olizardo/Jilbert-Distinction-Centrality/blob/main/distinction.R}{https://github.com/olizardo/Jilbert-Distinction-Centrality/blob/main/distinction.R}} 
 
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
@@ -135,6 +134,80 @@ To conduct the analyses below, we use a custom function written for the \textit{
 \input{Tabs/structfold.tex}
 \input{Tabs/intraclust}
 \input{Tabs/interclust}
+
+\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
+
+\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also 
+increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.   
+
+\subsection{Distinction with Structural Holes vs. Structural Folds}
+
+%Clique addition experiment
+
+%Add cliques to star graph and see what happens
+
+%See what happens with the caveman
+
+%Placehold graphs
+%\begin{figure}
+%   \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+%    \centering
+%     \begin{subfigure}[b]{0.45\textwidth}
+%        \includegraphics[width=1.0\textwidth]{Plots/sf.png}
+%            \caption{Star Graph}
+%            \label{fig:Placehold}
+%    \end{subfigure}
+%     \begin{subfigure}[b]{0.45\textwidth}
+%        \includegraphics[width=1.0\textwidth]{Plots/sf.png}
+%            \caption{Structural Fold}
+%            \label{fig:Placehold}
+%    \end{subfigure}
+%    \caption{Structural Holes with more added subgraphs.}
+%    \label{fig:toys}
+%\end{figure}
+
+\subsection{Long Ties and Hierarchy}
+This section highlights how the hierarchy is really formed out of the redundant connections of the subgraphs. While a star graph clearly creates a hierarchy, when additional weight is added to the broker's alters, the hierarchy can be flipped, especially when they form denser subgraphs. This is in keeping with the observed structural holes above. 
+
+Graph (b) is the same as graph (a),but with Nodes 12, 13, and 14 combined into a clique with Node 9. Graph (c) is the same as graph (b) with the addition of Nodes 21, 22, and 23 as personal connections of Nodes 12, 13, and 14. Finally, graph (d) is the same as graph (c) with the addition of three long ties across subgraphs connecting only Nodes 17 with 23 and 11 with 18.
+
+As Figure 5 graph (d) demonstrates, when those subgroups become connected redundantly not through the central figure, but through the sparse interconnection of the other members, then Node 9's position of distinction becomes highly elevated.
+
+Thus, there is a U shaped pattern where at low levels of interconnection between sparse subgroups, mediated by a central node, the distinction level of the broker is high. However, as those subgraphs become more densely connected within themselves, the position of the central node is weakened as status accrues more heavily in those local subgraphs. However, when sparse long connections then form to connect the subgraphs, Node 9 achieves a high level of distinction again because the overall constraint in the network increases with the added ties between the subgraphs. The resulting decrease in the scalar works to stratify the distinction distance between Node 9 and other high status competitors, while simultaneously decreasing the constraint forced upon Node 9 
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/political1.png}
+            \caption{High Subgraph Density, Low Graph Density}
+            \label{fig:Placehold}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/political2.png}
+            \caption{Broker Given Independent Foundations}
+            \label{fig:Placehold}
+    \end{subfigure}
+         \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/political3.png}
+            \caption{Increased Independent Foundations}
+            \label{fig:Placehold}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/political4.png}
+            \caption{All Subgraphs Connected by Long Ties}
+            \label{fig:Placehold}
+    \end{subfigure}
+    \caption{Increasingly connected graphs with central broker.}
+    \label{fig:Evolving Political Network}
+\end{figure}
+
+
+\input{Tabs/political.tex}
+
+
+\subsection{Implementation}
+To conduct the analyses below, we use a custom function written for the \textit{R} statistical computing environment \citep{R} software. The function code is reproduced in the \hyperref[sec:appendix]{the Appendix}.
 
 \section{Betweenness vs Distinction: Revisiting the Medici Network}
 The interaction of influence and autonomy combines to create an actor’s overall distinction in the network. The combination of influence and autonomy results in capacity, and the social reward for this capacity is distinction. An increase in one aspect can often, but not necessarily, lead to a decrease in the other. For example, a connection with someone with high accessibility can lead to a decrease in one’s autonomy, and new access comes with new constraints. However, the trade-off can maximize one’s overall distinction, so there are gains from the connection. Without such gains, the connection would not be formed.
@@ -181,15 +254,35 @@ With Bernardo Guadagni’s rise to Gondolfier, Albizzi and the old families made
 \section{Group Detection vs Distinction: Revisiting the Karate Club}
 Another consecrated paper in network analysis is Zachary’s (1977) examination of the fissure of a university karate club network. Zachary found that the tension in the group centered around questions of compensation for the outside karate teacher with the internal student group leadership. However, Zachary finds that the dispute was channeled and resolved along an already existing division in the underlying friendship connections among the club members (1977:454-5).   
 
-The paper was an early application of an algorithm to predict the lines along which the group would divide. The original Ford-Fulkerson Labeling algorithm was a network flow model which sought to use the length between nodes to detect community membership (1977:454). However, in the algorithm, Node 9 was mis-assigned to the Officer’s network using the original algorithm, whereas empirically Node 9 joined the network of the karate teacher, Mr. Hi. The original discrepancy was explained in reference to Node 9 being near to achieving a black belt, and so the institutional opportunity costs overrode the social network costs. 
+The paper was an early application of an algorithm to predict the lines along which the group would divide. The original Ford-Fulkerson Labeling algorithm was a network flow model that sought to use the length between nodes to detect community membership (1977:454). However, in the original algorithm, Node 9 was misclassified to the Officer’s network, whereas empirically Node 9 joined the network of the karate teacher, Mr. Hi. The original discrepancy was explained in reference to Node 9 being near to achieving a black belt, and so the institutional opportunity costs overrode the social network costs. 
 
 Contrary to hopes, the application of the distinction centrality measure was not able to explain why Node 9 left for Mr. Hi's network. The original hypothesis was that, because of the Officer's network closely resembles a star graph, that the level of distinction that Node 9 would command in the network would be low compared to the more heterogeneous network of Mr. Hi. Results are displayed in Table X. The measure demonstrates that Node 9 would have had an overall greater relative distinction if he had stayed in the Officer's network. The idea being that, in Mr. Hi's network, Node 9 would be more constrained than in the officer's network, but would have higher status because he was directly connected to the high status center in an otherwise stratified network. 
 
-The exercise, however, focuses attention on the boundaries of the field. The original explanation for the discrepancy points to Node 9's large karate capital. If the field is bounded as the ``karate club,'' Node 9's decision is unexpected, but if the field is ``karate practitioners'' then there might be much of the field that is going unobserved in Zachary's original study. We do know that some of the students, including Node 9, practiced at Mr. Hi's dojo as well as the club. The fact that Node 9 had club connections only to the most central members of both the officer's and Mr. Hi's networks would indicate that Node 9 only affiliated with likely similarly advanced members of the club. If Node 9 was similarly affiliating with advanced students who only attended the dojo, then this would likely influence the decision regarding distinction at the field level. Failure to completely capture the positions in the appropriately defined field can create measures that fail to capture empirical outcomes. 
+The exercise, however, focuses attention on the boundaries of the field. The original explanation for the discrepancy points to Node 9's large karate capital. If the field is bounded as the ``karate club,'' Node 9's decision is unexpected, but if the field is ``karate practitioners'' then there might be much of the field that is going unobserved in Zachary's original study. We do know that some of the students, including Node 9, practiced at Mr. Hi's dojo as well as the club. The fact that Node 9 had club connections only to the most central members of both the officer's and Mr. Hi's networks would indicate that Node 9 only affiliated with likely similarly advanced members of the club. If Node 9 was similarly affiliating with advanced students who only attended the dojo, then this would likely influence the decision regarding distinction at the field level. Failure to completely capture the positions in the appropriately defined field can result in measures that fail to accurately capture empirical outcomes. 
 
 \section{Distinction as Search Algorithm}
 
-\section{Distinction with Structural Holes vs. Structural Folds}
+Given the value that eigenvector-style centrality measures have had in underpinning the logic of internet search algorithms \citep{kleinberg99, brin_page98, langville2005survey-572}, the application of distinction centrality in the case of a reference network is briefly considered. As the social logic of distinction centrality involves jointly considering the interaction of status and constraint, so in a reference network, the distinction measure will give greater priority to the uniqueness of a node's flow of affiliations. 
+
+A toy reference network is presented in Figure 3. The network was designed to contrast status versus distinction within a graph, featuring a clear cluster of nodes with an elevated level of density and tenuously connected to a node with a high degree of popularity external to the main, denser cluster. Such a graph is supposed to represent a contrast between an orthodox set of mutual endorsements and the emergence of a heterodox set of connections.
+
+The resulting distinction measures are presented in Table 6. The results are ranked in order of highest to lowest scaled distinction centrality. Node 8 measures highest in both scaled distinction and status, but immediately after Node 9 and Node 6 switch places in their ordering. Node 6 has the second highest status, but the third highest scaled distinction, while Node 9 goes from third in status to second in scaled distinction. The measure rewards the independent connections Node 9 has with Nodes 13 and 14 over the heavier constraints imposed on Node 6. \footnote{In the absence of Node 8's and its constraint effect on Node 6, Node 6 would become the most distinct and highest status.} Node 10's relative position in the social hierarchy is consistent at fourth in both the status and scaled distinction measures.
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/search.png}
+            \caption{Reference Network Example}
+            \label{fig:search}
+    \end{subfigure}
+    \caption{Example of a non-directed network of references, e.g. citation network, internet links, etc.}
+    \label{fig:search}
+\end{figure}
+
+\input{Tabs/search}
+
+The heterodoxy of Node 5 is elevated into the fifth position of the scaled distinction hierarchy compared to the sixth position it has in the status hierarchy. Node 7 correspondingly falls into the sixth position of the scaled distinction hierarchy from the fifth position in terms of status. However, scaled distinction centrality also elevates Nodes 1, 2, 3, and 4 which buttress 5's popularity. These nodes have the lowest status, yet leap over the hanger's on to the core members of the main orthodox cluster. They are greatly penalized for their high level of constraint, whereas Node's 1, 2, 3, and 4 are empowered by 5's own lower status position. If the goal is to elevate uniqueness, this makes sense as Nodes 11 through 16 are likely to conform to their higher status, and high distinction, connections. Nodes 7, 8, 9, and 10 already implicitly represent their contributions. Additionally, the application of the scalar is important in the final results. Without the scalar, Node 5 would actually be the third ranked node in terms of distinction, leaping Node 6. Such a result may be desirable in technical applications where uniqueness should be privileged over social hierarchy. On the whole, the scaled distinction centrality measure thus works to elevate the uniqueness of a node in search applications.   
 
 \section{Implications for Theories of Distinction}
 \subsection{Long Ties and Opportunities for Distinction}
@@ -206,6 +299,8 @@ The insight that it is the middling levels that are most likely to form long tie
 The cultural practices of elites in a society are similarly dictated by the tradeoffs of status and autonomy that derive from network structure. The French elite of Bourdieu presents the ideal haute elite in terms of a stratified cultural disposition from the lower status members of society. However, the modern American elite has been characterized not by its sanctification of a limited set of cultural practices, but rather by its embrace of variety, or its cultural omnivorousness \citep{bryson1996anything}. Sentence that connects to this citation-> \citep{lizardo2014omnivorousness}. The divergence in an elite interested in limited consecration and an elite interested in omnivorousness can be found in the network structure created by national geography and institutions. France, dominated by a single major capital as far back as the 1600s, had a singularly concentrated national elite who formed dense interconnections. The opportunity for enterprising distinction was foreclosed by interconnection. America's varied national elite geography conversely created locally cohesive elites that were connected less intensely at the national level. When brought into deeper integration after 1945, the elite themselves similarly formed long ties, creating the positional opportunity for the proliferation of elite cultural forms.      
 
 While the above exploration of how network shape changes diversity in cultural distinction practices is at least informative about how understanding the network of positions structures the cultural markers of distinction. 
+
+%College as inherently distinction based institution makes liberals a thing, rather than if you only draw from caves
 
 \subsection{Capital Conversion as Network Integration of Fields}
 One of the problems with the relationship between multiple fields is how capital might be converted between fields. The ``rate'' between fields has always been a matter of confusion because it is difficult to quantify. Yet, it is an essential feature of an individual's navigation between the positional hierarchies of various fields. Seeking to convert a distinct position from one field to a better position in another is a critical strategy in the overall positional portfolio of agents.
@@ -271,5 +366,62 @@ This paper simply seeks to establish a measure of social distinction within a ne
 
 \bibliographystyle{apalike}
 
+\newpage
+\section*{Appendix: Distinction
+Centrality Function} \label{sec:appendix}
+\begin{lstlisting}[language=R]
+distinction <- function(x) { 
+   library(igraph) #calling igraph
+   has.labels <- as.numeric(is.null(V(x)$name) == FALSE) #checking for vertex labels
+   V <- vcount(x)
+   if (has.labels == 0) {
+      V(x)$name <- 1:V
+      names <- V(x)$name 
+      }
+   if (has.labels == 1) {
+      names <- V(x)$name 
+      V(x)$name <- 1:V
+      }
+   s <- eigen_centrality(x)$vector
+   d <- rep(V, 0) #initializing distinction vector
+   u <- rep(V, 0) #initializing constraint vector
+   for (i in as.character(V(x)$name)) {
+      j <- names(neighbors(x, i))
+      x.d <- delete_vertices(x, i)
+      c <- as.numeric(is_connected(x.d) == TRUE) #checking for connectedness
+      e <- as.numeric(ecount(x.d) == 0) #checking for empty
+      if (c == 1 & e == 0) { #connected non-empty graph
+         s.a <- eigen_centrality(x.d)$vector[j]
+         } #end if
+      else if (c == 0 & e == 1) { #empty graph
+         s.a <- 0
+         } #end first else 
+      else if (c == 0 & e == 0) { #disconnected non-empty graph
+         C <- components(x.d)$membership
+         names(C) <- V(x)$name[-as.numeric(i)]
+         s.a <- rep(0, length(C))
+         for (k in unique(C)) {
+            sub.g <- subgraph(x.d, names(which(C == k)))
+            if (vcount(sub.g) > 1) {
+               s.a[which(C == k)] <- eigen_centrality(sub.g)$vector
+               }
+            }
+         names(s.a) <- names(C)
+         s.a <- s.a[j]
+         } #end second else
+      u[i] <- sum(s.a)/length(s.a) #i's average neighbor centrality in node deleted subgraph
+      d[i] <- s[i] - u[i] #i's distinction centrality
+   } #end i for loop
+   d[is.na(d)] <- 0
+   u[is.na(u)] <- 0
+   scalar <- mean(u)/mean(s)
+   sd <- (s*scalar) - u
+   dat <- data.frame(d = d, sd = sd, s = s, u = u, scalar = scalar)
+   dat <- round(dat, 4)
+   dat <- data.frame(n = names, dat)
+   rownames(dat) <- 1:nrow(dat)
+   return(dat)
+} #end function
+\end{lstlisting}
 
 \end{document}
