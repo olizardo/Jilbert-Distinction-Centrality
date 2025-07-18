@@ -1,4 +1,4 @@
-plot.graph.norm <- function(x, l = "kk", vs = 12, ts = 6) { #plotting function
+plot.graph.norm <- function(x, l = "kk", vs = 16, ts = 8) { #plotting function
   library(ggraph)
   d <- distinction(x)[, 3]
   nc <- rep("", length(d))
