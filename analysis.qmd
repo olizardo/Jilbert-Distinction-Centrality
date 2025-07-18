@@ -24,19 +24,21 @@ execute:
 ## Toy Networks
 
 ```{r Toy Examples}
-    g1 <- make_star(7, mode = "undirected") # star graph
-    g2 <- g1 + edge(2,3)
-    g2 <- g2 + edge(2,4)
-    g2 <- g2 + edge(3,4)
-    g2 <- g2 + edge(5,6)
-    g2 <- g2 + edge(5,7)
-    g2 <- g2 + edge(6,7) # structural fold
-    g3 <- g1 + edge(2,4)
-    g3 <- g3 + edge(3,4)
-    g3 <- g3 + edge(5,6)
-    g3 <- g3 + edge(5,7) # intra-connected clusters
-    g4 <- g3 + edge(2,7) # inter-connected clusters
-    g5 <- make_ring(7) #circle graph
+   g1 <- make_star(7, mode = "undirected") # star graph
+   g2 <- g1 + edge(2,3)
+   g2 <- g2 + edge(2,4)
+   g2 <- g2 + edge(3,4)
+   g2 <- g2 + edge(5,6)
+   g2 <- g2 + edge(5,7)
+   g2 <- g2 + edge(6,7) # structural fold
+   g3 <- g1 + edge(2,4)
+   g3 <- g3 + edge(3,4)
+   g3 <- g3 + edge(5,6)
+   g3 <- g3 + edge(5,7) # intra-connected clusters
+   g4 <- g3 + edge(2,7) # inter-connected clusters
+   g5 <- make_ring(7) #circle graph
+   g6 <- add_vertices(g5, 1)
+   g6 <- g6 + edge(8,1) #circle graph wit pendant
 ```
 
 ```{r Toy Networks Plots}
@@ -53,7 +55,10 @@ execute:
    plot.graph.norm(g4)
    dev.off()
    png(here("Plots", "circle.png"))
-   plot.graph.norm(g5)
+   plot.graph.norm(g5, l = "circle")
+   dev.off()
+   png(here("Plots", "circle-plus-one.png"))
+   plot.graph.norm(g6, l = "circle")
    dev.off()
 ```
 
@@ -63,6 +68,8 @@ execute:
     tab.cent(distinction(g3), name = "intraclust", label = "tab:intra")
     tab.cent(distinction(g4), name = "interclust", label = "tab:inter")
     tab.cent(distinction(g5), name = "circle", label = "tab:circle")
+    tab.cent(distinction(g6), name = "circleplus", label = "tab:circleplus")
+
 ```
 
 ## Medici
@@ -103,14 +110,19 @@ execute:
 ```{r}
    library(patchwork)
    library(ggraph)
-   gg <- function(x, lay.o = "kk") {
+   gg <- function(x, lay.o = "kk", star = 1) {
       n <- vcount(x)
       V(x)$name <- 1:n
+      c <- c(rep("tan2", n))
+      c[star] <- "blue"
+      gk <- which(degree(x) == 4)
+      gk <- gk[gk != star]
+      c[gk] <- "red"
       w <- ggraph(x, layout = lay.o) + 
       geom_edge_link(color = "steelblue") + theme_graph() +
-      geom_node_point(size = 5, color = c("blue", rep("tan2", n-1))) + 
+      geom_node_point(size = 5, color = c) + 
       geom_node_text(aes(label = name), color = "white", size = 3) +
-      ylim(-4,4) + xlim(-4,4) 
+      ylim(-4, 3.5) + xlim(-4, 3.25) 
       return(w)
       }
    p.list <- lapply(b, gg)
@@ -119,7 +131,7 @@ execute:
          theme(plot.title = element_text(size = 11))
       }
    wrap_plots(p.list[c(1:6)], nrow = 2)
-   ggsave(here("Plots", "tree-examples.png"), width = 10, height = 7, units = "in")
+   ggsave(here("Plots", "tree-examples.png"), width = 12, height = 8, units = "in")
 ```
 
 ```{r}
@@ -137,6 +149,7 @@ execute:
    p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
    p <- p + labs(y = "", x = "Number of Branches")
    p <- p + scale_x_continuous(breaks = seq(2, length(d.s), by = 2))
+   p <- p + scale_color_manual(values = c("red", "blue", "tan2"))
    p <- p + theme_minimal()
    p <- p + theme(axis.text = element_text(size = 14, face = "bold"),
                   axis.title = element_text(size = 16, face = "bold"),
@@ -169,29 +182,18 @@ execute:
    return(el)
    }
    b <- make.broker.cliques(30)
+   b.r <- lapply(b, function(x) {rewire(x, each_edge(p = .05, loops = FALSE, multiple = FALSE))})
    c <- lapply(b, distinction.new, norm = FALSE)
 ```
 
 ```{r}
-   gg2 <- function(x, lay.o = "kk") {
-      n <- vcount(x)
-      V(x)$name <- 1:n
-      c <- c(rep("tan2", n))
-      c[9] <- "blue"
-      w <- ggraph(x, layout = lay.o) + 
-      geom_edge_link(color = "steelblue") + theme_graph() +
-      geom_node_point(size = 5, color = c) + 
-      geom_node_text(aes(label = name), color = "white", size = 3) +
-      ylim(-4,4) + xlim(-4,4) 
-      return(w)
-      }
-   p.list <- lapply(b, gg2)
+   p.list <- lapply(b, gg, star = 9)
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
          theme(plot.title = element_text(size = 11))
       }
    wrap_plots(p.list[c(1:6)], nrow = 2)
-   ggsave(here("Plots", "clique-examples.png"), width = 10, height = 7, units = "in")
+   ggsave(here("Plots", "clique-examples.png"), width = 12, height = 8, units = "in")
 ```
 
 ```{r}
@@ -209,6 +211,7 @@ execute:
    p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
    p <- p + labs(y = "", x = "Number of Branches")
    p <- p + scale_x_continuous(breaks = seq(2, length(d.s), by = 2))
+   p <- p + scale_color_manual(values = c("red", "blue", "tan2"))
    p <- p + theme_minimal()
    p <- p + theme(axis.text = element_text(size = 14, face = "bold"),
                   axis.title = element_text(size = 16, face = "bold"),
@@ -222,5 +225,5 @@ execute:
 
 
 ```{r}
-   g <- make_ring(10)
+
 ```
