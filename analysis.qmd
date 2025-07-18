@@ -15,6 +15,8 @@ execute:
    library(networkdata)
    library(ggpubr)
    source(here("Functions", "distinction.R"))
+   source(here("Functions", "distinction.new.R"))
+   source(here("Functions", "make.broker.trees.R"))
    source(here("Functions", "plot.graph.norm.R"))
    source(here("Functions", "tab.cent.R"))
 ```
@@ -82,36 +84,7 @@ execute:
 
 
 ```{r}
-   make.broker.graphs <- function(n = 10) {
-      g <- make_empty_graph(9, directed = FALSE)
-      g <- g + edge(1,2)
-      g <- g + edge(1,3)
-      g <- g + edge(2,4)
-      g <- g + edge(2,5)
-      g <- g + edge(2,6)
-      g <- g + edge(3,7)
-      g <- g + edge(3,8)
-      g <- g + edge(3,9)
-      el <- vector(mode = "list", length = n)
-      el[[1]] <- g
-      a <- 10
-      b <- 11
-      c <- 12
-      d <- 13
-      for (i in 2:n) {
-         g <- add_vertices(g, 4)
-         g <- g + edge(1,a)
-         g <- g + edge(a,b)
-         g <- g + edge(a,c)
-         g <- g + edge(a,d)
-         el[[i]] <- g
-         a <- a + 4
-         b <- b + 4
-         c <- c + 4
-         d <- d + 4
-      }
-   return(el)
-   }
+
    b <- make.broker.graphs(30)
    c <- lapply(b, distinction.new, norm = FALSE)
 ```
@@ -142,9 +115,11 @@ execute:
 ```{r}
    d.s <- sapply(c, function(x) {x[1, 3]})
    d.b <- sapply(c, function(x) {x[2, 3]})
-   dat <- data.frame(d = c(d.s, d.b), 
-         n = c(1:length(d.s)+1, 1:length(d.s)+1),
-         g = c(rep(1, length(d.s)), rep(2, length(d.s))))
+   d.p <- sapply(c, function(x) {x[nrow(x), 3]})
+   dat <- data.frame(d = c(d.s, d.b, d.p), 
+         n = c(1:length(d.s)+1, 1:length(d.s)+1, 1:length(d.s)+1),
+         g = c(rep(1, length(d.s)), rep(2, length(d.s)), 
+         rep(3, length(d.s))))
    p <- ggplot(dat, aes(n, d, group = g, color = as.factor(g))) 
    p <- p + geom_point(size = 3)
    p <- p + geom_line(linewidth = 0.75)

@@ -35,7 +35,7 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
          C <- components(x.d)$membership
          names(C) <- V(x)$name[-as.numeric(i)]
          s.a <- rep(0, length(C))
-         for 2(k in unique(C)) {
+         for (k in unique(C)) {
             sub.g <- subgraph(x.d, names(which(C == k)))
             if (vcount(sub.g) > 1) {
                s.a[which(C == k)] <- eigen_centrality(sub.g)$vector
@@ -49,12 +49,11 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
          } #end second else
       u[i] <- sum(s.a)/length(s.a) #i's average neighbor centrality in node deleted subgraph
       d[i] <- s[i] - u[i] #i's distinction centrality
-          } #end i for loop
+      } #end i for loop
    d[is.na(d)] <- 0
    u[is.na(u)] <- 0
    scalar <- mean(u)/mean(s)
    sd <- (s*scalar) - u
-   source("diss.status.R")
    dat <- data.frame(d = d, sd = sd, s = s, u = u, scalar = scalar)
    dat <- round(dat, 4)
    dat <- data.frame(n = names, dat)
