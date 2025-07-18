@@ -106,24 +106,29 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
-     \begin{subfigure}[b]{0.45\textwidth}
+     \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/star.png}
             \caption{Star Graph}
             \label{fig:star}
     \end{subfigure}
-     \begin{subfigure}[b]{0.45\textwidth}
+     \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/sf.png}
             \caption{Structural Fold}
             \label{fig:sf}
     \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/intra.png}
             \caption{2-Connected Subgraphs}
             \label{fig:intra}
     \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/inter.png}
             \caption{2-Connected Subgraphs with Long Tie}
+            \label{fig:inter}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/circle.png}
+            \caption{Circle Graph}
             \label{fig:inter}
     \end{subfigure}
     \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in blue, nodes with the lowest distinction are shown in red, and nodes with distinction scores close to zero are shown in purple.}
@@ -134,6 +139,8 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
 \input{Tabs/structfold.tex}
 \input{Tabs/intraclust}
 \input{Tabs/interclust}
+\input{Tabs/circle}
+
 
 \textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
 
