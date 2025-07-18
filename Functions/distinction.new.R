@@ -35,7 +35,7 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
          C <- components(x.d)$membership
          names(C) <- V(x)$name[-as.numeric(i)]
          s.a <- rep(0, length(C))
-         for (k in unique(C)) {
+         for 2(k in unique(C)) {
             sub.g <- subgraph(x.d, names(which(C == k)))
             if (vcount(sub.g) > 1) {
                s.a[which(C == k)] <- eigen_centrality(sub.g)$vector
