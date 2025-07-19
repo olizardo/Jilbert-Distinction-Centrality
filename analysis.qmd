@@ -45,7 +45,10 @@ execute:
    g9 <- make_full_graph(6, directed = FALSE)
    g9 <- add_vertices(g9, 1)
    g9 <- g9 + edge(1,7) # kite
-   
+   g10 <- union(make_ring(7), make_star(7, center = 1, mode = "undirected"))
+   g10 <- g10 + edge(2,7)
+   plot(g10)
+
 ```
 
 ```{r Toy Networks Plots}
@@ -75,6 +78,9 @@ execute:
    dev.off()
    png(here("Plots", "kite.png"))
    plot.graph.norm(g9, l = "kk")
+   dev.off()
+   png(here("Plots", "wheel.png"))
+   plot.graph.norm(g10, l = "kk")
    dev.off()
 ```
 
