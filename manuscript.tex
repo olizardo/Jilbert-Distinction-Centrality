@@ -101,37 +101,47 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
 
 \textit{Model (a)} is a star graph where node 1 is completely connected to all other nodes, yet the other nodes share no connections. Under such conditions, node 1's eigenvector centrality is 1.00. Yet, node 1's constraint is 0.00 because, when node 1 is removed from the network, all of node 1's neighbors have no connections and thus an eigenvector centrality of 0.00. Table 1 displays the various measurements for each node. The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks. A network composed of a dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes. 
 
-\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a bit more privilege, but also demonstrating the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
+\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
 
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
-     \begin{subfigure}[b]{0.35\textwidth}
+     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/star.png}
             \caption{Star Graph}
             \label{fig:star}
     \end{subfigure}
-     \begin{subfigure}[b]{0.35\textwidth}
+     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/sf.png}
             \caption{Structural Fold}
             \label{fig:sf}
     \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/intra.png}
             \caption{2-Connected Subgraphs}
             \label{fig:intra}
     \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/inter.png}
             \caption{2-Connected Subgraphs with Long Tie}
             \label{fig:inter}
     \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/circle.png}
             \caption{Circle Graph}
             \label{fig:circle}
     \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/circle-plus-one.png}
+            \caption{Circle with Pendant}
+            \label{fig:circleplus}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/clique.png}
+            \caption{Clique Graph}
+            \label{fig:clique}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/kite.png}
             \caption{Kite Graph}
             \label{fig:kite}
@@ -359,6 +369,23 @@ Fifth is \textit{positional uncertainty} about another's position in the field. 
 Sixth, differences in \textit{habitus} mean that potential connections can fail to form because of the impacts it would have on their overall portfolio of positions. Just because of a potential gain in one area does not mean that it would not have costs in other areas that are unobserved. This is the problem above where capital conversion is not quite conversion, but incorporation.  
 
 While it is difficult to build such impediments to positional agency into the distinction measure, study designs can carefully control for the problems they may otherwise impose. Studies of societal conflict which aggregates across fields and within constrained social units can significantly alleviate limitations on positional agency that are external to the distinction measure.  
+
+NOTES FROM 7|19|25 Meeting
+***Triadic closure as distinction maximization*** 
+Strogatz is random, preferential attachment of closure
+Status homophilous (enh) attachment vs preferential vs random 
+I wonder how much of balance theory is really just distinction maximization?
+Non psychological theory polarity
+
+3 versions
+-Psychology
+-Polarity 
+-Status distinction
+
+*Tie that cuts the longest shortest path Science, 
+https://www.science.org/doi/full/10.1126/science.aau9735
+Distinction homophily, chicken or egg of
+
 
 \section{Conclusion}
 Above we have introduced a way of constructing a general measure of distinction from network structure. The measure theorizes social distinction as a joint function of status and constraint derived from the pattern of network relations. 
