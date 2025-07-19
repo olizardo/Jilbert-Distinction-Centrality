@@ -8,8 +8,8 @@
       g <- g + edge(3,7)
       g <- g + edge(3,8)
       g <- g + edge(3,9)
-      el <- vector(mode = "list", length = n)
-      el[[1]] <- g
+      gl <- vector(mode = "list", length = n)
+      gl[[1]] <- g
       a <- 10
       b <- 11
       c <- 12
@@ -20,11 +20,11 @@
          g <- g + edge(a,b)
          g <- g + edge(a,c)
          g <- g + edge(a,d)
-         el[[i]] <- g
+         gl[[i]] <- g
          a <- a + 4
          b <- b + 4
          c <- c + 4
          d <- d + 4
       }
-   return(el)
+   return(gl)
    }

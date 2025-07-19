@@ -14,9 +14,11 @@ execute:
    library(here)
    library(networkdata)
    library(ggpubr)
+   library(patchwork)
    source(here("Functions", "distinction.R"))
    source(here("Functions", "distinction.new.R"))
    source(here("Functions", "make.broker.trees.R"))
+   source(here("Functions", "make.broker.cliques.R"))
    source(here("Functions", "plot.graph.norm.R"))
    source(here("Functions", "tab.cent.R"))
 ```
@@ -110,7 +112,33 @@ execute:
    distinction(g)
 ```
 
-## Broker Computatinal Experiements
+## Connected Caves Computational Experiments
+```{r}
+   source(here("Functions", "connect.caves.R"))
+   set.seed(12345)
+   b <- connect.caves(c = 4, nc = 4, n = 20)
+   c <- lapply(b, distinction.new, norm = FALSE)
+   gg2 <- function(x, lay.o = "kk") {
+      n <- vcount(x)
+      V(x)$name <- 1:n
+      c <- c(rep("tan2", n))
+      w <- ggraph(x, layout = lay.o) + 
+      geom_edge_link(color = "steelblue") + theme_graph() +
+      geom_node_point(size = 5, color = c) + 
+      geom_node_text(aes(label = name), color = "white", size = 3) 
+      #ylim(-4, 3.5) + xlim(-4, 3.25) 
+      return(w)
+      }
+   p.list <- lapply(b, gg2, lay.o = "auto")
+   for (i in 1:length(p.list)) {
+      p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Long Ties =", i-1)) +
+         theme(plot.title = element_text(size = 11))
+      }
+   wrap_plots(p.list[c(1, 6, 11, 16)], nrow = 2)
+   ggsave(here("Plots", "connected-caves-examples.png"), width = 10, height = 10, units = "in")
+```
+
+## Broker Computational Experiements
 
 ```{r}
    b <- make.broker.trees(30)
@@ -120,21 +148,6 @@ execute:
 ```{r}
    library(patchwork)
    library(ggraph)
-   gg <- function(x, lay.o = "kk", star = 1) {
-      n <- vcount(x)
-      V(x)$name <- 1:n
-      c <- c(rep("tan2", n))
-      c[star] <- "blue"
-      gk <- which(degree(x) == 4)
-      gk <- gk[gk != star]
-      c[gk] <- "red"
-      w <- ggraph(x, layout = lay.o) + 
-      geom_edge_link(color = "steelblue") + theme_graph() +
-      geom_node_point(size = 5, color = c) + 
-      geom_node_text(aes(label = name), color = "white", size = 3) +
-      ylim(-4, 3.5) + xlim(-4, 3.25) 
-      return(w)
-      }
    p.list <- lapply(b, gg)
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
@@ -169,31 +182,6 @@ execute:
                   )
    p
    ggsave(here("Plots", "broker-tree-roles-by-nbranches.png"), width = 7, height = 7, units = "in")
-```
-
-
-```{r}
-   make.broker.cliques <- function(n = 10) {
-      g1 <- make_full_graph(4, directed = FALSE)
-      g2 <- make_full_graph(4, directed = FALSE)
-      g3 <- g1 + g2
-      g3 <- add_vertices(g3, 1)
-      g3 <- g3 + edge(9,4)
-      g3 <- g3 + edge(9,5)
-      el <- vector(mode = "list", length = n)
-      el[[1]] <- g3
-      a <- 10
-      for (i in 2:n) {
-         g3 <- g3 + make_full_graph(4, directed = FALSE)
-         g3 <- g3 + edge(9,a)
-         el[[i]] <- g3
-         a <- a + 4
-         }
-   return(el)
-   }
-   b <- make.broker.cliques(30)
-   b.r <- lapply(b, function(x) {rewire(x, each_edge(p = .05, loops = FALSE, multiple = FALSE))})
-   c <- lapply(b, distinction.new, norm = FALSE)
 ```
 
 ```{r}
@@ -231,9 +219,4 @@ execute:
                   )
    p
    ggsave(here("Plots", "broker-cliques-roles-by-nbranches.png"), width = 7, height = 7, units = "in")
-```
-
-
-```{r}
-
 ```
