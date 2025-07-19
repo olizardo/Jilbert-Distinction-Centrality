@@ -41,10 +41,11 @@ execute:
    g5 <- make_ring(7) #circle graph
    g6 <- g5 + edge(6,1) # circle graph plus triangle
    g7 <- g5 + edge(7,4) # circle graph plus long tie
-   g8 <- make_full_graph(6, directed = FALSE)
-   g8 <- add_vertices(g7, 1)
-   g8 <- g8 + edge(1,7) # clique plus pendant
-   g9 <- make_full_graph(7, directed = FALSE) # clique
+   g8 <- make_full_graph(7, directed = FALSE) # clique
+   g9 <- make_full_graph(6, directed = FALSE)
+   g9 <- add_vertices(g9, 1)
+   g9 <- g9 + edge(1,7) # kite
+   
 ```
 
 ```{r Toy Networks Plots}
@@ -69,11 +70,11 @@ execute:
    png(here("Plots", "circle-plus-long.png"))
    plot.graph.norm(g7, l = "circle")
    dev.off()
-   png(here("Plots", "kite.png"))
+   png(here("Plots", "clique.png"))
    plot.graph.norm(g8, l = "kk")
    dev.off()
-   png(here("Plots", "clique.png"))
-   plot.graph.norm(g9, l = "circle")
+   png(here("Plots", "kite.png"))
+   plot.graph.norm(g9, l = "kk")
    dev.off()
 ```
 
