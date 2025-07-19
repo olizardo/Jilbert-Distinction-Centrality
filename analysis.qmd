@@ -39,12 +39,12 @@ execute:
    g3 <- g3 + edge(5,7) # intra-connected clusters
    g4 <- g3 + edge(2,7) # inter-connected clusters
    g5 <- make_ring(7) #circle graph
-   g6 <- add_vertices(g5, 1)
-   g6 <- g6 + edge(8,1) # circle graph plus pendant
-   g7 <- make_full_graph(6, directed = FALSE)
-   g7 <- add_vertices(g7, 1)
-   g7 <- g7 + edge(1,7) # clique plus pendant
-   g8 <- make_full_graph(7, directed = FALSE) # clique
+   g6 <- g5 + edge(6,1) # circle graph plus triangle
+   g7 <- g5 + edge(7,4) # circle graph plus long tie
+   g8 <- make_full_graph(6, directed = FALSE)
+   g8 <- add_vertices(g7, 1)
+   g8 <- g8 + edge(1,7) # clique plus pendant
+   g9 <- make_full_graph(7, directed = FALSE) # clique
 ```
 
 ```{r Toy Networks Plots}
@@ -63,14 +63,17 @@ execute:
    png(here("Plots", "circle.png"))
    plot.graph.norm(g5, l = "circle")
    dev.off()
-   png(here("Plots", "circle-plus-one.png"))
+   png(here("Plots", "circle-plus-triangle.png"))
    plot.graph.norm(g6, l = "circle")
    dev.off()
+   png(here("Plots", "circle-plus-long.png"))
+   plot.graph.norm(g7, l = "circle")
+   dev.off()
    png(here("Plots", "kite.png"))
-   plot.graph.norm(g7, l = "kk")
+   plot.graph.norm(g8, l = "kk")
    dev.off()
    png(here("Plots", "clique.png"))
-   plot.graph.norm(g8, l = "circle")
+   plot.graph.norm(g9, l = "circle")
    dev.off()
 ```
 
