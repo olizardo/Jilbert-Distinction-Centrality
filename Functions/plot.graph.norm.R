@@ -5,7 +5,7 @@ plot.graph.norm <- function(x, l = "kk", vs = 16, ts = 8) { #plotting function
   nc[which(d < -0.05)] <- "tan2"
   nc[which(d > 0.05)] <- "blue"
   nc[which(d >=-0.05 & d <= 0.05)] <- "purple"
-  nc[which(d == max(d))] <- "red"
+  nc[which(d == max(d) & d >= 0.05)] <- "red"
   if (is.null(V(x)$name) == TRUE) {
       n <- 1:vcount(x)
       tc <- "white"

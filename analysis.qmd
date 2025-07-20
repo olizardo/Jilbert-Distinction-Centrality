@@ -15,6 +15,7 @@ execute:
    library(networkdata)
    library(ggpubr)
    library(patchwork)
+   library(dplyr)
    source(here("Functions", "distinction.R"))
    source(here("Functions", "make.broker.trees.R"))
    source(here("Functions", "make.broker.cliques.R"))
@@ -44,11 +45,16 @@ execute:
    g9 <- make_full_graph(6, directed = FALSE)
    g9 <- add_vertices(g9, 1)
    g9 <- g9 + edge(1,7) # kite
-   g10 <- union(make_ring(7), make_star(7, center = 1, mode = "undirected"))
-   g10 <- g10 + edge(2,7)
+   g10 <- g1 + edge(2,3)
+   g10 <- g10 + edge(3,4)
+   g10 <- g10 + edge(4,5)
+   g10 <- g10 + edge(5,6)
+   g10 <- g10 + edge(6,7)
+   g10 <- g10 + edge(7,2) #wheel graph
 ```
 
 ```{r Toy Networks Plots}
+   source(here("Functions", "plot.graph.norm.R"))
    png(here("Plots", "Toys", "star.png"))
    plot.graph.norm(g1, l = "kk")
    dev.off()
