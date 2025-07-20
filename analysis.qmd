@@ -16,7 +16,6 @@ execute:
    library(ggpubr)
    library(patchwork)
    source(here("Functions", "distinction.R"))
-   source(here("Functions", "distinction.new.R"))
    source(here("Functions", "make.broker.trees.R"))
    source(here("Functions", "make.broker.cliques.R"))
    source(here("Functions", "plot.graph.norm.R"))
@@ -49,38 +48,35 @@ execute:
    g10 <- g10 + edge(2,7)
 ```
 
-
-
-
 ```{r Toy Networks Plots}
-   png(here("Plots", "star.png"))
+   png(here("Plots", "Toys", "star.png"))
    plot.graph.norm(g1, l = "kk")
    dev.off()
-   png(here("Plots", "sf.png"))
+   png(here("Plots", "Toys", "sf.png"))
    plot.graph.norm(g2, l = "kk")
    dev.off()
-   png(here("Plots", "intra.png"))
+   png(here("Plots", "Toys", "intra.png"))
    plot.graph.norm(g3, l = "auto")
    dev.off()
-   png(here("Plots", "inter.png"))
+   png(here("Plots", "Toys", "inter.png"))
    plot.graph.norm(g4, l = "auto")
    dev.off()
-   png(here("Plots", "circle.png"))
+   png(here("Plots", "Toys", "circle.png"))
    plot.graph.norm(g5, l = "circle")
    dev.off()
-   png(here("Plots", "circle-plus-triangle.png"))
+   png(here("Plots", "Toys", "circle-plus-triangle.png"))
    plot.graph.norm(g6, l = "circle")
    dev.off()
-   png(here("Plots", "circle-plus-long.png"))
+   png(here("Plots", "Toys", "circle-plus-long.png"))
    plot.graph.norm(g7, l = "circle")
    dev.off()
-   png(here("Plots", "clique.png"))
+   png(here("Plots", "Toys", "clique.png"))
    plot.graph.norm(g8, l = "kk")
    dev.off()
-   png(here("Plots", "kite.png"))
+   png(here("Plots", "Toys", "kite.png"))
    plot.graph.norm(g9, l = "kk")
    dev.off()
-   png(here("Plots", "wheel.png"))
+   png(here("Plots", "Toys", "wheel.png"))
    plot.graph.norm(g10, l = "kk")
    dev.off()
 ```
@@ -91,8 +87,11 @@ execute:
     tab.cent(distinction(g3), name = "intraclust", label = "tab:intra")
     tab.cent(distinction(g4), name = "interclust", label = "tab:inter")
     tab.cent(distinction(g5), name = "circle", label = "tab:circle")
-    tab.cent(distinction(g6), name = "circleplus", label = "tab:circleplus")
-    tab.cent(distinction(g6), name = "kite", label = "tab:kite")
+    tab.cent(distinction(g6), name = "circletriangle", label = "tab:circletriangle")
+    tab.cent(distinction(g7), name = "circlelong", label = "tab:circlelong")
+    tab.cent(distinction(g8), name = "clique", label = "tab:clique")
+    tab.cent(distinction(g9), name = "kite", label = "tab:kite")
+    tab.cent(distinction(g10), name = "wheel", label = "tab:wheel")
 ```
 
 ## Medici
@@ -126,30 +125,21 @@ execute:
 ## Connected Caves Computational Experiments
 ```{r}
    source(here("Functions", "connect.caves.R"))
-   set.seed(12345)
-   b <- connect.caves(c = 4, nc = 4, n = 20)
-```
-
-```{r}
-   source(here("Functions", "distinction.new.R"))
-   distinction(g1)
-   distinction.new(g1, norm = TRUE)
-```
-
-```{r}
-   c <- lapply(b, distinction.new, norm = FALSE)
-```
-
-```{r}
+   set.seed(456)
+   b <- connect.caves(c = 4, nc = 4, n = 24)
    gg2 <- function(x, lay.o = "kk") {
       n <- vcount(x)
       V(x)$name <- 1:n
-      c <- c(rep("tan2", n))
+      d <- distinction(x)[, 3]
+      c <-  vector(mode = "character", length = length(d))
+      c[which(d < -0.05)] <- "tan2"
+      c[which(d > 0.05)] <- "blue"
+      c[which(d >=-0.05 & d <= 0.05)] <- "purple"
+      c[which(d == max(d))] <- "red"
       w <- ggraph(x, layout = lay.o) + 
       geom_edge_link(color = "steelblue") + theme_graph() +
       geom_node_point(size = 5, color = c) + 
       geom_node_text(aes(label = name), color = "white", size = 3) 
-      #ylim(-4, 3.5) + xlim(-4, 3.25) 
       return(w)
       }
    p.list <- lapply(b, gg2, lay.o = "auto")
@@ -157,8 +147,14 @@ execute:
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Long Ties =", i-1)) +
          theme(plot.title = element_text(size = 11))
       }
-   wrap_plots(p.list[c(1, 6, 11, 16)], nrow = 2)
-   ggsave(here("Plots", "connected-caves-examples.png"), width = 10, height = 10, units = "in")
+   wrap_plots(p.list[c(1:4)], nrow = 2)
+   ggsave(here("Plots", "connected-caves-examples1.png"), width = 10, height = 10, units = "in")
+   wrap_plots(p.list[c(5:8)], nrow = 2)
+   ggsave(here("Plots", "connected-caves-examples2.png"), width = 10, height = 10, units = "in")
+   wrap_plots(p.list[c(9:12)], nrow = 2)
+   ggsave(here("Plots", "connected-caves-examples3.png"), width = 10, height = 10, units = "in")
+   wrap_plots(p.list[c(13:16)], nrow = 2)
+   ggsave(here("Plots", "connected-caves-examples4.png"), width = 10, height = 10, units = "in")
 ```
 
 ## Broker Computational Experiements
