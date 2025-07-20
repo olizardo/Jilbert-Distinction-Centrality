@@ -17,8 +17,6 @@ execute:
    library(patchwork)
    library(dplyr)
    source(here("Functions", "distinction.R"))
-   source(here("Functions", "make.broker.trees.R"))
-   source(here("Functions", "make.broker.cliques.R"))
    source(here("Functions", "plot.graph.norm.R"))
    source(here("Functions", "tab.cent.R"))
 ```
@@ -174,8 +172,9 @@ execute:
 ## Broker Computational Experiements
 
 ```{r}
-   b <- make.broker.trees(30)
+   source(here("Functions", "make.broker.trees.R"))
    source(here("Functions", "gg.R"))
+   b <- make.broker.trees(30)
    p.list <- lapply(b, gg)
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
@@ -213,6 +212,9 @@ execute:
 ```
 
 ```{r}
+   source(here("Functions", "make.broker.cliques.R"))
+   source(here("Functions", "gg.R"))
+   b <- make.broker.cliques(30)
    p.list <- lapply(b, gg, star = 9)
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
