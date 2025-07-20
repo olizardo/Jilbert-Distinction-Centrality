@@ -11,7 +11,7 @@ x <- cbind(rownames, x)
 t <- kbl(x, 
       format = "latex", booktabs = TRUE, linesep = "",
       digits = d, row.names = FALSE,
-      col.names = c("Nodes", "Distinction", "SDistinction", "Status", "Constraint", "Scalar"),
+      col.names = c("Nodes", "Distinction", "S-Distinction", "Status", "Constraint", "Scalar"),
       caption = caption, label = label
       ) %>% 
       kable_styling(bootstrap_options = c("hover", "condensed", "responsive")) %>% 

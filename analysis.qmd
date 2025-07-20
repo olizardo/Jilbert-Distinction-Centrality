@@ -189,12 +189,7 @@ execute:
 
 ```{r}
    b <- make.broker.trees(30)
-   c <- lapply(b, distinction.new, norm = FALSE)
-```
-
-```{r}
-   library(patchwork)
-   library(ggraph)
+   source(here("Functions", "gg.R"))
    p.list <- lapply(b, gg)
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
