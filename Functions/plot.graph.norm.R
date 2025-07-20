@@ -1,12 +1,11 @@
 plot.graph.norm <- function(x, l = "kk", vs = 16, ts = 8) { #plotting function
   library(ggraph)
   d <- distinction(x)[, 3]
-  nc <- rep("", length(d))
+  nc <- vector(mode = "character", length = length(d))
   nc[which(d < -0.05)] <- "tan2"
   nc[which(d > 0.05)] <- "blue"
-  nc[which(d <= 0.05 & d >= -0.05)] <- "purple"
+  nc[which(d >=-0.05 & d <= 0.05)] <- "purple"
   nc[which(d == max(d))] <- "red"
-
   if (is.null(V(x)$name) == TRUE) {
       n <- 1:vcount(x)
       tc <- "white"
