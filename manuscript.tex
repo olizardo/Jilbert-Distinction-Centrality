@@ -97,6 +97,9 @@ Under conditions of high average constraint and low average status, the scalar i
 Without a scalar, networks with any degree of hierarchy see the average constraint overwhelm the average status because many low-status nodes are tied to high-status nodes. The advantage of this scalar is to ensure that the average scalar status in the network equals the average constraint in the network. Thus, total status is equal to total constraint, and from there it becomes a matter of distribution among members. From there, however, it enables comparability between networks that would otherwise be impossible. With the understanding that we have, through the scalar, adjusted for a network where one's combination of status and constraint is better or worse, networks can be compared so long as the unobserved social context within the network remains stable. 
 
 \subsection{Distinction Centrality's Measurement Parameters}
+Below we present a variety of toy model to explore the relationship between network shape and density and the calculated measure of network distinction. 
+
+\subsubsection{Distinction and Brokerage: Structural Holes vs. Structural Folds}
 In Figure 1, we present a variety of toy models that compare the effects of network interconnections on the status and constraint of actors. In each model, there are seven nodes, and node 1 is the best-connected node in the network. Thus, node 1 always has an eigenvector centrality of 1. However, the distinction of node 1 changes based on the interconnection of the other nodes, demonstrating how distinction centrality captures the question of constraint exerted by neighbors. 
 
 \textit{Model (a)} is a star graph where node 1 is completely connected to all other nodes, yet the other nodes share no connections. Under such conditions, node 1's eigenvector centrality is 1.00. Yet, node 1's constraint is 0.00 because, when node 1 is removed from the network, all of node 1's neighbors have no connections and thus an eigenvector centrality of 0.00. Table 1 displays the various measurements for each node. The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks. A network composed of a dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes. 
@@ -106,26 +109,76 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
-     \begin{subfigure}[b]{0.3\textwidth}
+     \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/star.png}
             \caption{Star Graph}
             \label{fig:star}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.3\textwidth}
+    \end{subfigure} \\
+     \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/sf.png}
             \caption{Structural Fold}
             \label{fig:sf}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/intra.png}
             \caption{2-Connected Subgraphs}
             \label{fig:intra}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/inter.png}
             \caption{2-Connected Subgraphs with Long Tie}
             \label{fig:inter}
     \end{subfigure}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/wheel.png}
+            \caption{Wheel Graph}
+            \label{fig:wheel}
+    \end{subfigure}
+
+    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
+    \label{fig:toys}
+\end{figure}
+
+
+\input{Tabs/star}
+\input{Tabs/structfold.tex}
+\input{Tabs/intraclust}
+\input{Tabs/interclust}
+\input{Tabs/circle}
+
+
+\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
+
+\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also 
+increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.   
+
+\subsubsection{Circle Graphs and Triadic Closure Incentives}
+Here be dragons.
+
+%Strogatz is random, preferential attachment of closure
+%Status homophilous (enh) attachment vs preferential vs random 
+
+%***Triadic closure as distinction maximization*** 
+%Triadic closure 3 versions
+%-Psychology
+%-Balance version response triadic closure, Polarity, valenced ties  balance was the reason 
+%-Status distinction 
+%I wonder how much of balance theory is really just distinction maximization?
+%Knights of the Round table, why equality conditions are fragile
+%kite graph-outsider breaks mechanical solidarity
+%mechanical solidarity is really an outcome of the network structure (Durkheim kind of %said that but Omar said it better). Try to get inequality in an organic solidarity system but that's unstable? (might have written that down wrong). 
+%mechanical solidarity benefits from the stranger. more theoretical than empirical. 
+%actually anthropologists ruined everything in the villages
+%also somewhat the Marco Polo vibe, Shogun (the violation of markers of distinction, %didn't matter), The Last Samurai
+%theory of subgraph cliques rather than full graph as clique
+%*Tie that cuts the longest shortest path Science, 
+%https://www.science.org/doi/full/10.1126/science.aau9735
+%Distinction homophily, chicken or egg of
+
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/circle.png}
             \caption{Circle Graph}
@@ -155,45 +208,7 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
     \label{fig:toys}
 \end{figure}
 
-\input{Tabs/star}
-\input{Tabs/structfold.tex}
-\input{Tabs/intraclust}
-\input{Tabs/interclust}
-\input{Tabs/circle}
-
-
-\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
-
-\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also 
-increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.   
-
-\subsection{Distinction with Structural Holes vs. Structural Folds}
-
-%Clique addition experiment
-
-%Add cliques to star graph and see what happens
-
-%See what happens with the caveman
-
-%Placehold graphs
-%\begin{figure}
-%   \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-%    \centering
-%     \begin{subfigure}[b]{0.45\textwidth}
-%        \includegraphics[width=1.0\textwidth]{Plots/sf.png}
-%            \caption{Star Graph}
-%            \label{fig:Placehold}
-%    \end{subfigure}
-%     \begin{subfigure}[b]{0.45\textwidth}
-%        \includegraphics[width=1.0\textwidth]{Plots/sf.png}
-%            \caption{Structural Fold}
-%            \label{fig:Placehold}
-%    \end{subfigure}
-%    \caption{Structural Holes with more added subgraphs.}
-%    \label{fig:toys}
-%\end{figure}
-
-\subsection{Long Ties and Hierarchy}
+\subsubsection{Long Ties and Hierarchy}
 This section highlights how the hierarchy is really formed out of the redundant connections of the subgraphs. While a star graph clearly creates a hierarchy, when additional weight is added to the broker's alters, the hierarchy can be flipped, especially when they form denser subgraphs. This is in keeping with the observed structural holes above. 
 
 Graph (b) is the same as graph (a),but with Nodes 12, 13, and 14 combined into a clique with Node 9. Graph (c) is the same as graph (b) with the addition of Nodes 21, 22, and 23 as personal connections of Nodes 12, 13, and 14. Finally, graph (d) is the same as graph (c) with the addition of three long ties across subgraphs connecting only Nodes 17 with 23 and 11 with 18.
@@ -374,23 +389,6 @@ Fifth is \textit{positional uncertainty} about another's position in the field. 
 Sixth, differences in \textit{habitus} mean that potential connections can fail to form because of the impacts it would have on their overall portfolio of positions. Just because of a potential gain in one area does not mean that it would not have costs in other areas that are unobserved. This is the problem above where capital conversion is not quite conversion, but incorporation.  
 
 While it is difficult to build such impediments to positional agency into the distinction measure, study designs can carefully control for the problems they may otherwise impose. Studies of societal conflict which aggregates across fields and within constrained social units can significantly alleviate limitations on positional agency that are external to the distinction measure.  
-
-%NOTES FROM 7|19|25 Meeting
-%***Triadic closure as distinction maximization*** 
-%Strogatz is random, preferential attachment of closure
-%Status homophilous (enh) attachment vs preferential vs random 
-%I wonder how much of balance theory is really just distinction maximization?
-%Non psychological theory polarity
-
-%3 versions
-%-Psychology
-%-Polarity, valenced ties 
-%-Status distinction
-
-%*Tie that cuts the longest shortest path Science, 
-%https://www.science.org/doi/full/10.1126/science.aau9735
-%Distinction homophily, chicken or egg of
-
 
 \section{Conclusion}
 Above we have introduced a way of constructing a general measure of distinction from network structure. The measure theorizes social distinction as a joint function of status and constraint derived from the pattern of network relations. 
