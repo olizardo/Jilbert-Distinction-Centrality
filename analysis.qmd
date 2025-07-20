@@ -51,6 +51,7 @@ execute:
    g10 <- g10 + edge(7,2) #wheel graph
 ```
 
+
 ```{r Toy Networks Plots}
    source(here("Functions", "plot.graph.norm.R"))
    png(here("Plots", "Toys", "star.png"))
@@ -88,34 +89,34 @@ execute:
 ```{r Toy Network Distinction Tables}
    source(here("Functions", "tab.cent.R"))
    tab.cent(distinction(g1), name = "star", 
-   label = "tab:star", rownames = c("1", "2, 3, 4, 5, 6, 7"),
+   label = "star", rownames = c("1", "2, 3, 4, 5, 6, 7"),
    caption = "Distinction centrality scores for star graph.")
    tab.cent(distinction(g2), name = "structfold", 
-   label = "tab:sf", rownames = c("1", "2, 3, 4, 5, 6, 7"),
+   label = "sf", rownames = c("1", "2, 3, 4, 5, 6, 7"),
    caption = "Distinction centrality scores for structural fold graph.")
    tab.cent(distinction(g3), name = "intraclust", 
-   label = "tab:intra", , rownames =  c("1", "2, 3, 6, 7", "4, 5"),
+   label = "intra", , rownames =  c("1", "2, 3, 6, 7", "4, 5"),
    caption = "Distinction centrality scores for intra-connected clusters graph.")
    tab.cent(distinction(g4), name = "interclust", 
-   label = "tab:inter", rownames =  c("1", "2, 7", "3, 6", "4, 5"),
+   label = "inter", rownames =  c("1", "2, 7", "3, 6", "4, 5"),
    caption = "Distinction centrality scores for inter-connected clusters graph.")
    tab.cent(distinction(g5), name = "circle", 
-   label = "tab:circle", rownames = c("1, 2, 3, 4, 5, 6, 7"),
+   label = "circle", rownames = c("1, 2, 3, 4, 5, 6, 7"),
    caption = "Distinction centrality scores for circle graph.")
    tab.cent(distinction(g6), name = "circletriangle", 
-   label = "tab:circletriangle",  rownames = c("1, 6", "2, 5", "3, 4", "7"),
+   label = "circletriangle",  rownames = c("1, 6", "2, 5", "3, 4", "7"),
    caption = "Distinction centrality scores for circle graph with triangle.")
    tab.cent(distinction(g7), name = "circlelong", 
-   label = "tab:circlelong", rownames = c("1, 3", "2", "4, 7", "5, 6"),
+   label = "circlelong", rownames = c("1, 3", "2", "4, 7", "5, 6"),
    caption = "Distinction centrality scores for circle graph with long tie.")
    tab.cent(distinction(g8), name = "clique", 
-   label = "tab:clique", rownames = c("1, 2, 3, 4, 5, 6, 7"),
+   label = "clique", rownames = c("1, 2, 3, 4, 5, 6, 7"),
    caption = "Distinction centrality scores for clique graph.")
    tab.cent(distinction(g9), name = "kite", 
-   label = "tab:kite", rownames = c("1", "2, 3, 4, 5, 6", "7"),
+   label = "kite", rownames = c("1", "2, 3, 4, 5, 6", "7"),
    caption = "Distinction centrality scores for kite graph.")
    tab.cent(distinction(g10), name = "wheel", 
-   label = "tab:wheel", rownames = c("1", "2, 3, 4, 5, 6, 7"),
+   label = "wheel", rownames = c("1", "2, 3, 4, 5, 6, 7"),
    caption = "Distinction centrality scores for wheel graph.")
 
 ```
