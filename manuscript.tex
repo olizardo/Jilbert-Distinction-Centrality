@@ -102,7 +102,16 @@ Understanding that both $s_i$ and $k_i$ are given in the (arbitrary) scaling pro
     \alpha = \frac{\bar{\mathbf{\kappa}}}{\bar{\mathbf{s}}}
 \end{equation}
 
-Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint scores for each actor in the network, and $\bar{\mathbf{\kappa}}$ is the mean of the vector of $s_i$ status scores for each actor in the network. As hinted earlier, a desirable feature of rescaling the $s_i$ component of equation~\ref{eq:distinction} in this way is that in the case of a regular graph (e.g., a circle graph or a fully-connected clique), $\alpha s_i = \kappa_i$ and thus $\beta_i = 0$ for each node $i$ (see Tables~\ref{tab:circle} and~\ref{tab:clique}).
+Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint scores for each actor in the network, and $\bar{\mathbf{\kappa}}$ is the mean of the vector of $s_i$ status scores for each actor in the network. As hinted earlier, a desirable feature of rescaling the $s_i$ component of equation~\ref{eq:distinction} in this way is that in the case of a regular graph (e.g., a circle graph or a fully-connected clique), $\alpha s_i = \kappa_i$ and thus $\beta_i = 0$ for each node $i$ (see Tables~\ref{tab:circle} and~\ref{tab:clique}).  
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Plots/star-roles-by-size.png}
+    \caption{Enter Caption}
+    \label{fig:star-scaling}
+\end{figure}
+
+Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network scaling, so that it increases when peripheral actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the centrality score for star and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes.  
 
 \subsection{Distinction Centrality's Measurement Parameters}
 Below, we present a variety of toy models that compare the effects of network interconnections on the status and constraint of actors.
