@@ -112,7 +112,7 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
             \label{fig:star}
     \end{subfigure}
      \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/sf.png}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
             \caption{Structural Fold}
             \label{fig:sf}
     \end{subfigure} \\
@@ -175,7 +175,11 @@ In Figure 1, we present a variety of toy models that compare the effects of netw
 \input{Tabs/intraclust}
 \input{Tabs/interclust}
 \input{Tabs/circle}
-
+\input{Tabs/kite}
+\input{Tabs/clique.tex}
+\input{Tabs/wheel}
+\input{Tabs/circletriangle}
+\input{Tabs/circlelong}
 
 \textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
 
@@ -207,6 +211,23 @@ increases as they are now both further constrained by the influence of Node 1, t
 %    \caption{Structural Holes with more added subgraphs.}
 %    \label{fig:toys}
 %\end{figure}
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+    \begin{subfigure}[b]{0.9\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/tree-examples.png}
+            \caption{Example of tree graphs with different numbers of branches for the star node.}
+            \label{fig:tree-examples}
+    \end{subfigure} \\
+    \begin{subfigure}[b]{0.55\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/broker-tree-roles-by-nbranches.png}
+            \caption{Evolution of distinction scores by number of branches for the star node.}
+            \label{fig:broker-tree-roles}
+    \end{subfigure}
+    \caption{.}
+    \label{fig:toys}
+\end{figure}
 
 \subsection{Long Ties and Hierarchy}
 This section highlights how the hierarchy is really formed out of the redundant connections of the subgraphs. While a star graph clearly creates a hierarchy, when additional weight is added to the broker's alters, the hierarchy can be flipped, especially when they form denser subgraphs. This is in keeping with the observed structural holes above. 
