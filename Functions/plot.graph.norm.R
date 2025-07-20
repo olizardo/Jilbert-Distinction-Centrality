@@ -1,6 +1,6 @@
 plot.graph.norm <- function(x, l = "kk", vs = 16, ts = 8) { #plotting function
   library(ggraph)
-  d <- distinction(x)[, 3]
+  d <- distinction.new(x)[, 3]
   nc <- rep("", length(d))
   nc[which(d < -0.05)] <- "tan2"
   nc[which(d > 0.05)] <- "blue"

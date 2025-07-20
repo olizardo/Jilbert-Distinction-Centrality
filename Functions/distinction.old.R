@@ -1,4 +1,4 @@
-distinction.new <- function(x, norm = TRUE) { #distinction centrality function
+distinction.old <- function(x) { 
    library(igraph)
    has.labels <- as.numeric(is.null(V(x)$name) == FALSE)
    V <- vcount(x)
@@ -11,10 +11,6 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
       V(x)$name <- 1:V
       }
    s <- eigen_centrality(x)$vector
-  if (norm == FALSE) {
-      s <- abs(eigen(as.matrix(as_adjacency_matrix(x)))$vectors[, 1])
-      names(s) <- V(x)$name
-      }
    d <- rep(V, 0)
    u <- rep(V, 0)
    for (i in as.character(V(x)$name)) {
@@ -24,10 +20,7 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
       e <- as.numeric(ecount(x.d) == 0) #checking for empty
       if (c == 1 & e == 0) { #connected non-empty graph
          s.a <- eigen_centrality(x.d)$vector[j]
-         if (norm == FALSE) {
-            s.a <- abs(eigen(as.matrix(as_adjacency_matrix(x.d)))$vectors[, 1])
-            } #end sub if
-         } #end main if
+         } #end if
       else if (c == 0 & e == 1) { #empty graph
          s.a <- 0
          } #end first else 
@@ -39,10 +32,7 @@ distinction.new <- function(x, norm = TRUE) { #distinction centrality function
             sub.g <- subgraph(x.d, names(which(C == k)))
             if (vcount(sub.g) > 1) {
                s.a[which(C == k)] <- eigen_centrality(sub.g)$vector
-               if (norm == FALSE) {
-                  s.a[which(C == k)] <- abs(eigen(as.matrix(as_adjacency_matrix(sub.g)))$vectors[, 1])
-                  } #end sub if
-               } #end main if
+               }
             }
          names(s.a) <- names(C)
          s.a <- s.a[j]

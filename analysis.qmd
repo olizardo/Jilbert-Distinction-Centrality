@@ -47,9 +47,10 @@ execute:
    g9 <- g9 + edge(1,7) # kite
    g10 <- union(make_ring(7), make_star(7, center = 1, mode = "undirected"))
    g10 <- g10 + edge(2,7)
-   plot(g10)
-
 ```
+
+
+
 
 ```{r Toy Networks Plots}
    png(here("Plots", "star.png"))
@@ -127,7 +128,19 @@ execute:
    source(here("Functions", "connect.caves.R"))
    set.seed(12345)
    b <- connect.caves(c = 4, nc = 4, n = 20)
+```
+
+```{r}
+   source(here("Functions", "distinction.new.R"))
+   distinction(g1)
+   distinction.new(g1, norm = TRUE)
+```
+
+```{r}
    c <- lapply(b, distinction.new, norm = FALSE)
+```
+
+```{r}
    gg2 <- function(x, lay.o = "kk") {
       n <- vcount(x)
       V(x)$name <- 1:n
