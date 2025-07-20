@@ -153,23 +153,9 @@ execute:
 ## Connected Caves Computational Experiments
 ```{r}
    source(here("Functions", "connect.caves.R"))
+   source(here("Functions", "gg2.R"))
    set.seed(456)
    b <- connect.caves(c = 4, nc = 4, n = 24)
-   gg2 <- function(x, lay.o = "kk") {
-      n <- vcount(x)
-      V(x)$name <- 1:n
-      d <- distinction(x)[, 3]
-      c <-  vector(mode = "character", length = length(d))
-      c[which(d < -0.05)] <- "tan2"
-      c[which(d > 0.05)] <- "blue"
-      c[which(d >=-0.05 & d <= 0.05)] <- "purple"
-      c[which(d == max(d))] <- "red"
-      w <- ggraph(x, layout = lay.o) + 
-      geom_edge_link(color = "steelblue") + theme_graph() +
-      geom_node_point(size = 5, color = c) + 
-      geom_node_text(aes(label = name), color = "white", size = 3) 
-      return(w)
-      }
    p.list <- lapply(b, gg2, lay.o = "auto")
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Long Ties =", i-1)) +
