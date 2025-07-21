@@ -88,7 +88,11 @@ Where $\beta_i$ is the distinction centrality score of actor \textit{i}, $s_i$ i
 
 Where $\mathbf{A}$ is the network's adjacency matrix and $\mathbf{s}$ is the right dominant eigenvector of the matrix; status, therefore, is given by the usual eigenvector centrality score \citep{bonacich1972factoring-03e}, taken as the absolute value of each individual's score on the first eigenvector of the adjacency matrix. When a node is an isolate, either in the larger graph or in the node-deleted subgraph used to compute constraint scores, we set its status score to $s_i =0$.\footnote{In the case of a network with no connections (such as an empty graph), some routines calculate it as $s_i =1.0$. However, given that it is still a network with no connections, setting isolates at $s_i =0$ is theoretically appropriate, considering that status is a reflection of connections. It would be inappropriate for an isolate to have the same status as the highest-status node in a large network.}
 
-The second term $\kappa_i$ in equation~\ref{eq:distinction} is a \textbf{localized induced centrality} score \citep{borgatti2020oxford-fa6}. It is given by the average status (eigenvector centrality) of $i$'s neighbors in the \textit{node-deleted subgraph} of the focal graph $G$ that excludes $i$:
+The second term $\kappa_i$ in equation~\ref{eq:distinction} is a \textit{localized} induced centrality score in the sense of \citet{borgatti2020oxford-fa6}. According to \citet{everett2010induced-817}, an induced centrality is obtained whenever we calculate the difference that removing a node in the graph makes to some global property of the graph (a graph invariant). \citet{everett2010induced-817} suggest taking the sum of the centralities scores of the nodes in the node-deleted subgraph produced by removing a given node as that node's contribution to the centralities of other nodes in the graph, as a measure of that node's centrality. They propose examples extending this idea to the classical centrality measures like degree, closeness, and betweenness \citep{freeman79}. 
+
+Here we extend the induced centrality approach in two ways and incorporate it into our measurement of distinction. First, we use the induced centrality perspective in context of ``spectral ranking'' \citep{boldi_vigna14}; secondly, we look not at the difference that removing a node in the graph makes for a global property of the graph (e.g., the sum of the centralities of \textit{all} other nodes), but by restricting it to its local consenquences, namely, the difference it makes for the sum of the centralities of its \textit{neighbors}.  
+
+Accordingly, the $\kappa$ term in Equation~\ref{eq:distinction} is given by the average status (eigenvector centrality) of $i$'s neighbors in the \textit{node-deleted subgraph} of the focal graph $G$ that excludes $i$:
 
 \begin{equation}
     \kappa_i = \frac{\sum_{j \in N(i)}s_j^{G-i}}{|N(i)|}
@@ -107,19 +111,51 @@ Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.6\linewidth]{Plots/star-roles-by-size.png}
-    \caption{Enter Caption}
+    \caption{Scaled and non-scaled distinction centralities for the two node roles in the star graph.}
     \label{fig:star-scaling}
 \end{figure}
 
-Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network scaling, so that it increases when peripheral actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the centrality score for star and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes.  
+Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network scaling, so that it increases when peripheral actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the centrality score for star and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes (we elaborate on the mathematical reasons for this below).  
 
 \subsection{Distinction Centrality's Measurement Parameters}
 Below, we present a variety of toy models that compare the effects of network interconnections on the status and constraint of actors.
 
-\subsubsection{Structural Holes vs Structural Folds}
- In each model, there are seven nodes, and node 1 is the best-connected node in the network. Thus, node 1 always has an eigenvector centrality of 1. However, the distinction of node 1 changes based on the interconnection of the other nodes, demonstrating how distinction centrality captures the question of constraint exerted by neighbors. 
+In each model, there are seven nodes, and node 1 is the best-connected node in the network. Thus, node 1 always has an eigenvector centrality of 1. However, the distinction of node 1 changes based on the interconnection of the other nodes, demonstrating how distinction centrality captures the question of constraint exerted by neighbors. 
 
-\textit{Model (a)} is a star graph where node 1 is completely connected to all other nodes, yet the other nodes share no connections. Under such conditions, node 1's eigenvector centrality is 1.00. Yet, node 1's constraint is 0.00 because, when node 1 is removed from the network, all of node 1's neighbors have no connections and thus an eigenvector centrality of 0.00. Table 1 displays the various measurements for each node. The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks. A network composed of a dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes. 
+\subsubsection{Distinction in the Star Graph}
+Figure~\ref{fig:star} shows a star graph of order seven where node 1 is the central node connected to six peripheral nodes, who themselves have no other connections. This hub-spoke system is the simplest for exploring the linkages between distinction, status, and constraint. The reason for that is that, for the star node 1, $\kappa_i$ is always equal to zero. In other words, the star node has a minimum network constraint, given that the node-deleted subgraph obtained by removing the central node from the star graph is a disconnected, empty graph, where the status of the peripheral nodes collapses to zero, meaning that the star node's distinction score reduces to:
+
+\begin{equation}
+    \beta_1 = \alpha s_1
+    \label{eq:distinction-star1}
+\end{equation}
+
+In a star graph, $s_1$ is a constant regardless of the order of the graph (e.g., number of peripheral nodes). This means that differences in the distinction of the central nodes across star graphs of different orders are wholly driven by $\alpha$. Note also that if we forgo scaling and set $\alpha = 1$ in Equation~\ref{eq:distinction}, then distinction reduces to status ($\beta_1 = s_1$) and therefore the distinction of the star node fails to scale with increasing network size (see Figure~\ref{fig:star-scaling}).
+
+Further note that the average constraint of the star graph is also a constant, equal to $\left(s_1-\frac{s_1}{N}\right)$, where $N$ is the number of nodes in the graph. Substituting this expression for $\alpha$ in Equation~\ref{eq:distinction-star1}, gives us the distinction score for the central node in the star graph:
+
+\begin{equation}
+    \beta_1 =\frac{s_1^2-\frac{s_1^2}{N}}{\bar{\mathbf{s}}}
+    \label{eq:distinction-star1}
+\end{equation}
+
+This means that in the star graph, the central node's distinction is proportional to the square of its status score minus the same score divided by the network size, divided by the average status in the network, which declines (at a decreasing rate) as network size increases, as shown in Figure~\ref{fig:star-scaling}. Thus, the distinction of the star node increases at a decreasing rate governed by the size of the graph $N$, as also shown in Figure~\ref{fig:star-scaling}. 
+
+Similarly, for every peripheral node $j$, the constraint is also a constant and is equal to the status score of the central node $s_1$. Thus, for the peripheral nodes in a star graph, Equation~\ref{eq:distinction} becomes:
+
+\begin{equation}
+    \beta_j = \alpha s_j - s_1
+    \label{eq:distinction-star}
+\end{equation}
+
+However, as we noted, the average constraint of the star graph is a function of the status of the central node and the size of the graph, which means that the above becomes:
+
+\begin{equation}
+    \beta_j = \left[\frac{\left(1-\frac{1}{N}\right)s_1}{\bar{\mathbf{s}}}\right]s_j-s_1 = \left[\frac{s_1 - \frac{s_1}{N}}{\bar{\mathbf{s}}}\right]s_j - s_1 = \left[\frac{s_1 s_j - \frac{s_1 s_j}{N}}{\bar{\mathbf{s}}} \right] - s_1
+    \label{eq:distinction-star}
+\end{equation}
+
+The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks.\footnote{A network composed of a dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes.} 
 
 \textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
 
