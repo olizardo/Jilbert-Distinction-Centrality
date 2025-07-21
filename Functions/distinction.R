@@ -39,7 +39,7 @@ distinction <- function(x, norm = FALSE) {
       else if (c == FALSE & e == TRUE) { #empty node-deleted graph
          s.a <- 0
          } #end first else 
-      else if (c == FALSE & e == FALSE) { #disconnected non-empty graph
+      else if (c == FALSE & e == FALSE) { #disconnected non-empty node-deleted graph
          A <- as.matrix(as_adjacency_matrix(x.d))
          nc <- components(x.d)$no         
          s.a <- rowSums(abs(eigen(A)$vectors[, 1:nc]))
