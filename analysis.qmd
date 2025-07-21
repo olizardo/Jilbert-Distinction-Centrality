@@ -18,7 +18,6 @@ execute:
    library(dplyr)
    source(here("Functions", "distinction.R"))
    source(here("Functions", "plot.graph.norm.R"))
-   source(here("Functions", "tab.cent.R"))
 ```
 
 ## Toy Networks

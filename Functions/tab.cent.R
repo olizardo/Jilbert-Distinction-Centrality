@@ -6,12 +6,12 @@ tab.cent <- function(x,
       rownames) { 
 library(kableExtra)
 library(dplyr)
-x <- distinct(x[, 2:6])
+x <- distinct(x[, 3:6])
 x <- cbind(rownames, x)
 t <- kbl(x, 
       format = "latex", booktabs = TRUE, linesep = "",
       digits = d, row.names = FALSE,
-      col.names = c("Nodes", "Distinction", "S-Distinction", "Status", "Constraint", "Scalar"),
+      col.names = c("Nodes", "$\\beta_i$", "$s_i$", "$\\kappa_i$", "$\\alpha$"),
       caption = caption, label = label
       ) %>% 
       kable_styling(bootstrap_options = c("hover", "condensed", "responsive")) %>% 
