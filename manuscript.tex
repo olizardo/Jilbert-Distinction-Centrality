@@ -115,7 +115,7 @@ Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint
     \label{fig:star-scaling}
 \end{figure}
 
-Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network scaling, so that it increases when peripheral actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the centrality score for star and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes (we elaborate on the mathematical reasons for this below).  
+Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network size, so that it increases for the most distinct (central) node when peripheral actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the centrality score for central and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes (we elaborate on the mathematical reasons for this below).  
 
 \subsection{Distinction Centrality's Measurement Parameters}
 Below, we present a variety of toy models that compare the effects of network interconnections on the status and constraint of actors.
@@ -136,26 +136,70 @@ Further note that the average constraint of the star graph is also a constant, e
 
 \begin{equation}
     \beta_1 =\frac{s_1^2-\frac{s_1^2}{N}}{\bar{\mathbf{s}}}
-    \label{eq:distinction-star1}
+    \label{eq:distinction-star2}
 \end{equation}
 
 This means that in the star graph, the central node's distinction is proportional to the square of its status score minus the same score divided by the network size, divided by the average status in the network, which declines (at a decreasing rate) as network size increases, as shown in Figure~\ref{fig:star-scaling}. Thus, the distinction of the star node increases at a decreasing rate governed by the size of the graph $N$, as also shown in Figure~\ref{fig:star-scaling}. 
+
+The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks.\footnote{Nodes in a graph composed of a single dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes.} 
+
+\input{Tabs/star}
 
 Similarly, for every peripheral node $j$, the constraint is also a constant and is equal to the status score of the central node $s_1$. Thus, for the peripheral nodes in a star graph, Equation~\ref{eq:distinction} becomes:
 
 \begin{equation}
     \beta_j = \alpha s_j - s_1
-    \label{eq:distinction-star}
+    \label{eq:distinction-star3}
 \end{equation}
 
-However, as we noted, the average constraint of the star graph is a function of the status of the central node and the size of the graph, which means that the above becomes:
+Substituting Equation~\ref{eq:distinction-star1} into Equation~\ref{eq:distinction-star3} we obtain:
 
 \begin{equation}
-    \beta_j = \left[\frac{\left(1-\frac{1}{N}\right)s_1}{\bar{\mathbf{s}}}\right]s_j-s_1 = \left[\frac{s_1 - \frac{s_1}{N}}{\bar{\mathbf{s}}}\right]s_j - s_1 = \left[\frac{s_1 s_j - \frac{s_1 s_j}{N}}{\bar{\mathbf{s}}} \right] - s_1
-    \label{eq:distinction-star}
+    \beta_j = \alpha s_j - \frac{\beta_1}{\alpha}
+    \label{eq:distinction-star4}
 \end{equation}
 
-The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks.\footnote{A network composed of a dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes.} 
+Which tells us that the distinction of the peripheral node in the star graph is proportional to its own (scale) status, discounted by the distinction of the star node divided by the same scaling factor. 
+
+\begin{figure}[ht!]
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/star.png}
+            \caption{Star Graph}
+            \label{fig:star}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle.png}
+            \caption{Circle Graph}
+            \label{fig:circle}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/clique.png}
+            \caption{Clique Graph}
+            \label{fig:clique}
+    \end{subfigure}
+    \label{fig:star-circle-clique}
+    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
+\end{figure}
+
+\input{Tabs/circle}
+
+\subsubsection{Distinction in the Circle and Clique Graphs}
+
+If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction. In that respect, distinction should be at its theoretical minimum of zero for all nodes in these cases. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique} this is precisely what we observe.
+
+In the case of the circle graph, status scores be equivalent across all nodes ($s_i = 0.38$ for the circle graph of order seven shown in Figure~\ref{fig:circle}. Also note that whenever we remove a node from the circle graph a path graph of order $N-1$, where $N$ is the number of nodes in the original circle graph is obtained. The previous neighbors of the removed node become the end nodes in the node-deleted path graph. These two nodes will by necessity have the same status score. This means that the $\kappa$ component of Equation~\ref{eq:distinction} will be the same constant across all nodes, and that the average status and average constraint will also be equal to a constant, in which case Equation~\ref{eq:distinction} becomes:
+
+\begin{equation}
+    \beta_i = \left(\frac{\kappa_i}{s_i}s_i-\kappa_i\right)= (\kappa_i - \kappa_i) =0
+    \label{eq:distinction-circle}
+\end{equation}
+
+Thus, distinction is zero for all nodes in the circle graph. The same reasoning applies to the clique graph in which nodes have the same constant status scores as in the circle graph. The difference is that in this case the $\kappa$ component of Equation~\ref{eq:distinction} is obtained from the status scores of each actor in the node-deleted subgraph excluding the focal node, which is just a clique of size $N-1$ where $N$ is the number of nodes in the original clique. Just like in the circle graph case, however, both the $s$ and $\kappa$ components are constant across nodes, which means that the status scores cancel out by division and the constraint scores by subtraction, leaving everyone with a scaled distinction score of zero.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes, and therefore we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
+
+\input{Tabs/clique}
+
 
 \textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
 
@@ -163,15 +207,10 @@ The hub of a star graph thus has the maximum possible distance between status an
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
      \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/star.png}
-            \caption{Star Graph}
-            \label{fig:star}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
             \caption{Structural Fold}
             \label{fig:sf}
-    \end{subfigure} \\
+    \end{subfigure} 
     \begin{subfigure}[b]{0.35\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/intra.png}
             \caption{2-Connected Subgraphs}
@@ -187,9 +226,8 @@ The hub of a star graph thus has the maximum possible distance between status an
             \caption{Wheel Graph}
             \label{fig:wheel}
     \end{subfigure}
-
+    \label{fig:struct-folds}
     \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
-    \label{fig:toys}
 \end{figure}
 
 \textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
@@ -228,11 +266,7 @@ Status distinction
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle.png}
-            \caption{Circle Graph}
-            \label{fig:circle}
-    \end{subfigure}
+
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-triangle.png}
             \caption{Circle Graph with Closure}
@@ -246,11 +280,6 @@ Status distinction
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/clique.png}
-            \caption{Clique Graph}
-            \label{fig:clique}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
             \caption{Kite Graph}
             \label{fig:kite}
@@ -259,14 +288,11 @@ Status distinction
     \label{fig:toys}
 \end{figure}
 
-\input{Tabs/star}
 \input{Tabs/structfold.tex}
 \input{Tabs/intraclust}
 \input{Tabs/interclust}
-\input{Tabs/circle}
 \input{Tabs/kite}
 \input{Tabs/clique}
-\input{Tabs/wheel}
 \input{Tabs/circletriangle}
 \input{Tabs/circlelong}
 
