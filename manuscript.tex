@@ -30,7 +30,7 @@
 
 \newpage
 \begin{abstract}	
-This paper introduces the concept of \textit{distinction centrality}, developing a network metric designed to capture it. The metric is theoretically inspired by Bourdieu's theory of agonistic competition for distinction in social fields, where other actors and their actions provide opportunities and constraints to maximize social positioning. The basic idea behind the network metric of distinction is to subtract the \textit{autonomy} of each actor within the network from their \textit{constraint}, such that highly autonomous (and therefore less constrained) actors have more distinction. Autonomy is given by the focal actor's Eigenvector Centrality score (recording connections to well-placed others), and constraint is defined by the average Eigenvector Centrality score of each actor's neighbors in a hypothetical network where the focal actor is removed (indicating how others would benefit from that actor's exiting the network). A scalar is then applied to create mathematical and sociological equivalence between autonomy and constraint. The resulting node-level measures create a measure of \textit{distinction}, where the uniqueness of an actor's relations is more heavily rewarded than under the standard Eigenvector Centrality score. We analyze two classic datasets, Padgett and Ansell's \citeyearpar{padgett1993robust} Medici Network and Zachary's \citeyearpar{zachary1977information} Karate Club, to demonstrate that the observed actions of the agents involved are consistent with the maximization of distinction. We close by outlining how the resulting distinction measure can be used to both forecast network transformations and anticipate competitive changes resulting from external network shocks.    
+This paper introduces the concept of network \textit{distinction} and develops a relational metric that captures it. The metric is theoretically inspired by Bourdieu's theory of agonistic competition for distinction in social fields, where other actors and their actions provide opportunities and constraints to maximize social positioning. The basic idea behind the network metric of distinction is to subtract the \textit{autonomy} of each actor within the network from their \textit{constraint}, such that highly autonomous (and therefore less constrained) actors have more distinction. Autonomy is given by the focal actor's Eigenvector Centrality score (recording connections to well-placed others), and constraint is defined by the average Eigenvector Centrality score of each actor's neighbors in a hypothetical network where the focal actor is removed (indicating how others would benefit from that actor's exiting the network). A scalar is then applied to create mathematical and sociological equivalence between autonomy and constraint. The resulting node-level measures create a measure of \textit{distinction}, where the uniqueness of an actor's relations is more heavily rewarded than under the standard Eigenvector Centrality score. We analyze two classic datasets, Padgett and Ansell's \citeyearpar{padgett1993robust} Medici Network and Zachary's \citeyearpar{zachary1977information} Karate Club, to demonstrate that the observed actions of the agents involved are consistent with the maximization of distinction. We close by outlining how the resulting distinction measure can be used to both forecast network transformations and anticipate competitive changes resulting from external network shocks.    
 \end{abstract}
 
 \newpage
@@ -43,15 +43,14 @@ In this last respect, the more encompassing notion of \textit{social} distinctio
 Bourdieu was primarily interested in the competition among actors for positions within the hierarchy implied by the field \citep{anheier1995forms, bourdieu1993field-8ad}. Bourdieu defined the field as a social space where actors operate within socially negotiated boundaries that arbitrate relevant competitive claims over position \citep{bourdieu1996rules-393}. In interplay with the field, individuals develop a habitus of embodied dispositions, expressed as cognitive ease with particular types of settings, objects, and performances. An actor's position in the field influences their habitus. Similarly, their habitus determines their future possibilities within the field, while also shaping the opportunities available to others in the field. Actors compete for positions in the field via various forms of capital or resources that are socially agreed upon as desirable within a field \citep{martin2003field}, thereby facilitating the formation of connections that both order and reflect the hierarchy of the field. The interaction of the desirability and uniqueness of the capitals possessed by an individual determines their place in the field's positional hierarchy.   
 
 Bourdieu \citeyearpar{bourdieu1984distinction} most famously used the conceptualization of distinction to explain the persistence of the relationship between class and cultural hierarchies. Cultural elites in France distinguished themselves from their inferiors by adopting differentiated cultural practices that had undergone a process of consecration, which set them apart from the common. There is a strong correlation between those in the position of cultural and economic elites. Still, such a correlation is not guaranteed at the individual level, even if it is relevant at the field level.   
-
 While largely a concept used by those who research cultural practices, the pursuit of distinction is a general expression of the interaction between status and uniqueness within a field of positions \citep{anheier1995forms}. For example, while cultural practices may be a marker of difference, the absence of association with others outside the milieu is also a matter of agency within the milieu, a question of the constraints imposed by the set of relationships within which the actor is embedded. For Bourdieu, the struggle for position in a field was a product of a field of action and a field of forces \citep{martin2003field}. The field of action refers to the agency of actors actively advancing their interests. In contrast, the field of forces describes the counteracting pressures faced by the other participants whose interests would be upset by positional transformations.   
 
-In relation to theory, network status is another name for \textit{influence} \citep{friedkin1991theoretical}, and uniqueness for \textit{autonomy} in a social environment \citep{burt1980autonomy}. Translated to network terms, Bourdieu's field of action can be understood as the status hierarchy of the network, while the field of struggle is reflective of the constraints neighbors put on an actor. An actor with high influence is well-connected to others who can be mobilized for effective action. An actor with high autonomy is not constrained by their pattern connections or forced into action by them \citep{burt76}. We often use context-specific words to denote position in the hierarchy and ability to act within that hierarchy. Nevertheless, we use ``status" and ``autonomy" below as general terms to describe the ability of actors to take action versus the level of imposition from the forces of constraint.
+In relation to theory, network status is another name for \textit{influence} \citep{friedkin1991theoretical}, and uniqueness for \textit{autonomy} in a social environment \citep{burt1980autonomy}. Translated into network terms, Bourdieu's field of action can be understood as the status hierarchy of the network, while the field of struggle reflects the constraints that neighbors impose on an actor. An actor with high influence is well-connected to others who can be mobilized for effective action. An actor with high autonomy is not constrained by their pattern connections or forced into action by them \citep{burt76}. We often use context-specific words to denote position in the hierarchy and ability to act within that hierarchy. Nevertheless, we use ``status" and ``autonomy" below as general terms to describe the ability of actors to take action versus the level of imposition from the forces of constraint.
 
-In developing a broader understanding and measure of social distinction, actor-level incentives and structural impediments to action become apparent. When we understand the underlying motivation actors have to proactively reshape their network connections so as to achieve more distinct positions, historical patterns of network change can be better accounted for and sometimes even properly forecasted. 
+In developing a broader understanding and measure of social distinction, actor-level incentives and structural impediments to action become apparent. When we understand the underlying motivation that actors have to proactively reshape their network connections to achieve more distinct positions, historical patterns of network change can be better accounted for and, in some cases, even properly forecasted. 
 
 \subsection{Position as the Relational Basis for a Distinction Measure}
-Bourdieu's separation of distinction into habitus and position is not a sociological problem at all, but rather creates the analytical problem of how an actor's network position generates dispositions and how these dispositions create opportunities for network mobility. Both dispositions and positions are fundamentally relational outcomes in sociological terms; however, when creating a network measure of distinction, only the relational basis of position can be considered. 
+Bourdieu's separation of distinction into habitus and position is not a sociological problem in itself, but rather creates the analytical challenge of how an actor's network position generates dispositions and how these dispositions, in turn, create opportunities for network mobility. Both dispositions and positions are fundamentally relational outcomes in sociological terms; however, when creating a network measure of distinction, only the relational basis of position can be considered. 
 
 However, to the extent that position and habitus reflect each other through their symbiotic fabrication, the ability to empirically capture only one of the two components is sufficiently accurate to measure a social system's distinction hierarchy with confidence over a short window of time. Actors should not hold a network position that does not align with their habitus, and their current habitus and social position determine their ability to radically change positions. If the transformation of habitus is a stepwise interplay with positional movement that unfolds over time, the measure becomes less informative if it captures networks over extended periods. However, even over long periods, this theoretical collapse, which permits a network-measured methodological shortcut, may still be adequate in a moderately stable social environment. 
 
@@ -159,7 +158,7 @@ Substituting Equation~\ref{eq:distinction-star1} into Equation~\ref{eq:distincti
     \label{eq:distinction-star4}
 \end{equation}
 
-Which tells us that the distinction of the peripheral node in the star graph is proportional to its own (scale) status, discounted by the distinction of the star node divided by the same scaling factor. 
+Which tells us that the distinction of the peripheral node in the star graph is proportional to its own (scaled) status, discounted by the distinction of the star node divided by the same scaling factor. 
 
 \begin{figure}[ht!]
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
@@ -199,7 +198,78 @@ In the case of the circle graph, status scores be equivalent across all nodes ($
 Thus, the distinction is zero for all nodes in the circle graph. The same reasoning applies to the clique graph in which nodes have the same constant status scores as in the circle graph. The difference is that in this case the $\kappa$ component of Equation~\ref{eq:distinction} is obtained from the status scores of each actor in the node-deleted subgraph, excluding the focal node, which is just a clique of size $N-1$ where $N$ is the number of nodes in the original clique. Just like in the circle graph case, however, both the $s$ and $\kappa$ components are constant across nodes, which means that the status scores cancel out by division and the constraint scores by subtraction, leaving everyone with a scaled distinction score of zero.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes, and therefore we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
 
 \input{Tabs/clique}
+%Clique addition experiment
+%Add cliques to star graph and see what happens
+%See what happens with the caveman
 
+\subsubsection{Distinction in Triadic Closure and Formation}
+
+Triadic closure is an observed regularity in which a connection is likely to form between two actors who, although not originally connected, are first connected to a common alter (Simmel 1908). In essence, friends of friends have an increased likelihood of also becoming friends. The causes of this regularity, and the reasons for its occasional failure, are largely based on consideration of valence. Positive or negative affect drive the resulting triadic relations. The original consideration was for the cognitive balance of the individual, or the psychological congruity of affect by an individual for two objects that they see as causally connected. As such, the valenced relationship of any three actors are brought into combined consideration because any two are considered affectively combined through their joint combination as "the parts of a causal unit (Heider 1946:107)."
+
+Beyond the cognitive congruence account of triadic closure, there is an accounting of triadic closure based on the strains new positive network connections may or may not create in existing relationships. Networks are sets of triads that are either actualized in connection, either positive or negative, or left unactuated. Actualization is largely predicated on propinquity, and the valence of theoretically possible ties never rises to the concern of a social question \citep{feld1981focused, feld1982social, mollenhorst2011shared}. However, in a contested context where ties are either positive or negative, triadic closure becomes a matter of not betraying one's friends by associating with one of their enemies, and of solidifying social alliances (Bearman 1993). However, triadic closure with a friend's friend signals commitment. The endorsement effect of triadic balance, that betrayal creates two relational problems rather than one, reinforces the surety of the actors \citep{yoon2013exchange}. 
+
+In addition to these explanations, the distinction measure also reveals the utility of a distinction based theory of triadic closure. Figure 3 \textit{Model (a)} and Table 4 present a graph and corresponding measures of near-neighbor triadic closure. The distinction of nodes 1 and 6 increases to .106, compared to 0 in the circle graph, while all other nodes fall below 0 due to the reverberating effects of the new connection. Notably, node 7 increases in eigenvector status from the combination, but overall decrease in scaled distinction due to the tie. While both eigenvector centrality and scaled distinction would predict tie formation in this simplified social structure, the scaled distinction measure would find that Node 7 would actually lose out in some ways from this arrangement. This matches with findings that initial connections do weaken when triadic closure occurs \citep{huang2018will}, consistent with a reaction to the increased constraint placed on the closure broker. This example demonstrates the fragility of the circle graph as an equality condition in a distinction-based theoretical framework, as there are opportunities for mutual increases in distinction through triadic closure. Beyond questions of balancing valence as is the current framework for understanding triadic closure, a distinction-based theoretical framework can explain the propensity towards triadic closure, but also its failure to form depending on the initial patterning of relationships. 
+
+Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measures of a long tie formation spanning the circle graph. The connected nodes 4 and 7 both have distinction maximizing incentives to form a tie, but notably their scaled distinction increases more when they close triadically with a near neighbor. Thus, under sparse network conditions, the gains in status from local consolidation outweigh the distinction gains from increased autonomy.    
+
+%actually creates hierarchy, you only one tie to create 4 levels of hierarchy
+%the pyramid is the natural form of organization
+%agents form ties with maximization, then you grow transitivty 
+%two conditions, inital local ties matter more, with density, long ties matter more
+
+%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
+%folds vs circles
+
+%kite graph-outsider breaks mechanical solidarity
+%mechanical solidarity is really an outcome of the network structure (Durkheim kind of %said that but Omar said it better). Try to get inequality in an organic solidarity system but that's unstable? (might have written that down wrong). 
+%mechanical solidarity benefits from the stranger. more theoretical than empirical. 
+%actually anthropologists ruined everything in the villages
+%also somewhat the Marco Polo vibe, Shogun (the violation of markers of distinction, %didn't matter), The Last Samurai
+%theory of subgraph cliques rather than full graph as clique
+
+%gets close to 0 negative, with non-normalized eigenvectors
+%if you normalize then it all works as expected
+% in the normalized kite graph, 1.0, the other get close, decreases the scalar, evs don't mean anything
+
+%college caves, BYU vs Notre Dame vs regulars
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-triangle.png}
+            \caption{Circle Graph with Closure}
+            \label{fig:circleplus}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-long.png}
+            \caption{Circle Graph with Long Tie}
+            \label{fig:circleplus}
+    \end{subfigure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
+            \caption{Kite Graph}
+            \label{fig:kite}
+    \end{subfigure}
+    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
+    \label{fig:toys}
+\end{figure}
+
+\input{Tabs/circletriangle}
+\input{Tabs/circlelong}
+\input{Tabs/kite}
+
+
+\input{Tabs/structfold.tex}
+\input{Tabs/intraclust}
+\input{Tabs/interclust}
+\input{Tabs/clique}
+
+
+\subsubsection{Distinction and Brokerage}
 
 \textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
 
@@ -232,106 +302,16 @@ Thus, the distinction is zero for all nodes in the circle graph. The same reason
 
 \textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
 
-\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.   
+\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
 
-\subsubsection{Circle Graphs and Triadic Closure}
-%NOTES FROM 7|19|25 Meeting
-%***Triadic closure as distinction maximization*** 
+\subsubsection{Long Ties and Hierarchy}
+
 %Strogatz is random, preferential attachment of closure
 %Status homophilous (enh) attachment vs preferential vs random 
-%I wonder how much of balance theory is really just distinction maximization?
-%Non psychological theory polarity
-
-%Triadic closure 3 versions
-\textit Triadic closure is an observed regularity in which a connection is likely to form between two actors who, although not originally connected, are first connected to a common alter (Simmel 1908). In essence, friends of friends have an increased likelihood of also becoming friends. The causes of this regularity, and the reasons for its occasional failure, are largely based on consideration of valence. Positive or negative affect drive the resulting triadic relations. The original consideration was for the cognitive balance of the individual, or the psychological congruity of affect by an individual for two objects that they see as causally connected. As such, the valenced relationship of any three actors are brought into combined consideration because any two are considered affectively combined through their joint combination as "the parts of a causal unit (Heider 1946:107)."
-
-
-
-
-\citep{huang2018will}
-\citep{yoon2013exchange}
-\citep{mollenhorst2011shared} 
-\citep{feld1981focused}
-\citep{feld1982social}
-
-
-Psychology
-Polarity, valenced ties 
-Status distinction
-
-%Knights of the Round table, why equality conditions are fragile
-%kite graph-outsider breaks mechanical solidarity
-%mechanical solidarity is really an outcome of the network structure (Durkheim kind of %said that but Omar said it better). Try to get inequality in an organic solidarity system but that's unstable? (might have written that down wrong). 
-%mechanical solidarity benefits from the stranger. more theoretical than empirical. 
-%actually anthropologists ruined everything in the villages
-%also somewhat the Marco Polo vibe, Shogun (the violation of markers of distinction, %didn't matter), The Last Samurai
-%theory of subgraph cliques rather than full graph as clique
 %*Tie that cuts the longest shortest path Science, 
 %https://www.science.org/doi/full/10.1126/science.aau9735
 %Distinction homophily, chicken or egg of
 
-%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
-%folds vs circles
-%college caves, BYU vs Notre Dame vs regulars
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-triangle.png}
-            \caption{Circle Graph with Closure}
-            \label{fig:circleplus}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-long.png}
-            \caption{Circle Graph with Long Tie}
-            \label{fig:circleplus}
-    \end{subfigure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
-            \caption{Kite Graph}
-            \label{fig:kite}
-    \end{subfigure}
-    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
-    \label{fig:toys}
-\end{figure}
-
-\input{Tabs/structfold.tex}
-\input{Tabs/intraclust}
-\input{Tabs/interclust}
-\input{Tabs/kite}
-\input{Tabs/clique}
-\input{Tabs/circletriangle}
-\input{Tabs/circlelong}
-
-%Clique addition experiment
-
-%Add cliques to star graph and see what happens
-
-%See what happens with the caveman
-
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-    \begin{subfigure}[b]{0.9\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/tree-examples.png}
-            \caption{Example of tree graphs with different numbers of branches for the star node.}
-            \label{fig:tree-examples}
-    \end{subfigure} \\
-    \begin{subfigure}[b]{0.55\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/broker-tree-roles-by-nbranches.png}
-            \caption{Evolution of distinction scores by number of branches for the star node.}
-            \label{fig:broker-tree-roles}
-    \end{subfigure}
-    \caption{.}
-    \label{fig:toys}
-\end{figure}
-
-\subsubsection{Long Ties and Hierarchy}
 This section highlights how the hierarchy is really formed out of the redundant connections of the subgraphs. While a star graph clearly creates a hierarchy, when additional weight is added to the broker's alters, the hierarchy can be flipped, especially when they form denser subgraphs. This is in keeping with the observed structural holes above. 
 
 Graph (b) is the same as graph (a),but with Nodes 12, 13, and 14 combined into a clique with Node 9. Graph (c) is the same as graph (b) with the addition of Nodes 21, 22, and 23 as personal connections of Nodes 12, 13, and 14. Finally, graph (d) is the same as graph (c) with the addition of three long ties across subgraphs connecting only Nodes 17 with 23 and 11 with 18.
@@ -367,6 +347,23 @@ Thus, there is a U shaped pattern where at low levels of interconnection between
     \label{fig:Evolving Political Network}
 \end{figure}
 
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+    \begin{subfigure}[b]{0.9\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/tree-examples.png}
+            \caption{Example of tree graphs with different numbers of branches for the star node.}
+            \label{fig:tree-examples}
+    \end{subfigure} \\
+    \begin{subfigure}[b]{0.55\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/broker-tree-roles-by-nbranches.png}
+            \caption{Evolution of distinction scores by number of branches for the star node.}
+            \label{fig:broker-tree-roles}
+    \end{subfigure}
+    \caption{.}
+    \label{fig:toys}
+\end{figure}
 
 \input{Tabs/political.tex}
 
