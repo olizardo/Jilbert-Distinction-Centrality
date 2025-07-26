@@ -196,7 +196,7 @@ In the case of the circle graph, status scores be equivalent across all nodes ($
     \label{eq:distinction-circle}
 \end{equation}
 
-Thus, distinction is zero for all nodes in the circle graph. The same reasoning applies to the clique graph in which nodes have the same constant status scores as in the circle graph. The difference is that in this case the $\kappa$ component of Equation~\ref{eq:distinction} is obtained from the status scores of each actor in the node-deleted subgraph excluding the focal node, which is just a clique of size $N-1$ where $N$ is the number of nodes in the original clique. Just like in the circle graph case, however, both the $s$ and $\kappa$ components are constant across nodes, which means that the status scores cancel out by division and the constraint scores by subtraction, leaving everyone with a scaled distinction score of zero.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes, and therefore we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
+Thus, the distinction is zero for all nodes in the circle graph. The same reasoning applies to the clique graph in which nodes have the same constant status scores as in the circle graph. The difference is that in this case the $\kappa$ component of Equation~\ref{eq:distinction} is obtained from the status scores of each actor in the node-deleted subgraph, excluding the focal node, which is just a clique of size $N-1$ where $N$ is the number of nodes in the original clique. Just like in the circle graph case, however, both the $s$ and $\kappa$ components are constant across nodes, which means that the status scores cancel out by division and the constraint scores by subtraction, leaving everyone with a scaled distinction score of zero.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes, and therefore we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
 
 \input{Tabs/clique}
 
@@ -232,8 +232,7 @@ Thus, distinction is zero for all nodes in the circle graph. The same reasoning 
 
 \textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
 
-\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also 
-increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.   
+\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.   
 
 \subsubsection{Circle Graphs and Triadic Closure}
 %NOTES FROM 7|19|25 Meeting
@@ -244,6 +243,18 @@ increases as they are now both further constrained by the influence of Node 1, t
 %Non psychological theory polarity
 
 %Triadic closure 3 versions
+\textit Triadic closure is an observed regularity in which a connection is likely to form between two actors who, although not originally connected, are first connected to a common alter (Simmel 1908). In essence, friends of friends have an increased likelihood of also becoming friends. The causes of this regularity, and the reasons for its occasional failure, are largely based on consideration of valence. Positive or negative affect drive the resulting triadic relations. The original consideration was for the cognitive balance of the individual, or the psychological congruity of affect by an individual for two objects that they see as causally connected. As such, the valenced relationship of any three actors are brought into combined consideration because any two are considered affectively combined through their joint combination as "the parts of a causal unit (Heider 1946:107)."
+
+
+
+
+\citep{huang2018will}
+\citep{yoon2013exchange}
+\citep{mollenhorst2011shared} 
+\citep{feld1981focused}
+\citep{feld1982social}
+
+
 Psychology
 Polarity, valenced ties 
 Status distinction
