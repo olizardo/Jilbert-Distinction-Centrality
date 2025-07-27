@@ -202,36 +202,19 @@ Thus, the distinction is zero for all nodes in the circle graph. The same reason
 %Add cliques to star graph and see what happens
 %See what happens with the caveman
 
-\subsubsection{Distinction in Triadic Closure and Formation}
+\subsubsection{Distinction in Triadic Closure}
 
 Triadic closure is an observed regularity in which a connection is likely to form between two actors who, although not originally connected, are first connected to a common alter (Simmel 1908). In essence, friends of friends have an increased likelihood of also becoming friends. The causes of this regularity, and the reasons for its occasional failure, are largely based on consideration of valence. Positive or negative affect drive the resulting triadic relations. The original consideration was for the cognitive balance of the individual, or the psychological congruity of affect by an individual for two objects that they see as causally connected. As such, the valenced relationship of any three actors are brought into combined consideration because any two are considered affectively combined through their joint combination as "the parts of a causal unit (Heider 1946:107)."
 
 Beyond the cognitive congruence account of triadic closure, there is an accounting of triadic closure based on the strains new positive network connections may or may not create in existing relationships. Networks are sets of triads that are either actualized in connection, either positive or negative, or left unactuated. Actualization is largely predicated on propinquity, and the valence of theoretically possible ties never rises to the concern of a social question \citep{feld1981focused, feld1982social, mollenhorst2011shared}. However, in a contested context where ties are either positive or negative, triadic closure becomes a matter of not betraying one's friends by associating with one of their enemies, and of solidifying social alliances (Bearman 1993). However, triadic closure with a friend's friend signals commitment. The endorsement effect of triadic balance, that betrayal creates two relational problems rather than one, reinforces the surety of the actors \citep{yoon2013exchange}. 
 
-In addition to these explanations, the distinction measure also reveals the utility of a distinction based theory of triadic closure. Figure 3 \textit{Model (a)} and Table 4 present a graph and corresponding measures of near-neighbor triadic closure. The distinction of nodes 1 and 6 increases to .106, compared to 0 in the circle graph, while all other nodes fall below 0 due to the reverberating effects of the new connection. Notably, node 7 increases in eigenvector status from the combination, but overall decrease in scaled distinction due to the tie. While both eigenvector centrality and scaled distinction would predict tie formation in this simplified social structure, the scaled distinction measure would find that Node 7 would actually lose out in some ways from this arrangement. This matches with findings that initial connections do weaken when triadic closure occurs \citep{huang2018will}, consistent with a reaction to the increased constraint placed on the closure broker. This example demonstrates the fragility of the circle graph as an equality condition in a distinction-based theoretical framework, as there are opportunities for mutual increases in distinction through triadic closure. Beyond questions of balancing valence as is the current framework for understanding triadic closure, a distinction-based theoretical framework can explain the propensity towards triadic closure, but also its failure to form depending on the initial patterning of relationships. 
+In addition to these explanations, the distinction measure also reveals the utility of a distinction based theory of triadic closure. Figure 3 \textit{Model (a)} and Table 4 present a graph and corresponding measures of near-neighbor triadic closure. The distinction of nodes 1 and 6 increases to .106, compared to 0 in the circle graph, while all other nodes fall below 0 due to the reverberating effects of the new connection. Notably, node 7 increases in eigenvector status from the combination, but overall decrease in scaled distinction due to the tie. While both eigenvector centrality and scaled distinction would predict tie formation in this simplified social structure, the scaled distinction measure would find that Node 7 would actually lose out in some ways from this arrangement. This matches with findings that initial connections do weaken when triadic closure occurs \citep{huang2018will}, consistent with a reaction to the increased constraint placed on the closure broker. This example demonstrates the fragility of the circle graph as an equality condition in a distinction-based theoretical framework, as there are opportunities for mutual increases in distinction through triadic closure. Additionally, the  example of triadic closure shows that only mild additions to network ties can very quickly create stratification. The addition of a single connection between node 1 and 6 in Figure 3 \textit{Model (a)} stratified a network from equality into four levels of hierarchy with a single additional connection. 
 
-Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measures of a long tie formation spanning the circle graph. The connected nodes 4 and 7 both have distinction maximizing incentives to form a tie, but notably their scaled distinction increases more when they close triadically with a near neighbor. Thus, under sparse network conditions, the gains in status from local consolidation outweigh the distinction gains from increased autonomy.    
+Beyond questions of balancing valence as is the current framework for understanding triadic closure, a distinction-based theoretical framework can explain the propensity towards triadic closure, but also its failure to form depending on the initial patterning of relationships. 
 
-%actually creates hierarchy, you only one tie to create 4 levels of hierarchy
-%the pyramid is the natural form of organization
-%agents form ties with maximization, then you grow transitivty 
-%two conditions, inital local ties matter more, with density, long ties matter more
+Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measures of a long tie formation spanning the circle graph. The connected nodes 4 and 7 both have distinction maximizing incentives to form a tie, but notably their scaled distinction increases more when they close triadically with a near neighbor. Thus, under sparse overall network conditions, the gains in status from local consolidation outweigh the distinction gains from increased autonomy. Conversely, once dense local conditions prevail, long ties can become more valuable as the gain in autonomy outweighs the marginal gains in status. However, the unique topography of networks requires careful consideration in each case.
 
-%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
-%folds vs circles
-
-%kite graph-outsider breaks mechanical solidarity
-%mechanical solidarity is really an outcome of the network structure (Durkheim kind of %said that but Omar said it better). Try to get inequality in an organic solidarity system but that's unstable? (might have written that down wrong). 
-%mechanical solidarity benefits from the stranger. more theoretical than empirical. 
-%actually anthropologists ruined everything in the villages
-%also somewhat the Marco Polo vibe, Shogun (the violation of markers of distinction, %didn't matter), The Last Samurai
-%theory of subgraph cliques rather than full graph as clique
-
-%gets close to 0 negative, with non-normalized eigenvectors
-%if you normalize then it all works as expected
-% in the normalized kite graph, 1.0, the other get close, decreases the scalar, evs don't mean anything
-
-%college caves, BYU vs Notre Dame vs regulars
+What the difference between these two examples suggests is that, based on considerations for distinction, the initial spread of social organization occurs locally through the triadic balance of near neighbors. This would suggest that the natural form of organizational formation is the pyramid formed from combinations of local triads that are further connected by brokers or welds creating structural folds. However, the transitivity created by the initial triad formation would spread quickly throughout the network, making welding structural folds a highly advantageous strategy for members of triads who could facilitate that connection, which is further explored below.
 
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
@@ -239,20 +222,13 @@ Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measur
 
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-triangle.png}
-            \caption{Circle Graph with Closure}
+            \caption{Circle Graph with Near Neighbor Closure}
             \label{fig:circleplus}
     \end{subfigure}
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-long.png}
             \caption{Circle Graph with Long Tie}
             \label{fig:circleplus}
-    \end{subfigure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
-            \caption{Kite Graph}
-            \label{fig:kite}
     \end{subfigure}
     \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
     \label{fig:toys}
@@ -269,8 +245,42 @@ Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measur
 \input{Tabs/clique}
 
 
+\subsubsection{Kite Graphs and Eigenvector Normalization}
+
+
+%gets close to 0 negative, with non-normalized eigenvectors
+%if you normalize then it all works as expected
+% in the normalized kite graph, 1.0, the other get close, decreases the scalar, evs don't mean anything
+%computtional experiment where you make kite less dense, or size of kite
+%kite graph-outsider breaks mechanical solidarity
+%mechanical solidarity is really an outcome of the network structure (Durkheim kind of %said that but Omar said it better). Try to get inequality in an organic solidarity system but that's unstable? (might have written that down wrong). 
+%mechanical solidarity benefits from the stranger. more theoretical than empirical. 
+%actually anthropologists ruined everything in the villages
+%also somewhat the Marco Polo vibe, Shogun (the violation of markers of distinction, %didn't matter), The Last Samurai
+%theory of subgraph cliques rather than full graph as clique
+%hypothesis: size of the normalization gaps is causing the differences between normalized and unnormalized. 
+
+
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
+            \caption{Kite Graph}
+            \label{fig:kite}
+    \end{subfigure}
+    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
+    \label{fig:toys}
+\end{figure}
+
 \subsubsection{Distinction and Brokerage}
 
+%welds martin2009social
+%Structural holes vs folds (need to graph out the holes)
+
+%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
+%folds vs circles
 \textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
 
 \begin{figure}
@@ -323,6 +333,24 @@ Thus, there is a U shaped pattern where at low levels of interconnection between
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
+    \begin{subfigure}[b]{0.9\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/tree-examples.png}
+            \caption{Example of tree graphs with different numbers of branches for the star node.}
+            \label{fig:tree-examples}
+    \end{subfigure} \\
+    \begin{subfigure}[b]{0.55\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/broker-tree-roles-by-nbranches.png}
+            \caption{Evolution of distinction scores by number of branches for the star node.}
+            \label{fig:broker-tree-roles}
+    \end{subfigure}
+    \caption{.}
+    \label{fig:toys}
+\end{figure}
+
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political1.png}
             \caption{High Subgraph Density, Low Graph Density}
@@ -345,24 +373,6 @@ Thus, there is a U shaped pattern where at low levels of interconnection between
     \end{subfigure}
     \caption{Increasingly connected graphs with central broker.}
     \label{fig:Evolving Political Network}
-\end{figure}
-
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-    \begin{subfigure}[b]{0.9\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/tree-examples.png}
-            \caption{Example of tree graphs with different numbers of branches for the star node.}
-            \label{fig:tree-examples}
-    \end{subfigure} \\
-    \begin{subfigure}[b]{0.55\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/broker-tree-roles-by-nbranches.png}
-            \caption{Evolution of distinction scores by number of branches for the star node.}
-            \label{fig:broker-tree-roles}
-    \end{subfigure}
-    \caption{.}
-    \label{fig:toys}
 \end{figure}
 
 \input{Tabs/political.tex}
@@ -456,13 +466,11 @@ With these initial network conditions, the network pressures for cultural innova
 
 We would expect to see in large datasets a tendency for people who are locally constrained and of middling status to attempt to reduce their constraint by attempting to form long ties because it can improve both their status and their autonomy. Those of high status might not jeopardize their distinction by associating with those of lower standing, while those of low status are constrained by the reluctance of others to associate with them. The expected result would be a flourishing of long tie formation in the middle levels of the distinction hierarchy. This prediction can be tested against large longitudinal, well-circumscribed networks such as \citep{bearman2004chains} in the future. 
 
-The insight that it is the middling levels that are most likely to form long ties to create their distinction indicates that it is structures with a level of stratification and the opportunity to form long ties that are most likely to create cultural heterogeneity, or in other words a flourishing of subcultures. Colleges are not merely opportunities for people from many backgrounds to recombine their cultural repertoires, but are actually network structures that encourage the pursuit of cultural distinction given the long ties that accompany the students new position. The expansion of higher education beyond the old elites in the 1950s and 60s was a network transformation that beget the major cultural shifts that began in these institutions. These cultural transformations were neither inherent in the students nor the institutions, but came out of the network structure that enabled the pursuit of cultural distinction to match the newly acquired network position.  
+The insight that it is the middling levels that are most likely to form long ties to create their distinction indicates that it is structures with a level of stratification and the opportunity to form long ties that are most likely to create cultural heterogeneity, or in other words a flourishing of subcultures. Colleges are not merely opportunities for people from many backgrounds to recombine their cultural repertoires, but are actually network structures that encourage the pursuit of cultural distinction given the long ties that accompany the students new position. The expansion of higher education beyond the old elites in the 1950s and 60s was a network transformation that beget the major cultural shifts that began in these institutions. These cultural transformations were neither inherent in the students nor the institutions, but came out of the network structure that enabled the pursuit of cultural distinction to match the newly acquired network position. Thus, if "liberals" are those who espouse diversity and innovation in cultural forms, to the extent that universities draw from a variety of social bases, liberal dispositions will results. However, if the university draws from an isolated basis, as the common educational destination of a delimited community, then the structural opportunities for cultural distinction are absent, and the culture is inherited from the isolated community.   
 
 The cultural practices of elites in a society are similarly dictated by the tradeoffs of status and autonomy that derive from network structure. The French elite of Bourdieu presents the ideal haute elite in terms of a stratified cultural disposition from the lower status members of society. However, the modern American elite has been characterized not by its sanctification of a limited set of cultural practices, but rather by its embrace of variety, or its cultural omnivorousness \citep{bryson1996anything}. Sentence that connects to this citation-> \citep{lizardo2014omnivorousness}. The divergence in an elite interested in limited consecration and an elite interested in omnivorousness can be found in the network structure created by national geography and institutions. France, dominated by a single major capital as far back as the 1600s, had a singularly concentrated national elite who formed dense interconnections. The opportunity for enterprising distinction was foreclosed by interconnection. America's varied national elite geography conversely created locally cohesive elites that were connected less intensely at the national level. When brought into deeper integration after 1945, the elite themselves similarly formed long ties, creating the positional opportunity for the proliferation of elite cultural forms.      
 
 While the above exploration of how network shape changes diversity in cultural distinction practices is at least informative about how understanding the network of positions structures the cultural markers of distinction. 
-
-%College as inherently distinction based institution makes liberals a thing, rather than if you only draw from caves
 
 \subsection{Capital Conversion as Network Integration of Fields}
 One of the problems with the relationship between multiple fields is how capital might be converted between fields. The ``rate'' between fields has always been a matter of confusion because it is difficult to quantify. Yet, it is an essential feature of an individual's navigation between the positional hierarchies of various fields. Seeking to convert a distinct position from one field to a better position in another is a critical strategy in the overall positional portfolio of agents.
