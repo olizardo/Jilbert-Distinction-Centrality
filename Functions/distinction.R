@@ -32,6 +32,9 @@ distinction <- function(x, norm = FALSE) {
       if (c == TRUE & e == FALSE) { #connected non-empty node-deleted graph
          A <- as.matrix(as_adjacency_matrix(x.d))
          s.a <- abs(eigen(A)$vectors[, 1])
+         if (vcount(x.d) == 1) {
+            s.a <- 0 
+            }
          names(s.a) <- labs[-which(labs == i)]
          if (norm == TRUE) {s.a <- norm.max(s.a)} #normalizing by maximum
          s.a <- s.a[j]
