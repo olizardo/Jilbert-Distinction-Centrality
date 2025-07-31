@@ -1,43 +1,56 @@
-distinction.old <- function(x) { 
+distinction <- function(x, norm = FALSE) { 
    library(igraph)
-   has.labels <- as.numeric(is.null(V(x)$name) == FALSE)
    V <- vcount(x)
-   if (has.labels == 0) {
+   no.labels <- is.null(V(x)$name)
+   if (no.labels == TRUE) {
       V(x)$name <- 1:V
       names <- V(x)$name 
       }
-   if (has.labels == 1) {
+   if (no.labels == FALSE) {
       names <- V(x)$name 
       V(x)$name <- 1:V
       }
-   s <- eigen_centrality(x)$vector
-   d <- rep(V, 0)
-   u <- rep(V, 0)
+   norm.max <- function(x) {return(x/max(x))} #normalizing function
+   A <- as.matrix(as_adjacency_matrix(x))
+   nc <- components(x)$no #checking for disconnected graph
+   if (nc > 1) {
+      s <- rowSums(abs(eigen(A)$vectors[, 1:nc]))
+      }
+   else if (nc == 1) {
+      s <- abs(eigen(A)$vectors[, 1])
+      }
+   if (norm == TRUE) {s <- norm.max(s)} #normalizing by maximum
+   names(s) <- V(x)$name
+   d <- rep(V, 0) # initializing distinction vector
+   u <- rep(V, 0) # initializing constraint vector
+   labs <- V(x)$name
    for (i in as.character(V(x)$name)) {
       j <- names(neighbors(x, i))
       x.d <- delete_vertices(x, i)
-      c <- as.numeric(is_connected(x.d) == TRUE) #checking for connectedness
-      e <- as.numeric(ecount(x.d) == 0) #checking for empty
-      if (c == 1 & e == 0) { #connected non-empty graph
-         s.a <- eigen_centrality(x.d)$vector[j]
-         } #end if
-      else if (c == 0 & e == 1) { #empty graph
+      c <- is_connected(x.d) #checking for connectedness of node-deleted subgraph
+      e <- ecount(x.d) == 0 #checking for emptiness of node-deleted subgraph
+      if (c == TRUE & e == FALSE) { #connected non-empty node-deleted graph
+         A <- as.matrix(as_adjacency_matrix(x.d))
+         s.a <- abs(eigen(A)$vectors[, 1])
+         if (vcount(x.d) == 1) {
+            s.a <- 0 
+            }
+         names(s.a) <- labs[-which(labs == i)]
+         if (norm == TRUE) {s.a <- norm.max(s.a)} #normalizing by maximum
+         s.a <- s.a[j]
+         } #end main if
+      else if (c == FALSE & e == TRUE) { #empty node-deleted graph
          s.a <- 0
          } #end first else 
-      else if (c == 0 & e == 0) { #disconnected non-empty graph
-         C <- components(x.d)$membership
-         names(C) <- V(x)$name[-as.numeric(i)]
-         s.a <- rep(0, length(C))
-         for (k in unique(C)) {
-            sub.g <- subgraph(x.d, names(which(C == k)))
-            if (vcount(sub.g) > 1) {
-               s.a[which(C == k)] <- eigen_centrality(sub.g)$vector
-               }
-            }
-         names(s.a) <- names(C)
+      else if (c == FALSE & e == FALSE) { #disconnected non-empty node-deleted graph
+         A <- as.matrix(as_adjacency_matrix(x.d))
+         nc <- components(x.d)$no         
+         s.a <- rowSums(abs(eigen(A)$vectors[, 1:nc]))
+         names(s.a) <- labs[-which(labs == i)]
+         if (norm == TRUE) {s.a <- norm.max(s.a)} #normalizing by maximum
          s.a <- s.a[j]
          } #end second else
-      u[i] <- sum(s.a)/length(s.a) #i's average neighbor centrality in node deleted subgraph
+      u[i] <- mean(s.a) #i's average neighbor eigenvector centrality in node deleted subgraph
       d[i] <- s[i] - u[i] #i's distinction centrality
       } #end i for loop
    d[is.na(d)] <- 0

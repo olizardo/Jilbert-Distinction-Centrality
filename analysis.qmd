@@ -23,7 +23,9 @@ execute:
 ## Toy Networks
 
 ```{r Toy Examples}
+   source(here("Functions", "distinction.R"))
    g1 <- make_star(7, mode = "undirected") # star graph
+   distinction(g5, norm = "eig")
    g2 <- g1 + edge(2,3)
    g2 <- g2 + edge(2,4)
    g2 <- g2 + edge(3,4)
@@ -48,8 +50,17 @@ execute:
    g10 <- g10 + edge(5,6)
    g10 <- g10 + edge(6,7)
    g10 <- g10 + edge(7,2) #wheel graph
-   g11 <- make_ring(8) #circle graph
-   g12 <- delete_vertices(g11, 8) #path graph
+   g11 <- make_ring(8) 
+   g11 <- delete_vertices(g11, 8) #path graph
+   source(here("Functions", "distinction.R"))
+   all.dis <- function(x) {
+      distinct <- list()
+      distinct[[1]] <- distinction(x)
+      distinct[[2]] <- distinction(x, norm = "one")
+      distinct[[3]] <- distinction(x, norm = "eig")
+      return(distinct)
+      }
+   all.dis(g9)
 ```
 
 ```{r Bonacich examples}
@@ -88,7 +99,6 @@ execute:
    g14 <- g14 + edge(10,11)
    g14 <- g14 + edge(10,12)
    g14 <- g14 + edge(11,12)
-   plot(g14)
 ```
 
 ```{r Estrada examples}
@@ -105,19 +115,20 @@ execute:
    g15 <- g15 + edge(5,6)
    g15 <- g15 + edge(6,7)
    g15 <- g15 + edge(7,8) #Fig 1(a) https://doi.org/10.1103/PhysRevE.71.056103
-   distinction(g15, norm = TRUE)
+   g16 <- make_full_graph(9, directed = FALSE)
+   g16 <- g16 - edge("1|6")
+   g16 <- g16 - edge("1|5")
+   g16 <- g16 - edge("2|4")
+   g16 <- g16 - edge("2|9")
+   g16 <- g16 - edge("3|6")
+   g16 <- g16 - edge("3|8")
+   g16 <- g16 - edge("4|7")
+   g16 <- g16 - edge("5|8")
+   g16 <- g16 - edge("7|9") #Fig 1(b) https://doi.org/10.1103/PhysRevE.71.056103
 ```
-
-```{r}
-   n <- 5
-   g9 <- make_full_graph(n, directed = FALSE)
-   g9 <- add_vertices(g9, 1)
-   g9 <- g9 + edge(n, n+1) # kite
-   distinction(g9, norm = FALSE)
-```
-
 
 ```{r Toy Networks Plots}
+   source(here("Functions", "distinction.R"))
    source(here("Functions", "plot.graph.norm.R"))
    png(here("Plots", "Toys", "star.png"))
    plot.graph.norm(g1, l = "kk")
@@ -151,6 +162,19 @@ execute:
    dev.off()
    png(here("Plots", "Toys", "path.png"))
    plot.graph.norm(g11, l = "kk")
+   dev.off()
+   source(here("Functions", "plot.graph.cat.R"))
+   png(here("Plots", "Toys", "bonacich1.png"))
+   plot.graph.cat(g13, l = "circle")
+   dev.off()
+   png(here("Plots", "Toys", "bonacich2.png"))
+   plot.graph.cat(g14, l = "circle")
+   dev.off()
+   png(here("Plots", "Toys", "estrada1.png"))
+   plot.graph.cat(g15, l = "circle")
+   dev.off()
+   png(here("Plots", "Toys", "estrada2.png"))
+   plot.graph.cat(g16, l = "circle")
    dev.off()
 ```
 

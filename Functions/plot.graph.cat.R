@@ -1,11 +1,8 @@
-plot.graph.norm <- function(x, l = "kk", vs = 16, ts = 8, c = 0.05) { #plotting function
+plot.graph.cat<- function(x, l = "kk", vs = 16, ts = 8) { #plotting function
   library(ggraph)
   d <- distinction(x)[, 3]
-  nc <- vector(mode = "character", length = length(d))
-  nc[which(d < -c)] <- "tan2"
-  nc[which(d > c)] <- "blue"
-  nc[which(d >=-c & d <= c)] <- "purple"
-  nc[which(d == max(d) & d >= c)] <- "red"
+  cols <- paletteer::paletteer_d("RColorBrewer::Set1")
+  nc <- factor(d, labels = cols[1:length(unique(d))])
   if (is.null(V(x)$name) == TRUE) {
       n <- 1:vcount(x)
       tc <- "white"
