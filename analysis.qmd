@@ -53,11 +53,6 @@ execute:
    g11 <- delete_vertices(g11, 8) #path graph
 ```
 
-```{r}
-   source(here("Functions", "distinction.R"))
-   distinction(g11, norm = "one")
-```
-
 ```{r Bonacich examples}
    g13 <- make_empty_graph(10, directed = FALSE)
    g13 <- g13 + edge(1,2)
