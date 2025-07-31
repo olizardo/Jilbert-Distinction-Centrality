@@ -320,7 +320,7 @@ execute:
       }
    wrap_plots(p.list[c(1:6)], nrow = 2)
    ggsave(here("Plots", "tree-examples.png"), width = 12, height = 8, units = "in")
-   c <- lapply(b, distinction, norm = "abm")
+   c <- lapply(b, distinction, norm = "max")
    d.s <- sapply(c, function(x) {x[1, 3]})
    d.b <- sapply(c, function(x) {x[2, 3]})
    d.p <- sapply(c, function(x) {x[nrow(x), 3]})
@@ -358,7 +358,7 @@ execute:
       }
    wrap_plots(p.list[c(1:6)], nrow = 2)
    ggsave(here("Plots", "clique-examples.png"), width = 12, height = 8, units = "in")
-
+   c <- lapply(b, distinction, norm = "abm")
    d.s <- sapply(c, function(x) {x[9, 3]})
    d.b <- sapply(c, function(x) {x[4, 3]})
    d.p <- sapply(c, function(x) {x[1, 3]})
