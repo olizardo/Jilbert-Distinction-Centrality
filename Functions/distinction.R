@@ -1,43 +1,46 @@
 distinction <- function(x, norm = "max", digits  = 4) { 
   require(igraph) #need igraph
-  if (is.null(V(x)$name) == TRUE) {
-    V(x)$name <- 1:vcount(x)
+  n <- vcount(x)
+  if (is.null(V(x)$name) == 1) {
+    V(x)$name <- 1:n
     names <- V(x)$name 
     }
-  if (is.null(V(x)$name) == FALSE) {
+  if (is.null(V(x)$name) == 0) {
     names <- V(x)$name 
-    V(x)$name <- 1:vcount(x)
+    V(x)$name <- 1:n
     }
-  norm.max <- function(x) {return(x^2/max(x^2))} #max normalizing function
-  norm.one <- function(x) {return(x^2)}
-  norm.eig <- function(x, a) {return(x^2*a)}
+  norm.max <- function(x) {return(x^2/max(x^2))} #sum to one and max normalizing function
+  norm.one <- function(x) {return(x^2)} #sum to one normalizing function
+  norm.abm <- function(x) {return(abs(x)/max(abs(x)))} #max normalizing function
+  norm.abs <- function(x) {return(abs(x))} #absolute value normalizing function
   eig.x <- eigen(as_adjacency_matrix(x)) #eigenvector decomposition of adjacency matrix
   nc <- components(x)$no #number of components
-  if (nc == 1) {s <- eig.x$vectors[, 1]; l <- eig.x$values[1]} #collecting status scores from first eigenvector in connected graph
-  if (nc > 1) {s <- rowSums(eig.x$vectors[, 1:nc]); l <- sum(eig.x$values[1:nc])} #collecting status scores from separate eigenvectors in disconnected graph
+  print(nc)
+  if (nc == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in connected graph
+  if (nc > 1) {s <- rowSums(eig.x$vectors[, 1:nc])} #collecting status scores from separate eigenvectors in disconnected graph
   if (norm == "max") {s <- norm.max(s)} #normalizing so that maximum value is one
   if (norm == "one") {s <- norm.one(s)} #normalizing so that vector sums to one
-  if (norm == "eig") {s <- norm.eig(s, l)} #normalizing so that vector sums to first eigenvalue
-  names(s) <- V(x)$name #naming status vector using vector of node labels
-  d <- rep(length(V(x)$name), 0) # initializing distinction vector to all zeros
-  u <- rep(length(V(x)$name), 0) # initializing constraint vector to all zeros
-  for (i in as.character(V(x)$name)) { #start looping across nodes in the graph
-    j <- names(neighbors(x, i))  #vector of i's neighbors
-    x.d <- delete_vertices(x, i) #node-deleted subgraph (minus i)
-    nc <- components(x.d)$no #number of components of node-deleted subgraph
-    eig.x.d <- eigen(as_adjacency_matrix(x.d)) # eigenvector decomposition of node-deleted subgraph
-    c <- is_connected(x.d) #checking for connectedness of node-deleted subgraph
-    e <- ecount(x.d) == 0 #checking for emptiness of node-deleted subgraph
-    if (c == 1 & e == 0 & vcount(x.d) > 1 & norm == "max") {s.d <- norm.max(eig.x.d$vectors[, 1])} #connected non-empty node-deleted subgraph
-    if (c == 1 & e == 0 & vcount(x.d) > 1 & norm == "one") {s.d <- norm.one(eig.x.d$vectors[, 1])} #connected non-empty node-deleted subgraph
-    if (c == 1 & e == 0 & vcount(x.d) > 1 & norm == "eig") {s.d <- norm.eig(eig.x.d$vectors[, 1], eig.x.d$values[1])} #connected non-empty node-deleted subgraph
-    if (c == 0 & e == 0 & vcount(x.d) > 1 & norm == "max") {s.d <- norm.max(rowSums(eig.x.d$vectors[, 1:nc]))} #disconnected non-empty node-deleted subgraph
-    if (c == 0 & e == 0 & vcount(x.d) > 1 & norm == "one") {s.d <- norm.one(rowSums(eig.x.d$vectors[, 1:nc]))} #disconnected non-empty node-deleted subgraph
-    if (c == 0 & e == 0 & vcount(x.d) > 1 & norm == "eig") {s.d <- norm.eig(rowSums(eig.x.d$vectors[, 1:nc]), sum(eig.x.d$values[1:nc]))} #disconnected non-empty node-deleted subgraph
-    if (c == 1 & e == 0 & vcount(x.d) == 1) {s.d <- 0} #connected singleton node-deleted sub
-    if (c == 0 & e == 1 & vcount(x.d) > 1) {s.d <- 0} #empty node-deleted subgraph
-    names(s.d) <- names(j) #naming status vector in node-deleted subgraph
-    u[i] <- mean(s.d) #i's average neighbor eigenvector centrality in node deleted subgraph
+  if (norm == "abm") {s <- norm.abm(s)} #normalizing so that maximum value is one
+  if (norm == "abs") {s <- norm.abs(s)} #normalizing to remove negative entries
+  d <- rep(n, 0) # initializing distinction vector to all zeros
+  u <- rep(n, 0) # initializing constraint vector to all zeros
+  for (i in 1:n) { #start looping across nodes in the graph
+    j <- as.character(neighbors(x, i))
+    xd <- delete_vertices(x, i) #node-deleted subgraph (minus i)
+    ncd <- components(xd)$no #number of components of node-deleted subgraph
+    eig.xd <- eigen(as_adjacency_matrix(xd)) # eigenvector decomposition of node-deleted subgraph
+    if (ncd == 1) {sd <- eig.xd$vectors[, 1]}
+    if (ncd > 1) {sd <- rowSums(eig.xd$vectors[, 1:ncd])}
+    ed <- ecount(xd) == 0 #checking for emptiness of node-deleted subgraph
+    nd <- vcount(xd) #number of nodes of node delete subgraph
+    if (ed == 0 &  nd > 1 & norm == "max") {sd <- norm.max(sd)} #non-empty node-deleted subgraph
+    if (ed == 0 & nd > 1 & norm == "one") {sd <- norm.one(sd)} #non-empty node-deleted subgraph
+    if (ed == 0 & nd > 1 & norm == "abm") {sd <- norm.abm(sd)} #non-empty node-deleted subgraph
+    if (ed == 0 & nd > 1 & norm == "abs") {sd <- norm.abs(sd)} #non-empty node-deleted subgraph
+    if (nd == 1) {sd <- 0} #singleton node-deleted subgraph
+    if (ed == 1 & nd > 1) {sd <- rep(0, nd)} #empty node-deleted subgraph
+    names(sd) <- V(xd)$name
+    u[i] <- mean(sd[as.character(j)], na.rm = TRUE) #i's average neighbor eigenvector centrality in node deleted subgraph
     d[i] <- s[i] - u[i] #i's distinction centrality
     } #end for loop
   d[is.na(d)] <- 0 #replacing NAs with zero

@@ -25,7 +25,6 @@ execute:
 ```{r Toy Examples}
    source(here("Functions", "distinction.R"))
    g1 <- make_star(7, mode = "undirected") # star graph
-   distinction(g5, norm = "eig")
    g2 <- g1 + edge(2,3)
    g2 <- g2 + edge(2,4)
    g2 <- g2 + edge(3,4)
@@ -52,15 +51,11 @@ execute:
    g10 <- g10 + edge(7,2) #wheel graph
    g11 <- make_ring(8) 
    g11 <- delete_vertices(g11, 8) #path graph
+```
+
+```{r}
    source(here("Functions", "distinction.R"))
-   all.dis <- function(x) {
-      distinct <- list()
-      distinct[[1]] <- distinction(x)
-      distinct[[2]] <- distinction(x, norm = "one")
-      distinct[[3]] <- distinction(x, norm = "eig")
-      return(distinct)
-      }
-   all.dis(g9)
+   distinction(g5, norm = "abs")
 ```
 
 ```{r Bonacich examples}
@@ -260,7 +255,7 @@ execute:
       return(gl)
       }
    b <- make.stars(33)
-   c <- lapply(b, distinction)
+   c <- lapply(b, distinction, norm = "abm")
    ds.s <- sapply(c, function(x) {x[1, 3]})
    ds.p <- sapply(c, function(x) {x[2, 3]})
    d.s <- sapply(c, function(x) {x[1, 2]})
@@ -330,6 +325,7 @@ execute:
 ```
 
 ```{r}
+   c <- lapply(b, distinction, norm = "abm")
    d.s <- sapply(c, function(x) {x[1, 3]})
    d.b <- sapply(c, function(x) {x[2, 3]})
    d.p <- sapply(c, function(x) {x[nrow(x), 3]})
