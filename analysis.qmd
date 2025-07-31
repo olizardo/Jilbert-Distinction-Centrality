@@ -51,6 +51,11 @@ execute:
    g10 <- g10 + edge(7,2) #wheel graph
    g11 <- make_ring(8) 
    g11 <- delete_vertices(g11, 8) #path graph
+   distinction(g1)
+   distinction(g2)
+   distinction(g5)
+   distinction(g8)
+   distinction(g10)
    distinction(g11)
 ```
 

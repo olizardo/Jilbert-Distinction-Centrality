@@ -19,8 +19,8 @@ distinction <- function(x, norm = "max", digits  = 4) {
   ni <- nc - nn #number of isolated components in the graph
   ci <- which(components(x)$csize != 1) #column indices for non-isolated components
   if (nc == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in connected graph
-  if (nc > 1 & nn == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in disconnected graph with isolated components
-  if (nc > 1 & ni == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in disconnected graph with multiple isolates and a single connected component
+  if (nc > 1 & nn == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in disconnected graph with a single connected component
+  if (nc > 1 & ni == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in disconnected graph with a single isolate
   if (nc > 1 & nn > 1) {s <- rowSums(eig.x$vectors[, ci])} #collecting status scores from the sum of the first k eigenvectors in disconnected graph with multiple components and no isolates
   if (norm == "max") {s <- norm.max(s)} #normalizing so that maximum value is one
   if (norm == "one") {s <- norm.one(s)} #normalizing so that vector sums to one
@@ -40,7 +40,7 @@ distinction <- function(x, norm = "max", digits  = 4) {
     cid <- which(components(xd)$csize != 1) #column indices for non-isolated components
     if (ncd == 1) {sd <- eig.xd$vectors[, 1]} #collecting status scores from first eigenvector in connected subgraph
     if (ncd > 1 & nnd == 1) {sd <- eig.xd$vectors[, 1]} #collecting status scores from first eigenvector in disconnected subgraph with a single connected component
-    if (ncd > 1 & nid == 1) {sd <- eig.xd$vectors[, 1]} #collecting status scores from first eigenvector in disconnected subgraph with multiple isolates and a single connected component
+    if (ncd > 1 & nid == 1) {sd <- eig.xd$vectors[, 1]} #collecting status scores from first eigenvector in disconnected subgraph with a single isolate
     if (ncd > 1 & nnd > 1) {sd <- rowSums(eig.xd$vectors[, cid])} #collecting status scores from the sum of the first k eigenvectors in disconnected subgraph with multiple components and no isolates
     if (ed == 0 & nd > 1 & norm == "max") {sd <- norm.max(sd)} #normalizing so that maximum value is one
     if (ed == 0 & nd > 1 & norm == "one") {sd <- norm.one(sd)} #normalizing so that vector sums to one
