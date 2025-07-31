@@ -51,7 +51,9 @@ execute:
    g10 <- g10 + edge(7,2) #wheel graph
    g11 <- make_ring(8) 
    g11 <- delete_vertices(g11, 8) #path graph
+   distinction(g11)
 ```
+
 
 ```{r Bonacich examples}
    g13 <- make_empty_graph(10, directed = FALSE)
