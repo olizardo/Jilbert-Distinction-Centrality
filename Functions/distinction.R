@@ -14,10 +14,11 @@ distinction <- function(x, norm = "max", digits  = 4) {
   norm.abm <- function(x) {abs(x)/max(abs(x))} #absolute value max one normalizing function
   norm.abs <- function(x) {abs(x)} #absolute value normalizing function
   eig.x <- eigen(as_adjacency_matrix(x)) #eigenvector decomposition of adjacency matrix
-  nc <- components(x)$no #number of components in graph
-  nn <- sum(components(x)$csize != 1) #number of non-isolated components in graph
+  xc <- components(x) #graph component analysis
+  nc <- xc$no #number of components in graph
+  nn <- sum(xc$csize != 1) #number of non-isolated components in graph
   ni <- nc - nn #number of isolated components in the graph
-  ci <- which(components(x)$csize != 1) #column indices for non-isolated components
+  ci <- which(xc$csize != 1) #column indices for non-isolated components
   if (nc == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in connected graph
   if (nc > 1 & nn == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in disconnected graph with a single connected component
   if (nc > 1 & ni == 1) {s <- eig.x$vectors[, 1]} #collecting status scores from first eigenvector in disconnected graph with a single isolate
@@ -35,7 +36,8 @@ distinction <- function(x, norm = "max", digits  = 4) {
     nd <- vcount(xd) #number of nodes of node delete subgraph
     ncd <- components(xd)$no #number of components of node-deleted subgraph
     eig.xd <- eigen(as_adjacency_matrix(xd)) #eigenvector decomposition of node-deleted subgraph
-    nnd <- sum(components(xd)$csize != 1) #number of non-isolated components in graph
+    xdc <- components(xd) #subgraph component analysis
+    nnd <- sum(xcd$csize != 1) #number of non-isolated components in graph
     nid <- ncd - nnd
     cid <- which(components(xd)$csize != 1) #column indices for non-isolated components
     if (ncd == 1) {sd <- eig.xd$vectors[, 1]} #collecting status scores from first eigenvector in connected subgraph
