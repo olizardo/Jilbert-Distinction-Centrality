@@ -1,4 +1,4 @@
-distinction <- function(x, norm = "max", digits  = 4) { 
+distinction <- function(x, norm = "abm", digits  = 4) { 
   require(igraph) #need igraph
   n <- vcount(x) #number of nodes in the graph
   if (is.null(V(x)$name) == 1) { #checking for node labels
@@ -37,7 +37,7 @@ distinction <- function(x, norm = "max", digits  = 4) {
     ncd <- components(xd)$no #number of components of node-deleted subgraph
     eig.xd <- eigen(as_adjacency_matrix(xd)) #eigenvector decomposition of node-deleted subgraph
     xdc <- components(xd) #subgraph component analysis
-    nnd <- sum(xcd$csize != 1) #number of non-isolated components in graph
+    nnd <- sum(xdc$csize != 1) #number of non-isolated components in graph
     nid <- ncd - nnd
     cid <- which(components(xd)$csize != 1) #column indices for non-isolated components
     if (ncd == 1) {sd <- eig.xd$vectors[, 1]} #collecting status scores from first eigenvector in connected subgraph

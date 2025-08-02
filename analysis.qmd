@@ -51,12 +51,6 @@ execute:
    g10 <- g10 + edge(7,2) #wheel graph
    g11 <- make_ring(8) 
    g11 <- delete_vertices(g11, 8) #path graph
-   distinction(g1)
-   distinction(g2)
-   distinction(g5)
-   distinction(g8)
-   distinction(g10)
-   distinction(g11)
 ```
 
 
@@ -253,7 +247,7 @@ execute:
       return(gl)
       }
    b <- make.stars(33)
-   c <- lapply(b, distinction, norm = "max")
+   c <- lapply(b, distinction)
    ds.s <- sapply(c, function(x) {x[1, 3]})
    ds.p <- sapply(c, function(x) {x[2, 3]})
    d.s <- sapply(c, function(x) {x[1, 2]})
