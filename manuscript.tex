@@ -107,13 +107,6 @@ Understanding that both $s_i$ and $k_i$ are given in the (arbitrary) scaling pro
 
 Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint scores for each actor in the network, and $\bar{\mathbf{\kappa}}$ is the mean of the vector of $s_i$ status scores for each actor in the network. As hinted earlier, a desirable feature of rescaling the $s_i$ component of equation~\ref{eq:distinction} in this way is that in the case of a regular graph (e.g., a circle graph or a fully-connected clique), $\alpha s_i = \kappa_i$ and thus $\beta_i = 0$ for each node $i$ (see Tables~\ref{tab:circle} and~\ref{tab:clique}).  
 
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.6\linewidth]{Plots/star-roles-by-size.png}
-    \caption{Scaled and non-scaled distinction centralities for the two node roles in the star graph.}
-    \label{fig:star-scaling}
-\end{figure}
-
 Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network size, so that it increases for the most distinct (central) node when peripheral actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the centrality score for central and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes (we elaborate on the mathematical reasons for this below).  
 
 \subsection{Distinction Centrality's Measurement Parameters}
@@ -121,7 +114,7 @@ Below, we present a variety of toy models that compare the effects of network in
 
 In each model, there are seven nodes, and node 1 is the best-connected node in the network. Thus, node 1 always has an eigenvector centrality of 1. However, the distinction of node 1 changes based on the interconnection of the other nodes, demonstrating how distinction centrality captures the question of constraint exerted by neighbors. 
 
-\subsubsection{Distinction in the Star Graph}
+\subsubsection{Maximum Inequality and Equality in Distinction}
 Figure~\ref{fig:star} shows a star graph of order seven where node 1 is the central node connected to six peripheral nodes, who themselves have no other connections. This hub-spoke system is the simplest for exploring the linkages between distinction, status, and constraint. The reason for that is that, for the star node 1, $\kappa_i$ is always equal to zero. In other words, the star node has a minimum network constraint, given that the node-deleted subgraph obtained by removing the central node from the star graph is a disconnected, empty graph, where the status of the peripheral nodes collapses to zero, meaning that the star node's distinction score reduces to:
 
 \begin{equation}
@@ -184,7 +177,12 @@ Which tells us that the distinction of the peripheral node in the star graph is 
 
 \input{Tabs/circle}
 
-\subsubsection{Distinction in the Circle and Clique Graphs}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Plots/star-roles-by-size.png}
+    \caption{Scaled and non-scaled distinction centralities for the two node roles in the star graph.}
+    \label{fig:star-scaling}
+\end{figure}
 
 If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction. In that respect, distinction should be at its theoretical minimum of zero for all nodes in these cases. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique} this is precisely what we observe.
 
@@ -214,6 +212,9 @@ Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measur
 
 What the difference between these two examples suggests is that, based on considerations for distinction, the initial spread of social organization occurs locally through the triadic balance of near neighbors. This would suggest that the natural form of organizational formation is the pyramid formed from combinations of local triads that are further connected by brokers or welds creating structural folds. However, the transitivity created by the initial triad formation would spread quickly throughout the network, making welding structural folds a highly advantageous strategy for members of triads who could facilitate that connection, which is further explored below. Additionally, the example of triadic closure shows that only mild additions to network ties can very quickly create stratification. The addition of a single connection between node 1 and 6 in Figure 3 \textit{Model (a)} stratified a network from equality into four levels of hierarchy with a single additional connection. 
 
+%https://journals.aps.org/pre/abstract/10.1103/PhysRevE.71.056103
+
+
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
@@ -242,6 +243,91 @@ What the difference between these two examples suggests is that, based on consid
 \input{Tabs/interclust}
 \input{Tabs/clique}
 
+\subsubsection{Distinction and Brokerage}
+
+%welds martin2009social
+%Structural holes vs folds (need to graph out the holes)
+
+%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
+%folds vs circles
+\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
+
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
+            \caption{Inter-Group Brokerage}
+            \label{fig:sf}
+    \end{subfigure} 
+     \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
+            \caption{Structural Fold}
+            \label{fig:sf}
+    \end{subfigure} 
+    \label{fig:classicbrokerage}
+    \caption{Comparison of betweenness brokerage and a structural fold goes here}
+\end{figure}
+
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
+            \caption{Structural Fold}
+            \label{fig:sf}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/intra.png}
+            \caption{2-Connected Subgraphs}
+            \label{fig:intra}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/inter.png}
+            \caption{2-Connected Subgraphs with Long Tie}
+            \label{fig:inter}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel.png}
+            \caption{Wheel Graph}
+            \label{fig:wheel}
+    \end{subfigure}
+    \label{fig:struct-folds}
+    \caption{Examples of varying parameters of mediator brokerage (Burt brokerage). Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
+\end{figure}
+
+\begin{figure}
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
+            \caption{Structural Fold}
+            \label{fig:sf}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/intra.png}
+            \caption{2-Connected Subgraphs}
+            \label{fig:intra}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/inter.png}
+            \caption{2-Connected Subgraphs with Long Tie}
+            \label{fig:inter}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel.png}
+            \caption{Wheel Graph}
+            \label{fig:wheel}
+    \end{subfigure}
+    \label{fig:struct-folds}
+    \caption{Examples of varying degrees of connectedness within welded subgraphs. Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
+\end{figure}
+
+\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
+
+\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
 
 \subsubsection{Kite Graphs and Eigenvector Normalization}
 
@@ -271,46 +357,6 @@ What the difference between these two examples suggests is that, based on consid
     \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
     \label{fig:toys}
 \end{figure}
-
-\subsubsection{Distinction and Brokerage}
-
-%welds martin2009social
-%Structural holes vs folds (need to graph out the holes)
-
-%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
-%folds vs circles
-\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-     \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
-            \caption{Structural Fold}
-            \label{fig:sf}
-    \end{subfigure} 
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/intra.png}
-            \caption{2-Connected Subgraphs}
-            \label{fig:intra}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/inter.png}
-            \caption{2-Connected Subgraphs with Long Tie}
-            \label{fig:inter}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel.png}
-            \caption{Wheel Graph}
-            \label{fig:wheel}
-    \end{subfigure}
-    \label{fig:struct-folds}
-    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
-\end{figure}
-
-\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
-
-\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
 
 \subsubsection{Long Ties and Hierarchy}
 
