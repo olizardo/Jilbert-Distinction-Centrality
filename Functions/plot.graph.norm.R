@@ -1,6 +1,6 @@
-plot.graph.norm <- function(x, l = "kk", vs = 16, ts = 8, c = 0.05) { #plotting function
+plot.graph.norm <- function(x, l = "kk", vs = 16, ts = 8, c = 0.05, n = "max") { #plotting function
   library(ggraph)
-  d <- distinction(x)[, 3]
+  d <- distinction(x, norm = n)[, 3]
   nc <- vector(mode = "character", length = length(d))
   nc[which(d < -c)] <- "tan2"
   nc[which(d > c)] <- "blue"

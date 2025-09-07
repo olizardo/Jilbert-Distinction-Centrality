@@ -1,0 +1,26 @@
+make.estrada <- function() {
+   g1 <- make_empty_graph(8, directed = FALSE)
+   g1 <- g1 + edge(1,2)
+   g1 <- g1 + edge(1,5)
+   g1 <- g1 + edge(1,8)
+   g1 <- g1 + edge(2,3)
+   g1 <- g1 + edge(2,8)
+   g1 <- g1 + edge(3,4)
+   g1 <- g1 + edge(3,6)
+   g1 <- g1 + edge(4,5)
+   g1 <- g1 + edge(4,7)
+   g1 <- g1 + edge(5,6)
+   g1 <- g1 + edge(6,7)
+   g1 <- g1 + edge(7,8) #Fig 1(a) https://doi.org/10.1103/PhysRevE.71.056103
+   g2 <- make_full_graph(9, directed = FALSE)
+   g2 <- g2 - edge("1|6")
+   g2 <- g2 - edge("1|5")
+   g2 <- g2 - edge("2|4")
+   g2 <- g2 - edge("2|9")
+   g2 <- g2 - edge("3|6")
+   g2 <- g2 - edge("3|8")
+   g2 <- g2 - edge("4|7")
+   g2 <- g2 - edge("5|8")
+   g2 <- g2 - edge("7|9") #Fig 1(b) https://doi.org/10.1103/PhysRevE.71.056103
+  return(list(g1 = g1, g2 = g2))
+}

@@ -63,3 +63,4 @@ distinction <- function(x, norm = "abm", digits  = 4) {
   rownames(dat) <- 1:nrow(dat) #adding row names
   return(dat)
 } #end function
+
