@@ -8,6 +8,8 @@ execute:
   message: false
 ---
 
+## Setup
+
 ```{r Loading Functions}
    library(igraph)
    library(ggraph)
@@ -18,6 +20,7 @@ execute:
    library(dplyr)
    source(here("Functions", "distinction.R"))
    source(here("Functions", "plot.graph.norm.R"))
+   source(here("Functions", "tab.cent.R"))
    plot.toys <- function(x, n, l) {
       ggsave(here("Plots", "Toys", n), 
          plot = plot.graph.norm(x, l = l)
@@ -39,16 +42,33 @@ execute:
 ```
 
 ```{r Basic Toy Graphs}
+   ## Star
    s7 <- make_star(7, mode = "undirected") # 7-star graph
    plot.toys(s7, "star.png", "kk")
+   tab.cent(distinction(s7), name = "star", 
+   label = "star", rownames = c("1", "2, 3, 4, 5, 6, 7"),
+   caption = "Distinction centrality scores for the star graph.")
+   ## Clique
    c7 <- make_full_graph(7, directed = FALSE) # 7-clique
    plot.toys(c7, "clique.png", "circle")
+   tab.cent(distinction(c7), name = "clique", 
+   label = "clique", rownames = c("1, 2, 3, 4, 5, 6, 7"),
+   caption = "Distinction centrality scores for the clique graph.")
+   ## Circle
    r7 <- make_ring(7) # 7-circle graph
    plot.toys(r7, "circle.png", "circle")
+   tab.cent(distinction(r7), name = "circle", 
+   label = "circle", rownames = c("1, 2, 3, 4, 5, 6, 7"),
+   caption = "Distinction centrality scores for the circle graph.")
+   ## Kite
    c6 <- make_full_graph(6, directed = FALSE) # 6-clique
    k7 <- add_vertices(c6, 1) # 6-clique plus node
    k7 <- k7 + edge(1,7) # 7-kite
    plot.toys(k7, "kite.png", "kk")
+   tab.cent(distinction(k7), name = "kite", 
+   label = "kite", rownames = c("1", "2, 3, 4, 5, 6", "7"),
+   caption = "Distinction centrality scores for the kite graph.")
+   ## Wheel
    r6 <- make_ring(6) # 6-circle graph
    V(r6)$name <- as.character(2:7)
    V(s7)$name <- as.character(1:7)
@@ -57,12 +77,21 @@ execute:
    s7 <- del.names(s7)
    w7 <- del.names(w7)
    plot.toys(w7, "wheel.png", "kk")
+   tab.cent(distinction(w7), name = "wheel", 
+   label = "wheel", rownames = c("1", "2, 3, 4, 5, 6, 7"),
+   caption = "Distinction centrality scores for the wheel graph.")
+   ## Path
    r8 <- make_ring(8) # 8-circle graph
    p7 <- delete_vertices(r8, 8) #path graph
    plot.toys(p7, "path.png", "kk")
+   source(here("Functions", "tab.cent.R"))
+   tab.cent(distinction(p7), name = "path", 
+   label = "path", rownames = c("1, 7", "2, 6", "3, 5", "4"),
+   caption = "Distinction centrality scores for the path graph.")
 ```
 
 ```{r Mediator versus Weld}
+   ## Structural Fold (4-Clique)
    c1 <- c4
    c2 <- c4
    V(c1)$name <- as.character(1:4)
@@ -70,6 +99,10 @@ execute:
    sf4 <- c1 + c2  # structural fold four-clique
    sf4 <- del.names(sf4)
    plot.toys(sf4, "sf4.png", "kk")
+   tab.cent(distinction(sf4), name = "structfold4", 
+   label = "sf4", rownames = c("4", "1, 2, 3, 5, 6, 7"),
+   caption = "Distinction centrality scores for the structural fold graph (4-Clique).")
+   ## Structural Fold (5-Clique)
    c1 <- c5
    c2 <- c5
    V(c1)$name <- as.character(1:5)
@@ -77,46 +110,86 @@ execute:
    sf5 <- c1 + c2  # structural fold five-clique
    sf5 <- del.names(sf5)
    plot.toys(sf5, "sf5.png", "kk")
+   tab.cent(distinction(sf5), name = "structfold5", 
+   label = "sf5", rownames = c("5", "1, 2, 3, 4, 6, 7, 8, 9"),
+   caption = "Distinction centrality scores for the structural fold graph (5-Clique).")
+   ## Triangle Broker
    b3 <- c3 + c3
    b3 <- add_vertices(b3, 1)
    b3 <- b3 + edge(7,1)
    b3 <- b3 + edge(7,4) # broker between triangles
    plot.toys(b3, "broker3.png", "kk")
+   tab.cent(distinction(sf5), name = "broker3", 
+   label = "b3", rownames = c("1", "2, 3, 5, 6", "4", "7"),
+   caption = "Distinction centrality scores for broker graph (3-clique).")
+   ## Clique Broker
    b4 <- c4 + c4
    b4 <- add_vertices(b4, 1)
    b4 <- b4 + edge(9,1)
    b4 <- b4 + edge(9,5) # broker between four-cliques
    plot.toys(b4, "broker4.png", "kk")
+   tab.cent(distinction(b4), name = "broker4", 
+   label = "b4", rownames = c("1, 5", "2, 3, 4, 6, 7, 8", "9"),
+   caption = "Distinction centrality scores for broker graph (4-Clique).")
 ```
 
 ```{r Triadic Closure}
+   ## Circle Graph Plus Triangle
    ct <- r7 + edge(6,1) # circle graph plus triangle
    plot.toys(ct, "circle-triangle1.png", "circle")
+   tab.cent(distinction(ct), name = "circletriangle", 
+   label = "circletriangle",  rownames = c("1, 6", "2, 5", "3, 4", "7"),
+   caption = "Distinction centrality scores for the circle graph with triangle.")
+   ## Circle Graph Plus Long Tie
    cl <- r7 + edge(7,4) # circle graph plus long tie
    plot.toys(cl, "circle-long.png", "circle")
+   tab.cent(distinction(cl), name = "circlelong", 
+   label = "circlelong", rownames = c("1, 3", "2", "4, 7", "5, 6"),
+   caption = "Distinction centrality scores for the circle graph with long tie.")
+   ## Star Graph Plus Triangle
    st1 <- s7 + edge(2,3) # star graph plus one triangle
-   plot.toys(st1, "start-triangle1.png", "kk")
+   plot.toys(st1, "star-triangle1.png", "kk")
+   tab.cent(distinction(st1), name = "startriangle1", 
+   label = "star1", rownames = c("1", "2, 3", "4, 5, 6, 7"),
+   caption = "Distinction centrality scores for the star graph with one triangle.")
+   ## Star Graph Plust Two Triangles
    st2 <- st1 + edge(5,6) # star graph plus two triangles
-   plot.toys(st2, "start-triangle2.png", "kk")
+   plot.toys(st2, "star-triangle2.png", "kk")
+   tab.cent(distinction(st2), name = "startriangle2", 
+   label = "star2", rownames = c("1", "2, 3, 5, 6", "4, 7"),
+   caption = "Distinction centrality scores for the star graph with two triangles.")
 ```
 
 ```{r Mediator Parameters}
+   ## Tree Mediator (Two Branch)
    t222 <- t2 + t2
    t222 <- add_vertices(t222, 1)
    t222 <- t222 + edge(7, 1)
    t222 <- t222 + edge(7, 4) # tree mediator two branch
    plot.toys(t222, "tree-mediator2.png", "kk")
+   tab.cent(distinction(t222), name = "treemediator2", 
+   label = "tree2", rownames = c("1, 4", "2, 3, 5, 6", "7"),
+   caption = "Distinction centrality scores for tree broker graph (two-branches).")
+   ## Tree Mediator (Three Branch)
    t232 <- t3 + t3
    t232 <- add_vertices(t232, 1)
    t232 <- t232 + edge(9, 1)
    t232 <- t232 + edge(9, 5) # tree mediator three branch
    plot.toys(t232, "tree-mediator3.png", "kk")
+   tab.cent(distinction(t232), name = "treemediator3", 
+   label = "tree3", rownames = c("1, 5", "2, 3, 4, 6, 7, 8", "9"),
+   caption = "Distinction centrality scores for tree broker graph (three-branches).")
+   ## Tree Mediator (Two Branch Plus Long Tie)
    t222l <- t222 + edge(6, 2) # tree mediator two branch plus long
    plot.toys(t222l, "tree-mediator2-long.png", "auto")
+   tab.cent(distinction(t222l), name = "treemediatorlong2", 
+   label = "treelong2", rownames = c("1, 4", "2, 6", "3, 5", "7"),
+   caption = "Distinction centrality scores for tree broker graph (two-branches plus long tie).")
    t232l <- t232 + edge(7, 2) # tree mediator three branch plus long
    plot.toys(t232l, "tree-mediator3-long.png", "auto")
-```
-```{r Mediator Parameters}
+   tab.cent(distinction(t232l), name = "treemediatorlong3", 
+   label = "treelong3", rownames = c("1, 5", "2, 7", "3, 4, 6, 8", "9"),
+   caption = "Distinction centrality scores for tree broker graph (three-branches plus long tie).")
    c1 <- make_ring(4)
    c2 <- make_ring(4)
    V(c1)$name <- as.character(1:4)
@@ -128,48 +201,21 @@ execute:
    cw <- del.names(cw)
    tc <- del.names(tc)
    tcl <- del.names(tcl)
+   ## Circle Weld
    plot.toys(cw, "circle-weld.png", "auto")
+   tab.cent(distinction(cw), name = "circleweld", 
+   label = "cw", rownames = c("1, 3, 5, 7", "2, 6", "4"),
+   caption = "Distinction centrality scores for the circle weld graph.")
+   ## Two-Connected
    plot.toys(tc, "two-connected.png", "kk")
+   tab.cent(distinction(tc), name = "twoconnected", 
+   label = "tc", rownames = c("1, 3, 5, 7", "2, 6", "4"),
+   caption = "Distinction centrality scores for the two-connected graph.")
+   ## Two-Connected Plus Long Tie
    plot.toys(tcl, "two-connected-long.png", "kk")
-
-```
-
-
-```{r Toy Network Distinction Tables}
-   source(here("Functions", "tab.cent.R"))
-   tab.cent(distinction(g1), name = "star", 
-   label = "star", rownames = c("1", "2, 3, 4, 5, 6, 7"),
-   caption = "Distinction centrality scores for the star graph.")
-   tab.cent(distinction(g2), name = "structfold", 
-   label = "sf", rownames = c("1", "2, 3, 4, 5, 6, 7"),
-   caption = "Distinction centrality scores for the structural fold graph.")
-   tab.cent(distinction(g3), name = "intraclust", 
-   label = "intra", , rownames =  c("1", "2, 3, 6, 7", "4, 5"),
-   caption = "Distinction centrality scores for the intra-connected clusters graph.")
-   tab.cent(distinction(g4), name = "interclust", 
-   label = "inter", rownames =  c("1", "2, 7", "3, 6", "4, 5"),
-   caption = "Distinction centrality scores for the inter-connected clusters graph.")
-   tab.cent(distinction(g5), name = "circle", 
-   label = "circle", rownames = c("1, 2, 3, 4, 5, 6, 7"),
-   caption = "Distinction centrality scores for the circle graph.")
-   tab.cent(distinction(g6), name = "circletriangle", 
-   label = "circletriangle",  rownames = c("1, 6", "2, 5", "3, 4", "7"),
-   caption = "Distinction centrality scores for the circle graph with triangle.")
-   tab.cent(distinction(g7), name = "circlelong", 
-   label = "circlelong", rownames = c("1, 3", "2", "4, 7", "5, 6"),
-   caption = "Distinction centrality scores for the circle graph with long tie.")
-   tab.cent(distinction(g8), name = "clique", 
-   label = "clique", rownames = c("1, 2, 3, 4, 5, 6, 7"),
-   caption = "Distinction centrality scores for the clique graph.")
-   tab.cent(distinction(g9), name = "kite", 
-   label = "kite", rownames = c("1", "2, 3, 4, 5, 6", "7"),
-   caption = "Distinction centrality scores for the kite graph.")
-   tab.cent(distinction(g10), name = "wheel", 
-   label = "wheel", rownames = c("1", "2, 3, 4, 5, 6, 7"),
-   caption = "Distinction centrality scores for the wheel graph.")
-   tab.cent(distinction(g11), name = "path", 
-   label = "path", rownames = c("1, 7", "2, 6", "3, 5", "4"),
-   caption = "Distinction centrality scores for the path graph.")
+   tab.cent(distinction(tcl), name = "twoconnectedlong", 
+   label = "tcl", rownames = c("1, 7", "2, 6", "3, 5", "4"),
+   caption = "Distinction centrality scores for the two-connected graph (plus long tie).")
 ```
 
 ## Medici
@@ -201,6 +247,7 @@ execute:
 ```
 
 ## Star Graph Computational Experiments
+
 
 ```{r}
    source(here("Functions", "distinction.R"))
@@ -246,8 +293,10 @@ execute:
    p
    ggsave(here("Plots", "star-roles-by-size.png"), width = 7, height = 8, units = "in")
 ```
+
 ## Connected Caves Computational Experiments
-```{r}
+
+```{r Connected Caves}
    source(here("Functions", "connect.caves.R"))
    source(here("Functions", "gg2.R"))
    set.seed(456)
