@@ -135,7 +135,7 @@ This means that in the star graph, the central node's distinction is proportiona
 
 The hub of a star graph thus has the maximum possible distance between status and constraint. However, with additional spokes added to a star graph, the scalar adjusted distinction measure increases. The hub of a star graph with seven spokes is more distinct than a hub with six, allowing a degree of comparability across networks.\footnote{Nodes in a graph composed of a single dyad would have a scalar adjusted distinction of 0.00 because the average constraint is 0. Distinction becomes a meaningful phenomenon only in networks of three or more nodes.} 
 
-\input{Tabs/star}
+\input{Tabs/Figure1}
 
 Similarly, for every peripheral node $j$, the constraint is also a constant and is equal to the status score of the central node $s_1$. Thus, for the peripheral nodes in a star graph, Equation~\ref{eq:distinction} becomes:
 
@@ -171,11 +171,8 @@ Which tells us that the distinction of the peripheral node in the star graph is 
             \caption{Clique Graph}
             \label{fig:clique}
     \end{subfigure}
-    \label{fig:star-circle-clique}
     \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
 \end{figure}
-
-\input{Tabs/circle}
 
 \begin{figure}[ht!]
     \centering
@@ -195,7 +192,6 @@ In the case of the circle graph, status scores be equivalent across all nodes ($
 
 Thus, the distinction is zero for all nodes in the circle graph. The same reasoning applies to the clique graph in which nodes have the same constant status scores as in the circle graph. The difference is that in this case the $\kappa$ component of Equation~\ref{eq:distinction} is obtained from the status scores of each actor in the node-deleted subgraph, excluding the focal node, which is just a clique of size $N-1$ where $N$ is the number of nodes in the original clique. Just like in the circle graph case, however, both the $s$ and $\kappa$ components are constant across nodes, which means that the status scores cancel out by division and the constraint scores by subtraction, leaving everyone with a scaled distinction score of zero.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes, and therefore we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
 
-\input{Tabs/clique}
 %Clique addition experiment
 %Add cliques to star graph and see what happens
 %See what happens with the caveman
@@ -206,42 +202,57 @@ Triadic closure is an observed regularity in which a connection is likely to for
 
 Beyond the cognitive congruence account of triadic closure, there is an accounting of triadic closure based on the strains new positive network connections may or may not create in existing relationships. Networks are sets of triads that are either actualized in connection, either positive or negative, or left unactuated. Actualization is largely predicated on propinquity, and the valence of theoretically possible ties never rises to the concern of a social question \citep{feld1981focused, feld1982social, mollenhorst2011shared}. However, in a contested context where ties are either positive or negative, triadic closure becomes a matter of not betraying one's friends by associating with one of their enemies, and of solidifying social alliances (Bearman 1993). However, triadic closure with a friend's friend signals commitment. The endorsement effect of triadic balance, that betrayal creates two relational problems rather than one, reinforces the surety of the actors \citep{yoon2013exchange}. 
 
-In addition to these explanations, the distinction measure also reveals the utility of a distinction based theory of triadic closure. Figure 3 \textit{Model (a)} and Table 4 present a graph and corresponding measures of near-neighbor triadic closure. The distinction of nodes 1 and 6 increases to .106, compared to 0 in the circle graph, while all other nodes fall below 0 due to the reverberating effects of the new connection. Notably, node 7 increases in eigenvector status from the combination, but overall decrease in scaled distinction due to the tie. This example demonstrates the fragility of the circle graph as an equality condition in a distinction-based theoretical framework, as there are opportunities for mutual increases in distinction through triadic closure. While both eigenvector centrality and scaled distinction would predict tie formation in this simplified social structure, the scaled distinction measure would find that Node 7 would actually lose out in some ways from this arrangement. This matches with findings that often initial connections do weaken when triadic closure occurs \citep{huang2018will}, consistent with a reaction to the increased constraint placed on the closure broker. However, the actual incentives and consequences for each of the nodes in a triadic closure will be dependent on the overall existing network structure. Node 7 is worse off because of the structure of the circle graph, not necessarily because in all conditions Node 7 will be worse off. If Node 7 is actually highly central to the graph, near neighbor triadic closure can be distinction increasing. Beyond questions of balancing valence as is the current framework for understanding triadic closure, a distinction-based theoretical framework can explain the propensity towards triadic closure, but also its failure to form depending on the initial patterning of relationships. 
+In addition to these explanations, the distinction measure also reveals the utility of a distinction based theory of triadic closure. Figure 3 \textit{Model (a)} and Table 4 present a graph and corresponding measures of near-neighbor triadic closure. The distinction of nodes 1 and 6 increases to .106, compared to 0 in the circle graph, while all other nodes fall below 0 due to the reverberating effects of the new connection. Notably, node 7 increases in eigenvector status from the combination, but overall decrease in scaled distinction due to the tie. This example demonstrates the fragility of the circle graph as an equality condition in a distinction-based theoretical framework, as there are opportunities for mutual increases in distinction through triadic closure. While both eigenvector centrality and scaled distinction would predict tie formation in this simplified social structure, the scaled distinction measure would find that Node 7 would actually lose out in some ways from this arrangement. This matches with findings that often initial connections do weaken when triadic closure occurs \citep{huang2018will}, consistent with a reaction to the increased constraint placed on the closure broker. However, the actual incentives and consequences for each of the nodes in a triadic closure will be dependent on the overall existing network structure. Node 7 is worse off due to the structure of the circle graph, rather than because it will always be worse off under all conditions. If Node 7 is actually highly central to the graph, near neighbor triadic closure can be distinction increasing. Beyond questions of balancing valence as is the current framework for understanding triadic closure, a distinction-based theoretical framework can explain the propensity towards triadic closure, but also its failure to form depending on the initial patterning of relationships. 
+
+%triadic closure graphs
+\begin{figure}[t!]
+    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+    \centering
+     \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-triangle1.png}
+            \caption{Circle Graph with Near Neighbor Closure}
+            \label{fig:circletriangle}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-long.png}
+            \caption{Circle Graph with a Long Tie}
+            \label{fig:circlelong}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/star-triangle1.png}
+            \caption{Star Graph with Near Neighbor Closure}
+            \label{fig:startriangle1}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/star-triangle2.png}
+            \caption{Star Graph with Two Triangles}
+            \label{fig:startriangle2}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/two-connected-long.png}
+            \caption{2-Connected Subgraphs with Long Tie}
+            \label{fig:twoconnectedlong}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel.png}
+            \caption{Wheel Graph, 6 Triads}
+            \label{fig:wheel}
+    \end{subfigure}
+    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
+\end{figure}
+
+%triadic closure centrality scores
+\input{Tabs/Figure3}
+
+
+%https://journals.aps.org/pre/abstract/10.1103/PhysRevE.71.056103
+%\input{Tabs/intraclust}
+%\input{Tabs/interclust}
 
 Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measures of a long tie formation spanning the circle graph. The connected nodes 4 and 7 both have distinction maximizing incentives to form a tie, but notably their scaled distinction increases more when they close triadically with a near neighbor. Thus, under sparse overall network conditions, the gains in status from local consolidation outweigh the distinction gains from increased autonomy. Conversely, once dense local conditions prevail, long ties can become more valuable as the gain in autonomy outweighs the marginal gains in status. However, the unique topography of networks requires careful consideration in each case.
 
 What the difference between these two examples suggests is that, based on considerations for distinction, the initial spread of social organization occurs locally through the triadic balance of near neighbors. This would suggest that the natural form of organizational formation is the pyramid formed from combinations of local triads that are further connected by brokers or welds creating structural folds. However, the transitivity created by the initial triad formation would spread quickly throughout the network, making welding structural folds a highly advantageous strategy for members of triads who could facilitate that connection, which is further explored below. Additionally, the example of triadic closure shows that only mild additions to network ties can very quickly create stratification. The addition of a single connection between node 1 and 6 in Figure 3 \textit{Model (a)} stratified a network from equality into four levels of hierarchy with a single additional connection. 
 
-%https://journals.aps.org/pre/abstract/10.1103/PhysRevE.71.056103
-
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-triangle.png}
-            \caption{Circle Graph with Near Neighbor Closure}
-            \label{fig:circleplus}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-plus-long.png}
-            \caption{Circle Graph with Long Tie}
-            \label{fig:circleplus}
-    \end{subfigure}
-    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
-    \label{fig:toys}
-\end{figure}
-
-\input{Tabs/circletriangle}
-\input{Tabs/circlelong}
-\input{Tabs/kite}
-
-
-\input{Tabs/structfold.tex}
-\input{Tabs/intraclust}
-\input{Tabs/interclust}
-\input{Tabs/clique}
 
 \subsubsection{Distinction and Brokerage}
 
@@ -250,86 +261,86 @@ What the difference between these two examples suggests is that, based on consid
 
 %Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
 %folds vs circles
-\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup are able to combine their interests to mitigate against the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
+\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains high eigenvector centrality, the eigenvector centrality of the other nodes increases, while their constraint decreases. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This position of brokerage is more constrained than the star graph because the other actors are connected in subgroups. The actors in the subgroup can combine their interests to counterbalance the independence of Node 1 in the center. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, the stratification increases, giving Node 1 a slight advantage, but also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, the distinction of each node would also go to 0.00, as there is no network differentiation among nodes. 
 
-
+%brokerage and structural folds Figure 4
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
-     \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
-            \caption{Inter-Group Brokerage}
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf4.png}
+            \caption{Structural Fold (4-Clique)}
             \label{fig:sf}
     \end{subfigure} 
-     \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
-            \caption{Structural Fold}
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf5.png}
+            \caption{Structural Fold (5-Clique)}
             \label{fig:sf}
     \end{subfigure} 
-    \label{fig:classicbrokerage}
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/two-connected.png}
+            \caption{Two-Connected}
+            \label{fig:twoconnected}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-weld.png}
+            \caption{Circle Weld}
+            \label{fig:circleweld}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/broker3.png}
+            \caption{Brokerage Mediated (3-Cliques)}
+            \label{fig:classicbrokerage3}
+    \end{subfigure} 
+    \label{fig:struct-fold}
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/broker4.png}
+            \caption{Brokerage Mediated (4-Cliques)}
+            \label{fig:classicbrokerage3}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/tree-mediator2.png}
+            \caption{Tree with 2 Branches, 2 Leaves}
+            \label{fig:treemediator2}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/tree-mediator3.png}
+            \caption{Tree with 2 Branches, 3 Leaves}
+            \label{fig:treemediator3}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/tree-mediator2-long.png}
+            \caption{Tree with 2 Branches, 2 Leaves, 1 Long Tie}
+            \label{fig:treemediatorlong2}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.23\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/Toys/tree-mediator3-long.png}
+            \caption{Tree with 2 Branches, 3 Leaves, 1 Long Tie}
+            \label{fig:treemediatorlong3}
+    \end{subfigure}
     \caption{Comparison of betweenness brokerage and a structural fold goes here}
 \end{figure}
 
+%brokerage centrality scores
+\input{Tabs/Figure4}
 
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-     \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
-            \caption{Structural Fold}
-            \label{fig:sf}
-    \end{subfigure} 
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/intra.png}
-            \caption{2-Connected Subgraphs}
-            \label{fig:intra}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/inter.png}
-            \caption{2-Connected Subgraphs with Long Tie}
-            \label{fig:inter}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel.png}
-            \caption{Wheel Graph}
-            \label{fig:wheel}
-    \end{subfigure}
-    \label{fig:struct-folds}
-    \caption{Examples of varying parameters of mediator brokerage (Burt brokerage). Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
-\end{figure}
 
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-     \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/sf.png}
-            \caption{Structural Fold}
-            \label{fig:sf}
-    \end{subfigure} 
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/intra.png}
-            \caption{2-Connected Subgraphs}
-            \label{fig:intra}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/inter.png}
-            \caption{2-Connected Subgraphs with Long Tie}
-            \label{fig:inter}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.35\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel.png}
-            \caption{Wheel Graph}
-            \label{fig:wheel}
-    \end{subfigure}
-    \label{fig:struct-folds}
-    \caption{Examples of varying degrees of connectedness within welded subgraphs. Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
-\end{figure}
+
+
+
+
 
 \textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar adjusted distinction measures well reflect this stratification, with Node 1 retaining its distinction, Nodes 4 and 5 failing in the middle position, and Nodes 2, 3, 6, and 7 falling to the bottom. 
 
 \textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs as in Model (b). In fact, all nodes except 3 and 6 have higher distinction in such a case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
 
+
+
+
 \subsubsection{Kite Graphs and Eigenvector Normalization}
+
+
+\input{Tabs/Figure5(kites)}
 
 
 %gets close to 0 negative, with non-normalized eigenvectors
@@ -343,20 +354,6 @@ What the difference between these two examples suggests is that, based on consid
 %also somewhat the Marco Polo vibe, Shogun (the violation of markers of distinction, %didn't matter), The Last Samurai
 %theory of subgraph cliques rather than full graph as clique
 %hypothesis: size of the normalization gaps is causing the differences between normalized and unnormalized. 
-
-
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
-            \caption{Kite Graph}
-            \label{fig:kite}
-    \end{subfigure}
-    \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
-    \label{fig:toys}
-\end{figure}
 
 \subsubsection{Long Ties and Hierarchy}
 
@@ -419,7 +416,7 @@ Thus, there is a U shaped pattern where at low levels of interconnection between
     \label{fig:Evolving Political Network}
 \end{figure}
 
-\input{Tabs/political.tex}
+\input{Tabs/Figure6.tex}
 
 
 \subsection{Implementation}
@@ -430,7 +427,7 @@ The interaction of influence and autonomy combines to create an actor’s overal
 
 One of the consecrated papers of social network analysis is Padgett and Ansell’s (1993) analysis of the centrality of the Medici to Florentine elite marriage and business networks in the 15th century. The empirics led to the theory of robust action, demonstrating that one’s position in the network can become the basis of one’s interests, and that through balancing competitors, an actor can amplify their social position. 
 
-A puzzle that results from the empirics however is how the balance between antagonistic factions created by the Medici came to be undone within a decade of Padgett and Ansell’s focus. Brokerage created social stability, yet in 1432 Rinaldo Albizzi as leader of the combination of conservative old oligarchic families seized the reigns of the Florentine government, exiling the leading Medici from Florence. Why was the network position of the Medici as brokers so unstable? In other words, what were the network incentives of the old conservative families to attempt to remove the Medici from their network position? 
+A puzzle that results from the empirics, however, is how the balance between antagonistic factions created by the Medici came to be undone within a decade of Padgett and Ansell’s focus. Brokerage created social stability, yet in 1432, Rinaldo Albizzi, as leader of the combination of conservative old oligarchic families, seized the reins of the Florentine government, exiling the leading Medici from Florence. Why was the network position of the Medici as brokers so unstable? In other words, what were the network incentives of the old conservative families to attempt to remove the Medici from their network position? 
 
 The opportunities for an increase in social distinction explain the attempt by the conservative oligarchs to remove the Medici from the network. Padgett and Ansell built their network of Florentine marriages and economic exchange as a series of blockmodels, which capture the inter-relations among families \citep{padgett1993robust} 1276. Underneath the blockmodel are even more families in their Appendix B, such that there were 92 elite families overall considered (1276). The politics of Florence centered around family alliances consecrated through marriage, trade, and friendship ties (). However, over the years many families had developed cadet branches, with many old families having 10 or more households, with the Strozzi and Bardi having more than 50. Newer families had smaller, less ancient family networks, and so inter-family political cooperation was important for their social protection (150-1). Family capacity through size and wealth was then channeled into inter-elite marriages, creating the networks of power and influence through which Florentine politics was channeled. The unity of the households within a single lineage was variable however, often depending on their own marriages. For example, the Bardi family largely sided with the old families against the Medici, but the marriage of Contessina de Bardi to Cosimo de Medici (129) meant that the family was not united in opposing the Medici. 
 	
