@@ -430,3 +430,10 @@ execute:
    distinction(karate, norm = "max")
    plot.graph.norm(karate)
 ```
+
+## Kite Computational Experiments
+
+```{r}
+   # Vary size of kite clique
+   # Vary kite density holding clique size constant
+```
