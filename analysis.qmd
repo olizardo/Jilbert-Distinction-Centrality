@@ -238,6 +238,31 @@ execute:
    dev.off()
 ```
 
+## Political Data
+
+```{r Loading TestPolitical Data}
+   poli1 <- as.matrix(read.csv(here("Data", "poli1.csv")))
+   poli1 <- graph_from_edgelist(poli1, directed = FALSE)
+   poli2 <- as.matrix(read.csv(here("Data", "poli2.csv")))
+   poli2 <- graph_from_edgelist(poli2, directed = FALSE)
+   poli3 <- as.matrix(read.csv(here("Data", "poli3.csv")))
+   poli3 <- graph_from_edgelist(poli3, directed = FALSE)
+   poli4 <- as.matrix(read.csv(here("Data", "poli4.csv")))
+   poli4 <- graph_from_edgelist(poli4, directed = FALSE)
+   png(here("Plots", "poli1.png"), height = 600, width = 1000)
+   plot.graph.norm(poli1, l = "auto")
+   dev.off()
+   png(here("Plots", "poli2.png"), height = 600, width = 1000)
+   plot.graph.norm(poli2, l = "auto")
+   dev.off()
+   png(here("Plots", "poli3.png"), height = 600, width = 1000)
+   plot.graph.norm(poli3, l = "auto")
+   dev.off()
+   png(here("Plots", "poli4.png"), height = 600, width = 1000)
+   plot.graph.norm(poli4, l = "auto")
+   dev.off()
+```
+
 ## Search
 
 ```{r Search Model Distinction}
