@@ -218,6 +218,34 @@ execute:
    caption = "Distinction centrality scores for the two-connected graph (plus long tie).")
 ```
 
+```{r Kites and Extended Networks}
+   k3 <- add_vertices(c3, 1)
+   k3 <- k3 + edge(1, 4)
+   r6 <- add_vertices(make_ring(6), 1)
+   r6 <- r6 + edge(1, 7)
+   c10 <- add_vertices(make_full_graph(10, directed = FALSE), 1)
+   c10 <- c10 + edge(1, 11)
+```
+
+```{r}
+   r10 <- make_ring(10)
+   r10 <- add_edges(r10, c(1,3, 1,9, 1,4, 1,8, 1,5, 1,7, 1,6))
+   V(r10)$name <- as.character(1:10)
+   V(c5)$name <- as.character(1:5)
+   h <- r10 + c5
+   h <- del.names(h)
+   c5 <- del.names(c5)
+   circ <- layout_(h, in_circle())
+   plot(h, layout = circ)
+   h1 <- add_vertices(h, 1) + edge(1, 11)
+   h2 <- add_vertices(h, 1) + edge(2, 11)
+   h3 <- add_vertices(h, 1) + edge(10, 11)
+   set.seed(456)
+   kr <- make_ring(10)
+   kr <- add_edges(kr, c(1,3, 1,9, 2,4, 5,7, 4,6, 6,8, 7,9, 10,8, 10,2, 3,5))
+   kr1 <- add_vertices(kr, 1) + edge(1, 11)
+   plot.graph.norm(kr1, l = "circle")
+```
 ## Medici
 
 ```{r Loading Medici Data}
