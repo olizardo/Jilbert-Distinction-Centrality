@@ -223,8 +223,10 @@ execute:
    k3 <- k3 + edge(1, 4)
    r6 <- add_vertices(make_ring(6), 1)
    r6 <- r6 + edge(1, 7)
+   plot.toys(r6, "circle-edge.png", "circle")
    c10 <- add_vertices(make_full_graph(10, directed = FALSE), 1)
    c10 <- c10 + edge(1, 11)
+   plot.toys(c10, "ten-clique-edge.png", "auto")
 ```
 
 ```{r}
@@ -235,16 +237,19 @@ execute:
    h <- r10 + c5
    h <- del.names(h)
    c5 <- del.names(c5)
-   circ <- layout_(h, in_circle())
-   plot(h, layout = circ)
    h1 <- add_vertices(h, 1) + edge(1, 11)
    h2 <- add_vertices(h, 1) + edge(2, 11)
    h3 <- add_vertices(h, 1) + edge(10, 11)
+   plot.toys(h, "wheel-clique.png", "auto")
+   plot.toys(h1, "wheel-clique-edge-star.png", "auto")
+   plot.toys(h2, "wheel-clique-edge-clique.png", "auto")
+   plot.toys(h3, "wheel-clique-edge-peri.png", "auto")
    set.seed(456)
    kr <- make_ring(10)
    kr <- add_edges(kr, c(1,3, 1,9, 2,4, 5,7, 4,6, 6,8, 7,9, 10,8, 10,2, 3,5))
+   plot.toys(kr, "regular-four.png", "auto")
    kr1 <- add_vertices(kr, 1) + edge(1, 11)
-   plot.graph.norm(kr1, l = "circle")
+   plot.toys(kr1, "regular-edge.png", "auto")
 ```
 ## Medici
 
