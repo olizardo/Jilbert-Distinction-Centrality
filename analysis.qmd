@@ -247,13 +247,29 @@ execute:
    plot.toys(h3, "wheel-clique-edge-peri.png", "auto")
 ```
 
+
+```{r}
+   tab.cent(distinction(h), name = "wheel-clique", 
+   label = "wc", rownames = c("1", "2, 4", "3, 5", "6, 10", "7, 9", "8"),
+   caption = "Distinction centrality scores for the wheel plus clique graph.")
+   tab.cent(distinction(h1), name = "wheel-clique-pendant1", 
+   label = "wcp1", rownames = c("1", "2, 4", "3, 5", "6, 10", "7, 9", "8", "10"),
+   caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
+   tab.cent(distinction(h2), name = "wheel-clique-pendant2", 
+   label = "wcp2", rownames = c("1", "2, 4", "3, 5", "6, 10", "7, 9", "8", "10", "11"),
+   caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
+   tab.cent(distinction(h3), name = "wheel-clique-pendant3", 
+   label = "wcp3", rownames = c("1", "2, 4", "3, 5", "6, 10", "7, 9", "8", "11"),
+   caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
+```
+
 ```{r Small Worlds}
    set.seed(456)
    kr <- make_ring(10)
    kr <- add_edges(kr, c(1,3, 1,9, 2,4, 5,7, 4,6, 6,8, 7,9, 10,8, 10,2, 3,5))
    krsw <- add_edges(kr, c(4,9))
    plot.toys(kr, "regular-four.png", "auto")
-   plot.toys(krsw, "small-world.png", "auto")
+   plot.toys(krsw, "small-world.png", "circle")
    kr1 <- add_vertices(kr, 1) + edge(1, 11)
    kr1sw <- add_edges(kr1, c(4,9))
    plot.toys(kr1, "regular-edge.png", "auto")
