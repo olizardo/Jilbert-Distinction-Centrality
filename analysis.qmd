@@ -242,9 +242,9 @@ execute:
    h2 <- add_vertices(h, 1) + edge(2, 11)
    h3 <- add_vertices(h, 1) + edge(8, 11)
    plot.toys(h, "wheel-clique.png", "auto")
-   plot.toys(h1, "wheel-clique-edge-star.png", "auto")
-   plot.toys(h2, "wheel-clique-edge-clique.png", "auto")
-   plot.toys(h3, "wheel-clique-edge-peri.png", "auto")
+   plot.toys(h1, "wheel-clique-edge-star.png", "fr")
+   plot.toys(h2, "wheel-clique-edge-clique.png", "kk")
+   plot.toys(h3, "wheel-clique-edge-peri.png", "kk")
 ```
 
 
@@ -267,13 +267,17 @@ execute:
    set.seed(456)
    kr <- make_ring(10)
    kr <- add_edges(kr, c(1,3, 1,9, 2,4, 5,7, 4,6, 6,8, 7,9, 10,8, 10,2, 3,5))
-   krsw <- add_edges(kr, c(4,9))
-   plot.toys(kr, "regular-four.png", "auto")
-   plot.toys(krsw, "small-world.png", "circle")
+   sw1 <- add_edges(kr, c(4,9))
+   plot.toys(kr, "regular-four.png", "circle")
+   plot.toys(sw1, "small-world1.png", "circle")
+   sw2 <- add_edges(sw1, c(7,2))
+   plot.toys(sw2, "small-world2.png", "circle")
+   sw3 <- add_edges(sw2, c(6,1))
+   plot.toys(sw3, "small-world3.png", "circle")
    kr1 <- add_vertices(kr, 1) + edge(1, 11)
    kr1sw <- add_edges(kr1, c(4,9))
-   plot.toys(kr1, "regular-edge.png", "auto")
-   plot.toys(kr1sw, "small-world-edge.png", "auto")
+   plot.toys(kr1, "regular-edge.png", "circle")
+   plot.toys(kr1sw, "small-world-edge.png", "kk")
 ```
 ## Medici
 
