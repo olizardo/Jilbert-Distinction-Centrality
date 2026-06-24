@@ -4,7 +4,9 @@
       "*.md": "allow"
     },
     "bash": {
-      "/usr/share/positron/resources/app/quarto/bin/quarto *": "allow"
+      "/usr/share/positron/resources/app/quarto/bin/quarto *": "allow",
+      "git commit *": "allow",
+      "git add *": "allow"
     }
   }
 }
