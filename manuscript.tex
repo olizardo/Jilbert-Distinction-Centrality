@@ -104,7 +104,7 @@ Understanding that both $s_i$ and $k_i$ are given in the (arbitrary) scaling pro
     \alpha = \frac{\bar{\mathbf{\kappa}}}{\bar{\mathbf{s}}}
 \end{equation}
 
-Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint scores for each actor in the network, and $\bar{\mathbf{\kappa}}$ is the mean of the vector of $s_i$ status scores for each actor in the network. As hinted earlier, a desirable feature of rescaling the $s_i$ component of equation~\ref{eq:distinction} in this way is that in the case of a regular graph (e.g., a circle graph or a fully-connected clique), $\alpha s_i = \kappa_i$ and thus $\beta_i = 0$ for each node $i$ (see Tables~\ref{tab:circle} and~\ref{tab:clique}).  
+Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint scores for each actor in the network, and $\bar{\mathbf{\kappa}}$ is the mean of the vector of $s_i$ status scores for each actor in the network. As hinted earlier, a desirable feature of rescaling the $s_i$ component of equation~\ref{eq:distinction} in this way is that in the case of a regular graph (e.g., a circle graph or a fully-connected clique), $\alpha s_i = \kappa_i$ and thus $\beta_i = 0$ for each node $i$ (see Table~\ref{tab:star}).  
 
 Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network size, so that it increases for the most distinct (central) node when peripheral actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the centrality score for central and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes (we elaborate on the mathematical reasons for this below).  
 
@@ -180,7 +180,7 @@ This tells us that the distinction of the peripheral node in the star graph is p
     \label{fig:star-scaling}
 \end{figure}
 
-If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction. In that respect, distinction should be at its theoretical minimum of zero for all nodes in these cases. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique} this is precisely what we observe.
+If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction. In that respect, distinction should be at its theoretical minimum of zero for all nodes in these cases. As we can see in Table~\ref{tab:star} this is precisely what we observe.
 
 In the case of the circle graph, status scores be equivalent across all nodes ($s_i = 0.38$ for the circle graph of order seven shown in Figure~\ref{fig:circle}. Also note that whenever we remove a node from the circle graph a path graph of order $N-1$, where $N$ is the number of nodes in the original circle graph is obtained. The previous neighbors of the removed node become the end nodes in the node-deleted path graph. These two nodes will by necessity have the same status score. This means that the $\kappa$ component of Equation~\ref{eq:distinction} will be the same constant across all nodes, and that the average status and average constraint will also be equal to a constant, in which case Equation~\ref{eq:distinction} becomes:
 
@@ -260,7 +260,7 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/sf4.png}
             \caption{Structural Fold (4-Clique)}
-            \label{fig:sf}
+            \label{fig:sf-small-world}
     \end{subfigure} 
     \caption{.}
 \end{figure}
@@ -282,12 +282,12 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/sf4.png}
             \caption{Structural Fold (4-Clique)}
-            \label{fig:sf}
+            \label{fig:sf-4clique}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/sf5.png}
             \caption{Structural Fold (5-Clique)}
-            \label{fig:sf}
+            \label{fig:sf-5clique}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/two-connected.png}
@@ -302,13 +302,13 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/broker3.png}
             \caption{Brokerage Mediated (3-Cliques)}
-            \label{fig:classicbrokerage3}
+            \label{fig:classicbrokerage3-3clique}
     \end{subfigure} 
     \label{fig:struct-fold}
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/broker4.png}
             \caption{Brokerage Mediated (4-Cliques)}
-            \label{fig:classicbrokerage3}
+            \label{fig:classicbrokerage3-4clique}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/tree-mediator2.png}
@@ -353,62 +353,62 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
             \caption{Three-Clique/Wheel}
-            \label{fig:sf}
+            \label{fig:kite-3clique-wheel}
     \end{subfigure}
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-edge.png}
             \caption{Six-Node Circle}
-            \label{fig:sf}
+            \label{fig:kite-6node-circle}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
             \caption{Six-Clique}
-            \label{fig:sf}
+            \label{fig:kite-6clique}
     \end{subfigure}
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/ten-clique-edge.png}
             \caption{Ten-Clique}
-            \label{fig:sf}
+            \label{fig:kite-10clique}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique.png}
             \caption{Three Levels of Hierarchy}
-            \label{fig:classicbrokerage3}
+            \label{fig:kite-3levels-hierarchy}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique-edge-star.png}
             \caption{Kite Connects to Highest Distinction Node}
-            \label{fig:classicbrokerage3}
+            \label{fig:kite-connects-highest}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique-edge-clique.png}
             \caption{Kite Connects to Moderate Distinction Node}
-            \label{fig:twoconnected}
+            \label{fig:kite-connects-moderate}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique-edge-peri.png}
             \caption{Kite Connects to Lowest Distinction Node}
-            \label{fig:circleweld}
+            \label{fig:kite-connects-lowest}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/regular-four.png}
             \caption{Kite Connects to Moderate Distinction Node}
-            \label{fig:sf}
+            \label{fig:kite-connects-moderate-reg}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/regular-edge.png}
             \caption{Kite Connects to Lowest Distinction Node}
-            \label{fig:sf}
+            \label{fig:kite-connects-lowest-reg}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/small-world.png}
             \caption{Small World}
-            \label{fig:sf}
+            \label{fig:kite-small-world}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/small-world-edge.png}
             \caption{Small World Kite}
-            \label{fig:sf}
+            \label{fig:kite-small-world-kite}
     \end{subfigure} 
     \caption{Comparison of kite graphs with varying parameters. Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
 \end{figure}
@@ -470,22 +470,22 @@ Thus, there is a U shaped pattern where at low levels of interconnection between
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political1.png}
             \caption{High Subgraph Density, Low Graph Density}
-            \label{fig:Placehold}
+            \label{fig:poli-step1}
     \end{subfigure}
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political2.png}
             \caption{Broker Given Independent Foundations}
-            \label{fig:Placehold}
+            \label{fig:poli-step2}
     \end{subfigure}
          \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political3.png}
             \caption{Increased Independent Foundations}
-            \label{fig:Placehold}
+            \label{fig:poli-step3}
     \end{subfigure}
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political4.png}
             \caption{All Subgraphs Connected by Long Ties}
-            \label{fig:Placehold}
+            \label{fig:poli-step4}
     \end{subfigure}
     \caption{Increasingly connected graphs with central broker.}
     \label{fig:Evolving Political Network}
@@ -517,7 +517,7 @@ Results are presented in Table X. In the original state of the network, the Medi
      \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/medici.png}
             \caption{Medici Network}
-            \label{fig:medici}
+            \label{fig:medici-subfigure}
     \end{subfigure} \\
      \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/nomedici.png}
@@ -562,7 +562,7 @@ The resulting distinction measures are presented in Table 6. The results are ran
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/search.png}
             \caption{Reference Network Example}
-            \label{fig:search}
+            \label{fig:search-subfigure}
     \end{subfigure}
     \caption{Example of a non-directed network of references, e.g. citation network, internet links, etc.}
     \label{fig:search}
@@ -609,7 +609,7 @@ Note: "the real logic of the functioning of capital [is the] conversion from one
      \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/PortfolioIntegration.png}
             \caption{Model of Viable Portfolio Integration}
-            \label{fig:medici}
+            \label{fig:medici-integration-subfigure}
     \end{subfigure} \\
     \caption{}
     \label{fig:integration}

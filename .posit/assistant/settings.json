@@ -2,6 +2,9 @@
   "permission": {
     "edit": {
       "*.md": "allow"
+    },
+    "bash": {
+      "/usr/share/positron/resources/app/quarto/bin/quarto *": "allow"
     }
   }
 }
