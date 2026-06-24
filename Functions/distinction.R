@@ -1,14 +1,14 @@
 distinction <- function(x, norm = "abm", digits  = 4) { 
   require(igraph) #need igraph
   n <- vcount(x) #number of nodes in the graph
-  if (is.null(V(x)$name) == 1) { #checking for node labels
+  if (is.null(V(x)$name)) { #checking for node labels
     V(x)$name <- 1:n #labeling nodes with consecutive numbers
     names <- V(x)$name #storing new labels in vector
-    }
-  if (is.null(V(x)$name) == 0) { #if the nodes already have labels
+  } else { #if the nodes already have labels
     names <- V(x)$name #store old labels in vector
     V(x)$name <- 1:n #label nodes with consecutive numbers
-    } 
+  }
+
   norm.max <- function(x) {x^2/max(x^2)} #sum to one and max one normalizing function
   norm.one <- function(x) {x^2} #sum to one normalizing function
   norm.abm <- function(x) {abs(x)/max(abs(x))} #absolute value max one normalizing function
@@ -27,8 +27,8 @@ distinction <- function(x, norm = "abm", digits  = 4) {
   if (norm == "one") {s <- norm.one(s)} #normalizing so that vector sums to one
   if (norm == "abm") {s <- norm.abm(s)} #normalizing so that maximum value is one
   if (norm == "abs") {s <- norm.abs(s)} #normalizing to remove negative entries
-  d <- rep(n, 0) # initializing distinction vector to all zeros
-  u <- rep(n, 0) # initializing constraint vector to all zeros
+  d <- rep(0, n) # initializing distinction vector to all zeros
+  u <- rep(0, n) # initializing constraint vector to all zeros
   for (i in 1:n) { #start looping across nodes in the graph
     j <- neighbors(x, i) #vector of i's neighbors ids
     xd <- delete_vertices(x, i) #node-deleted subgraph (minus i)
