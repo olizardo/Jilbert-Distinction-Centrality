@@ -1,0 +1,15 @@
+{
+  "hash": "020867583d2011d09fe49c546400f030",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Examples\"\n---\n\nThis page provides an example of how to compute and visualize distinction centrality using the classic Medici family network from Padgett & Ansell (1993).\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(igraph)\nlibrary(dplyr)\nlibrary(readr)\nsource(\"Functions/distinction.R\")\n\n# Load the Medici dataset\nmedici_edges <- read_csv(\"Data/MediciEdgeList.csv\")\ng <- graph_from_data_frame(medici_edges, directed = FALSE)\n\n# Calculate distinction centrality\nresults <- distinction(g)\n\n# Display the top 10 most \"distinguished\" families\nresults %>%\n  arrange(desc(scd)) %>%\n  head(10) %>%\n  knitr::kable()\n```\n\n::: {.cell-output-display}\n\n\n|n          |       d|     scd|      s|      u| scalar|\n|:----------|-------:|-------:|------:|------:|------:|\n|Davanzati  |  1.0000|  0.9812| 1.0000| 0.0000| 0.9812|\n|Guadagni   |  1.0000|  0.9812| 1.0000| 0.0000| 0.9812|\n|Orlandini  |  1.0000|  0.9812| 1.0000| 0.0000| 0.9812|\n|Peruzzi    |  0.2930|  0.2812| 0.6277| 0.3347| 0.9812|\n|Albizzi    |  0.2804|  0.2693| 0.5920| 0.3115| 0.9812|\n|Strozzi    |  0.1111|  0.1032| 0.4239| 0.3128| 0.9812|\n|Castellani |  0.0879|  0.0826| 0.2812| 0.1933| 0.9812|\n|Guasconi   |  0.0171|  0.0067| 0.5534| 0.5363| 0.9812|\n|Della Casa |  0.0119|  0.0050| 0.3677| 0.3558| 0.9812|\n|Ginori     | -0.0203| -0.0220| 0.0925| 0.1128| 0.9812|\n\n\n:::\n:::\n\n\n### Analysis\nThe results show the Medici family's high distinction score, confirming their unique position of balancing power (status) while managing social constraints compared to other contemporary families.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
