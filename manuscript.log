@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.23)  23 JUN 2026 21:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.28)  1 JUL 2026 06:44
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**manuscript.tex
-(./manuscript.tex
+**"/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex"
+(/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-06-18>
 (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -24,12 +25,12 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \bibindent=\dimen150
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2026/03/07 v6.0 Page Geometry
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count284
@@ -78,7 +79,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisrulewidth=\dimen171
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen172
 \captionmargin=\dimen173
@@ -94,15 +95,15 @@ Package caption Info: Standard document class detected.
 \c@continuedfloat=\count293
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2026-05-17 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen180
@@ -126,7 +127,7 @@ Package caption Info: New subtype `subtable' on input line 238.
 \lst@newlines=\count300
 \lst@lineno=\count301
 \lst@maxwidth=\dimen185
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstpatch.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
@@ -137,21 +138,21 @@ File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
 File: listings.cfg 2025/11/14 1.11b listings configuration
 ))
 Package: listings 2025/11/14 1.11b (Carsten Heinz)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/courier.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/courier.sty
 Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2026-06-17 v7.01r Hypertext links for LaTeX
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -161,11 +162,11 @@ Package pdftexcmds Info: \pdfdraftmode found.
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count304
@@ -178,7 +179,7 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 \@linkdim=\dimen186
 \Hy@linkcounter=\count306
 \Hy@pagecounter=\count307
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2026-06-17 v7.01r Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
@@ -186,7 +187,7 @@ Now handling font encoding PD1 ...
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count308
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2026-06-17 v7.01r Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -199,15 +200,15 @@ Package hyperref Info: Backreferencing OFF on input line 4219.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4466.
 \c@Hy@tempcnt=\count309
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/url/url.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4805.
 \XeTeXLinkMargin=\dimen187
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count310
@@ -225,13 +226,13 @@ Package hyperref Info: PDF/A mode OFF on input line 6121.
 \c@Hfootnote=\count313
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2026-06-17 v7.01r Hyperref driver for pdfTeX
 \Fld@listcount=\count314
 \c@bookmark@seq@number=\count315
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
@@ -272,6 +273,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -313,12 +315,12 @@ Package caption Info: End \AtBeginDocument code.
 (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count320
 Package hyperref Info: Link coloring OFF on input line 20.
-(./manuscript.out) (./manuscript.out)
+ (./manuscript.out) (./manuscript.out)
 \@outlinefile=\write3
 \openout3 = `manuscript.out'.
 
@@ -333,6 +335,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 29.
 LaTeX Font Info:    Calculating math sizes for size <> on input line 29.
+
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
 (Font)              size <5> substituted on input line 29.
@@ -398,7 +401,7 @@ File: Plots/star-roles-by-size.png Graphic file (type png)
 <use Plots/star-roles-by-size.png>
 Package pdftex.def Info: Plots/star-roles-by-size.png  used on input line 178.
 (pdftex.def)             Requested size: 268.84767pt x 307.26143pt.
-[10 <./Plots/Toys/star.png> <./Plots/Toys/circle.png> <./Plots/Toys/clique.png>] [11 <./Plots/star-roles-by-size.png>]
+ [10 <./Plots/Toys/star.png> <./Plots/Toys/circle.png> <./Plots/Toys/clique.png>] [11 <./Plots/star-roles-by-size.png>]
 <Plots/Toys/circle-triangle1.png, id=289, 505.89pt x 361.1091pt>
 File: Plots/Toys/circle-triangle1.png Graphic file (type png)
 <use Plots/Toys/circle-triangle1.png>
@@ -450,7 +453,7 @@ File: Plots/Toys/sf4.png Graphic file (type png)
 <use Plots/Toys/sf4.png>
 Package pdftex.def Info: Plots/Toys/sf4.png  used on input line 261.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-[14 <./Plots/Toys/circle-triangle1.png> <./Plots/Toys/circle-long.png> <./Plots/Toys/star-triangle1.png> <./Plots/Toys/star-triangle2.png> <./Plots/Toys/two-connected-long.png> <./Plots/Toys/wheel.png>]
+ [14 <./Plots/Toys/circle-triangle1.png> <./Plots/Toys/circle-long.png> <./Plots/Toys/star-triangle1.png> <./Plots/Toys/star-triangle2.png> <./Plots/Toys/two-connected-long.png> <./Plots/Toys/wheel.png>]
 File: Plots/Toys/sf4.png Graphic file (type png)
 <use Plots/Toys/sf4.png>
 Package pdftex.def Info: Plots/Toys/sf4.png  used on input line 283.
@@ -670,7 +673,7 @@ File: Plots/political4.png Graphic file (type png)
 <use Plots/political4.png>
 Package pdftex.def Info: Plots/political4.png  used on input line 486.
 (pdftex.def)             Requested size: 201.63234pt x 202.99783pt.
-(./Tabs/Figure6.tex)
+ (./Tabs/Figure6.tex)
 Overfull \hbox (0.21497pt too wide) in paragraph at lines 500--500
 []\OT1/cmr/bx/n/17.28 Betweenness vs Dis-tinc-tion: Re-vis-it-ing the Medici
  []
@@ -686,19 +689,19 @@ File: Plots/nomedici.png Graphic file (type png)
 <use Plots/nomedici.png>
 Package pdftex.def Info: Plots/nomedici.png  used on input line 523.
 (pdftex.def)             Requested size: 448.0749pt x 268.85043pt.
-(./Tabs/medici.tex) [24] [25 <./Plots/medici.png (PNG copy)> <./Plots/nomedici.png (PNG copy)>] [26] [27] [28] [29]
+ (./Tabs/medici.tex) [24] [25 <./Plots/medici.png (PNG copy)> <./Plots/nomedici.png (PNG copy)>] [26] [27] [28] [29]
 <Plots/search.png, id=439, 280.04625pt x 251.43938pt>
 File: Plots/search.png Graphic file (type png)
 <use Plots/search.png>
 Package pdftex.def Info: Plots/search.png  used on input line 563.
 (pdftex.def)             Requested size: 201.63234pt x 181.04387pt.
-(./Tabs/search.tex) [30 <./Plots/search.png>] [31] [32]
+ (./Tabs/search.tex) [30 <./Plots/search.png>] [31] [32]
 <Plots/PortfolioIntegration.png, id=466, 493.845pt x 274.77657pt>
 File: Plots/PortfolioIntegration.png Graphic file (type png)
 <use Plots/PortfolioIntegration.png>
 Package pdftex.def Info: Plots/PortfolioIntegration.png  used on input line 610.
 (pdftex.def)             Requested size: 448.0749pt x 249.30913pt.
-[33] [34 <./Plots/PortfolioIntegration.png>] [35] [36] [37] (./manuscript.bbl [38] [39]) [40] (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang1.sty
+ [33] [34 <./Plots/PortfolioIntegration.png>] [35] [36] [37] (./manuscript.bbl [38] [39]) [40] (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2025/11/14 1.11b listings language file
@@ -706,19 +709,20 @@ File: lstlang2.sty 2025/11/14 1.11b listings language file
 File: lstlang3.sty 2025/11/14 1.11b listings language file
 )
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 662.
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
 (Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 664.
 LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 665.
-(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1pcr.fd
+ (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ) [41{/home/omarlizardo/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] [42] (./manuscript.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-06-18>
  ***********
+
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
@@ -730,15 +734,15 @@ Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: F1B73DA141A8BB54E9A6E45B0AC0FC1E;5159.
  ) 
 Here is how much of TeX's memory you used:
- 13888 strings out of 469158
- 222542 string characters out of 5459787
- 1118147 words of memory out of 5000000
- 42549 multiletter control sequences out of 15000+600000
+ 13889 strings out of 469097
+ 222719 string characters out of 5457857
+ 1118363 words of memory out of 5000000
+ 42564 multiletter control sequences out of 15000+600000
  638085 words of font info for 74 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 74i,8n,79p,1978b,2733s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 36 hyphenation exceptions out of 8191
+ 74i,8n,79p,2039b,2733s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/omarlizardo/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/omarlizardo/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on manuscript.pdf (42 pages, 4312181 bytes).
+Output written on manuscript.pdf (42 pages, 4312193 bytes).
 PDF statistics:
  709 PDF objects out of 1000 (max. 8388607)
  574 compressed objects within 6 object streams
