@@ -1,17 +1,24 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Distinction Centrality",
+    "section": "",
+    "text": "Welcome to the documentation and analysis portal for Distinction Centrality (\\(\\beta_i\\)).\nThis project implements and analyzes a social network metric theoretically inspired by Pierre Bourdieu’s theory of agonistic competition in social fields. It models the trade-off between status (influence/eigenvector centrality) and constraint (average status of neighbors in the node-deleted subgraph).\n\nMathematical Formulation\nThe distinction centrality (\\(\\beta_i\\)) of a node \\(i\\) is defined as:\n\\[\\beta_i = \\alpha s_i - \\kappa_i\\]\nwhere: - \\(s_i\\) is the status of node \\(i\\). - \\(\\kappa_i\\) is the constraint (average status of neighbors in the node-deleted subgraph). - \\(\\alpha\\) is a scalar adjustment factor defined as \\(\\alpha = \\frac{\\bar{\\mathbf{\\kappa}}}{\\bar{\\mathbf{s}}}\\).\nExplore the tabs above to learn more about the implementation and see real-world examples using historical social network datasets."
+  },
+  {
+    "objectID": "examples.html",
+    "href": "examples.html",
+    "title": "Examples",
+    "section": "",
+    "text": "This page provides an example of how to compute and visualize distinction centrality using the classic Medici family network from Padgett & Ansell (1993).\n\nlibrary(igraph)\nlibrary(dplyr)\nlibrary(readr)\nsource(\"Functions/distinction.R\")\n\n# Load the Medici dataset\nmedici_edges &lt;- read_csv(\"Data/MediciEdgeList.csv\")\ng &lt;- graph_from_data_frame(medici_edges, directed = FALSE)\n\n# Calculate distinction centrality for the full network\nresults_full &lt;- distinction(g)\n\ncat(\"### Top Families (Full Network)\\n\")\n\n### Top Families (Full Network)\n\nresults_full %&gt;%\n  arrange(desc(scd)) %&gt;%\n  head(5) %&gt;%\n  knitr::kable()\n\n\n\n\nn\nd\nscd\ns\nu\nscalar\n\n\n\n\nDavanzati\n1.0000\n0.9812\n1.0000\n0.0000\n0.9812\n\n\nGuadagni\n1.0000\n0.9812\n1.0000\n0.0000\n0.9812\n\n\nOrlandini\n1.0000\n0.9812\n1.0000\n0.0000\n0.9812\n\n\nPeruzzi\n0.2930\n0.2812\n0.6277\n0.3347\n0.9812\n\n\nAlbizzi\n0.2804\n0.2693\n0.5920\n0.3115\n0.9812\n\n\n\n\n# Load and analyze the network without the Medici\nnomedici_edges &lt;- read_csv(\"Data/NoMediciEdgeList.csv\")\ng_no &lt;- graph_from_data_frame(nomedici_edges, directed = FALSE)\nresults_no &lt;- distinction(g_no)\n\ncat(\"\\n### Top Families (Network without Medici)\\n\")\n\n\n### Top Families (Network without Medici)\n\nresults_no %&gt;%\n  arrange(desc(scd)) %&gt;%\n  head(5) %&gt;%\n  knitr::kable()\n\n\n\n\nn\nd\nscd\ns\nu\nscalar\n\n\n\n\nValori\n1\n0.7992\n1\n0\n0.7992\n\n\nGinori\n1\n0.7992\n1\n0\n0.7992\n\n\nDavanzati\n1\n0.7992\n1\n0\n0.7992\n\n\nGuadagni\n1\n0.7992\n1\n0\n0.7992\n\n\nCocco-Donati\n1\n0.7992\n1\n0\n0.7992\n\n\n\n\n\n\nAnalysis\nThe comparison highlights how the network hierarchy shifts in the absence of the Medici. In the full network, the Medici command the highest distinction score. When removed, the distinction scores of the remaining elite families (such as the Albizzi and Guasconi) are recalculated based on their new relative network positions, illustrating how individual distinction is intrinsically linked to the presence of key central brokers."
+  },
+  {
     "objectID": "jilbert.html",
     "href": "jilbert.html",
     "title": "Untitled",
     "section": "",
     "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.2.1     ✔ readr     2.2.0\n✔ forcats   1.0.1     ✔ stringr   1.6.0\n✔ ggplot2   4.0.3     ✔ tibble    3.3.1\n✔ lubridate 1.9.5     ✔ tidyr     1.3.2\n✔ purrr     1.2.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n   library(dplyr)\n   library(tidygraph)\n\n\nAttaching package: 'tidygraph'\n\nThe following object is masked from 'package:stats':\n\n    filter\n\n   library(ggraph)\n   library(igraph)\n\n\nAttaching package: 'igraph'\n\nThe following object is masked from 'package:tidygraph':\n\n    groups\n\nThe following objects are masked from 'package:lubridate':\n\n    %--%, union\n\nThe following objects are masked from 'package:dplyr':\n\n    as_data_frame, groups, union\n\nThe following objects are masked from 'package:purrr':\n\n    compose, simplify\n\nThe following object is masked from 'package:tidyr':\n\n    crossing\n\nThe following object is masked from 'package:tibble':\n\n    as_data_frame\n\nThe following objects are masked from 'package:stats':\n\n    decompose, spectrum\n\nThe following object is masked from 'package:base':\n\n    union\n\n\n##Parameter Test Networks\n#startest.csv startest &lt;- read.csv(file.choose(), header=TRUE) stardf&lt;-as.matrix(startest) stargraph&lt;-graph_from_edgelist(stardf, directed=FALSE) distinction(stargraph) plot(stargraph)\n#startest2.csv star2 &lt;- read.csv(file.choose(), header=TRUE) star2df&lt;-as.matrix(star2) stargraph2&lt;-graph_from_edgelist(star2df, directed=FALSE) distinction(stargraph2) plot(stargraph2)\n#intraclustertest.csv intracluster &lt;- read.csv(file.choose(), header=TRUE) intraclusterdf&lt;-as.matrix(intracluster) intraclustergraph&lt;-graph_from_edgelist(intraclusterdf, directed=FALSE) distinction(intraclustergraph) plot(intraclustergraph)\n#intraclustertest2.csv intracluster2 &lt;- read.csv(file.choose(), header=TRUE) intracluster2df&lt;-as.matrix(intracluster2) intraclustergraph2&lt;-graph_from_edgelist(intracluster2df, directed=FALSE) distinction(intraclustergraph2) plot(intraclustergraph2)\n##Medici Network\n#MediciEdgeList.csv medici &lt;- read.csv(file.choose(), header=TRUE)\n#AlbizziEditMediciEdgeList.csv nomedici &lt;- read.csv(file.choose(), header=TRUE)\nmedicidf&lt;-as.matrix(medici) medicigraph&lt;-graph_from_edgelist(medicidf, directed=FALSE)\nnomedicidf&lt;-as.matrix(nomedici) nomedicigraph&lt;-graph_from_edgelist(nomedicidf, directed=FALSE)\nbetweenness(medicigraph) betweenness(nomedeigenicigraph)\neigen_centrality(medicigraph) eigen_centrality(nomedicigraph)\n```"
-  },
-  {
-    "objectID": "functions.html",
-    "href": "functions.html",
-    "title": "The Distinction Function",
-    "section": "",
-    "text": "The core of this analysis is the distinction() function, which calculates the distinction centrality score for nodes in an igraph object.\n\nImplementation\nThe function computes status (\\(s_i\\)) using eigenvector centrality (processed component-wise for robustness), calculates the constraint (\\(\\kappa_i\\)) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.\ndistinction &lt;- function(x, norm = \"abm\", digits = 4) {\n  # x: an igraph object\n  # norm: normalization type (default 'abm')\n  # returns: dataframe with distinction (d), scaled distinction (scd), \n  #          status (s), and constraint (u)\n  \n  # ... (internal logic)\n}\n\n\nParameters\n\nx: An igraph object representing the network.\nnorm: A character string indicating the normalization method to use for status scores ('max', 'one', 'abm', 'abs').\ndigits: Number of decimal places for rounding the output.\n\n\n\nOutput\nThe function returns a data.frame containing: - n: Node names. - d: Raw distinction score (\\(s_i - \\kappa_i\\)). - scd: Scaled distinction centrality (\\(\\alpha s_i - \\kappa_i\\)). - s: Status (eigenvector centrality). - u: Constraint (\\(\\kappa_i\\)). - scalar: The \\(\\alpha\\) adjustment factor."
   },
   {
     "objectID": "analysis.html",
@@ -84,6 +91,13 @@
     "text": "Kite Computational Experiments"
   },
   {
+    "objectID": "functions.html",
+    "href": "functions.html",
+    "title": "The Distinction Function",
+    "section": "",
+    "text": "The core of this analysis is the distinction() function, which calculates the distinction centrality score for nodes in an igraph object.\n\nInstallation & Usage\nTo use the distinction function in your own R project, you can download the script directly from our repository:\n\nDownload the script: Click here to download distinction.R\nSource the function in your R script:\n\n# Load igraph\nlibrary(igraph)\n\n# Source the function\nsource(\"path/to/your/downloaded/distinction.R\")\n\n# Example usage\ng &lt;- make_ring(7)\nresults &lt;- distinction(g)\nprint(results)\n\n\nImplementation Details\nThe function computes status (\\(s_i\\)) using eigenvector centrality (processed component-wise for robustness), calculates the constraint (\\(\\kappa_i\\)) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.\n\n\nParameters\n\nx: An igraph object representing the network.\nnorm: A character string indicating the normalization method to use for status scores ('max', 'one', 'abm', 'abs').\ndigits: Number of decimal places for rounding the output.\n\n\n\nOutput\nThe function returns a data.frame containing: - n: Node names. - d: Raw distinction score (\\(s_i - \\kappa_i\\)). - scd: Scaled distinction centrality (\\(\\alpha s_i - \\kappa_i\\)). - s: Status (eigenvector centrality). - u: Constraint (\\(\\kappa_i\\)). - scalar: The \\(\\alpha\\) adjustment factor."
+  },
+  {
     "objectID": "Archive/modifications_report.html",
     "href": "Archive/modifications_report.html",
     "title": "Project Modifications and Codebase Optimization Report",
@@ -131,19 +145,5 @@
     "title": "Project Modifications and Codebase Optimization Report",
     "section": "Pipeline verification",
     "text": "Pipeline verification\nTo verify that the refactored code and setup worked perfectly, we ran two complete verification steps:\n\nQuarto Render: Executed quarto render analysis.qmd which rebuilt all .tex tables and .png plots using the newly optimized functions. The build finished with an exit code of 0.\nLaTeX Engine Run: Ran latexmk on manuscript.tex. The engine compiled without structural or citation warnings and generated the final 4.8MB manuscript.pdf cleanly."
-  },
-  {
-    "objectID": "examples.html",
-    "href": "examples.html",
-    "title": "Examples",
-    "section": "",
-    "text": "This page provides an example of how to compute and visualize distinction centrality using the classic Medici family network from Padgett & Ansell (1993).\n\nlibrary(igraph)\nlibrary(dplyr)\nlibrary(readr)\nsource(\"Functions/distinction.R\")\n\n# Load the Medici dataset\nmedici_edges &lt;- read_csv(\"Data/MediciEdgeList.csv\")\ng &lt;- graph_from_data_frame(medici_edges, directed = FALSE)\n\n# Calculate distinction centrality\nresults &lt;- distinction(g)\n\n# Display the top 10 most \"distinguished\" families\nresults %&gt;%\n  arrange(desc(scd)) %&gt;%\n  head(10) %&gt;%\n  knitr::kable()\n\n\n\n\nn\nd\nscd\ns\nu\nscalar\n\n\n\n\nDavanzati\n1.0000\n0.9812\n1.0000\n0.0000\n0.9812\n\n\nGuadagni\n1.0000\n0.9812\n1.0000\n0.0000\n0.9812\n\n\nOrlandini\n1.0000\n0.9812\n1.0000\n0.0000\n0.9812\n\n\nPeruzzi\n0.2930\n0.2812\n0.6277\n0.3347\n0.9812\n\n\nAlbizzi\n0.2804\n0.2693\n0.5920\n0.3115\n0.9812\n\n\nStrozzi\n0.1111\n0.1032\n0.4239\n0.3128\n0.9812\n\n\nCastellani\n0.0879\n0.0826\n0.2812\n0.1933\n0.9812\n\n\nGuasconi\n0.0171\n0.0067\n0.5534\n0.5363\n0.9812\n\n\nDella Casa\n0.0119\n0.0050\n0.3677\n0.3558\n0.9812\n\n\nGinori\n-0.0203\n-0.0220\n0.0925\n0.1128\n0.9812\n\n\n\n\n\n\nAnalysis\nThe results show the Medici family’s high distinction score, confirming their unique position of balancing power (status) while managing social constraints compared to other contemporary families."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Distinction Centrality",
-    "section": "",
-    "text": "Welcome to the documentation and analysis portal for Distinction Centrality (\\(\\beta_i\\)).\nThis project implements and analyzes a social network metric theoretically inspired by Pierre Bourdieu’s theory of agonistic competition in social fields. It models the trade-off between status (influence/eigenvector centrality) and constraint (average status of neighbors in the node-deleted subgraph).\n\nMathematical Formulation\nThe distinction centrality (\\(\\beta_i\\)) of a node \\(i\\) is defined as:\n\\[\\beta_i = \\alpha s_i - \\kappa_i\\]\nwhere: - \\(s_i\\) is the status of node \\(i\\). - \\(\\kappa_i\\) is the constraint (average status of neighbors in the node-deleted subgraph). - \\(\\alpha\\) is a scalar adjustment factor defined as \\(\\alpha = \\frac{\\bar{\\mathbf{\\kappa}}}{\\bar{\\mathbf{s}}}\\).\nExplore the tabs above to learn more about the implementation and see real-world examples using historical social network datasets."
   }
 ]
