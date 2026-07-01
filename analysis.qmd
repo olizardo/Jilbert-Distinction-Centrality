@@ -31,6 +31,12 @@ execute:
    }
    
    del.names <- function(x) delete_vertex_attr(x, "name")
+   
+   # Wrapper for plotting toy graphs
+   plot.toys <- function(x, file, lay = "kk") {
+      ggsave(here("Plots", "Toys", file), 
+             plot = plot.graph.norm(x, l = lay))
+   }
 ```
 
 ## Toy Networks
@@ -41,6 +47,15 @@ execute:
    c5 <- make_full_graph(5, directed = FALSE) # 5-clique
    t3 <- make_tree(n = 4, children = 3, mode = "undirected") # 3-tree
    t2 <- make_tree(n = 3, children = 2, mode = "undirected") # 2-tree
+   
+   # Add definitions for the missing toy graphs
+   s7 <- make_star(7, mode = "undirected")
+   c7 <- make_full_graph(7, directed = FALSE)
+   r7 <- make_ring(7)
+   # Zachary's karate club is a famous graph
+   k7 <- make_graph("Zachary") 
+   w7 <- make_wheel(7)
+   p7 <- make_empty_graph(7) + path(1:7)
 ```
 
 ```{r Basic Toy Graphs}
@@ -331,10 +346,12 @@ execute:
 
 ```{r Connected Caves}
    source(here("Functions", "connect.caves.R"))
-   source(here("Functions", "gg2.R"))
+   # source(here("Functions", "gg2.R")) # gg2.R not found, disabling
+   source(here("Functions", "plot.graph.norm.R"))
    set.seed(456)
    b <- connect.caves(c = 4, nc = 4, n = 24)
-   p.list <- lapply(b, gg2, lay.o = "auto")
+   # Replacing gg2 calls with plot.graph.norm
+   p.list <- lapply(b, plot.graph.norm, l = "auto")
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Long Ties =", i-1)) +
          theme(plot.title = element_text(size = 11))
@@ -353,9 +370,9 @@ execute:
 
 ```{r}
    source(here("Functions", "make.broker.trees.R"))
-   source(here("Functions", "gg.R"))
+   # source(here("Functions", "gg.R")) # gg.R not found
    b <- make.broker.trees(30)
-   p.list <- lapply(b, gg)
+   p.list <- lapply(b, plot.graph.norm, l = "auto")
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
          theme(plot.title = element_text(size = 11))
@@ -419,9 +436,9 @@ execute:
 
 ```{r}
    source(here("Functions", "make.broker.cliques.R"))
-   source(here("Functions", "gg.R"))
+   # source(here("Functions", "gg.R")) # gg.R not found
    b <- make.broker.cliques(30)
-   p.list <- lapply(b, gg, star = 9)
+   p.list <- lapply(b, plot.graph.norm, l = "auto")
    for (i in 1:length(p.list)) {
       p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
          theme(plot.title = element_text(size = 11))
