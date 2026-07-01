@@ -17,15 +17,26 @@ source("Functions/distinction.R")
 medici_edges <- read_csv("Data/MediciEdgeList.csv")
 g <- graph_from_data_frame(medici_edges, directed = FALSE)
 
-# Calculate distinction centrality
-results <- distinction(g)
+# Calculate distinction centrality for the full network
+results_full <- distinction(g)
 
-# Display the top 10 most "distinguished" families
-results %>%
+cat("### Top Families (Full Network)\n")
+results_full %>%
   arrange(desc(scd)) %>%
-  head(10) %>%
+  head(5) %>%
+  knitr::kable()
+
+# Load and analyze the network without the Medici
+nomedici_edges <- read_csv("Data/NoMediciEdgeList.csv")
+g_no <- graph_from_data_frame(nomedici_edges, directed = FALSE)
+results_no <- distinction(g_no)
+
+cat("\n### Top Families (Network without Medici)\n")
+results_no %>%
+  arrange(desc(scd)) %>%
+  head(5) %>%
   knitr::kable()
 ```
 
 ### Analysis
-The results show the Medici family's high distinction score, confirming their unique position of balancing power (status) while managing social constraints compared to other contemporary families.
+The comparison highlights how the network hierarchy shifts in the absence of the Medici. In the full network, the Medici command the highest distinction score. When removed, the distinction scores of the remaining elite families (such as the Albizzi and Guasconi) are recalculated based on their new relative network positions, illustrating how individual distinction is intrinsically linked to the presence of key central brokers.
