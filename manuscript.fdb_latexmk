@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex manuscript"] 1782913481.83843 "manuscript.aux" "manuscript.bbl" "manuscript" 1782913487.05519 0
-  "./networks.bib" 1782250676.92611 16407 c45d2c308aeabe3e9378af0ec4752722 ""
+["bibtex manuscript"] 1782920394.01276 "manuscript.aux" "manuscript.bbl" "manuscript" 1782920399.76457 0
+  "./networks.bib" 1782920381.86911 16658 3c9e378ad34b86ff3ffcc11fcf20a76c ""
   "/home/omarlizardo/.TinyTeX/texmf-dist/bibtex/bst/base/apalike.bst" 1782672754.0784 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "manuscript.aux" 1782913486.97585 20284 3a2c9122d4b0a29267c3aa44e9fa8228 "pdflatex"
+  "manuscript.aux" 1782920399.68152 20467 c50b2a80bd87c9933b0e86313010be4b "pdflatex"
   (generated)
   "manuscript.bbl"
   "manuscript.blg"
   (rewritten before read)
-["pdflatex"] 1782913481.85671 "/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex" "manuscript.pdf" "manuscript" 1782913487.05536 0
+["pdflatex"] 1782920394.03293 "/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex" "manuscript.pdf" "manuscript" 1782920399.76474 0
   "/home/omarlizardo/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc" 1782672756.41042 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/home/omarlizardo/.TinyTeX/texmf-dist/fonts/tfm/adobe/courier/pcrb7t.tfm" 1782672755.41341 960 4ab65358b8406f30ef5496c8c096d22b ""
   "/home/omarlizardo/.TinyTeX/texmf-dist/fonts/tfm/adobe/courier/pcrb8c.tfm" 1782672755.41341 1268 8067e4f35cbae42c0f58b48da75bf496 ""
@@ -122,7 +122,7 @@
   "/home/omarlizardo/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk" 1782913471.0913 9268 b03bb664661e0b5ae1bb68ccea99c582 ""
   "/home/omarlizardo/.TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1782673841 2306334 2ab474859f481f82b81b7a3ab8e9a5be ""
   "/home/omarlizardo/.TinyTeX/texmf.cnf" 1782672756.56742 637 edd806fb06a89761a6034e1968af9017 ""
-  "/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex" 1782273535.23884 89688 ed11d020b9b6d1342b487c99cb8f7ea6 ""
+  "/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex" 1782920381.86911 90806 8b06ab52df1fb155a38ade9ce1e84592 ""
   "Plots/PortfolioIntegration.png" 1782250676.39412 7700 9c1bc0b605cb78fa5fbcca46d668ac47 ""
   "Plots/Toys/broker3.png" 1782273818.71219 70692 5ec5650c90a333135081e7cf1f954d10 ""
   "Plots/Toys/broker4.png" 1782273819.04419 98672 561fac75591e3eb38158e4aaa62349a5 ""
@@ -139,6 +139,9 @@
   "Plots/Toys/sf5.png" 1782273818.35019 178444 0f386f68815ba477925aa0680c9f7367 ""
   "Plots/Toys/small-world-edge.png" 1782250676.63312 197343 5847d1d7d9873657d58c08f0b7fe3f11 ""
   "Plots/Toys/small-world.png" 1782256051.04975 204748 63dd79c39f9bca5b7d254b7820622516 ""
+  "Plots/Toys/small-world1.png" 1782273825.33813 157979 868b760310a5f8737a4f5607640e132d ""
+  "Plots/Toys/small-world2.png" 1782273825.72213 179149 203ce34f3d8778594a7cbf5ec3a32b14 ""
+  "Plots/Toys/small-world3.png" 1782273826.38112 178423 4a8a7884726fb1ef0734566715b568ee ""
   "Plots/Toys/star-triangle1.png" 1782273820.13218 91232 537011e34a11b9245350cacce911babe ""
   "Plots/Toys/star-triangle2.png" 1782273820.40818 92393 5c241a9c39b75f06c529083616b60efa ""
   "Plots/Toys/star.png" 1782273814.90323 88000 800e9a75679438db64c3a2c88191bd2b ""
@@ -171,10 +174,10 @@
   "Tabs/Figure6.tex" 1782250686.52505 1521 085bd28d1214fdb25a9d7bb7d955ce5a ""
   "Tabs/medici.tex" 1782250686.54705 2033 9c42418d713fcb2429ca2e1bfe4e8c63 ""
   "Tabs/search.tex" 1782250686.51705 825 11b3e167aa9baa29b521677b4d743eca ""
-  "manuscript.aux" 1782913486.97585 20284 3a2c9122d4b0a29267c3aa44e9fa8228 "pdflatex"
-  "manuscript.bbl" 1782913481.8513 6832 ab814fc44d8921bcb4774dd81bfb1d46 "bibtex manuscript"
-  "manuscript.out" 1782913486.97685 5159 f1b73da141a8bb54e9a6e45b0ac0fc1e "pdflatex"
-  "manuscript.tex" 1782273535.23884 89688 ed11d020b9b6d1342b487c99cb8f7ea6 ""
+  "manuscript.aux" 1782920399.68152 20467 c50b2a80bd87c9933b0e86313010be4b "pdflatex"
+  "manuscript.bbl" 1782920394.02799 7289 c3a30aa5cba28e61997551a4001cdbad "bibtex manuscript"
+  "manuscript.out" 1782920399.68252 5159 f1b73da141a8bb54e9a6e45b0ac0fc1e "pdflatex"
+  "manuscript.tex" 1782920381.86911 90806 8b06ab52df1fb155a38ade9ce1e84592 ""
   (generated)
   "manuscript.aux"
   "manuscript.log"

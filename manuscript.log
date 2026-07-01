@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.28)  1 JUL 2026 06:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.28)  1 JUL 2026 08:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -250,7 +250,133 @@ File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count319
 ) (./manuscript.aux
 
+LaTeX Warning: Label `fig:sw1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sw1' multiply defined.
+
+
+LaTeX Warning: Label `fig:sw1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sw1' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:classicbrokerage3' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:classicbrokerage3' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:classicbrokerage3' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:classicbrokerage3' multiply defined.
+
+
+LaTeX Warning: Label `fig:classicbrokerage3' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:classicbrokerage3' multiply defined.
+
+
+LaTeX Warning: Label `fig:twoconnected' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:twoconnected' multiply defined.
+
+
+LaTeX Warning: Label `fig:circleweld' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:circleweld' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:sf' multiply defined.
+
+
+LaTeX Warning: Label `fig:Placehold' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:Placehold' multiply defined.
+
+
+LaTeX Warning: Label `fig:Placehold' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:Placehold' multiply defined.
+
+
+LaTeX Warning: Label `fig:Placehold' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:Placehold' multiply defined.
+
+
 LaTeX Warning: Label `tab:star' multiply defined.
+
+
+LaTeX Warning: Label `fig:medici' multiply defined.
+
+
+LaTeX Warning: Label `fig:search' multiply defined.
+
+
+LaTeX Warning: Label `fig:medici' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:medici' multiply defined.
 
 )
 \openout1 = `manuscript.aux'.
@@ -380,29 +506,44 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <0.5> on input line 29.
 [1
 
-{/home/omarlizardo/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] (./Tabs/Figure1.tex) [9]
-<Plots/Toys/star.png, id=254, 505.89pt x 361.1091pt>
+{/home/omarlizardo/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7]
+
+LaTeX Warning: Reference `tab:circle' on page 8 undefined on input line 107.
+
+
+LaTeX Warning: Reference `tab:clique' on page 8 undefined on input line 107.
+
+[8] (./Tabs/Figure1.tex)
+<Plots/Toys/star.png, id=249, 505.89pt x 361.1091pt>
 File: Plots/Toys/star.png Graphic file (type png)
 <use Plots/Toys/star.png>
 Package pdftex.def Info: Plots/Toys/star.png  used on input line 159.
 (pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/Toys/circle.png, id=255, 505.89pt x 361.1091pt>
+<Plots/Toys/circle.png, id=250, 505.89pt x 361.1091pt>
 File: Plots/Toys/circle.png Graphic file (type png)
 <use Plots/Toys/circle.png>
 Package pdftex.def Info: Plots/Toys/circle.png  used on input line 164.
 (pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/Toys/clique.png, id=256, 505.89pt x 361.1091pt>
+<Plots/Toys/clique.png, id=251, 505.89pt x 361.1091pt>
 File: Plots/Toys/clique.png Graphic file (type png)
 <use Plots/Toys/clique.png>
 Package pdftex.def Info: Plots/Toys/clique.png  used on input line 169.
 (pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/star-roles-by-size.png, id=257, 505.89pt x 578.16pt>
+ [9]
+<Plots/star-roles-by-size.png, id=262, 505.89pt x 578.16pt>
 File: Plots/star-roles-by-size.png Graphic file (type png)
 <use Plots/star-roles-by-size.png>
 Package pdftex.def Info: Plots/star-roles-by-size.png  used on input line 178.
 (pdftex.def)             Requested size: 268.84767pt x 307.26143pt.
- [10 <./Plots/Toys/star.png> <./Plots/Toys/circle.png> <./Plots/Toys/clique.png>] [11 <./Plots/star-roles-by-size.png>]
-<Plots/Toys/circle-triangle1.png, id=289, 505.89pt x 361.1091pt>
+
+
+LaTeX Warning: Reference `tab:circle' on page 10 undefined on input line 183.
+
+
+LaTeX Warning: Reference `tab:clique' on page 10 undefined on input line 183.
+
+[10 <./Plots/Toys/star.png> <./Plots/Toys/circle.png> <./Plots/Toys/clique.png>] [11 <./Plots/star-roles-by-size.png>] [12]
+<Plots/Toys/circle-triangle1.png, id=305, 505.89pt x 361.1091pt>
 File: Plots/Toys/circle-triangle1.png Graphic file (type png)
 <use Plots/Toys/circle-triangle1.png>
 Package pdftex.def Info: Plots/Toys/circle-triangle1.png  used on input line 211.
@@ -412,12 +553,12 @@ Underfull \hbox (badness 1038) in paragraph at lines 212--212
 []\OT1/cmr/m/n/10 (a) |Cir-cle Graph with Near
  []
 
-<Plots/Toys/circle-long.png, id=290, 505.89pt x 361.1091pt>
+<Plots/Toys/circle-long.png, id=306, 505.89pt x 361.1091pt>
 File: Plots/Toys/circle-long.png Graphic file (type png)
 <use Plots/Toys/circle-long.png>
 Package pdftex.def Info: Plots/Toys/circle-long.png  used on input line 216.
 (pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/Toys/star-triangle1.png, id=291, 505.89pt x 361.1091pt>
+<Plots/Toys/star-triangle1.png, id=307, 505.89pt x 361.1091pt>
 File: Plots/Toys/star-triangle1.png Graphic file (type png)
 <use Plots/Toys/star-triangle1.png>
 Package pdftex.def Info: Plots/Toys/star-triangle1.png  used on input line 221.
@@ -427,12 +568,12 @@ Underfull \hbox (badness 3746) in paragraph at lines 222--222
 []\OT1/cmr/m/n/10 (c) |Star Graph with Near
  []
 
-<Plots/Toys/star-triangle2.png, id=292, 505.89pt x 361.1091pt>
+<Plots/Toys/star-triangle2.png, id=308, 505.89pt x 361.1091pt>
 File: Plots/Toys/star-triangle2.png Graphic file (type png)
 <use Plots/Toys/star-triangle2.png>
 Package pdftex.def Info: Plots/Toys/star-triangle2.png  used on input line 226.
 (pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/Toys/two-connected-long.png, id=293, 505.89pt x 361.1091pt>
+<Plots/Toys/two-connected-long.png, id=309, 505.89pt x 361.1091pt>
 File: Plots/Toys/two-connected-long.png Graphic file (type png)
 <use Plots/Toys/two-connected-long.png>
 Package pdftex.def Info: Plots/Toys/two-connected-long.png  used on input line 231.
@@ -442,84 +583,100 @@ Underfull \hbox (badness 10000) in paragraph at lines 232--232
 []\OT1/cmr/m/n/10 (e) |2-Connected Sub-graphs
  []
 
-<Plots/Toys/wheel.png, id=294, 505.89pt x 361.1091pt>
+<Plots/Toys/wheel.png, id=310, 505.89pt x 361.1091pt>
 File: Plots/Toys/wheel.png Graphic file (type png)
 <use Plots/Toys/wheel.png>
 Package pdftex.def Info: Plots/Toys/wheel.png  used on input line 236.
 (pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-(./Tabs/Figure3.tex) [12] [13]
-<Plots/Toys/sf4.png, id=313, 505.89pt x 361.1091pt>
+(./Tabs/Figure3.tex) [13 <./Plots/Toys/circle-triangle1.png> <./Plots/Toys/circle-long.png> <./Plots/Toys/star-triangle1.png> <./Plots/Toys/star-triangle2.png> <./Plots/Toys/two-connected-long.png> <./Plots/Toys/wheel.png>] [14]
+<Plots/Toys/regular-four.png, id=322, 505.89pt x 361.1091pt>
+File: Plots/Toys/regular-four.png Graphic file (type png)
+<use Plots/Toys/regular-four.png>
+Package pdftex.def Info: Plots/Toys/regular-four.png  used on input line 261.
+(pdftex.def)             Requested size: 161.30724pt x 115.14401pt.
+<Plots/Toys/small-world1.png, id=323, 505.89pt x 361.1091pt>
+File: Plots/Toys/small-world1.png Graphic file (type png)
+<use Plots/Toys/small-world1.png>
+Package pdftex.def Info: Plots/Toys/small-world1.png  used on input line 266.
+(pdftex.def)             Requested size: 161.30724pt x 115.14401pt.
+<Plots/Toys/small-world2.png, id=324, 505.89pt x 361.1091pt>
+File: Plots/Toys/small-world2.png Graphic file (type png)
+<use Plots/Toys/small-world2.png>
+Package pdftex.def Info: Plots/Toys/small-world2.png  used on input line 271.
+(pdftex.def)             Requested size: 161.30724pt x 115.14401pt.
+<Plots/Toys/small-world3.png, id=325, 505.89pt x 361.1091pt>
+File: Plots/Toys/small-world3.png Graphic file (type png)
+<use Plots/Toys/small-world3.png>
+Package pdftex.def Info: Plots/Toys/small-world3.png  used on input line 276.
+(pdftex.def)             Requested size: 161.30724pt x 115.14401pt.
+ [15 <./Plots/Toys/regular-four.png> <./Plots/Toys/small-world1.png> <./Plots/Toys/small-world2.png> <./Plots/Toys/small-world3.png>]
+<Plots/Toys/sf4.png, id=334, 505.89pt x 361.1091pt>
 File: Plots/Toys/sf4.png Graphic file (type png)
 <use Plots/Toys/sf4.png>
-Package pdftex.def Info: Plots/Toys/sf4.png  used on input line 261.
+Package pdftex.def Info: Plots/Toys/sf4.png  used on input line 298.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
- [14 <./Plots/Toys/circle-triangle1.png> <./Plots/Toys/circle-long.png> <./Plots/Toys/star-triangle1.png> <./Plots/Toys/star-triangle2.png> <./Plots/Toys/two-connected-long.png> <./Plots/Toys/wheel.png>]
-File: Plots/Toys/sf4.png Graphic file (type png)
-<use Plots/Toys/sf4.png>
-Package pdftex.def Info: Plots/Toys/sf4.png  used on input line 283.
-(pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/sf5.png, id=321, 505.89pt x 361.1091pt>
+<Plots/Toys/sf5.png, id=335, 505.89pt x 361.1091pt>
 File: Plots/Toys/sf5.png Graphic file (type png)
 <use Plots/Toys/sf5.png>
-Package pdftex.def Info: Plots/Toys/sf5.png  used on input line 288.
+Package pdftex.def Info: Plots/Toys/sf5.png  used on input line 303.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/two-connected.png, id=322, 505.89pt x 361.1091pt>
+<Plots/Toys/two-connected.png, id=336, 505.89pt x 361.1091pt>
 File: Plots/Toys/two-connected.png Graphic file (type png)
 <use Plots/Toys/two-connected.png>
-Package pdftex.def Info: Plots/Toys/two-connected.png  used on input line 293.
+Package pdftex.def Info: Plots/Toys/two-connected.png  used on input line 308.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/circle-weld.png, id=323, 505.89pt x 361.1091pt>
+<Plots/Toys/circle-weld.png, id=337, 505.89pt x 361.1091pt>
 File: Plots/Toys/circle-weld.png Graphic file (type png)
 <use Plots/Toys/circle-weld.png>
-Package pdftex.def Info: Plots/Toys/circle-weld.png  used on input line 298.
+Package pdftex.def Info: Plots/Toys/circle-weld.png  used on input line 313.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/broker3.png, id=324, 505.89pt x 361.1091pt>
+<Plots/Toys/broker3.png, id=338, 505.89pt x 361.1091pt>
 File: Plots/Toys/broker3.png Graphic file (type png)
 <use Plots/Toys/broker3.png>
-Package pdftex.def Info: Plots/Toys/broker3.png  used on input line 303.
+Package pdftex.def Info: Plots/Toys/broker3.png  used on input line 318.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/broker4.png, id=325, 505.89pt x 361.1091pt>
+<Plots/Toys/broker4.png, id=339, 505.89pt x 361.1091pt>
 File: Plots/Toys/broker4.png Graphic file (type png)
 <use Plots/Toys/broker4.png>
-Package pdftex.def Info: Plots/Toys/broker4.png  used on input line 309.
+Package pdftex.def Info: Plots/Toys/broker4.png  used on input line 324.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/tree-mediator2.png, id=326, 505.89pt x 361.1091pt>
+<Plots/Toys/tree-mediator2.png, id=340, 505.89pt x 361.1091pt>
 File: Plots/Toys/tree-mediator2.png Graphic file (type png)
 <use Plots/Toys/tree-mediator2.png>
-Package pdftex.def Info: Plots/Toys/tree-mediator2.png  used on input line 314.
-(pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 315--315
-[]\OT1/cmr/m/n/10 (g) |Tree with 2
- []
-
-<Plots/Toys/tree-mediator3.png, id=327, 505.89pt x 361.1091pt>
-File: Plots/Toys/tree-mediator3.png Graphic file (type png)
-<use Plots/Toys/tree-mediator3.png>
-Package pdftex.def Info: Plots/Toys/tree-mediator3.png  used on input line 319.
-(pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--320
-[]\OT1/cmr/m/n/10 (h) |Tree with 2
- []
-
-<Plots/Toys/tree-mediator2-long.png, id=328, 505.89pt x 361.1091pt>
-File: Plots/Toys/tree-mediator2-long.png Graphic file (type png)
-<use Plots/Toys/tree-mediator2-long.png>
-Package pdftex.def Info: Plots/Toys/tree-mediator2-long.png  used on input line 324.
-(pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
-[]\OT1/cmr/m/n/10 (i) |Tree with 2
- []
-
-<Plots/Toys/tree-mediator3-long.png, id=329, 505.89pt x 361.1091pt>
-File: Plots/Toys/tree-mediator3-long.png Graphic file (type png)
-<use Plots/Toys/tree-mediator3-long.png>
-Package pdftex.def Info: Plots/Toys/tree-mediator3-long.png  used on input line 329.
+Package pdftex.def Info: Plots/Toys/tree-mediator2.png  used on input line 329.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 330--330
+[]\OT1/cmr/m/n/10 (g) |Tree with 2
+ []
+
+<Plots/Toys/tree-mediator3.png, id=341, 505.89pt x 361.1091pt>
+File: Plots/Toys/tree-mediator3.png Graphic file (type png)
+<use Plots/Toys/tree-mediator3.png>
+Package pdftex.def Info: Plots/Toys/tree-mediator3.png  used on input line 334.
+(pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--335
+[]\OT1/cmr/m/n/10 (h) |Tree with 2
+ []
+
+<Plots/Toys/tree-mediator2-long.png, id=342, 505.89pt x 361.1091pt>
+File: Plots/Toys/tree-mediator2-long.png Graphic file (type png)
+<use Plots/Toys/tree-mediator2-long.png>
+Package pdftex.def Info: Plots/Toys/tree-mediator2-long.png  used on input line 339.
+(pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--340
+[]\OT1/cmr/m/n/10 (i) |Tree with 2
+ []
+
+<Plots/Toys/tree-mediator3-long.png, id=343, 505.89pt x 361.1091pt>
+File: Plots/Toys/tree-mediator3-long.png Graphic file (type png)
+<use Plots/Toys/tree-mediator3-long.png>
+Package pdftex.def Info: Plots/Toys/tree-mediator3-long.png  used on input line 344.
+(pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 []\OT1/cmr/m/n/10 (j) |Tree with 2
  []
 
@@ -527,194 +684,193 @@ Underfull \hbox (badness 10000) in paragraph at lines 330--330
 
 LaTeX Warning: Float too large for page by 4.43723pt on input line 72.
 
-) [15 <./Plots/Toys/sf4.png>] [16 <./Plots/Toys/sf5.png> <./Plots/Toys/two-connected.png> <./Plots/Toys/circle-weld.png> <./Plots/Toys/broker3.png> <./Plots/Toys/broker4.png> <./Plots/Toys/tree-mediator2.png> <./Plots/Toys/tree-mediator3.png> <./Plots/Toys/tree-mediator2-long.png> <./Plots/Toys/tree-mediator3-long.png>] [17]
-<Plots/Toys/kite.png, id=346, 505.89pt x 361.1091pt>
+) [16 <./Plots/Toys/sf4.png> <./Plots/Toys/sf5.png> <./Plots/Toys/two-connected.png> <./Plots/Toys/circle-weld.png> <./Plots/Toys/broker3.png> <./Plots/Toys/broker4.png> <./Plots/Toys/tree-mediator2.png> <./Plots/Toys/tree-mediator3.png> <./Plots/Toys/tree-mediator2-long.png> <./Plots/Toys/tree-mediator3-long.png>] [17]
+<Plots/Toys/kite.png, id=354, 505.89pt x 361.1091pt>
 File: Plots/Toys/kite.png Graphic file (type png)
 <use Plots/Toys/kite.png>
-Package pdftex.def Info: Plots/Toys/kite.png  used on input line 354.
+Package pdftex.def Info: Plots/Toys/kite.png  used on input line 369.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 355--355
+Underfull \hbox (badness 10000) in paragraph at lines 370--370
 []\OT1/cmr/m/n/10 (a) |Three-
  []
 
-<Plots/Toys/circle-edge.png, id=347, 505.89pt x 361.1091pt>
+<Plots/Toys/circle-edge.png, id=355, 505.89pt x 361.1091pt>
 File: Plots/Toys/circle-edge.png Graphic file (type png)
 <use Plots/Toys/circle-edge.png>
-Package pdftex.def Info: Plots/Toys/circle-edge.png  used on input line 359.
+Package pdftex.def Info: Plots/Toys/circle-edge.png  used on input line 374.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 File: Plots/Toys/kite.png Graphic file (type png)
 <use Plots/Toys/kite.png>
-Package pdftex.def Info: Plots/Toys/kite.png  used on input line 364.
+Package pdftex.def Info: Plots/Toys/kite.png  used on input line 379.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/ten-clique-edge.png, id=348, 505.89pt x 361.1091pt>
+<Plots/Toys/ten-clique-edge.png, id=356, 505.89pt x 361.1091pt>
 File: Plots/Toys/ten-clique-edge.png Graphic file (type png)
 <use Plots/Toys/ten-clique-edge.png>
-Package pdftex.def Info: Plots/Toys/ten-clique-edge.png  used on input line 369.
+Package pdftex.def Info: Plots/Toys/ten-clique-edge.png  used on input line 384.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/wheel-clique.png, id=349, 505.89pt x 361.1091pt>
+<Plots/Toys/wheel-clique.png, id=357, 505.89pt x 361.1091pt>
 File: Plots/Toys/wheel-clique.png Graphic file (type png)
 <use Plots/Toys/wheel-clique.png>
-Package pdftex.def Info: Plots/Toys/wheel-clique.png  used on input line 374.
+Package pdftex.def Info: Plots/Toys/wheel-clique.png  used on input line 389.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
-<Plots/Toys/wheel-clique-edge-star.png, id=350, 505.89pt x 361.1091pt>
+<Plots/Toys/wheel-clique-edge-star.png, id=358, 505.89pt x 361.1091pt>
 File: Plots/Toys/wheel-clique-edge-star.png Graphic file (type png)
 <use Plots/Toys/wheel-clique-edge-star.png>
-Package pdftex.def Info: Plots/Toys/wheel-clique-edge-star.png  used on input line 379.
+Package pdftex.def Info: Plots/Toys/wheel-clique-edge-star.png  used on input line 394.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 
-Underfull \hbox (badness 2012) in paragraph at lines 380--380
+Underfull \hbox (badness 2012) in paragraph at lines 395--395
 []\OT1/cmr/m/n/10 (f) |Kite Con-nects to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--380
+Underfull \hbox (badness 10000) in paragraph at lines 395--395
 \OT1/cmr/m/n/10 High-est Dis-tinc-tion
  []
 
-<Plots/Toys/wheel-clique-edge-clique.png, id=351, 505.89pt x 361.1091pt>
+<Plots/Toys/wheel-clique-edge-clique.png, id=359, 505.89pt x 361.1091pt>
 File: Plots/Toys/wheel-clique-edge-clique.png Graphic file (type png)
 <use Plots/Toys/wheel-clique-edge-clique.png>
-Package pdftex.def Info: Plots/Toys/wheel-clique-edge-clique.png  used on input line 384.
+Package pdftex.def Info: Plots/Toys/wheel-clique-edge-clique.png  used on input line 399.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 
-Underfull \hbox (badness 1540) in paragraph at lines 385--385
+Underfull \hbox (badness 1540) in paragraph at lines 400--400
 []\OT1/cmr/m/n/10 (g) |Kite Con-nects to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--385
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
 \OT1/cmr/m/n/10 Mod-er-ate Dis-tinc-tion
  []
 
-<Plots/Toys/wheel-clique-edge-peri.png, id=352, 505.89pt x 361.1091pt>
+<Plots/Toys/wheel-clique-edge-peri.png, id=360, 505.89pt x 361.1091pt>
 File: Plots/Toys/wheel-clique-edge-peri.png Graphic file (type png)
 <use Plots/Toys/wheel-clique-edge-peri.png>
-Package pdftex.def Info: Plots/Toys/wheel-clique-edge-peri.png  used on input line 389.
+Package pdftex.def Info: Plots/Toys/wheel-clique-edge-peri.png  used on input line 404.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 
-Underfull \hbox (badness 1342) in paragraph at lines 390--390
+Underfull \hbox (badness 1342) in paragraph at lines 405--405
 []\OT1/cmr/m/n/10 (h) |Kite Con-nects to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--390
+Underfull \hbox (badness 10000) in paragraph at lines 405--405
 \OT1/cmr/m/n/10 Low-est Dis-tinc-tion
  []
 
-<Plots/Toys/regular-four.png, id=353, 505.89pt x 361.1091pt>
 File: Plots/Toys/regular-four.png Graphic file (type png)
 <use Plots/Toys/regular-four.png>
-Package pdftex.def Info: Plots/Toys/regular-four.png  used on input line 394.
+Package pdftex.def Info: Plots/Toys/regular-four.png  used on input line 409.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 
-Underfull \hbox (badness 2521) in paragraph at lines 395--395
+Underfull \hbox (badness 2521) in paragraph at lines 410--410
 []\OT1/cmr/m/n/10 (i) |Kite Con-nects to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 395--395
+Underfull \hbox (badness 10000) in paragraph at lines 410--410
 \OT1/cmr/m/n/10 Mod-er-ate Dis-tinc-tion
  []
 
-<Plots/Toys/regular-edge.png, id=354, 505.89pt x 361.1091pt>
+<Plots/Toys/regular-edge.png, id=361, 505.89pt x 361.1091pt>
 File: Plots/Toys/regular-edge.png Graphic file (type png)
 <use Plots/Toys/regular-edge.png>
-Package pdftex.def Info: Plots/Toys/regular-edge.png  used on input line 399.
+Package pdftex.def Info: Plots/Toys/regular-edge.png  used on input line 414.
 (pdftex.def)             Requested size: 103.05531pt x 73.55948pt.
 
-Underfull \hbox (badness 2376) in paragraph at lines 400--400
+Underfull \hbox (badness 2376) in paragraph at lines 415--415
 []\OT1/cmr/m/n/10 (j) |Kite Con-nects to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 400--400
+Underfull \hbox (badness 10000) in paragraph at lines 415--415
 \OT1/cmr/m/n/10 Low-est Dis-tinc-tion
  []
 
-<Plots/Toys/small-world.png, id=355, 481.5591pt x 481.5591pt>
+<Plots/Toys/small-world.png, id=362, 481.5591pt x 481.5591pt>
 File: Plots/Toys/small-world.png Graphic file (type png)
 <use Plots/Toys/small-world.png>
-Package pdftex.def Info: Plots/Toys/small-world.png  used on input line 404.
+Package pdftex.def Info: Plots/Toys/small-world.png  used on input line 419.
 (pdftex.def)             Requested size: 103.05531pt x 103.05556pt.
-<Plots/Toys/small-world-edge.png, id=356, 481.5591pt x 481.5591pt>
+<Plots/Toys/small-world-edge.png, id=363, 481.5591pt x 481.5591pt>
 File: Plots/Toys/small-world-edge.png Graphic file (type png)
 <use Plots/Toys/small-world-edge.png>
-Package pdftex.def Info: Plots/Toys/small-world-edge.png  used on input line 409.
+Package pdftex.def Info: Plots/Toys/small-world-edge.png  used on input line 424.
 (pdftex.def)             Requested size: 103.05531pt x 103.05556pt.
-(./Tabs/Figure5(kites).tex) [18 <./Plots/Toys/kite.png> <./Plots/Toys/circle-edge.png> <./Plots/Toys/ten-clique-edge.png> <./Plots/Toys/wheel-clique.png> <./Plots/Toys/wheel-clique-edge-star.png> <./Plots/Toys/wheel-clique-edge-clique.png> <./Plots/Toys/wheel-clique-edge-peri.png> <./Plots/Toys/regular-four.png> <./Plots/Toys/regular-edge.png> <./Plots/Toys/small-world.png> <./Plots/Toys/small-world-edge.png>] [19]
-<Plots/tree-examples.png, id=368, 867.24pt x 578.16pt>
+(./Tabs/Figure5(kites).tex) [18 <./Plots/Toys/kite.png> <./Plots/Toys/circle-edge.png> <./Plots/Toys/ten-clique-edge.png> <./Plots/Toys/wheel-clique.png> <./Plots/Toys/wheel-clique-edge-star.png> <./Plots/Toys/wheel-clique-edge-clique.png> <./Plots/Toys/wheel-clique-edge-peri.png> <./Plots/Toys/regular-edge.png> <./Plots/Toys/small-world.png> <./Plots/Toys/small-world-edge.png>] [19]
+<Plots/tree-examples.png, id=375, 867.24pt x 578.16pt>
 File: Plots/tree-examples.png Graphic file (type png)
 <use Plots/tree-examples.png>
-Package pdftex.def Info: Plots/tree-examples.png  used on input line 453.
+Package pdftex.def Info: Plots/tree-examples.png  used on input line 468.
 (pdftex.def)             Requested size: 403.26468pt x 268.84161pt.
-<Plots/broker-tree-roles-by-nbranches.png, id=369, 722.7pt x 505.89pt>
+<Plots/broker-tree-roles-by-nbranches.png, id=376, 722.7pt x 505.89pt>
 File: Plots/broker-tree-roles-by-nbranches.png Graphic file (type png)
 <use Plots/broker-tree-roles-by-nbranches.png>
-Package pdftex.def Info: Plots/broker-tree-roles-by-nbranches.png  used on input line 458.
+Package pdftex.def Info: Plots/broker-tree-roles-by-nbranches.png  used on input line 473.
 (pdftex.def)             Requested size: 246.44255pt x 172.50978pt.
-<Plots/political1.png, id=370, 241.65282pt x 222.8325pt>
+<Plots/political1.png, id=377, 241.65282pt x 222.8325pt>
 File: Plots/political1.png Graphic file (type png)
 <use Plots/political1.png>
-Package pdftex.def Info: Plots/political1.png  used on input line 471.
+Package pdftex.def Info: Plots/political1.png  used on input line 486.
 (pdftex.def)             Requested size: 201.63234pt x 185.93697pt.
-<Plots/political2.png, id=371, 217.5628pt x 220.57407pt>
+<Plots/political2.png, id=378, 217.5628pt x 220.57407pt>
 File: Plots/political2.png Graphic file (type png)
 <use Plots/political2.png>
-Package pdftex.def Info: Plots/political2.png  used on input line 476.
+Package pdftex.def Info: Plots/political2.png  used on input line 491.
 (pdftex.def)             Requested size: 201.63234pt x 204.43504pt.
-<Plots/political3.png, id=372, 229.60782pt x 220.57407pt>
+<Plots/political3.png, id=379, 229.60782pt x 220.57407pt>
 File: Plots/political3.png Graphic file (type png)
 <use Plots/political3.png>
-Package pdftex.def Info: Plots/political3.png  used on input line 481.
+Package pdftex.def Info: Plots/political3.png  used on input line 496.
 (pdftex.def)             Requested size: 201.63234pt x 193.70862pt.
-<Plots/political4.png, id=373, 222.8325pt x 224.33812pt>
+<Plots/political4.png, id=380, 222.8325pt x 224.33812pt>
 File: Plots/political4.png Graphic file (type png)
 <use Plots/political4.png>
-Package pdftex.def Info: Plots/political4.png  used on input line 486.
+Package pdftex.def Info: Plots/political4.png  used on input line 501.
 (pdftex.def)             Requested size: 201.63234pt x 202.99783pt.
  (./Tabs/Figure6.tex)
-Overfull \hbox (0.21497pt too wide) in paragraph at lines 500--500
+Overfull \hbox (0.21497pt too wide) in paragraph at lines 515--515
 []\OT1/cmr/bx/n/17.28 Betweenness vs Dis-tinc-tion: Re-vis-it-ing the Medici
  []
 
-[20] [21 <./Plots/tree-examples.png> <./Plots/broker-tree-roles-by-nbranches.png>] [22 <./Plots/political1.png> <./Plots/political2.png> <./Plots/political3.png> <./Plots/political4.png>] [23]
-<Plots/medici.png, id=399, 1003.75pt x 602.25pt>
+[20] [21 <./Plots/tree-examples.png> <./Plots/broker-tree-roles-by-nbranches.png>] [22 <./Plots/political1.png> <./Plots/political2.png> <./Plots/political3.png> <./Plots/political4.png>] [23] [24]
+<Plots/medici.png, id=411, 1003.75pt x 602.25pt>
 File: Plots/medici.png Graphic file (type png)
 <use Plots/medici.png>
-Package pdftex.def Info: Plots/medici.png  used on input line 518.
+Package pdftex.def Info: Plots/medici.png  used on input line 533.
 (pdftex.def)             Requested size: 448.0749pt x 268.85043pt.
-<Plots/nomedici.png, id=400, 1003.75pt x 602.25pt>
+<Plots/nomedici.png, id=412, 1003.75pt x 602.25pt>
 File: Plots/nomedici.png Graphic file (type png)
 <use Plots/nomedici.png>
-Package pdftex.def Info: Plots/nomedici.png  used on input line 523.
+Package pdftex.def Info: Plots/nomedici.png  used on input line 538.
 (pdftex.def)             Requested size: 448.0749pt x 268.85043pt.
- (./Tabs/medici.tex) [24] [25 <./Plots/medici.png (PNG copy)> <./Plots/nomedici.png (PNG copy)>] [26] [27] [28] [29]
-<Plots/search.png, id=439, 280.04625pt x 251.43938pt>
+ (./Tabs/medici.tex) [25] [26 <./Plots/medici.png (PNG copy)> <./Plots/nomedici.png (PNG copy)>] [27] [28] [29]
+<Plots/search.png, id=443, 280.04625pt x 251.43938pt>
 File: Plots/search.png Graphic file (type png)
 <use Plots/search.png>
-Package pdftex.def Info: Plots/search.png  used on input line 563.
+Package pdftex.def Info: Plots/search.png  used on input line 578.
 (pdftex.def)             Requested size: 201.63234pt x 181.04387pt.
- (./Tabs/search.tex) [30 <./Plots/search.png>] [31] [32]
-<Plots/PortfolioIntegration.png, id=466, 493.845pt x 274.77657pt>
+ (./Tabs/search.tex) [30 <./Plots/search.png>] [31] [32] [33]
+<Plots/PortfolioIntegration.png, id=478, 493.845pt x 274.77657pt>
 File: Plots/PortfolioIntegration.png Graphic file (type png)
 <use Plots/PortfolioIntegration.png>
-Package pdftex.def Info: Plots/PortfolioIntegration.png  used on input line 610.
+Package pdftex.def Info: Plots/PortfolioIntegration.png  used on input line 625.
 (pdftex.def)             Requested size: 448.0749pt x 249.30913pt.
- [33] [34 <./Plots/PortfolioIntegration.png>] [35] [36] [37] (./manuscript.bbl [38] [39]) [40] (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang1.sty
+ [34 <./Plots/PortfolioIntegration.png>] [35] [36] [37] (./manuscript.bbl [38] [39]) [40] (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2025/11/14 1.11b listings language file
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2025/11/14 1.11b listings language file
 )
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 662.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 677.
  (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 664.
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 665.
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 679.
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 680.
  (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ) [41{/home/omarlizardo/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] [42] (./manuscript.aux)
@@ -728,24 +884,27 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: F1B73DA141A8BB54E9A6E45B0AC0FC1E;5159.
  ) 
 Here is how much of TeX's memory you used:
- 13889 strings out of 469097
- 222719 string characters out of 5457857
- 1118363 words of memory out of 5000000
- 42564 multiletter control sequences out of 15000+600000
+ 13885 strings out of 469097
+ 222665 string characters out of 5457857
+ 1116631 words of memory out of 5000000
+ 42557 multiletter control sequences out of 15000+600000
  638085 words of font info for 74 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  74i,8n,79p,2039b,2733s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/omarlizardo/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/omarlizardo/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on manuscript.pdf (42 pages, 4312193 bytes).
+Output written on manuscript.pdf (42 pages, 4700761 bytes).
 PDF statistics:
- 709 PDF objects out of 1000 (max. 8388607)
- 574 compressed objects within 6 object streams
- 185 named destinations out of 1000 (max. 500000)
- 374 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 718 PDF objects out of 1000 (max. 8388607)
+ 580 compressed objects within 6 object streams
+ 188 named destinations out of 1000 (max. 500000)
+ 389 words of extra memory for PDF output out of 10000 (max. 10000000)
 
