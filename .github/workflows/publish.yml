@@ -27,6 +27,8 @@ jobs:
           sudo apt-get install -y libglpk-dev libxml2-dev libcurl4-openssl-dev libssl-dev
 
       - name: Install Dependencies
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_TOKEN"))
           install.packages(c("igraph", "ggraph", "here", "dplyr", "kableExtra", "ggpubr", "patchwork", "rmarkdown", "readr", "digest", "xfun", "htmltools", "rlang", "fastmap", "jsonlite", "generics", "R6", "ggplot2", "remotes"))
