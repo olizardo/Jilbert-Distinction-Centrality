@@ -1,0 +1,20 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Distinction Centrality"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Distinction Function"
+        href: functions.qmd
+      - text: "Examples"
+        href: examples.qmd
+  sidebar: false
+
+format:
+  html:
+    theme: cosmo
+    toc: true

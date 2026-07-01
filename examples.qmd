@@ -1,0 +1,31 @@
+---
+title: "Examples"
+---
+
+This page provides an example of how to compute and visualize distinction centrality using the classic Medici family network from Padgett & Ansell (1993).
+
+```{r}
+#| message: false
+#| warning: false
+
+library(igraph)
+library(dplyr)
+library(readr)
+source("Functions/distinction.R")
+
+# Load the Medici dataset
+medici_edges <- read_csv("Data/MediciEdgeList.csv")
+g <- graph_from_data_frame(medici_edges, directed = FALSE)
+
+# Calculate distinction centrality
+results <- distinction(g)
+
+# Display the top 10 most "distinguished" families
+results %>%
+  arrange(desc(scd)) %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+### Analysis
+The results show the Medici family's high distinction score, confirming their unique position of balancing power (status) while managing social constraints compared to other contemporary families.

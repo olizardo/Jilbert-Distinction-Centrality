@@ -1,0 +1,34 @@
+---
+title: "The Distinction Function"
+---
+
+The core of this analysis is the `distinction()` function, which calculates the distinction centrality score for nodes in an `igraph` object.
+
+### Implementation
+
+The function computes status ($s_i$) using eigenvector centrality (processed component-wise for robustness), calculates the constraint ($\kappa_i$) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.
+
+```r
+distinction <- function(x, norm = "abm", digits = 4) {
+  # x: an igraph object
+  # norm: normalization type (default 'abm')
+  # returns: dataframe with distinction (d), scaled distinction (scd), 
+  #          status (s), and constraint (u)
+  
+  # ... (internal logic)
+}
+```
+
+### Parameters
+- **`x`**: An `igraph` object representing the network.
+- **`norm`**: A character string indicating the normalization method to use for status scores (`'max'`, `'one'`, `'abm'`, `'abs'`).
+- **`digits`**: Number of decimal places for rounding the output.
+
+### Output
+The function returns a `data.frame` containing:
+- `n`: Node names.
+- `d`: Raw distinction score ($s_i - \kappa_i$).
+- `scd`: Scaled distinction centrality ($\alpha s_i - \kappa_i$).
+- `s`: Status (eigenvector centrality).
+- `u`: Constraint ($\kappa_i$).
+- `scalar`: The $\alpha$ adjustment factor.

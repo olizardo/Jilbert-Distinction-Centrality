@@ -1,0 +1,20 @@
+---
+title: "Distinction Centrality"
+---
+
+Welcome to the documentation and analysis portal for **Distinction Centrality** ($\beta_i$).
+
+This project implements and analyzes a social network metric theoretically inspired by Pierre Bourdieu's theory of agonistic competition in social fields. It models the trade-off between status (influence/eigenvector centrality) and constraint (average status of neighbors in the node-deleted subgraph).
+
+### Mathematical Formulation
+
+The distinction centrality ($\beta_i$) of a node $i$ is defined as:
+
+$$\beta_i = \alpha s_i - \kappa_i$$
+
+where:
+- $s_i$ is the status of node $i$.
+- $\kappa_i$ is the constraint (average status of neighbors in the node-deleted subgraph).
+- $\alpha$ is a scalar adjustment factor defined as $\alpha = \frac{\bar{\mathbf{\kappa}}}{\bar{\mathbf{s}}}$.
+
+Explore the tabs above to learn more about the implementation and see real-world examples using historical social network datasets.
