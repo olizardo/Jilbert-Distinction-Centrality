@@ -5,45 +5,45 @@ The style file: apalike.bst
 Database file #1: networks.bib
 Warning--empty journal in borgatti2020oxford-fa6
 Warning--empty journal in bourdieu1984distinction
-You've used 36 entries,
+You've used 37 entries,
             1935 wiz_defined-function locations,
-            692 strings with 8464 characters,
-and the built_in function-call counts, 13569 in all, are:
-= -- 1388
-> -- 364
-< -- 35
-+ -- 126
-- -- 112
-* -- 1108
-:= -- 2309
-add.period$ -- 109
-call.type$ -- 36
-change.case$ -- 230
-chr.to.int$ -- 36
-cite$ -- 38
-duplicate$ -- 540
-empty$ -- 1051
-format.name$ -- 162
-if$ -- 2678
+            696 strings with 8663 characters,
+and the built_in function-call counts, 13933 in all, are:
+= -- 1413
+> -- 402
+< -- 33
++ -- 140
+- -- 126
+* -- 1154
+:= -- 2389
+add.period$ -- 111
+call.type$ -- 37
+change.case$ -- 241
+chr.to.int$ -- 37
+cite$ -- 39
+duplicate$ -- 543
+empty$ -- 1063
+format.name$ -- 175
+if$ -- 2728
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 40
-newline$ -- 183
-num.names$ -- 108
-pop$ -- 175
+missing$ -- 42
+newline$ -- 188
+num.names$ -- 111
+pop$ -- 186
 preamble$ -- 1
-purify$ -- 236
+purify$ -- 248
 quote$ -- 0
 skip$ -- 429
 stack$ -- 0
-substring$ -- 1194
-swap$ -- 69
-text.length$ -- 4
+substring$ -- 1207
+swap$ -- 63
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 206
+type$ -- 210
 warning$ -- 2
-while$ -- 134
+while$ -- 135
 width$ -- 0
-write$ -- 465
+write$ -- 476
 (There were 2 warnings)

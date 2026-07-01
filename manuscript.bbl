@@ -10,15 +10,20 @@ Bearman, P.~S., Moody, J., and Stovel, K. (2004).
 \newblock Chains of affection: The structure of adolescent romantic and sexual networks.
 \newblock {\em American journal of sociology}, 110(1):44--91.
 
-\bibitem[Boldi and Vigna, 2014]{boldi_vigna14}
-Boldi, P. and Vigna, S. (2014).
-\newblock Axioms for centrality.
-\newblock {\em Internet Mathematics}, 10(3-4):222--262.
+\bibitem[Bennett et~al., 2009]{bennett2009culture-aef}
+Bennett, T., Savage, M., Silva, E.~B., Warde, A., Gayo-Cal, M., and Wright, D. (2009).
+\newblock {\em Culture, Class, Distinction}.
+\newblock Routledge.
 
 \bibitem[Bonacich, 1972]{bonacich1972factoring-03e}
 Bonacich, P. (1972).
 \newblock Factoring and weighting approaches to status scores and clique identification.
 \newblock {\em The Journal of Mathematical Sociology}, 2(1):113--120.
+
+\bibitem[Bonacich et~al., 2004]{bonacich2004hyper-edges-532}
+Bonacich, P., Holdren, A.~C., and Johnston, M. (2004).
+\newblock Hyper-edges and multidimensional centrality.
+\newblock {\em Social Networks}, 26(3):189--203.
 
 \bibitem[Borgatti and Everett, 2020]{borgatti2020oxford-fa6}
 Borgatti, S.~P. and Everett, M.~G. (2020).
@@ -68,11 +73,6 @@ Burt, R.~S. (1980).
 Burt, R.~S. (1995).
 \newblock {\em Structural Holes}.
 \newblock Harvard University Press.
-
-\bibitem[Davis, 1977]{davis1977clustering-bb5}
-Davis, J.~A. (1977).
-\newblock Clustering and structural balance in graphs.
-\newblock In {\em Social Networks}, pages 27--33. Elsevier.
 
 \bibitem[Dunbar, 1995]{dunbar1995neocortex}
 Dunbar, R.~I. (1995).
@@ -169,6 +169,11 @@ Podolny, J.~M. (2010).
 Vedres, B. and Stark, D. (2010).
 \newblock Structural folds: Generative disruption in overlapping groups.
 \newblock {\em American journal of sociology}, 115(4):1150--1190.
+
+\bibitem[Vigna, 2016]{vigna2016spectral-19a}
+Vigna, S. (2016).
+\newblock Spectral ranking.
+\newblock {\em Network Science}, 4(4):433--445.
 
 \bibitem[Yoon et~al., 2013]{yoon2013exchange}
 Yoon, J., Thye, S.~R., and Lawler, E.~J. (2013).

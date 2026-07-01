@@ -179,6 +179,8 @@ This tells us that the distinction of the peripheral node in the star graph is p
 \end{figure}
 
 If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction. In that respect, distinction should be at its theoretical minimum of zero for all nodes in these cases. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique}, this is precisely what we observe.
+\input{Tabs/circle}
+\input{Tabs/clique}
 
 In the case of the circle graph, status scores be equivalent across all nodes ($s_i = 0.38$ for the circle graph of order seven shown in Figure~\ref{fig:circle}. Also note that whenever we remove a node from the circle graph a path graph of order $N-1$, where $N$ is the number of nodes in the original circle graph is obtained. The previous neighbors of the removed node become the end nodes in the new path graph. These two nodes will, by necessity, have the same status score. This means that the $\kappa$ component of Equation~\ref{eq:distinction} will be the same constant across all nodes, and that the average status and average constraint will also be equal to a constant, in which case Equation~\ref{eq:distinction} becomes:
 
@@ -263,17 +265,17 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.36\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/small-world1.png}
             \caption{SW network with one long tie.}
-            \label{fig:sw1}
+            \label{fig:sw1-1}
     \end{subfigure} \\
     \begin{subfigure}[b]{0.36\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/small-world2.png}
             \caption{SW network with two long ties.}
-            \label{fig:sw1}
+            \label{fig:sw1-2}
     \end{subfigure}
     \begin{subfigure}[b]{0.36\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/small-world3.png}
             \caption{SW network with three long ties.}
-            \label{fig:sw1}
+            \label{fig:sw1-3}
     \end{subfigure}
     \caption{.}
 \end{figure}
@@ -295,12 +297,12 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/sf4.png}
             \caption{Structural Fold (4-Clique)}
-            \label{fig:sf}
+            \label{fig:sf4}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/sf5.png}
             \caption{Structural Fold (5-Clique)}
-            \label{fig:sf}
+            \label{fig:sf5}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/two-connected.png}
@@ -315,13 +317,13 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/broker3.png}
             \caption{Brokerage Mediated (3-Cliques)}
-            \label{fig:classicbrokerage3}
+            \label{fig:broker3}
     \end{subfigure} 
     \label{fig:struct-fold}
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/broker4.png}
             \caption{Brokerage Mediated (4-Cliques)}
-            \label{fig:classicbrokerage3}
+            \label{fig:broker4}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/tree-mediator2.png}
@@ -366,62 +368,62 @@ What the difference between these two examples suggests is that, based on consid
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
             \caption{Three-Clique/Wheel}
-            \label{fig:sf}
+            \label{fig:kite-wheel}
     \end{subfigure}
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/circle-edge.png}
             \caption{Six-Node Circle}
-            \label{fig:sf}
+            \label{fig:circle-edge}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/kite.png}
             \caption{Six-Clique}
-            \label{fig:sf}
+            \label{fig:six-clique}
     \end{subfigure}
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/ten-clique-edge.png}
             \caption{Ten-Clique}
-            \label{fig:sf}
+            \label{fig:ten-clique}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique.png}
             \caption{Three Levels of Hierarchy}
-            \label{fig:classicbrokerage3}
+            \label{fig:three-levels}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique-edge-star.png}
             \caption{Kite Connects to Highest Distinction Node}
-            \label{fig:classicbrokerage3}
+            \label{fig:kite-star}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique-edge-clique.png}
             \caption{Kite Connects to Moderate Distinction Node}
-            \label{fig:twoconnected}
+            \label{fig:kite-clique}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/wheel-clique-edge-peri.png}
             \caption{Kite Connects to Lowest Distinction Node}
-            \label{fig:circleweld}
+            \label{fig:kite-peri}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/regular-four.png}
             \caption{Kite Connects to Moderate Distinction Node}
-            \label{fig:sf}
+            \label{fig:kite-mod}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/regular-edge.png}
             \caption{Kite Connects to Lowest Distinction Node}
-            \label{fig:sf}
+            \label{fig:kite-low}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/small-world.png}
             \caption{Small World}
-            \label{fig:sf}
+            \label{fig:kite-sw}
     \end{subfigure} 
     \begin{subfigure}[b]{0.23\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/small-world-edge.png}
             \caption{Small World Kite}
-            \label{fig:sf}
+            \label{fig:kite-sw-edge}
     \end{subfigure} 
     \caption{Comparison of kite graphs with varying parameters. Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
 \end{figure}
@@ -483,22 +485,22 @@ Thus, there is a U shaped pattern where at low levels of interconnection between
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political1.png}
             \caption{High Subgraph Density, Low Graph Density}
-            \label{fig:Placehold}
+            \label{fig:pol1}
     \end{subfigure}
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political2.png}
             \caption{Broker Given Independent Foundations}
-            \label{fig:Placehold}
+            \label{fig:pol2}
     \end{subfigure}
          \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political3.png}
             \caption{Increased Independent Foundations}
-            \label{fig:Placehold}
+            \label{fig:pol3}
     \end{subfigure}
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/political4.png}
             \caption{All Subgraphs Connected by Long Ties}
-            \label{fig:Placehold}
+            \label{fig:pol4}
     \end{subfigure}
     \caption{Increasingly connected graphs with central broker.}
     \label{fig:Evolving Political Network}
@@ -530,15 +532,15 @@ Results are presented in Table X. In the original state of the network, the Medi
      \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/medici.png}
             \caption{Medici Network}
-            \label{fig:medici}
+            \label{fig:medici-net}
     \end{subfigure} \\
      \begin{subfigure}[b]{1.0\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/nomedici.png}
             \caption{Medici Network without the Medici}
-            \label{fig:nomedici}
+            \label{fig:nomedici-net}
     \end{subfigure}
-    \caption{}
-    \label{fig:medici}
+    \caption{Medici Network Visualizations}
+    \label{fig:medici-main}
 \end{figure}
 
 \input{Tabs/medici}
@@ -575,10 +577,10 @@ The resulting distinction measures are presented in Table 6. The results are ran
      \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/search.png}
             \caption{Reference Network Example}
-            \label{fig:search}
+            \label{fig:search-sub}
     \end{subfigure}
     \caption{Example of a non-directed network of references, e.g. citation network, internet links, etc.}
-    \label{fig:search}
+    \label{fig:search-main}
 \end{figure}
 
 \input{Tabs/search}
