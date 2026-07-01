@@ -28,8 +28,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          install.packages(c("igraph", "ggraph", "here", "dplyr", "kableExtra", "ggpubr", "patchwork", "rmarkdown", "readr", "digest", "xfun", "htmltools", "rlang", "fastmap", "jsonlite", "generics", "R6", "ggplot2", "remotes"))
-          remotes::install_github("schochastics/networkdata")
+          install.packages(c("igraph", "ggraph", "here", "dplyr", "kableExtra", "ggpubr", "patchwork", "rmarkdown", "readr", "digest", "xfun", "htmltools", "rlang", "fastmap", "jsonlite", "generics", "R6", "ggplot2", "remotes", "networkdata"))
         shell: Rscript {0}
 
       - name: Render and Publish
