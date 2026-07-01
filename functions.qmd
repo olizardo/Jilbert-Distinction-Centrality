@@ -4,20 +4,28 @@ title: "The Distinction Function"
 
 The core of this analysis is the `distinction()` function, which calculates the distinction centrality score for nodes in an `igraph` object.
 
-### Implementation
+### Installation & Usage
 
-The function computes status ($s_i$) using eigenvector centrality (processed component-wise for robustness), calculates the constraint ($\kappa_i$) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.
+To use the `distinction` function in your own R project, you can download the script directly from our repository:
+
+1.  **Download the script**: [Click here to download `distinction.R`](https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R)
+2.  **Source the function** in your R script:
 
 ```r
-distinction <- function(x, norm = "abm", digits = 4) {
-  # x: an igraph object
-  # norm: normalization type (default 'abm')
-  # returns: dataframe with distinction (d), scaled distinction (scd), 
-  #          status (s), and constraint (u)
-  
-  # ... (internal logic)
-}
+# Load igraph
+library(igraph)
+
+# Source the function
+source("path/to/your/downloaded/distinction.R")
+
+# Example usage
+g <- make_ring(7)
+results <- distinction(g)
+print(results)
 ```
+
+### Implementation Details
+The function computes status ($s_i$) using eigenvector centrality (processed component-wise for robustness), calculates the constraint ($\kappa_i$) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.
 
 ### Parameters
 - **`x`**: An `igraph` object representing the network.
