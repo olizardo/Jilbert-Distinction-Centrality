@@ -21,6 +21,11 @@ jobs:
         with:
           r-version: '4.5'
 
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libglpk-dev libxml2-dev libcurl4-openssl-dev libssl-dev
+
       - name: Install Dependencies
         run: |
           install.packages(c("igraph", "ggraph", "here", "dplyr", "kableExtra", "ggpubr", "patchwork", "rmarkdown", "readr", "digest", "xfun", "htmltools", "rlang", "fastmap", "jsonlite", "generics", "R6", "ggplot2"))
