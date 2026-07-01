@@ -40,8 +40,12 @@ All core custom metrics and modeling scripts are located in the `Functions/` fol
 - **`Functions/make.broker.cliques.R`**: Generates brokerage structures over clique subgraphs.
 - **`Functions/make.broker.trees.R`**: Generates brokerage structures over tree subgraphs.
 - **`Functions/make-bonacich.R`**: Generates networks for Bonacich (2007) comparisons.
-- **`diss.status.R`**: Computes status using similarity-discounted adjacency matrix.
-- **`make.estrada.R`**: Generates Estrada (2005) graph examples.
+- **`Functions/plot.graph.cat.R`**: Categorical visualization of distinction scores.
+
+## Helper Scripts (`Code/`)
+
+- **`Code/diss.status.R`**: Computes status using similarity-discounted adjacency matrix.
+- **`Code/make.estrada.R`**: Generates Estrada (2005) graph examples.
 
 ---
 
