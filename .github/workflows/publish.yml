@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_TOKEN"))
-          install.packages(c("igraph", "ggraph", "here", "dplyr", "kableExtra", "ggpubr", "patchwork", "rmarkdown", "readr", "digest", "xfun", "htmltools", "rlang", "fastmap", "jsonlite", "generics", "R6", "ggplot2", "remotes"))
+          install.packages(c("igraph", "ggraph", "here", "dplyr", "kableExtra", "ggpubr", "patchwork", "rmarkdown", "readr", "digest", "xfun", "htmltools", "rlang", "fastmap", "jsonlite", "generics", "R6", "ggplot2", "remotes", "tidyverse"))
           remotes::install_github("schochastics/networkdata")
         shell: Rscript {0}
 
