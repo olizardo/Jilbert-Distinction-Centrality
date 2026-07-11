@@ -4,17 +4,18 @@ distinction <- function(x, norm = "abm", digits = 4) {
   
   # Ensure vertices have sequential numeric names for indexing, preserving original labels
   if (is.null(V(x)$name)) {
-    V(x)$name <- 1:n
+    V(x)$name <- as.character(1:n)
     names <- V(x)$name
   } else {
     names <- V(x)$name
-    V(x)$name <- 1:n
+    V(x)$name <- as.character(1:n)
   }
   
   # Normalization functions for status (eigenvector centrality) scores
-  norm.max <- function(v) { v^2 / max(v^2) }
+  # Handled division by zero for sparse/empty subgraphs
+  norm.max <- function(v) { if (max(v^2) == 0) v else v^2 / max(v^2) }
   norm.one <- function(v) { v^2 }
-  norm.abm <- function(v) { abs(v) / max(abs(v)) }
+  norm.abm <- function(v) { if (max(abs(v)) == 0) v else abs(v) / max(abs(v)) }
   norm.abs <- function(v) { abs(v) }
   
   # Helper to compute status for any graph (handles components and isolates robustly)
@@ -27,8 +28,9 @@ distinction <- function(x, norm = "abm", digits = 4) {
       nodes_in_comp <- which(xc$membership == k)
       if (length(nodes_in_comp) > 1) {
         subg <- induced_subgraph(g, nodes_in_comp)
-        eig_sub <- eigen(as_adjacency_matrix(subg, sparse = FALSE))
-        s_vec[nodes_in_comp] <- abs(eig_sub$vectors[, 1])
+        # Replaced base::eigen with igraph::eigen_centrality (ARPACK) for O(E) efficiency instead of O(V^3)
+        eig <- suppressWarnings(eigen_centrality(subg, scale = FALSE)$vector)
+        s_vec[nodes_in_comp] <- abs(eig)
       } else {
         s_vec[nodes_in_comp] <- 0
       }
@@ -41,9 +43,9 @@ distinction <- function(x, norm = "abm", digits = 4) {
   
   # 2. Normalize main status
   if (norm == "max") { s <- norm.max(s) }
-  if (norm == "one") { s <- norm.one(s) }
-  if (norm == "abm") { s <- norm.abm(s) }
-  if (norm == "abs") { s <- norm.abs(s) }
+  else if (norm == "one") { s <- norm.one(s) }
+  else if (norm == "abm") { s <- norm.abm(s) }
+  else if (norm == "abs") { s <- norm.abs(s) }
   
   d <- numeric(n) # Distinction vector
   u <- numeric(n) # Constraint vector (average neighbor status in deleted subgraph)
@@ -51,32 +53,43 @@ distinction <- function(x, norm = "abm", digits = 4) {
   # 3. Iterate through each node to calculate induced constraint (jackknife-like approach)
   for (i in 1:n) {
     j <- neighbors(x, i)
+    
+    # Optimization: Skip subgraph eigen decomposition if the focal node has no neighbors
+    if (length(j) == 0) {
+      u[i] <- 0
+      d[i] <- s[i]
+      next
+    }
+    
     xd <- delete_vertices(x, i)
-    ed <- ecount(xd) == 0
-    nd <- vcount(xd)
     
     # Compute status of neighbors in the node-deleted subgraph (xd)
-    if (ed == 0 & nd > 1) {
+    # Fixed boolean coercion bug (was checking if FALSE == 0)
+    if (ecount(xd) > 0 && vcount(xd) > 1) {
       sd <- get_status(xd)
       # Re-apply same normalization to deleted subgraph status
       if (norm == "max") { sd <- norm.max(sd) }
-      if (norm == "one") { sd <- norm.one(sd) }
-      if (norm == "abm") { sd <- norm.abm(sd) }
-      if (norm == "abs") { sd <- norm.abs(sd) }
+      else if (norm == "one") { sd <- norm.one(sd) }
+      else if (norm == "abm") { sd <- norm.abm(sd) }
+      else if (norm == "abs") { sd <- norm.abs(sd) }
     } else {
-      sd <- rep(0, nd)
+      sd <- rep(0, vcount(xd))
     }
     
     names(sd) <- V(xd)$name
     # Constraint (u) = mean status of focal node's neighbors in deleted graph
-    u[i] <- mean(sd[as.character(j)])
+    # Robust indexing using as_ids() to fetch original names
+    u[i] <- mean(sd[as.character(as_ids(j))])
     d[i] <- s[i] - u[i] # Distinction (d) = Status - Constraint
   }
   
   # 4. Final aggregation and scalar-adjusted distinction (scd) calculation
   d[is.na(d)] <- 0
   u[is.na(u)] <- 0
-  scalar <- mean(u) / mean(s)
+  
+  # Handled division by zero if entire network has 0 status
+  mean_s <- mean(s)
+  scalar <- if (mean_s == 0) 0 else mean(u) / mean_s
   scd <- (s * scalar) - u
   
   # Assemble output dataframe
