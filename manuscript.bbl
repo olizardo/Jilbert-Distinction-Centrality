@@ -83,7 +83,6 @@ Dunbar, R.~I. (1995).
 Erikson, E. (2013).
 \newblock Formalist and relationalist theory in social network analysis.
 \newblock {\em Sociological Theory}, 31(3):219--242.
-\newblock doi: 10.1177/0735275113501998.
 
 \bibitem[Everett and Borgatti, 2010]{everett2010induced-817}
 Everett, M.~G. and Borgatti, S.~P. (2010).
@@ -135,11 +134,6 @@ Langville, A.~N. and Meyer, C.~D. (2005).
 \newblock A survey of eigenvector methods for web information retrieval.
 \newblock {\em {SIAM} Review}, 47(1):135--161.
 
-\bibitem[Lizardo, 2014]{lizardo2014omnivorousness}
-Lizardo, O. (2014).
-\newblock Omnivorousness as the bridging of cultural holes: A measurement strategy.
-\newblock {\em Theory and Society}, 43:395--419.
-
 \bibitem[Martin, 2003]{martin2003field}
 Martin, J.~L. (2003).
 \newblock What is field theory?
@@ -164,11 +158,6 @@ Podolny, J.~M. (2010).
 {R Core Team} (2021).
 \newblock {\em R: A Language and Environment for Statistical Computing}.
 \newblock R Foundation for Statistical Computing, Vienna, Austria.
-
-\bibitem[Vedres and Stark, 2010]{vedres2010structural}
-Vedres, B. and Stark, D. (2010).
-\newblock Structural folds: Generative disruption in overlapping groups.
-\newblock {\em American journal of sociology}, 115(4):1150--1190.
 
 \bibitem[Vigna, 2016]{vigna2016spectral-19a}
 Vigna, S. (2016).
