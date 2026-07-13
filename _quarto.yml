@@ -8,10 +8,16 @@ website:
     left:
       - text: "Home"
         href: index.qmd
+      - text: "Theory & Analysis"
+        href: analysis.qmd
       - text: "Distinction Function"
         href: functions.qmd
       - text: "Examples"
         href: examples.qmd
+    right:
+      - icon: github
+        href: https://github.com/olizardo/Jilbert-Distinction-Centrality
+        text: "Repository"
   sidebar: false
 
 format:

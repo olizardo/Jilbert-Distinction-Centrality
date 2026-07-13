@@ -296,184 +296,24 @@ execute:
 
 ## Star Graph Computational Experiments
 
-
-```{r}
-   source(here("Functions", "distinction.R"))
-   make.stars <- function(n = 30) {
-      gl <- vector(mode = "list", length = n)
-      gl[[1]] <- make_star(3, mode = "undirected") 
-      for (k in 2:n) {
-         gl[[k]] <- make_star(k+2, mode = "undirected") 
-         }
-      return(gl)
-      }
-   b <- make.stars(33)
-   c <- lapply(b, distinction)
-   ds.s <- sapply(c, function(x) {x[1, 3]})
-   ds.p <- sapply(c, function(x) {x[2, 3]})
-   d.s <- sapply(c, function(x) {x[1, 2]})
-   d.p <- sapply(c, function(x) {x[2, 2]})
-   dat <- data.frame(d = c(ds.s, ds.p, d.s, d.p), 
-         n = c(1:length(d.s), 1:length(d.s), 1:length(d.s), 1:length(d.s)),
-         g = c(rep(1, length(d.s)), rep(2, length(d.s)), 
-         rep(3, length(d.s)), rep(4, length(d.s)))) |> 
-         mutate(g = factor(g, labels = c(
-                           "Scaled Distinction (Central Node)", 
-                           "Scaled Distinction (Peripheral Nodes)", 
-                           "Non-scaled Distinction (Central Node)",
-                           "Non-scaled Distinction (Peripheral Nodes)"))) |> 
-         mutate(n = n + 2)
-   p <- ggplot(dat, aes(n, d, group = g, color = as.factor(g))) 
-   p <- p + geom_point(size = 3)
-   p <- p + geom_line(linewidth = 0.75)
-   p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
-   p <- p + labs(y = "", x = "Star Size")
-   p <- p + scale_x_continuous(breaks = seq(3, length(d.s), by = 3))
-   p <- p + scale_color_manual(values = c("red", "blue", "tan2", "purple"))
-   p <- p + theme_minimal()
-   p <- p + theme(axis.text = element_text(size = 14, face = "bold"),
-                  axis.title = element_text(size = 16, face = "bold"),
-                  legend.text = element_text(size = 12, face = "bold"),
-                  legend.title = element_blank(),
-                  legend.position = "bottom"
-                  )
-   p <- p + guides(color = guide_legend(nrow = 4))
-   p
-   ggsave(here("Plots", "star-roles-by-size.png"), width = 7, height = 8, units = "in")
-```
+![Star Graph Roles by Size](Plots/star-roles-by-size.png)
 
 ## Connected Caves Computational Experiments
 
-```{r Connected Caves}
-   source(here("Functions", "connect.caves.R"))
-   # source(here("Functions", "gg2.R")) # gg2.R not found, disabling
-   source(here("Functions", "plot.graph.norm.R"))
-   set.seed(456)
-   b <- connect.caves(c = 4, nc = 4, n = 24)
-   # Replacing gg2 calls with plot.graph.norm
-   p.list <- lapply(b, plot.graph.norm, l = "auto")
-   for (i in 1:length(p.list)) {
-      p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Long Ties =", i-1)) +
-         theme(plot.title = element_text(size = 11))
-      }
-   wrap_plots(p.list[c(1:4)], nrow = 2)
-   ggsave(here("Plots", "connected-caves-examples1.png"), width = 10, height = 10, units = "in")
-   wrap_plots(p.list[c(5:8)], nrow = 2)
-   ggsave(here("Plots", "connected-caves-examples2.png"), width = 10, height = 10, units = "in")
-   wrap_plots(p.list[c(9:12)], nrow = 2)
-   ggsave(here("Plots", "connected-caves-examples3.png"), width = 10, height = 10, units = "in")
-   wrap_plots(p.list[c(13:16)], nrow = 2)
-   ggsave(here("Plots", "connected-caves-examples4.png"), width = 10, height = 10, units = "in")
-```
+![Connected Caves 1](Plots/connected-caves-examples1.png)
+![Connected Caves 2](Plots/connected-caves-examples2.png)
+![Connected Caves 3](Plots/connected-caves-examples3.png)
+![Connected Caves 4](Plots/connected-caves-examples4.png)
 
 ## Broker Computational Experiments
 
-```{r}
-   source(here("Functions", "make.broker.trees.R"))
-   # source(here("Functions", "gg.R")) # gg.R not found
-   b <- make.broker.trees(30)
-   p.list <- lapply(b, plot.graph.norm, l = "auto")
-   for (i in 1:length(p.list)) {
-      p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
-         theme(plot.title = element_text(size = 11))
-      }
-   wrap_plots(p.list[c(1:6)], nrow = 2)
-   ggsave(here("Plots", "tree-examples.png"), width = 12, height = 8, units = "in")
-```
+![Tree Examples](Plots/tree-examples.png)
 
-```{r}
-   b <- make.broker.trees(30)
-   c <- lapply(b, distinction, norm = "max")
-   d.s <- sapply(c, function(x) {x[1, 3]})
-   d.b <- sapply(c, function(x) {x[2, 3]})
-   d.p <- sapply(c, function(x) {x[nrow(x), 3]})
-   dat <- data.frame(d = c(d.s, d.b, d.p), 
-         n = c(1:length(d.s)+1, 1:length(d.s)+1, 1:length(d.s)+1),
-         g = c(rep(1, length(d.s)), rep(2, length(d.s)), 
-         rep(3, length(d.s)))) |> 
-         mutate(g = factor(g, labels = c("Star", "Gatekeeper", "Peripheral")))
-   p <- ggplot(dat, aes(n, d, group = g, color = as.factor(g))) 
-   p <- p + geom_point(size = 3)
-   p <- p + geom_line(linewidth = 0.75)
-   p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
-   p <- p + labs(y = "", x = "Number of Branches")
-   p <- p + scale_x_continuous(breaks = seq(2, length(d.s), by = 2))
-   p <- p + scale_color_manual(values = c("red", "blue", "tan2"))
-   p <- p + theme_minimal()
-   p1 <- p + theme(axis.text = element_text(size = 14, face = "bold"),
-                  axis.title = element_text(size = 16, face = "bold"),
-                  legend.text = element_text(size = 16, face = "bold"),
-                  legend.title = element_blank(),
-                  legend.position = "top"
-                  ) + ggtitle("Abs. Value Norm")
-   c <- lapply(b, distinction, norm = "abm")
-   d.s <- sapply(c, function(x) {x[1, 3]})
-   d.b <- sapply(c, function(x) {x[2, 3]})
-   d.p <- sapply(c, function(x) {x[nrow(x), 3]})
-   dat <- data.frame(d = c(d.s, d.b, d.p), 
-         n = c(1:length(d.s)+1, 1:length(d.s)+1, 1:length(d.s)+1),
-         g = c(rep(1, length(d.s)), rep(2, length(d.s)), 
-         rep(3, length(d.s)))) |> 
-         mutate(g = factor(g, labels = c("Star", "Gatekeeper", "Peripheral")))
-   p <- ggplot(dat, aes(n, d, group = g, color = as.factor(g))) 
-   p <- p + geom_point(size = 3)
-   p <- p + geom_line(linewidth = 0.75)
-   p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
-   p <- p + labs(y = "", x = "Number of Branches")
-   p <- p + scale_x_continuous(breaks = seq(2, length(d.s), by = 2))
-   p <- p + scale_color_manual(values = c("red", "blue", "tan2"))
-   p <- p + theme_minimal()
-   p2 <- p + theme(axis.text = element_text(size = 14, face = "bold"),
-                  axis.title = element_text(size = 16, face = "bold"),
-                  legend.text = element_text(size = 16, face = "bold"),
-                  legend.title = element_blank(),
-                  legend.position = "top"
-                  ) + ggtitle("Squared Norm")
-   library(patchwork)
-   p1 + p2
-   ggsave(here("Plots", "broker-tree-roles-by-nbranches.png"), width = 10, height = 7, units = "in")
-```
+![Broker Tree Roles](Plots/broker-tree-roles-by-nbranches.png)
 
-```{r}
-   source(here("Functions", "make.broker.cliques.R"))
-   # source(here("Functions", "gg.R")) # gg.R not found
-   b <- make.broker.cliques(30)
-   p.list <- lapply(b, plot.graph.norm, l = "auto")
-   for (i in 1:length(p.list)) {
-      p.list[[i]] <- p.list[[i]] + ggtitle(paste("N. Branches =", i+1)) +
-         theme(plot.title = element_text(size = 11))
-      }
-   wrap_plots(p.list[c(1:6)], nrow = 2)
-   ggsave(here("Plots", "clique-examples.png"), width = 12, height = 8, units = "in")
-```
+![Clique Examples](Plots/clique-examples.png)
 
-```{r}
-   c <- lapply(b, distinction, norm = "abm")
-   d.s <- sapply(c, function(x) {x[9, 3]})
-   d.b <- sapply(c, function(x) {x[4, 3]})
-   d.p <- sapply(c, function(x) {x[1, 3]})
-   dat <- data.frame(d = c(d.s, d.b, d.p), 
-         n = c(1:length(d.s)+1, 1:length(d.s)+1, 1:length(d.s)+1),
-         g = c(rep(1, length(d.s)), rep(2, length(d.s)), 
-         rep(3, length(d.s)))) |> 
-         mutate(g = factor(g, labels = c("Star", "Gatekeeper", "Peripheral")))
-   p <- ggplot(dat, aes(n, d, group = g, color = as.factor(g))) 
-   p <- p + geom_point(size = 3)
-   p <- p + geom_line(linewidth = 0.75)
-   p <- p + geom_hline(yintercept = 0, color = "red", linetype = 2)
-   p <- p + labs(y = "", x = "Number of Branches")
-   p <- p + scale_x_continuous(breaks = seq(2, length(d.s), by = 2))
-   p <- p + scale_color_manual(values = c("red", "blue", "tan2"))
-   p <- p + theme_minimal()
-   p <- p + theme(axis.text = element_text(size = 14, face = "bold"),
-                  axis.title = element_text(size = 16, face = "bold"),
-                  legend.text = element_text(size = 16, face = "bold"),
-                  legend.title = element_blank(),
-                  legend.position = "top"
-                  )
-   p
-   ggsave(here("Plots", "broker-cliques-roles-by-nbranches.png"), width = 7, height = 7, units = "in")
-```
+![Broker Clique Roles](Plots/broker-cliques-roles-by-nbranches.png)
 
 ```{r}
    library(networkdata)

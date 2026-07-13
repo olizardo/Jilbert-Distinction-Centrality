@@ -11,7 +11,9 @@ This page provides an example of how to compute and visualize distinction centra
 library(igraph)
 library(dplyr)
 library(readr)
+library(patchwork)
 source("Functions/distinction.R")
+source("Functions/plot.graph.norm.R")
 
 # Load the Medici dataset
 medici_edges <- read_csv("Data/MediciEdgeList.csv")
@@ -19,24 +21,57 @@ g <- graph_from_data_frame(medici_edges, directed = FALSE)
 
 # Calculate distinction centrality for the full network
 results_full <- distinction(g)
+```
 
-cat("### Top Families (Full Network)\n")
+### Top Families (Full Network)
+
+```{r}
+#| echo: false
 results_full %>%
   arrange(desc(scd)) %>%
   head(5) %>%
   knitr::kable()
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 8
+#| fig-height: 6
+#| out-width: "100%"
+set.seed(42)
+plot.graph.norm(g, ts = 4) + ggplot2::ggtitle("Full Florentine Network")
+```
+
+### Top Families (Network without Medici)
+
+```{r}
+#| message: false
+#| warning: false
 
 # Load and analyze the network without the Medici
 nomedici_edges <- read_csv("Data/NoMediciEdgeList.csv")
 g_no <- graph_from_data_frame(nomedici_edges, directed = FALSE)
 results_no <- distinction(g_no)
+```
 
-cat("\n### Top Families (Network without Medici)\n")
+```{r}
+#| echo: false
 results_no %>%
   arrange(desc(scd)) %>%
   head(5) %>%
   knitr::kable()
 ```
 
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 8
+#| fig-height: 6
+#| out-width: "100%"
+set.seed(42)
+plot.graph.norm(g_no, ts = 4) + ggplot2::ggtitle("Florentine Network (Medici Removed)")
+```
+
 ### Analysis
-The comparison highlights how the network hierarchy shifts in the absence of the Medici. In the full network, the Medici command the highest distinction score. When removed, the distinction scores of the remaining elite families (such as the Albizzi and Guasconi) are recalculated based on their new relative network positions, illustrating how individual distinction is intrinsically linked to the presence of key central brokers.
+The comparison highlights how the network hierarchy shifts in the absence of the Medici. In the full network, the Medici command the highest distinction score (shown in red in the plot), acting as the central broker. When removed, the distinction scores of the remaining elite families are recalculated based on their new relative network positions. Specifically, families like the Albizzi and Guasconi experience significant gains in distinction centrality, taking over as the new brokers in the fragmented structure. This illustrates how individual distinction is intrinsically linked to the presence or absence of key central players.

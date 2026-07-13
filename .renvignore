@@ -1,0 +1,11 @@
+_site/
+_quarto/
+.quarto/
+*.html
+*.pdf
+*.md
+*.tex
+Plots/
+Tabs/
+renv/
+.Rproj.user/

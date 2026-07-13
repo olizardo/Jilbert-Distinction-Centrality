@@ -1,0 +1,3 @@
+# Tell Quarto not to use renv for dependency discovery
+RENV_CONFIG_AUTOSNAPSHOT_ENABLED = FALSE
+RENV_CONFIG_DEPENDENCY_ERRORS = "fatal"
