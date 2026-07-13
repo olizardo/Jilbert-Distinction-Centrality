@@ -160,12 +160,23 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./analysis.html"> 
+<span class="menu-text">Theory &amp; Analysis</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="./functions.html" aria-current="page"> 
 <span class="menu-text">Distinction Function</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./examples.html"> 
 <span class="menu-text">Examples</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/olizardo/Jilbert-Distinction-Centrality"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">Repository</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -215,31 +226,108 @@ window.Quarto = {
 <p>The core of this analysis is the <code>distinction()</code> function, which calculates the distinction centrality score for nodes in an <code>igraph</code> object.</p>
 <section id="installation-usage" class="level3">
 <h3 class="anchored" data-anchor-id="installation-usage">Installation &amp; Usage</h3>
-<p>To use the <code>distinction</code> function in your own R project, you can download the script directly from our repository:</p>
-<ol type="1">
-<li><strong>Download the script</strong>: <a href="https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R">Click here to download <code>distinction.R</code></a></li>
-<li><strong>Source the function</strong> in your R script:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load igraph</span></span>
+<p>To use the <code>distinction</code> function in your own R project, you can download the script or source it directly from GitHub:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load igraph</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Source the function</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"path/to/your/downloaded/distinction.R"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Source directly from GitHub</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage on a simple ring graph</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(<span class="dv">7</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">distinction</span>(g)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">n</th>
+<th style="text-align: right;">d</th>
+<th style="text-align: right;">scd</th>
+<th style="text-align: right;">s</th>
+<th style="text-align: right;">u</th>
+<th style="text-align: right;">scalar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.445</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.445</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.445</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.445</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.445</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.445</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.445</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="implementation-details" class="level3">
 <h3 class="anchored" data-anchor-id="implementation-details">Implementation Details</h3>
 <p>The function computes status (<span class="math inline">\(s_i\)</span>) using eigenvector centrality (processed component-wise for robustness), calculates the constraint (<span class="math inline">\(\kappa_i\)</span>) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.</p>
+<p>The mathematical formulation is: <span class="math display">\[ \beta_i = \alpha s_i - \kappa_i \]</span> Where <span class="math inline">\(\alpha\)</span> is a scalar adjustment factor: <span class="math display">\[ \alpha = \frac{\bar{\kappa}}{\bar{s}} \]</span></p>
 </section>
 <section id="parameters" class="level3">
 <h3 class="anchored" data-anchor-id="parameters">Parameters</h3>
 <ul>
 <li><strong><code>x</code></strong>: An <code>igraph</code> object representing the network.</li>
-<li><strong><code>norm</code></strong>: A character string indicating the normalization method to use for status scores (<code>'max'</code>, <code>'one'</code>, <code>'abm'</code>, <code>'abs'</code>).</li>
+<li><strong><code>norm</code></strong>: A character string indicating the normalization method to use for status scores:
+<ul>
+<li><code>'max'</code>: Divides by the maximum status score.</li>
+<li><code>'one'</code>: Ensures scores sum to one.</li>
+<li><code>'abm'</code>: Normalizes by the absolute maximum.</li>
+<li><code>'abs'</code>: Absolute normalization.</li>
+</ul></li>
 <li><strong><code>digits</code></strong>: Number of decimal places for rounding the output.</li>
 </ul>
 </section>
