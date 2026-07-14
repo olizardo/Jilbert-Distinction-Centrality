@@ -40,7 +40,7 @@ results_full %>%
 #| fig-height: 6
 #| out-width: "100%"
 set.seed(42)
-plot.graph.norm(g, ts = 4) + ggplot2::ggtitle("Full Florentine Network")
+plot.graph.norm(g, ts = 4, dist_data = results_full) + ggplot2::ggtitle("Full Florentine Network")
 ```
 
 ### Top Families (Network without Medici)
@@ -70,7 +70,7 @@ results_no %>%
 #| fig-height: 6
 #| out-width: "100%"
 set.seed(42)
-plot.graph.norm(g_no, ts = 4) + ggplot2::ggtitle("Florentine Network (Medici Removed)")
+plot.graph.norm(g_no, ts = 4, dist_data = results_no) + ggplot2::ggtitle("Florentine Network (Medici Removed)")
 ```
 
 ### Analysis

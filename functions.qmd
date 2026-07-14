@@ -14,10 +14,11 @@ To use the `distinction` function in your own R project, you can download the sc
 # Load igraph
 library(igraph)
 
-# Source directly from GitHub
-source("https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R")
+# Source directly from GitHub (shown for your own projects)
+# source("https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R")
 
 # Example usage on a simple ring graph
+source("Functions/distinction.R") # Sourcing locally for the site build
 g <- make_ring(7)
 results <- distinction(g)
 knitr::kable(results)
@@ -34,10 +35,10 @@ $$ \alpha = \frac{\bar{\kappa}}{\bar{s}} $$
 ### Parameters
 - **`x`**: An `igraph` object representing the network.
 - **`norm`**: A character string indicating the normalization method to use for status scores:
-  - `'max'`: Divides by the maximum status score.
-  - `'one'`: Ensures scores sum to one.
-  - `'abm'`: Normalizes by the absolute maximum.
-  - `'abs'`: Absolute normalization.
+  - `'max'`: Squares the status scores and divides by the maximum squared status.
+  - `'one'`: Squares the status scores.
+  - `'abm'`: Divides the absolute status scores by the maximum absolute status.
+  - `'abs'`: Takes the absolute value of the status scores.
 - **`digits`**: Number of decimal places for rounding the output.
 
 ### Output
