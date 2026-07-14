@@ -17,9 +17,9 @@ library(igraph)
 # Source directly from GitHub (shown for your own projects)
 # source("https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R")
 
-# Example usage on a simple ring graph
+# Example usage on a star graph
 source("Functions/distinction.R") # Sourcing locally for the site build
-g <- make_ring(7)
+g <- make_star(7, mode = "undirected")
 results <- distinction(g)
 knitr::kable(results)
 ```

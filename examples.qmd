@@ -2,7 +2,7 @@
 title: "Examples"
 ---
 
-This page provides an example of how to compute and visualize distinction centrality using the classic Medici family network from Padgett & Ansell (1993).
+This page provides an example of how to compute and visualize distinction centrality using the classic Zachary's Karate Club network.
 
 ```{r}
 #| message: false
@@ -10,20 +10,20 @@ This page provides an example of how to compute and visualize distinction centra
 
 library(igraph)
 library(dplyr)
-library(readr)
+library(networkdata)
 library(patchwork)
 source("Functions/distinction.R")
 source("Functions/plot.graph.norm.R")
 
-# Load the Medici dataset
-medici_edges <- read_csv("Data/MediciEdgeList.csv")
-g <- graph_from_data_frame(medici_edges, directed = FALSE)
+# Load the Karate Club dataset
+data(karate)
+g <- karate
 
 # Calculate distinction centrality for the full network
 results_full <- distinction(g)
 ```
 
-### Top Families (Full Network)
+### Top Nodes (Full Network)
 
 ```{r}
 #| echo: false
@@ -40,18 +40,17 @@ results_full %>%
 #| fig-height: 6
 #| out-width: "100%"
 set.seed(42)
-plot.graph.norm(g, ts = 4, dist_data = results_full) + ggplot2::ggtitle("Full Florentine Network")
+plot.graph.norm(g, ts = 4, dist_data = results_full) + ggplot2::ggtitle("Full Karate Club Network")
 ```
 
-### Top Families (Network without Medici)
+### Top Nodes (Club President Removed)
 
 ```{r}
 #| message: false
 #| warning: false
 
-# Load and analyze the network without the Medici
-nomedici_edges <- read_csv("Data/NoMediciEdgeList.csv")
-g_no <- graph_from_data_frame(nomedici_edges, directed = FALSE)
+# Load and analyze the network without the Club President (Node 34)
+g_no <- delete_vertices(g, "34")
 results_no <- distinction(g_no)
 ```
 
@@ -70,8 +69,10 @@ results_no %>%
 #| fig-height: 6
 #| out-width: "100%"
 set.seed(42)
-plot.graph.norm(g_no, ts = 4, dist_data = results_no) + ggplot2::ggtitle("Florentine Network (Medici Removed)")
+plot.graph.norm(g_no, ts = 4, dist_data = results_no) + ggplot2::ggtitle("Karate Club Network (President Removed)")
 ```
 
 ### Analysis
-The comparison highlights how the network hierarchy shifts in the absence of the Medici. In the full network, the Medici command the highest distinction score (shown in red in the plot), acting as the central broker. When removed, the distinction scores of the remaining elite families are recalculated based on their new relative network positions. Specifically, families like the Albizzi and Guasconi experience significant gains in distinction centrality, taking over as the new brokers in the fragmented structure. This illustrates how individual distinction is intrinsically linked to the presence or absence of key central players.
+The comparison highlights how the network hierarchy shifts in the absence of a primary broker. In the full network, the club president (Node 34) commands the highest distinction score, closely followed by the instructor (Node 1). Both act as central brokers for their respective factions. 
+
+When the president is removed, the distinction scores of the remaining members are recalculated based on their new relative network positions. The instructor (Node 1) experiences significant gains in distinction centrality, taking over as the absolute primary broker in the fragmented structure. Meanwhile, nodes that relied heavily on the president for their structural position (such as Node 33) experience a drop in their relative distinction ranking. This illustrates how individual distinction is intrinsically linked to the presence or absence of key central players.
