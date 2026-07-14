@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - index.qmd
+    - functions.qmd
+    - examples.qmd
 
 website:
   title: "Distinction Centrality"
@@ -8,8 +12,6 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Theory & Analysis"
-        href: analysis.qmd
       - text: "Distinction Function"
         href: functions.qmd
       - text: "Examples"
