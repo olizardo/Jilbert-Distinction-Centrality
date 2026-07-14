@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.28)  11 JUL 2026 11:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.28)  13 JUL 2026 17:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -250,7 +250,8 @@ Package: authblk 2001/02/27 1.3 (PWD)
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count319
-) (./manuscript.aux)
+)
+No file manuscript.aux.
 \openout1 = `manuscript.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -271,7 +272,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -325,7 +325,6 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package color Info: Driver file: pdftex.def on input line 149.
  (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx))
 Package hyperref Info: Link coloring ON on input line 32.
- (./manuscript.out) (./manuscript.out)
 \@outlinefile=\write3
 \openout3 = `manuscript.out'.
 
@@ -385,88 +384,402 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <0.5> on input line 41.
 [1
 
-{/home/omarlizardo/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] (./Tabs/Figure1.tex) [9]
-<Plots/Toys/star.png, id=267, 505.89pt x 361.1091pt>
+{/home/omarlizardo/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `padgett1993robust' on page 2 undefined on input line 45.
+
+
+Package natbib Warning: Citation `zachary1977information' on page 2 undefined on input line 45.
+
+[2]
+
+Package natbib Warning: Citation `anheier1995forms' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `bennett2009culture-aef' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `martin2003field' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `bourdieu1984distinction' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `bourdieu1993field-8ad' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `erikson2013formalist-400' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `fuhse2021social-9cb' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `podolny2010status-1a6' on page 3 undefined on input line 50.
+
+
+Package natbib Warning: Citation `anheier1995forms' on page 3 undefined on input line 53.
+
+
+Package natbib Warning: Citation `bourdieu1993field-8ad' on page 3 undefined on input line 53.
+
+
+Package natbib Warning: Citation `bourdieu1996rules-393' on page 3 undefined on input line 53.
+
+
+Package natbib Warning: Citation `martin2003field' on page 3 undefined on input line 53.
+
+
+Package natbib Warning: Citation `bourdieu1984distinction' on page 3 undefined on input line 55.
+
+
+Package natbib Warning: Citation `anheier1995forms' on page 3 undefined on input line 57.
+
+
+Package natbib Warning: Citation `martin2003field' on page 3 undefined on input line 57.
+
+[3]
+
+Package natbib Warning: Citation `friedkin1991theoretical' on page 4 undefined on input line 59.
+
+
+Package natbib Warning: Citation `burt1980autonomy' on page 4 undefined on input line 59.
+
+
+Package natbib Warning: Citation `burt76' on page 4 undefined on input line 59.
+
+
+Package natbib Warning: Citation `martin2003field' on page 4 undefined on input line 64.
+
+
+Package natbib Warning: Citation `erikson2013formalist-400' on page 4 undefined on input line 64.
+
+[4]
+
+Package natbib Warning: Citation `bonacich2004hyper-edges-532' on page 5 undefined on input line 68.
+
+
+Package natbib Warning: Citation `burt1977positions-79a' on page 5 undefined on input line 68.
+
+
+Package natbib Warning: Citation `bonacich1972factoring-03e' on page 5 undefined on input line 70.
+
+
+Package natbib Warning: Citation `bonacich1972factoring-03e' on page 5 undefined on input line 70.
+
+
+Package natbib Warning: Citation `burt1980autonomy' on page 5 undefined on input line 72.
+
+
+Package natbib Warning: Citation `burt1995structural-5e8' on page 5 undefined on input line 72.
+
+
+Package natbib Warning: Citation `burt1995structural-5e8' on page 5 undefined on input line 72.
+
+
+Package natbib Warning: Citation `padgett1993robust' on page 5 undefined on input line 74.
+
+[5] [6]
+
+Package natbib Warning: Citation `vigna2016spectral-19a' on page 7 undefined on input line 99.
+
+
+Package natbib Warning: Citation `bonacich1972factoring-03e' on page 7 undefined on input line 99.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 7 undefined on input line 101.
+
+
+Package natbib Warning: Citation `borgatti2020oxford-fa6' on page 7 undefined on input line 101.
+
+
+Package natbib Warning: Citation `everett2010induced-817' on page 7 undefined on input line 101.
+
+
+Package natbib Warning: Citation `everett2010induced-817' on page 7 undefined on input line 101.
+
+
+Package natbib Warning: Citation `freeman79' on page 7 undefined on input line 101.
+
+
+Package natbib Warning: Citation `vigna2016spectral-19a' on page 7 undefined on input line 103.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 7 undefined on input line 105.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 7 undefined on input line 111.
+
+[7]
+
+LaTeX Warning: Reference `eq:distinction' on page 8 undefined on input line 113.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 8 undefined on input line 119.
+
+
+LaTeX Warning: Reference `tab:circle' on page 8 undefined on input line 119.
+
+
+LaTeX Warning: Reference `tab:clique' on page 8 undefined on input line 119.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 8 undefined on input line 121.
+
+
+LaTeX Warning: Reference `fig:star-scaling' on page 8 undefined on input line 121.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 8 undefined on input line 121.
+
+
+Package natbib Warning: Citation `R' on page 8 undefined on input line 124.
+
+
+LaTeX Warning: Reference `fig:star' on page 8 undefined on input line 127.
+
+[8]
+
+LaTeX Warning: Reference `eq:distinction' on page 9 undefined on input line 134.
+
+
+LaTeX Warning: Reference `fig:star-scaling' on page 9 undefined on input line 134.
+
+
+LaTeX Warning: Reference `eq:distinction-star1' on page 9 undefined on input line 136.
+
+
+LaTeX Warning: Reference `fig:star-scaling' on page 9 undefined on input line 143.
+
+
+LaTeX Warning: Reference `fig:star-scaling' on page 9 undefined on input line 143.
+
+(./Tabs/Figure1.tex)
+
+LaTeX Warning: Reference `eq:distinction' on page 9 undefined on input line 149.
+
+
+LaTeX Warning: Reference `eq:distinction-star1' on page 9 undefined on input line 156.
+
+
+LaTeX Warning: Reference `eq:distinction-star3' on page 9 undefined on input line 156.
+
+[9]
+<Plots/Toys/star.png, id=87, 481.5591pt x 481.5591pt>
 File: Plots/Toys/star.png Graphic file (type png)
 <use Plots/Toys/star.png>
 Package pdftex.def Info: Plots/Toys/star.png  used on input line 169.
-(pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/Toys/circle.png, id=268, 505.89pt x 361.1091pt>
+(pdftex.def)             Requested size: 134.42383pt x 134.42413pt.
+<Plots/Toys/circle.png, id=88, 481.5591pt x 481.5591pt>
 File: Plots/Toys/circle.png Graphic file (type png)
 <use Plots/Toys/circle.png>
 Package pdftex.def Info: Plots/Toys/circle.png  used on input line 174.
-(pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/Toys/clique.png, id=269, 505.89pt x 361.1091pt>
+(pdftex.def)             Requested size: 134.42383pt x 134.42413pt.
+<Plots/Toys/clique.png, id=89, 481.5591pt x 481.5591pt>
 File: Plots/Toys/clique.png Graphic file (type png)
 <use Plots/Toys/clique.png>
 Package pdftex.def Info: Plots/Toys/clique.png  used on input line 179.
-(pdftex.def)             Requested size: 134.42383pt x 95.95242pt.
-<Plots/star-roles-by-size.png, id=270, 505.89pt x 578.16pt>
-File: Plots/star-roles-by-size.png Graphic file (type png)
-<use Plots/star-roles-by-size.png>
-Package pdftex.def Info: Plots/star-roles-by-size.png  used on input line 188.
-(pdftex.def)             Requested size: 268.84767pt x 307.26143pt.
- (./Tabs/circle.tex) (./Tabs/clique.tex) [10 <./Plots/Toys/star.png> <./Plots/Toys/circle.png> <./Plots/Toys/clique.png>] [11 <./Plots/star-roles-by-size.png>]
-<Plots/Toys/circle-triangle1.png, id=293, 505.89pt x 361.1091pt>
+(pdftex.def)             Requested size: 134.42383pt x 134.42413pt.
+
+
+LaTeX Warning: File `Plots/star-roles-by-size.png' not found on input line 188.
+
+
+/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex:188: Package pdftex.def Error: File `Plots/star-roles-by-size.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188 ...\linewidth]{Plots/star-roles-by-size.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 188.
+(/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+
+LaTeX Warning: Reference `fig:circle' on page 10 undefined on input line 193.
+
+
+LaTeX Warning: Reference `fig:clique' on page 10 undefined on input line 193.
+
+
+LaTeX Warning: Reference `tab:circle' on page 10 undefined on input line 193.
+
+
+LaTeX Warning: Reference `tab:clique' on page 10 undefined on input line 193.
+
+(./Tabs/circle.tex) (./Tabs/clique.tex)
+
+LaTeX Warning: Reference `fig:circle' on page 10 undefined on input line 197.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 10 undefined on input line 197.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 10 undefined on input line 197.
+
+[10 <./Plots/Toys/star.png> <./Plots/Toys/circle.png> <./Plots/Toys/clique.png>]
+
+LaTeX Warning: Reference `eq:distinction' on page 11 undefined on input line 204.
+
+
+LaTeX Warning: Reference `eq:distinction' on page 11 undefined on input line 204.
+
+[11{/home/omarlizardo/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+<Plots/Toys/circle-triangle1.png, id=106, 481.5591pt x 481.5591pt>
 File: Plots/Toys/circle-triangle1.png Graphic file (type png)
 <use Plots/Toys/circle-triangle1.png>
 Package pdftex.def Info: Plots/Toys/circle-triangle1.png  used on input line 215.
-(pdftex.def)             Requested size: 179.22722pt x 127.93289pt.
-<Plots/Toys/circle-long.png, id=294, 505.89pt x 361.1091pt>
+(pdftex.def)             Requested size: 179.22722pt x 179.22484pt.
+<Plots/Toys/circle-long.png, id=107, 481.5591pt x 481.5591pt>
 File: Plots/Toys/circle-long.png Graphic file (type png)
 <use Plots/Toys/circle-long.png>
 Package pdftex.def Info: Plots/Toys/circle-long.png  used on input line 220.
-(pdftex.def)             Requested size: 179.22722pt x 127.93289pt.
-<Plots/Toys/star-triangle1.png, id=295, 505.89pt x 361.1091pt>
+(pdftex.def)             Requested size: 179.22722pt x 179.22484pt.
+<Plots/Toys/star-triangle1.png, id=108, 481.5591pt x 481.5591pt>
 File: Plots/Toys/star-triangle1.png Graphic file (type png)
 <use Plots/Toys/star-triangle1.png>
 Package pdftex.def Info: Plots/Toys/star-triangle1.png  used on input line 225.
-(pdftex.def)             Requested size: 179.22722pt x 127.93289pt.
-<Plots/Toys/wheel.png, id=296, 505.89pt x 361.1091pt>
+(pdftex.def)             Requested size: 179.22722pt x 179.22484pt.
+<Plots/Toys/wheel.png, id=109, 481.5591pt x 481.5591pt>
 File: Plots/Toys/wheel.png Graphic file (type png)
 <use Plots/Toys/wheel.png>
 Package pdftex.def Info: Plots/Toys/wheel.png  used on input line 230.
-(pdftex.def)             Requested size: 179.22722pt x 127.93289pt.
- [12] [13 <./Plots/Toys/circle-triangle1.png> <./Plots/Toys/circle-long.png> <./Plots/Toys/star-triangle1.png> <./Plots/Toys/wheel.png>] (./Tabs/Figure3.tex) [14] [15]
-<Plots/medici.png, id=337, 1003.75pt x 602.25pt>
-File: Plots/medici.png Graphic file (type png)
-<use Plots/medici.png>
-Package pdftex.def Info: Plots/medici.png  used on input line 276.
-(pdftex.def)             Requested size: 448.0749pt x 268.85043pt.
-<Plots/nomedici.png, id=338, 1003.75pt x 602.25pt>
-File: Plots/nomedici.png Graphic file (type png)
-<use Plots/nomedici.png>
-Package pdftex.def Info: Plots/nomedici.png  used on input line 281.
-(pdftex.def)             Requested size: 448.0749pt x 268.85043pt.
- (./Tabs/medici.tex) [16] [17 <./Plots/medici.png (PNG copy)> <./Plots/nomedici.png (PNG copy)>] [18] [19] [20]
-<Plots/search.png, id=369, 280.04625pt x 251.43938pt>
-File: Plots/search.png Graphic file (type png)
-<use Plots/search.png>
-Package pdftex.def Info: Plots/search.png  used on input line 321.
-(pdftex.def)             Requested size: 201.63234pt x 181.04387pt.
- (./Tabs/search.tex) [21] [22 <./Plots/search.png>] [23] [24]
-<Plots/PortfolioIntegration.png, id=399, 493.845pt x 274.77657pt>
-File: Plots/PortfolioIntegration.png Graphic file (type png)
-<use Plots/PortfolioIntegration.png>
-Package pdftex.def Info: Plots/PortfolioIntegration.png  used on input line 368.
-(pdftex.def)             Requested size: 448.0749pt x 249.30913pt.
- [25] [26 <./Plots/PortfolioIntegration.png>] [27] [28] [29] (./manuscript.bbl [30] [31]) [32] (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang1.sty
+(pdftex.def)             Requested size: 179.22722pt x 179.22484pt.
+
+
+Package natbib Warning: Citation `heider1946attitudes-ff3' on page 12 undefined on input line 239.
+
+
+Package natbib Warning: Citation `feld1981focused' on page 12 undefined on input line 241.
+
+
+Package natbib Warning: Citation `feld1982social' on page 12 undefined on input line 241.
+
+
+Package natbib Warning: Citation `mollenhorst2011shared' on page 12 undefined on input line 241.
+
+
+Package natbib Warning: Citation `yoon2013exchange' on page 12 undefined on input line 241.
+
+
+Package natbib Warning: Citation `huang2018will' on page 12 undefined on input line 243.
+
+[12] [13 <./Plots/Toys/circle-triangle1.png> <./Plots/Toys/circle-long.png> <./Plots/Toys/star-triangle1.png> <./Plots/Toys/wheel.png>] (./Tabs/Figure3.tex) [14]
+
+Package natbib Warning: Citation `padgett1993robust' on page 15 undefined on input line 265.
+
+[15]
+
+LaTeX Warning: File `Plots/medici.png' not found on input line 276.
+
+
+/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex:276: Package pdftex.def Error: File `Plots/medici.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.276 ...cs[width=1.0\textwidth]{Plots/medici.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: File `Plots/nomedici.png' not found on input line 281.
+
+
+/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex:281: Package pdftex.def Error: File `Plots/nomedici.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.281 ...[width=1.0\textwidth]{Plots/nomedici.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Float too large for page by 343.60162pt on input line 287.
+
+(./Tabs/medici.tex) [16] [17] [18] [19] [20]
+
+Package natbib Warning: Citation `kleinberg99' on page 21 undefined on input line 311.
+
+
+Package natbib Warning: Citation `brin_page98' on page 21 undefined on input line 311.
+
+
+Package natbib Warning: Citation `langville2005survey-572' on page 21 undefined on input line 311.
+
+
+LaTeX Warning: File `Plots/search.png' not found on input line 321.
+
+
+/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex:321: Package pdftex.def Error: File `Plots/search.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.321 ...cs[width=1.0\textwidth]{Plots/search.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+(./Tabs/search.tex) [21] [22]
+
+Package natbib Warning: Citation `bearman2004chains' on page 23 undefined on input line 341.
+
+[23]
+
+Package natbib Warning: Citation `bryson1996anything' on page 24 undefined on input line 345.
+
+[24]
+
+LaTeX Warning: File `Plots/PortfolioIntegration.png' not found on input line 368.
+
+
+/home/omarlizardo/NETWORKS PROJECTS/distinction-centrality/manuscript.tex:368: Package pdftex.def Error: File `Plots/PortfolioIntegration.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.368 ...extwidth]{Plots/PortfolioIntegration.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[25] [26]
+
+Package natbib Warning: Citation `feld1981focused' on page 27 undefined on input line 385.
+
+[27]
+
+Package natbib Warning: Citation `dunbar1995neocortex' on page 28 undefined on input line 389.
+
+[28] [29] (./manuscript.bbl) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2025/11/14 1.11b listings language file
 ) (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2025/11/14 1.11b listings language file
 )
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 420.
- (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
 (Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 425.
 LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 426.
  (/home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-) [33{/home/omarlizardo/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] [34] [35] (./manuscript.aux)
+) [30] [31]
+
+Package natbib Warning: There were undefined citations.
+
+[32] (./manuscript.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-06-18>
@@ -476,22 +789,34 @@ L3 programming layer <2026-06-18>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
 
-Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 14488EDC024450873718D215F102992E;4150.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `manuscript.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `manuscript.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  14488EDC024450873718D215F102992E;4150.
  ) 
 Here is how much of TeX's memory you used:
- 13735 strings out of 469097
- 216217 string characters out of 5457857
- 1124358 words of memory out of 5000000
- 42371 multiletter control sequences out of 15000+600000
- 638085 words of font info for 74 fonts, out of 8000000 for 9000
+ 13679 strings out of 469097
+ 215926 string characters out of 5457857
+ 1120741 words of memory out of 5000000
+ 42359 multiletter control sequences out of 15000+600000
+ 638600 words of font info for 76 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 74i,9n,79p,2040b,2734s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,9n,79p,2031b,2734s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/omarlizardo/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/omarlizardo/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/omarlizardo/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on manuscript.pdf (35 pages, 1324783 bytes).
+Output written on manuscript.pdf (32 pages, 1061796 bytes).
 PDF statistics:
- 706 PDF objects out of 1000 (max. 8388607)
- 606 compressed objects within 7 object streams
- 221 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 460 PDF objects out of 1000 (max. 8388607)
+ 371 compressed objects within 4 object streams
+ 182 named destinations out of 1000 (max. 500000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

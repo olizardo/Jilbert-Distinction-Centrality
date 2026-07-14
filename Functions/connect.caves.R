@@ -11,11 +11,8 @@ connect.caves <- function(c = 4, nc = 4, n = 12) {
     } # end make.cave.list
     caves <- make.cave.list(c, nc)
     make.caves <- function(a, b) {
-      g <- make_full_graph(a, directed = FALSE)
-      for (k in 2:b) {
-        g <- g + make_full_graph(a, directed = FALSE)
-        }
-      return(g) 
+      library(igraph)
+      disjoint_union(replicate(b, make_full_graph(a, directed = FALSE), simplify = FALSE))
       } # end make.caves
     g <- make.caves(c, nc)
     gl <- vector(mode = "list", length = n)
