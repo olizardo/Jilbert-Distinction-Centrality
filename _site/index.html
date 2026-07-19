@@ -37,12 +37,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7f128302b46659ec05c1cdf12d27b5f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,6 +100,12 @@ window.Quarto = {
 };
 </script>
 
+<meta property="og:title" content="Distinction Centrality">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Distinction Centrality">
+<meta name="twitter:title" content="Distinction Centrality">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -153,38 +158,33 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
-   
   <ul>
   <li><a href="#mathematical-formulation" id="toc-mathematical-formulation" class="nav-link active" data-scroll-target="#mathematical-formulation">Mathematical Formulation</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-about-solana column-body">
+  <div class="about-entity">
+    <div class="entity-contents">
+      <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Distinction Centrality</h1>
 </div>
-
-
-
 <div class="quarto-title-meta">
-
-    
-  
-    
   </div>
-  
-
-
-</header>
-
+</header> <div class="about-links">
+  <a href="https://github.com/olizardo/Jilbert-Distinction-Centrality" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text">GitHub</span>
+  </a>
+</div>
+      <div class="about-contents"><main class="content" id="quarto-document-content">
 
 <p>Welcome to the documentation and analysis portal for <strong>Distinction Centrality</strong> (<span class="math inline">\(\beta_i\)</span>).</p>
 <p>This project implements and analyzes a social network metric theoretically inspired by Pierre Bourdieu’s theory of agonistic competition in social fields. It models the trade-off between status (influence/eigenvector centrality) and constraint (average status of neighbors in the node-deleted subgraph).</p>
 <section id="mathematical-formulation" class="level3">
-<h3 class="anchored" data-anchor-id="mathematical-formulation">Mathematical Formulation</h3>
+<h3 data-anchor-id="mathematical-formulation">Mathematical Formulation</h3>
 <p>The distinction centrality (<span class="math inline">\(\beta_i\)</span>) of a node <span class="math inline">\(i\)</span> is defined as:</p>
 <p><span class="math display">\[\beta_i = \alpha s_i - \kappa_i\]</span></p>
 <p>where: - <span class="math inline">\(s_i\)</span> is the status of node <span class="math inline">\(i\)</span>. - <span class="math inline">\(\kappa_i\)</span> is the constraint (average status of neighbors in the node-deleted subgraph). - <span class="math inline">\(\alpha\)</span> is a scalar adjustment factor defined as <span class="math inline">\(\alpha = \frac{\bar{\mathbf{\kappa}}}{\bar{\mathbf{s}}}\)</span>.</p>
@@ -192,17 +192,13 @@ window.Quarto = {
 
 
 </section>
-
-</main> <!-- /main -->
+</main></div>
+    </div>
+  </div>
+</div>
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
