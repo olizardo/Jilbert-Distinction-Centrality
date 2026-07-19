@@ -13,6 +13,7 @@ To use the `distinction` function in your own R project, you can download the sc
 #| warning: false
 # Load igraph
 library(igraph)
+library(DT)
 
 # Source directly from GitHub (shown for your own projects)
 # source("https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R")
@@ -21,7 +22,7 @@ library(igraph)
 source("Functions/distinction.R") # Sourcing locally for the site build
 g <- make_star(7, mode = "undirected")
 results <- distinction(g)
-knitr::kable(results)
+datatable(results, options = list(pageLength = 7, dom = 't'))
 ```
 
 ### Implementation Details

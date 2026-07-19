@@ -8,6 +8,9 @@ project:
 
 website:
   title: "Distinction Centrality"
+  search: true
+  open-graph: true
+  twitter-card: true
   navbar:
     left:
       - text: "Home"
@@ -26,3 +29,6 @@ format:
   html:
     theme: cosmo
     toc: true
+    code-copy: true
+    code-fold: show
+    highlight-style: github

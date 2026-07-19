@@ -1,5 +1,11 @@
 ---
 title: "Distinction Centrality"
+about:
+  template: solana
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/olizardo/Jilbert-Distinction-Centrality
 ---
 
 Welcome to the documentation and analysis portal for **Distinction Centrality** ($\beta_i$).

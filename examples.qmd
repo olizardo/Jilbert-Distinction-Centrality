@@ -7,11 +7,14 @@ This page provides an example of how to compute and visualize distinction centra
 ```{r}
 #| message: false
 #| warning: false
+#| code-fold: true
 
 library(igraph)
 library(dplyr)
 library(networkdata)
 library(patchwork)
+library(DT)
+library(visNetwork)
 source("Functions/distinction.R")
 source("Functions/plot.graph.norm.R")
 
@@ -23,24 +26,30 @@ g <- karate
 results_full <- distinction(g)
 ```
 
-### Top Nodes (Full Network)
+### Full Network Results
 
 ```{r}
 #| echo: false
-results_full %>%
-  arrange(desc(scd)) %>%
-  head(5) %>%
-  knitr::kable()
+datatable(results_full %>% arrange(desc(scd)), 
+          options = list(pageLength = 5, scrollX = TRUE))
 ```
 
 ```{r}
 #| message: false
 #| warning: false
-#| fig-width: 8
-#| fig-height: 6
-#| out-width: "100%"
+#| code-fold: true
 set.seed(42)
-plot.graph.norm(g, ts = 4, dist_data = results_full) + ggplot2::ggtitle("Full Karate Club Network")
+# Prepare nodes and edges for visNetwork
+V(g)$title <- paste0("Node: ", V(g)$name, "<br>Distinction: ", round(results_full$scd, 3))
+# Color based on distinction
+V(g)$color <- ifelse(results_full$scd > 0.05, "blue", 
+              ifelse(results_full$scd < -0.05, "tan", "purple"))
+V(g)$color[which.max(results_full$scd)] <- "red"
+
+visIgraph(g) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
+  visInteraction(hover = TRUE) %>%
+  visLayout(randomSeed = 42)
 ```
 
 ### Top Nodes (Club President Removed)
@@ -48,6 +57,7 @@ plot.graph.norm(g, ts = 4, dist_data = results_full) + ggplot2::ggtitle("Full Ka
 ```{r}
 #| message: false
 #| warning: false
+#| code-fold: true
 
 # Load and analyze the network without the Club President (Node 34)
 g_no <- delete_vertices(g, "34")
@@ -56,20 +66,24 @@ results_no <- distinction(g_no)
 
 ```{r}
 #| echo: false
-results_no %>%
-  arrange(desc(scd)) %>%
-  head(5) %>%
-  knitr::kable()
+datatable(results_no %>% arrange(desc(scd)), 
+          options = list(pageLength = 5, scrollX = TRUE))
 ```
 
 ```{r}
 #| message: false
 #| warning: false
-#| fig-width: 8
-#| fig-height: 6
-#| out-width: "100%"
+#| code-fold: true
 set.seed(42)
-plot.graph.norm(g_no, ts = 4, dist_data = results_no) + ggplot2::ggtitle("Karate Club Network (President Removed)")
+V(g_no)$title <- paste0("Node: ", V(g_no)$name, "<br>Distinction: ", round(results_no$scd, 3))
+V(g_no)$color <- ifelse(results_no$scd > 0.05, "blue", 
+                 ifelse(results_no$scd < -0.05, "tan", "purple"))
+V(g_no)$color[which.max(results_no$scd)] <- "red"
+
+visIgraph(g_no) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
+  visInteraction(hover = TRUE) %>%
+  visLayout(randomSeed = 42)
 ```
 
 ### Analysis
