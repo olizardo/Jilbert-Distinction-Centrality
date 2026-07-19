@@ -15,8 +15,8 @@ library(networkdata)
 library(patchwork)
 library(DT)
 library(visNetwork)
-source("Functions/distinction.R")
-source("Functions/plot.graph.norm.R")
+source("../Functions/distinction.R")
+source("../Functions/plot.graph.norm.R")
 
 # Load the Karate Club dataset
 data(karate)
