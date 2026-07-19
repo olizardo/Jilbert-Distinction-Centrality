@@ -1,16 +1,5 @@
----
-title: "Distinction Centrality Analysis"
-execute: 
-  eval: true
-  echo: false
-  output: false
-  warning: false
-  message: false
----
 
-## Setup
 
-```{r Loading packages}
    library(igraph)
    library(ggraph)
    library(here)
@@ -20,9 +9,8 @@ execute:
    library(dplyr)
    library(purrr)
    library(tibble)
-```
+   library(kableExtra)
 
-```{r Defining Functions}
    # Source functions
    lapply(c("distinction.R", "plot.graph.norm.R", "tab.cent.R"), 
           function(f) source(here("Functions", f)))
@@ -35,12 +23,8 @@ execute:
       tab.cent(dist_data, name = tools::file_path_sans_ext(file), 
                label = lab, caption = cap)
    }
-```
 
-## Toy Networks
 
-```{r Building Blocks}
-#| cache: true
    c3 <- make_full_graph(3, directed = FALSE) # triangle
    c4 <- make_full_graph(4, directed = FALSE) # 4-clique
    c5 <- make_full_graph(5, directed = FALSE) # 5-clique
@@ -99,10 +83,7 @@ execute:
    sw1p <- add_vertices(sw1, 1) + edge(1, 11) # sw graph with one long tie and pendant
    sw2p <- add_vertices(sw2, 1) + edge(1, 11) # sw graph with two long ties and pendant
    sw3p <- add_vertices(sw3, 1) + edge(1, 11) # sw graph with three long ties and pendant
-```
 
-```{r Basic Toy Graphs}
-#| cache: true
    # A single central registry mapping graphs to their export parameters
    toy_configs <- tribble(
      ~obj,    ~file,                         ~label,             ~lay,     ~caption,
@@ -126,14 +107,10 @@ execute:
    pwalk(toy_configs, function(obj, file, label, lay, caption) {
      process_toy(obj, file, label, caption, lay)
    })
-```
 
-```{r Loading Medici Data}
-#| cache: true
    medici1 <- as.matrix(read.csv(here("Data", "MediciEdgeList.csv")))
    medici1 <- graph_from_edgelist(medici1, directed = FALSE)
    medici2 <- as.matrix(read.csv(here("Data", "MediciEdgeListMarriageCut.csv")))
    medici2 <- graph_from_edgelist(medici2, directed = FALSE)
    nomedici <- as.matrix(read.csv(here("Data", "NoMediciEdgeList.csv")))
    nomedici <- graph_from_edgelist(nomedici, directed = FALSE)
-```

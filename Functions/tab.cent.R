@@ -4,9 +4,6 @@ tab.cent <- function(x,
       caption = "", 
       label = "label"
       ) { 
-  library(kableExtra)
-  library(dplyr)
-  library(here)
   
   # Group nodes by their scores to present them together, ensuring no duplicate rows
   x_grouped <- x %>%
