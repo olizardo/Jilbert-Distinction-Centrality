@@ -1,5 +1,4 @@
 distinction <- function(x, norm = "abm", digits = 4) {
-  require(igraph)
   n <- vcount(x)
   
   # Ensure vertices have sequential numeric names for indexing, preserving original labels
@@ -13,10 +12,19 @@ distinction <- function(x, norm = "abm", digits = 4) {
   
   # Normalization functions for status (eigenvector centrality) scores
   # Handled division by zero for sparse/empty subgraphs
-  norm.max <- function(v) { if (max(v^2) == 0) v else v^2 / max(v^2) }
-  norm.one <- function(v) { v^2 }
-  norm.abm <- function(v) { if (max(abs(v)) == 0) v else abs(v) / max(abs(v)) }
-  norm.abs <- function(v) { abs(v) }
+  apply_norm <- function(v, norm_type) {
+    if (norm_type == "max") {
+      if (max(v^2) == 0) v else v^2 / max(v^2)
+    } else if (norm_type == "one") {
+      v^2
+    } else if (norm_type == "abm") {
+      if (max(abs(v)) == 0) v else abs(v) / max(abs(v))
+    } else if (norm_type == "abs") {
+      abs(v)
+    } else {
+      v
+    }
+  }
   
   # Helper to compute status for any graph (handles components and isolates robustly)
   get_status <- function(g) {
@@ -42,10 +50,7 @@ distinction <- function(x, norm = "abm", digits = 4) {
   s <- get_status(x)
   
   # 2. Normalize main status
-  if (norm == "max") { s <- norm.max(s) }
-  else if (norm == "one") { s <- norm.one(s) }
-  else if (norm == "abm") { s <- norm.abm(s) }
-  else if (norm == "abs") { s <- norm.abs(s) }
+  s <- apply_norm(s, norm)
   
   d <- numeric(n) # Distinction vector
   u <- numeric(n) # Constraint vector (average neighbor status in deleted subgraph)
@@ -68,10 +73,7 @@ distinction <- function(x, norm = "abm", digits = 4) {
     if (ecount(xd) > 0 && vcount(xd) > 1) {
       sd <- get_status(xd)
       # Re-apply same normalization to deleted subgraph status
-      if (norm == "max") { sd <- norm.max(sd) }
-      else if (norm == "one") { sd <- norm.one(sd) }
-      else if (norm == "abm") { sd <- norm.abm(sd) }
-      else if (norm == "abs") { sd <- norm.abs(sd) }
+      sd <- apply_norm(sd, norm)
     } else {
       sd <- rep(0, vcount(xd))
     }

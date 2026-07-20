@@ -1,0 +1,247 @@
+
+# ## Setup
+
+   library(igraph)
+   library(ggraph)
+   library(here)
+   library(networkdata)
+   library(ggpubr)
+   library(patchwork)
+   library(dplyr)
+   # Source functions
+   lapply(c("distinction.R", "plot.graph.norm.R", "tab.cent.R"), 
+          function(f) source(here("Functions", f)))
+
+   # Wrapper for toy graph processing
+   process_toy <- function(x, file, lab, cap, lay = "kk") {
+      ggsave(here("Plots", "Toys", file), 
+             plot = plot.graph.norm(x, l = lay))
+      tab.cent(distinction(x), name = tools::file_path_sans_ext(file), 
+               label = lab, caption = cap)
+   }
+   
+   del.names <- function(x) delete_vertex_attr(x, "name")
+   
+   # Wrapper for plotting toy graphs
+   plot.toys <- function(x, file, lay = "kk") {
+      ggsave(here("Plots", "Toys", file), 
+             plot = plot.graph.norm(x, l = lay))
+   }
+
+# ## Toy Networks
+
+#| cache: true
+   c3 <- make_full_graph(3, directed = FALSE) # triangle
+   c4 <- make_full_graph(4, directed = FALSE) # 4-clique
+   c5 <- make_full_graph(5, directed = FALSE) # 5-clique
+   t3 <- make_tree(n = 4, children = 3, mode = "undirected") # 3-tree
+   t2 <- make_tree(n = 3, children = 2, mode = "undirected") # 2-tree
+   
+   # Add definitions for the missing toy graphs
+   s7 <- make_star(7, mode = "undirected")
+   c7 <- make_full_graph(7, directed = FALSE)
+   r7 <- make_ring(7)
+   # Zachary's karate club is a famous graph
+   k7 <- make_graph("Zachary") 
+   w7 <- make_wheel(7)
+   p7 <- make_empty_graph(7) + path(1:7)
+
+#| cache: true
+   ## Star
+   process_toy(s7, "star.png", "star", "Distinction centrality scores for the star graph.")
+   ## Clique
+   process_toy(c7, "clique.png", "clique", "Distinction centrality scores for the clique graph.", lay = "circle")
+   ## Circle
+   process_toy(r7, "circle.png", "circle", "Distinction centrality scores for the circle graph.", lay = "circle")
+   ## Kite
+   process_toy(k7, "kite.png", "kite", "Distinction centrality scores for the kite graph.")
+   ## Wheel
+   process_toy(w7, "wheel.png", "wheel", "Distinction centrality scores for the wheel graph.")
+   ## Path
+   process_toy(p7, "path.png", "path", "Distinction centrality scores for the path graph.")
+
+
+#| cache: true
+
+   plot.toys(ct, "circle-triangle1.png", "circle")
+   tab.cent(distinction(ct), name = "circletriangle", label = "circletriangle",  
+   caption = "Distinction centrality scores for the circle graph with triangle.")
+   ## Circle Graph Plus Long Tie
+   plot.toys(cl, "circle-long.png", "circle")
+   tab.cent(distinction(cl), name = "circlelong", label = "circlelong", 
+   caption = "Distinction centrality scores for the circle graph with long tie.")
+   ## Star Graph Plus Triangle
+
+   tab.cent(distinction(st1), name = "startriangle1", label = "star1", 
+   caption = "Distinction centrality scores for the star graph with one triangle.")
+   ## Star Graph Plust Two Triangles
+   plot.toys(st2, "star-triangle2.png", "kk")
+   tab.cent(distinction(st2), name = "startriangle2", label = "star2", 
+   caption = "Distinction centrality scores for the star graph with two triangles.")
+
+#| cache: true
+   ## Tree Mediator (Two Branch)
+   t222 <- t2 + t2
+   t222 <- add_vertices(t222, 1)
+   t222 <- t222 + edge(7, 1)
+   t222 <- t222 + edge(7, 4) # tree mediator two branch
+   plot.toys(t222, "tree-mediator2.png", "kk")
+   tab.cent(distinction(t222), name = "treemediator2", label = "tree2",
+   caption = "Distinction centrality scores for tree broker graph (two-branches).")
+   ## Tree Mediator (Three Branch)
+   t232 <- t3 + t3
+   t232 <- add_vertices(t232, 1)
+   t232 <- t232 + edge(9, 1)
+   t232 <- t232 + edge(9, 5) # tree mediator three branch
+   plot.toys(t232, "tree-mediator3.png", "kk")
+   tab.cent(distinction(t232), name = "treemediator3", label = "tree3", 
+   caption = "Distinction centrality scores for tree broker graph (three-branches).")
+   ## Tree Mediator (Two Branch Plus Long Tie)
+   t222l <- t222 + edge(6, 2) # tree mediator two branch plus long
+   plot.toys(t222l, "tree-mediator2-long.png", "auto")
+   tab.cent(distinction(t222l), name = "treemediatorlong2", label = "treelong2", 
+   caption = "Distinction centrality scores for tree broker graph (two-branches plus long tie).")
+   plot.toys(t232l, "tree-mediator3-long.png", "auto")
+   tab.cent(distinction(t232l), name = "treemediatorlong3", label = "treelong3", 
+   caption = "Distinction centrality scores for tree broker graph (three-branches plus long tie).")
+   c1 <- make_ring(4)
+   c2 <- make_ring(4)
+   V(c1)$name <- as.character(1:4)
+   V(c2)$name <- as.character(4:7)
+   cw <- c1 + c2  # circle weld
+   tc <- cw + edge(2, 4)
+   tc <- tc + edge(4, 6) # two-connected
+   tcl <- tc + edge(1, 7) # two-connected plus long tie
+   cw <- del.names(cw)
+   tc <- del.names(tc)
+   tcl <- del.names(tcl)
+   ## Circle Weld
+   plot.toys(cw, "circle-weld.png", "auto")
+   tab.cent(distinction(cw), name = "circleweld", label = "cw", 
+   caption = "Distinction centrality scores for the circle weld graph.")
+   ## Two-Connected
+   plot.toys(tc, "two-connected.png", "kk")
+   tab.cent(distinction(tc), name = "twoconnected", label = "tc", 
+   caption = "Distinction centrality scores for the two-connected graph.")
+   ## Two-Connected Plus Long Tie
+   plot.toys(tcl, "two-connected-long.png", "kk")
+   tab.cent(distinction(tcl), name = "twoconnectedlong", label = "tcl", 
+   caption = "Distinction centrality scores for the two-connected graph (plus long tie).")
+
+#| cache: true
+
+   plot.toys(r6, "circle-edge.png", "circle")
+   c10 <- add_vertices(make_full_graph(10, directed = FALSE), 1)
+   c10 <- c10 + edge(1, 11)
+   plot.toys(c10, "ten-clique-edge.png", "auto")
+   tab.cent(distinction(c10), name = "ten-clique-edge", label = "cten", 
+   caption = "Distinction centrality scores for the ten clique plus pendant graph.")
+   r10 <- make_ring(10)
+   r10 <- add_edges(r10, c(1,3, 1,9, 1,4, 1,8, 1,5, 1,7, 1,6))
+   V(r10)$name <- as.character(1:10)
+   V(c5)$name <- as.character(1:5)
+   h <- r10 + c5
+   h <- del.names(h)
+   c5 <- del.names(c5)
+   h <- add_edges(h, c(3,10))
+   h1 <- add_vertices(h, 1) + edge(1, 11)
+   h2 <- add_vertices(h, 1) + edge(2, 11)
+   h3 <- add_vertices(h, 1) + edge(8, 11)
+   plot.toys(h, "wheel-clique.png", "auto")
+   plot.toys(h1, "wheel-clique-edge-star.png", "fr")
+   plot.toys(h2, "wheel-clique-edge-clique.png", "kk")
+   plot.toys(h3, "wheel-clique-edge-peri.png", "kk")
+   tab.cent(distinction(h), name = "wheel-clique", label = "wc", 
+   caption = "Distinction centrality scores for the wheel plus clique graph.")
+   tab.cent(distinction(h1), name = "wheel-clique-pendant1", label = "wcp1", 
+   caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
+   tab.cent(distinction(h2), name = "wheel-clique-pendant2", label = "wcp2",
+   caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
+   tab.cent(distinction(h3), name = "wheel-clique-pendant3", label = "wcp3", 
+   caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
+
+
+#| cache: true
+   set.seed(456)
+   kr <- add_edges(make_ring(10), c(1,3, 1,9, 2,4, 5,7, 4,6, 6,8, 7,9, 10,8, 10,2, 3,5))
+   sw1 <- add_edges(kr, c(4,9))
+   plot.toys(kr, "regular-four.png", "circle")
+   tab.cent(distinction(kr), name = "regular-four", label = "kr", 
+   caption = "Distinction centrality scores for regular graph of degree four.")
+   plot.toys(sw1, "small-world1.png", "circle")
+   tab.cent(distinction(sw1), name = "small-world-one", label = "sw1", 
+   caption = "Distinction centrality scores for small world graph with one long tie.")
+   sw2 <- add_edges(sw1, c(7,2))
+   plot.toys(sw2, "small-world2.png", "circle")
+   tab.cent(distinction(sw2), name = "small-world-two", label = "sw2", 
+   caption = "Distinction centrality scores for small world graph with two long ties.")
+   sw3 <- add_edges(sw2, c(6,1))
+   plot.toys(sw3, "small-world3.png", "circle")
+   tab.cent(distinction(sw3), name = "small-world-three", label = "sw3", 
+   caption = "Distinction centrality scores for small world graph with three long ties.")
+   kr1 <- add_vertices(kr, 1) + edge(1, 11)
+   plot.toys(kr1, "regular-edge.png", "fr")
+   tab.cent(distinction(kr1), name = "regular-edge", label = "rege", 
+   caption = "Distinction centrality scores for a regular graph with a pendant.")
+   swe1 <- add_vertices(sw1, 1) + edge(1, 11)
+   plot.toys(swe1, "small-world-edge1.png", "auto")
+   tab.cent(distinction(swe1), name = "sw-edge1", label = "rege1", 
+   caption = "Distinction centrality scores for small world graph with one long tie and a pendant node.")
+   swe2 <- add_vertices(sw2, 1) + edge(1, 11)
+   plot.toys(swe2, "small-world-edge2.png", "auto")
+   tab.cent(distinction(swe2), name = "sw-edge2", label = "rege2", 
+   caption = "Distinction centrality scores for small world graph with two long ties and a pendant node.")
+   swe3 <- add_vertices(sw3, 1) + edge(1, 11)
+   plot.toys(swe3, "small-world-edge3.png", "auto")
+   tab.cent(distinction(swe3), name = "sw-edge3", label = "rege3", 
+   caption = "Distinction centrality scores for small world graph with three long ties and a pendant node.")
+
+# ## Medici
+
+
+
+#| cache: true
+   png(here("Plots", "medici.png"), height = 600, width = 1000)
+      plot.graph.norm(medici1, ts = 5)
+   dev.off()
+   png(here("Plots", "nomedici.png"), height = 600, width = 1000)
+      plot.graph.norm(nomedici, ts = 5)
+   dev.off()
+
+# ## Political Data
+
+#| cache: true
+   poli1 <- as.matrix(read.csv(here("Data", "poli1.csv")))
+   poli1 <- graph_from_edgelist(poli1, directed = FALSE)
+   poli2 <- as.matrix(read.csv(here("Data", "poli2.csv")))
+   poli2 <- graph_from_edgelist(poli2, directed = FALSE)
+   poli3 <- as.matrix(read.csv(here("Data", "poli3.csv")))
+   poli3 <- graph_from_edgelist(poli3, directed = FALSE)
+   poli4 <- as.matrix(read.csv(here("Data", "poli4.csv")))
+   poli4 <- graph_from_edgelist(poli4, directed = FALSE)
+   png(here("Plots", "poli1.png"), height = 600, width = 1000)
+   plot.graph.norm(poli1, l = "auto")
+   dev.off()
+   png(here("Plots", "poli2.png"), height = 600, width = 1000)
+   plot.graph.norm(poli2, l = "auto")
+   dev.off()
+   png(here("Plots", "poli3.png"), height = 600, width = 1000)
+   plot.graph.norm(poli3, l = "auto")
+   dev.off()
+   png(here("Plots", "poli4.png"), height = 600, width = 1000)
+   plot.graph.norm(poli4, l = "auto")
+   dev.off()
+
+# ## Search
+
+#| cache: true
+   g <- as.matrix(read.csv(here("Data", "searchmodeltest.csv")))
+   g <- graph_from_edgelist(g, directed = FALSE)
+   distinction(g)
+
+
+#| cache: true
+   library(networkdata)
+   distinction(karate, norm = "max")
+   plot.graph.norm(karate)
+

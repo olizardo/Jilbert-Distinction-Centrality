@@ -1,0 +1,52 @@
+---
+title: "The Distinction Function"
+---
+
+The core of this analysis is the `distinction()` function, which calculates the distinction centrality score for nodes in an `igraph` object.
+
+### Installation & Usage
+
+To use the `distinction` function in your own R project, you can download the script or source it directly from GitHub:
+
+```{r}
+#| message: false
+#| warning: false
+# Load igraph
+library(igraph)
+library(DT)
+
+# Source directly from GitHub (shown for your own projects)
+# source("https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R")
+
+# Example usage on a star graph
+source("../Functions/distinction.R") # Sourcing locally for the site build
+g <- make_star(7, mode = "undirected")
+results <- distinction(g)
+datatable(results, options = list(pageLength = 7, dom = 't'))
+```
+
+### Implementation Details
+The function computes status ($s_i$) using eigenvector centrality (processed component-wise for robustness), calculates the constraint ($\kappa_i$) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.
+
+The mathematical formulation is:
+$$ \beta_i = \alpha s_i - \kappa_i $$
+Where $\alpha$ is a scalar adjustment factor:
+$$ \alpha = \frac{\bar{\kappa}}{\bar{s}} $$
+
+### Parameters
+- **`x`**: An `igraph` object representing the network.
+- **`norm`**: A character string indicating the normalization method to use for status scores:
+  - `'max'`: Squares the status scores and divides by the maximum squared status.
+  - `'one'`: Squares the status scores.
+  - `'abm'`: Divides the absolute status scores by the maximum absolute status.
+  - `'abs'`: Takes the absolute value of the status scores.
+- **`digits`**: Number of decimal places for rounding the output.
+
+### Output
+The function returns a `data.frame` containing:
+- `n`: Node names.
+- `d`: Raw distinction score ($s_i - \kappa_i$).
+- `scd`: Scaled distinction centrality ($\alpha s_i - \kappa_i$).
+- `s`: Status (eigenvector centrality).
+- `u`: Constraint ($\kappa_i$).
+- `scalar`: The $\alpha$ adjustment factor.

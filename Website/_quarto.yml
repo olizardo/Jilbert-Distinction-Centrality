@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - functions.qmd
+    - examples.qmd
+
+website:
+  title: "Distinction Centrality"
+  search: true
+  open-graph: true
+  twitter-card: true
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Distinction Function"
+        href: functions.qmd
+      - text: "Examples"
+        href: examples.qmd
+    right:
+      - icon: github
+        href: https://github.com/olizardo/Jilbert-Distinction-Centrality
+        text: "Repository"
+  sidebar: false
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
+    code-fold: show
+    highlight-style: github

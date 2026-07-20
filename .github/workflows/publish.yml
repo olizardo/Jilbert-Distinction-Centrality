@@ -26,19 +26,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libglpk-dev libxml2-dev libcurl4-openssl-dev libssl-dev
 
-      - name: Install Dependencies
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_TOKEN"))
-          install.packages(c("igraph", "ggraph", "here", "dplyr", "kableExtra", "ggpubr", "patchwork", "rmarkdown", "readr", "digest", "xfun", "htmltools", "rlang", "fastmap", "jsonlite", "generics", "R6", "ggplot2", "remotes", "tidyverse"))
-          remotes::install_github("schochastics/networkdata")
-        shell: Rscript {0}
+      - name: Setup renv
+        uses: r-lib/actions/setup-renv@v2
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
-          path: _site/
+          path: Website
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
