@@ -1,0 +1,65 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+   library(tidyverse)
+   library(dplyr)
+   library(tidygraph)
+   library(ggraph)
+   library(igraph)
+```
+
+##Parameter Test Networks
+
+#startest.csv
+startest <- read.csv(file.choose(), header=TRUE)
+stardf<-as.matrix(startest)
+stargraph<-graph_from_edgelist(stardf, directed=FALSE)
+distinction(stargraph)
+plot(stargraph)
+
+#startest2.csv
+star2 <- read.csv(file.choose(), header=TRUE)
+star2df<-as.matrix(star2)
+stargraph2<-graph_from_edgelist(star2df, directed=FALSE)
+distinction(stargraph2)
+plot(stargraph2)
+
+#intraclustertest.csv
+intracluster <- read.csv(file.choose(), header=TRUE)
+intraclusterdf<-as.matrix(intracluster)
+intraclustergraph<-graph_from_edgelist(intraclusterdf, directed=FALSE)
+distinction(intraclustergraph)
+plot(intraclustergraph)
+
+#intraclustertest2.csv
+intracluster2 <- read.csv(file.choose(), header=TRUE)
+intracluster2df<-as.matrix(intracluster2)
+intraclustergraph2<-graph_from_edgelist(intracluster2df, directed=FALSE)
+distinction(intraclustergraph2)
+plot(intraclustergraph2)
+
+##Medici Network
+
+#MediciEdgeList.csv
+medici <- read.csv(file.choose(), header=TRUE)
+
+#AlbizziEditMediciEdgeList.csv
+nomedici <- read.csv(file.choose(), header=TRUE)
+
+medicidf<-as.matrix(medici)
+medicigraph<-graph_from_edgelist(medicidf, directed=FALSE)
+
+nomedicidf<-as.matrix(nomedici)
+nomedicigraph<-graph_from_edgelist(nomedicidf, directed=FALSE)
+
+betweenness(medicigraph)
+betweenness(nomedeigenicigraph)
+
+eigen_centrality(medicigraph)
+eigen_centrality(nomedicigraph)
+
+```
+
