@@ -127,8 +127,14 @@ INPUT /home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT /home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT /home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT /home/omarlizardo/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx
-OUTPUT manuscript.out
+INPUT ./manuscript.out
+INPUT ./manuscript.out
+INPUT manuscript.out
+INPUT manuscript.out
 OUTPUT manuscript.pdf
+INPUT ./manuscript.out
+INPUT ./manuscript.out
+OUTPUT manuscript.out
 INPUT /home/omarlizardo/.TinyTeX/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /home/omarlizardo/.TinyTeX/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /home/omarlizardo/.TinyTeX/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
