@@ -67,6 +67,8 @@
    k3 <- k3 + edge(1, 4) # kite graph
    r6 <- add_vertices(make_ring(6), 1)
    r6 <- r6 + edge(1, 7) # ring plus pendant
+   r7p <- add_vertices(r7, 1)
+   r7p <- r7p + edge(1, 8) # 7-ring plus pendant
    c7p <- add_vertices(c7, 1)
    c7p <- c7p + edge(1, 8) # 7-clique plust pendant
    c10p <- add_vertices(make_full_graph(10, directed = FALSE), 1) + edge(1, 11)
@@ -128,6 +130,7 @@
      tcl,     "two-connected-plus-long-tie.png","twoconnectedlong","kk",   "Distinction centrality scores for the two-connected plus long tie.",
      k3,      "kite-graph.png",              "kitegraph",        "kk",     "Distinction centrality scores for the kite graph.",
      r6,      "ring-plus-pendant.png",       "ringpendant",      "kk",     "Distinction centrality scores for the ring plus pendant.",
+     r7p,     "7-ring-plus-pendant.png",     "ring7pendant",     "kk",     "Distinction centrality scores for the 7-node ring plus pendant.",
      c7p,     "7-clique-plus-pendant.png",   "clique7pendant",   "kk",     "Distinction centrality scores for the 7-clique plust pendant.",
      c10p,    "10-clique-plus-pendant.png",  "clique10pendant",  "kk",     "Distinction centrality scores for the 10-clique plus pendant.",
      h,       "union-ring-clique.png",       "unionringclique",  "kk",     "Distinction centrality scores for the union of ring and clique.",
