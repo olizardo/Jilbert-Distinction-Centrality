@@ -23,7 +23,7 @@
    # Wrapper for toy graph processing
    process_toy <- function(x, file, lab, cap, lay = "kk") {
       dist_data <- distinction(x)
-      ggsave(here("Plots", "Toys", file), 
+      ggsave(here("Plots", file), 
              plot = plot.graph.norm(x, l = lay, dist_data = dist_data))
       tab.cent(dist_data, name = tools::file_path_sans_ext(file), 
                label = lab, caption = cap)
