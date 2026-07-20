@@ -11,6 +11,15 @@
    # Source functions
    invisible(lapply(c("distinction.R", "plot.graph.norm.R", "tab.cent.R", "make-bonacich.R", "make.estrada.R"), 
           function(f) source(here("Functions", f))))
+
+   # Load Medici Data
+   medici1 <- as.matrix(read.csv(here("Data", "MediciEdgeList.csv")))
+   medici1 <- graph_from_edgelist(medici1, directed = FALSE)
+   medici2 <- as.matrix(read.csv(here("Data", "MediciEdgeListMarriageCut.csv")))
+   medici2 <- graph_from_edgelist(medici2, directed = FALSE)
+   nomedici <- as.matrix(read.csv(here("Data", "NoMediciEdgeList.csv")))
+   nomedici <- graph_from_edgelist(nomedici, directed = FALSE)
+
    # Wrapper for toy graph processing
    process_toy <- function(x, file, lab, cap, lay = "kk") {
       dist_data <- distinction(x)
@@ -136,17 +145,13 @@
      estrada_1a, "estrada-1a.png",                 "estrada1a",  "kk",     "Distinction centrality scores for the Estrada Fig 1(a) graph.",
      estrada_1b, "estrada-1b.png",                 "estrada1b",  "kk",     "Distinction centrality scores for the Estrada Fig 1(b) graph.",
      bonacich_10, "bonacich-10.png",               "bonacich10", "kk",     "Distinction centrality scores for the Bonacich (2007) order 10 graph.",
-     bonacich_12, "bonacich-12.png",               "bonacich12", "kk",     "Distinction centrality scores for the Bonacich (2007) order 12 graph."
+     bonacich_12, "bonacich-12.png",               "bonacich12", "kk",     "Distinction centrality scores for the Bonacich (2007) order 12 graph.",
+     medici1,     "medici-full.png",               "medicifull", "kk",     "Distinction centrality scores for the full Medici network.",
+     medici2,     "medici-marriage-cut.png",       "medicimarriagecut", "kk", "Distinction centrality scores for the Medici network with marriage cut.",
+     nomedici,    "medici-removed.png",            "mediciremoved", "kk",  "Distinction centrality scores for the network with the Medici family removed."
    )
 
    # Process all graphs programmatically
    pwalk(toy_configs, function(obj, file, label, lay, caption) {
      process_toy(obj, file, label, caption, lay)
    })
-
-   medici1 <- as.matrix(read.csv(here("Data", "MediciEdgeList.csv")))
-   medici1 <- graph_from_edgelist(medici1, directed = FALSE)
-   medici2 <- as.matrix(read.csv(here("Data", "MediciEdgeListMarriageCut.csv")))
-   medici2 <- graph_from_edgelist(medici2, directed = FALSE)
-   nomedici <- as.matrix(read.csv(here("Data", "NoMediciEdgeList.csv")))
-   nomedici <- graph_from_edgelist(nomedici, directed = FALSE)
