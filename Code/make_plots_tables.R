@@ -103,7 +103,7 @@
      s7,      "star.png",                    "star",             "kk",     "Distinction centrality scores for the star graph.",
      c7,      "clique.png",                  "clique",           "circle", "Distinction centrality scores for the clique graph.",
      r7,      "circle.png",                  "circle",           "circle", "Distinction centrality scores for the circle graph.",
-     k7,      "kite.png",                    "kite",             "kk",     "Distinction centrality scores for the kite graph.",
+     k7,      "zachary-karate.png",          "zachary",          "kk",     "Distinction centrality scores for the Zachary Karate Club graph.",
      w7,      "wheel.png",                   "wheel",            "kk",     "Distinction centrality scores for the wheel graph.",
      p7,      "path.png",                    "path",             "kk",     "Distinction centrality scores for the path graph.",
      sf4,     "sf4.png",                     "sf4",              "kk",     "Distinction centrality scores for the structural fold graph (4-Clique).",
