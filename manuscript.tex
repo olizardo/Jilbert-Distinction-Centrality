@@ -163,7 +163,7 @@ Substituting Equation~\ref{eq:distinction-star1} into Equation~\ref{eq:distincti
 
 This tells us that the distinction of the peripheral node in the star graph is proportional to its own (scaled) status, discounted by the distinction of the star node divided by the same scaling factor. 
 
-\begin{figure}[ht!]
+\begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
      \begin{subfigure}[b]{0.3\textwidth}
@@ -184,17 +184,17 @@ This tells us that the distinction of the peripheral node in the star graph is p
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/path.png}
             \caption{Path Graph}
-            \label{fig:circle}
+            \label{fig:path}
     \end{subfigure}
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/7-clique-plus-pendant.png}
             \caption{Clique Graph plus Pendant}
-            \label{fig:clique}
+            \label{fig:circle-plus-pendant}
     \end{subfigure}
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/Toys/circular-lattice-plus-pendant.png}
             \caption{Circle Graph plus Pendant}
-            \label{fig:clique}
+            \label{fig:clique-plus-pendant}
     \end{subfigure}
     \caption{Distinction Centrality in toy graphs. Nodes with the highest distinction are shown in red, nodes with positive distinction are shown in blue, nodes with negative distinction are shown in tan, and nodes with distinction close to zero are shown in purple.}
 \end{figure}
@@ -206,21 +206,28 @@ This tells us that the distinction of the peripheral node in the star graph is p
     \label{fig:star-scaling}
 \end{figure}
 
-\subsubsection{Distinction in the Clique and Circle Graphs}
-
-If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction. In the same way, all the nodes in the circle and clique graphs are in the exact opposite situation as the central node in the star graph: They experience the theoretical minimum amount of status, at the same time as they experience maximum constraint. The reason is that in a situation in which all nodes contribute to a completely equal status order, the \textit{exit} of any one node will have a maximally disruptive effect on such a minimal order, creating a large amount of status differentiation where there previously was none. The distinction measure thus captures the intuition, common to members of solidary small groups, who experience large constraints on exit, precisely due to the consequences that such an exit will have to the others that are left behind \citep{durkheim1933division-cfd, breiger1998solidarity-afa}. In that respect, distinction should be at its theoretical minimum of zero for all nodes in these cases. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique}, this is precisely what we observe.
-
 \input{Tabs/circle}
+\input{Tabs/path}
 \input{Tabs/clique}
 
-Status scores are equivalent across all nodes ($s_i = 1$ for the circle graph of order seven shown in Figure~\ref{fig:circle}. Also note that removing a single edge from the circle graph yields a path graph of order $N-1$, where $N$ is the number of nodes in the original circle graph. The previous neighbors of the removed node become the end nodes in the new path graph. These two nodes will, by necessity, have the same status score. This means that the $\kappa$ component of Equation~\ref{eq:distinction} will be the same constant across all nodes, and that the average status and average constraint will also be equal to a constant, in which case Equation~\ref{eq:distinction} becomes:
+\subsubsection{Distinction in the Clique and Circle Graphs}
 
-\begin{equation}
-    \beta_i = \left(\frac{\kappa_i}{s_i}s_i-\kappa_i\right)= (\kappa_i - \kappa_i) =0
-    \label{eq:distinction-circle}
-\end{equation}
+If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction.  In these respects, distinction should be at its theoretical minimum of zero for all nodes in the case of maximum equality, such as the circle and clique graphs. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique}, this is precisely what we observe. 
 
-Thus, the distinction is zero for all nodes in the circle graph. The same reasoning applies to the clique graph, where nodes have the same constant status scores as in the circle graph. The difference is that in this case the $\kappa$ component of Equation~\ref{eq:distinction} is obtained from the status scores of each actor in the node-deleted subgraph, excluding the focal node, which is just a clique of size $N-1$ where $N$ is the number of nodes in the original clique. Just like in the circle graph case, however, both the $s$ and $\kappa$ components are constant across nodes, which means that the status scores cancel out by division and the constraint scores by subtraction, leaving everyone with a scaled distinction score of zero.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes; therefore, we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
+All the nodes in the circle graph (or any other regular lattice of a given degree \textit{k}, as the circle graph is just the special case where $k = 2$) are in the exact opposite situation as the central node in the star graph: They experience the theoretical minimum amount of status (all equal to zero),  while at the same time they experience a great deal of constraint. The reason why the nodes in the circle graph experience constraint is that they are in a situation in which all nodes contribute to a completely equal status order; this means that the \textit{exit} of any one node will have a maximally \textit{disruptive} effect on such a minimal order, creating a large amount of status differentiation among the remaining where there previously was none.\footnote{Thus, the distinction measure captures the intuition, common to members of solidary small groups, who experience large constraints on exit, precisely due to the consequences that such an exit will have for the others that are left behind \citep{durkheim1933division-cfd, breiger1998solidarity-afa}.} Yet, all nodes in the circle graph experience the \textit{same} amount of constraint, because deleting any node results in the same structure: a path graph of order $N-1$, where $N$ is the number of nodes in the original circle graph. 
+
+Figure~\ref{fig:path} shows the path graph of order 7, and ~\ref{tab:path} shows the relevant distinction scores.  This can be thought of as the social structure that emerges once we remove a single node from a circle graph of order 8. The pendant nodes (1 and 7), which were previously neighbors of the removed node in the previous circle graph, are now the least distinct. While in the previous circle graph there was no distinction, now we can see that two nodes (2 and 6) emerges as the most distinct, because they bridge between the two pendant nodes and the nodes in the middle of the path; they thus experience the most status and the least constraint, because their exit has very little bearing on the status order given their connection to already status peripheral alters. Interestingly, node four, the most central according to the usual Eigenvector centrality, is also highly constrained, which pulls its distinction score downward. One interesting implication of the distinction measure is that the constraint experienced by nodes in a maximally equal system should be proportional to system size, being maximal in a small system characterized by equality but declining in the number of nodes in the system. Figure~
+
+% The previous neighbors of the removed nodes become the end nodes in the new path graph. These two nodes will, by necessity, have the same status score. This means that the $\kappa$ component of Equation~\ref{eq:distinction} will be the same constant across all nodes, and that the average status and average constraint will also be equal to a constant, in which case Equation~\ref{eq:distinction} becomes:
+
+% \begin{equation}
+%     \beta_i = \left(\frac{\kappa_i}{s_i}s_i-\kappa_i\right)= (\kappa_i - \kappa_i) =0
+%     \label{eq:distinction-circle}
+% \end{equation}
+
+% Thus, the distinction is zero for all nodes in the circle graph. 
+
+The same reasoning applies to the clique graph, where nodes have the same constant status scores as in the circle graph. The difference is that in this case the $\kappa$ component of Equation~\ref{eq:distinction} is obtained from the status scores of each actor in the node-deleted subgraph, excluding the focal node, which is just a clique of size $N-1$ where $N$ is the number of nodes in the original clique. Just like in the circle graph case, however, both the $s$ and $\kappa$ components are constant across nodes, which means that the status scores cancel out by division and the constraint scores by subtraction, leaving everyone with a scaled distinction score of zero.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes; therefore, we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
 
 %Clique addition experiment
 %Add cliques to star graph and see what happens
