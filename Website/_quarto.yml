@@ -5,6 +5,7 @@ project:
     - index.qmd
     - functions.qmd
     - examples.qmd
+    - small-world.qmd
 
 website:
   title: "Distinction Centrality"
@@ -19,6 +20,8 @@ website:
         href: functions.qmd
       - text: "Examples"
         href: examples.qmd
+      - text: "Small World Experiment"
+        href: small-world.qmd
     right:
       - icon: github
         href: https://github.com/olizardo/Jilbert-Distinction-Centrality

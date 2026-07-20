@@ -500,27 +500,24 @@ The opportunities for increased social distinction explain the conservative olig
 	
 To empirically examine the opportunity to gain social distinction in the Florentine network, Figure 2a from Padgett and Ansell was reproduced as an edgelist, with each tie between blocks counted as a single connection, regardless of its quality or frequency in the original. It is essentially a simplified network of blocks, treated as network actors, that are socially connected, indicated by the family names originally used by Padgett and Ansell. Ignoring the intensity of ties is unlikely to change the results given that most are singly connected in the original figure, and the multiple ties are still fragmented among a variety of households within a family, so they could inordinately strengthen connections rather than explain fracturing that occurred within families. Examining the Florentine network with the above measure of social distinction explains the transformation from political stability to fragmentation as a result of actor-level network incentives.
 
-Results are presented in Table X. In the original state of the network, the Medici had the highest betweenness, while the Peruzzi had the highest status. The Albizzi, with the second-highest status, owed their high status in part to their connection with the Medici. Without the marriage connection to the Medici, the Albizzi would still have high status in the networks, but would otherwise be eclipsed by the Guasconi, who were also connected to the Medici and other major families. The Medici were actually of relatively middling status in the network, clearly deriving their power from the brokerage leadership.         
+Results are presented in Table~\ref{tab:medicifull}. In the original state of the network, the Medici had the highest betweenness, while the Peruzzi had the highest status. The Albizzi, with the second-highest status, owed their high status in part to their connection with the Medici. Without the marriage connection to the Medici, the Albizzi would still have high status in the networks, but would otherwise be eclipsed by the Guasconi, who were also connected to the Medici and other major families. The Medici were actually of relatively middling status in the network, clearly deriving their power from the brokerage leadership.         
 
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
+\begin{figure}[ht!]
     \centering
-     \begin{subfigure}[b]{1.0\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/medici-full.png}
-            \caption{Medici Network}
-            \label{fig:medici-net}
-    \end{subfigure} \\
-     \begin{subfigure}[b]{1.0\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/medici-removed.png}
-            \caption{Medici Network without the Medici}
-            \label{fig:nomedici-net}
-    \end{subfigure}
-    \caption{Medici Network Visualizations}
-    \label{fig:medici-main}
+    \includegraphics[width=0.8\textwidth]{Plots/medici-full.png}
+    \caption{The full Medici Network. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained) to red (high structural distinction).}
+    \label{fig:medici-net}
 \end{figure}
 
-\input{Tabs/medici}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Plots/medici-removed.png}
+    \caption{The Medici Network without the Medici family. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained) to red (high structural distinction).}
+    \label{fig:nomedici-net}
+\end{figure}
+
+\input{Tabs/medici-full}
+\input{Tabs/medici-removed}
 
 
 In a comparison of the network with the Medici and the one without them, one notices that the status of the oligarchic families does not automatically increase. While those further away from the Medici, such as the Strozzi and Panciatichi, would see their status increase in the Medici’s absence, as the center of the network would shift towards them, the Guasconi and the Albizzi would lose by this straightforward measure of status change. Considering the matter of constraint, the Guasconi and Albizzi would also become more constrained in the Medici's absence from the network. Thus, even as their status declined and their constraints increased, these families still chose to act against the Medici! 
@@ -536,7 +533,16 @@ Another consecrated paper in network analysis is Zachary’s (1977) examination 
 
 The paper was an early application of an algorithm to predict the lines along which the group would divide. The original Ford-Fulkerson Labeling algorithm was a network flow model that sought to use node distances to detect community membership (1977:454). However, in the original algorithm, Node 9 was misclassified as belonging to the Officer’s network, whereas empirically, Node 9 joined the network of the karate teacher, Mr. Hi. The original discrepancy was explained by Node 9 being near achieving a black belt, so the institutional opportunity costs outweighed the social network costs. 
 
-Contrary to expectations, the application of the distinction centrality measure did not explain why Node 9 left for Mr. Hi's network. The original hypothesis was that, because the Officer's network closely resembles a star graph, Node 9 would command less distinction in the network than in Mr. Hi's more heterogeneous network. Results are presented in Table X. The measure indicates that Node 9 would have had a greater overall relative distinction if he had remained in the Officer's network. The idea being that, in Mr. Hi's network, Node 9 would be more constrained than in the officer's network, but would have higher status because he was directly connected to the high-status center in an otherwise stratified network. 
+Contrary to expectations, the application of the distinction centrality measure did not explain why Node 9 left for Mr. Hi's network. The original hypothesis was that, because the Officer's network closely resembles a star graph, Node 9 would command less distinction in the network than in Mr. Hi's more heterogeneous network. Results are presented in Table~\ref{tab:zachary}. The measure indicates that Node 9 would have had a greater overall relative distinction if he had remained in the Officer's network. The idea being that, in Mr. Hi's network, Node 9 would be more constrained than in the officer's network, but would have higher status because he was directly connected to the high-status center in an otherwise stratified network. 
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Plots/zachary-karate.png}
+    \caption{Zachary's Karate Club network. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained) to red (high structural distinction).}
+    \label{fig:karate}
+\end{figure}
+
+\input{Tabs/zachary-karate}
 
 The exercise, however, focuses attention on the boundaries of the field. The original explanation for the discrepancy points to Node 9's large karate capital. If the field is bounded as the ``karate club,'' Node 9's decision is unexpected, but if the field is ``karate practitioners,'' much of the field might go unobserved in Zachary's original study. We do know that some of the students, including Node 9, practiced at Mr. Hi's dojo as well as the club. The fact that Node 9 had club connections only to the most central members of both the officer’s and Mr. Hi's networks would indicate that Node 9 only affiliated with likely similarly advanced members of the club. If Node 9 were similarly affiliating with advanced students who only attended the dojo, then this would likely influence the decision regarding distinction at the field level. Failure to fully capture positions within the appropriately defined field can result in measures that fail to accurately reflect empirical outcomes.   
 
