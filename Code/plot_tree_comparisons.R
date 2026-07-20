@@ -15,7 +15,7 @@ plot_tree <- function(g, title, layout = "tree") {
   V(g)$name <- as.character(1:vcount(g))
   res <- distinction(g, norm = "abm")
   
-  ggraph(g, layout = layout) +
+  ggraph(g, layout = layout, root = 1) +
     geom_edge_link(color = "gray50", width = 1) +
     geom_node_point(aes(fill = res$scd), shape = 21, size = 10, color = "black") +
     geom_node_text(aes(label = name), color = "black", fontface = "bold", size = 4) +
@@ -43,7 +43,7 @@ plot_tree_d4 <- function(g, title, layout = "tree") {
   V(g)$name <- as.character(1:vcount(g))
   res <- distinction(g, norm = "abm")
   
-  ggraph(g, layout = layout) +
+  ggraph(g, layout = layout, root = 1) +
     geom_edge_link(color = "gray50", width = 1) +
     geom_node_point(aes(fill = res$scd), shape = 21, size = 7, color = "black") +
     geom_node_text(aes(label = name), color = "black", fontface = "bold", size = 3) +

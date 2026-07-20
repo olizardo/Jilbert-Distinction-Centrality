@@ -17,7 +17,7 @@ V(t2_7)$name <- as.character(1:vcount(t2_7))
 res_tree <- distinction(t2_7, norm = "abm")
 
 # Generate a visual plot mapping distinction to node color
-p <- ggraph(t2_7, layout = "tree") +
+p <- ggraph(t2_7, layout = "tree", root = 1) +
   geom_edge_link(color = "gray50", width = 1) +
   geom_node_point(aes(fill = res_tree$scd), shape = 21, size = 12, color = "black") +
   geom_node_text(aes(label = name), color = "black", fontface = "bold") +

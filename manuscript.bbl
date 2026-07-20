@@ -44,10 +44,10 @@ Bourdieu, P. (1996).
 \newblock {\em The Rules of Art: Genesis and Structure of the Literary Field}.
 \newblock Stanford University Press.
 
-\bibitem[Brin and Page, 1998]{brin_page98}
-Brin, S. and Page, L. (1998).
-\newblock The anatomy of a large-scale hypertextual web search engine.
-\newblock {\em Computer networks and ISDN systems}, 30(1-7):107--117.
+\bibitem[Breiger and Roberts, 1998]{breiger1998solidarity-afa}
+Breiger, R.~L. and Roberts, J.~M. (1998).
+\newblock Solidarity and social networks.
+\newblock In Fararo", T.~J. and Doreian"], P., editors, {\em The Problem of Solidarity: Theories and models}, pages 239--262. Routledge, New York.
 
 \bibitem[Bryson, 1996]{bryson1996anything}
 Bryson, B. (1996).
@@ -79,6 +79,11 @@ Dunbar, R.~I. (1995).
 \newblock Neocortex size and group size in primates: a test of the hypothesis.
 \newblock {\em Journal of human evolution}, 28(3):287--296.
 
+\bibitem[Durkheim, 1933]{durkheim1933division-cfd}
+Durkheim, E. (1933).
+\newblock {\em The Division of Labor in Society}.
+\newblock The Free Press, Glencoe, {IL}.
+
 \bibitem[Erikson, 2013]{erikson2013formalist-400}
 Erikson, E. (2013).
 \newblock Formalist and relationalist theory in social network analysis.
@@ -104,6 +109,11 @@ Freeman, L.~C. (1979).
 \newblock Centrality in social networks conceptual clarification.
 \newblock {\em Social Networks}, 1:215--239.
 
+\bibitem[Friedell, 1967]{friedell1967organizations-81a}
+Friedell, M.~F. (1967).
+\newblock Organizations as semilattices.
+\newblock {\em American sociological review}, 32(1):46--54.
+
 \bibitem[Friedkin, 1991]{friedkin1991theoretical}
 Friedkin, N.~E. (1991).
 \newblock Theoretical foundations for centrality measures.
@@ -124,15 +134,15 @@ Huang, H., Dong, Y., Tang, J., Yang, H., Chawla, N.~V., and Fu, X. (2018).
 \newblock Will triadic closure strengthen ties in social networks?
 \newblock {\em ACM Transactions on Knowledge Discovery from Data (TKDD)}, 12(3):1--25.
 
-\bibitem[Kleinberg, 1999]{kleinberg99}
-Kleinberg, J.~M. (1999).
-\newblock Authoritative sources in a hyperlinked environment.
-\newblock {\em Journal of the ACM (JACM)}, 46(5):604--632.
+\bibitem[Krackhardt, 2014]{krackhardt2014graph}
+Krackhardt, D. (2014).
+\newblock Graph theoretical dimensions of informal organizations.
+\newblock In {\em Computational organization theory}, pages 89--111. Psychology Press.
 
-\bibitem[Langville and Meyer, 2005]{langville2005survey-572}
-Langville, A.~N. and Meyer, C.~D. (2005).
-\newblock A survey of eigenvector methods for web information retrieval.
-\newblock {\em {SIAM} Review}, 47(1):135--161.
+\bibitem[Krackhardt and Stern, 1988]{krackhardt1988informal-42d}
+Krackhardt, D. and Stern, R.~N. (1988).
+\newblock Informal networks and organizational crises: An experimental simulation.
+\newblock {\em Social psychology quarterly}, 51(2):123--140.
 
 \bibitem[Martin, 2003]{martin2003field}
 Martin, J.~L. (2003).
