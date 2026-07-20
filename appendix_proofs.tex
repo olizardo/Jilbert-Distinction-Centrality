@@ -1,0 +1,89 @@
+\section*{Appendix: Derivation of Distinction in Star Graphs}
+\label{sec:appendix_proofs}
+
+This appendix provides the step-by-step mathematical derivation of the system scalar ($\alpha$) and the resulting distinction scores ($\beta$) for both the central hub and peripheral spokes of a star graph of order $N$. We present the derivation under two scaling methods: the squared maximum normalization (\texttt{max}) and the absolute maximum normalization (\texttt{abm}).
+
+The distinction centrality of a node $i$ is defined as $\beta_i = \alpha s_i - \kappa_i$, where the system scalar is $\alpha = \frac{\bar{\kappa}}{\bar{s}}$. A star graph of order $N$ consists of exactly $1$ central node and $N-1$ peripheral nodes.
+
+\subsection*{Derivation under \texttt{max} Normalization}
+
+Under \texttt{max} normalization, status ($s$) is the node's eigenvector centrality squared, divided by the maximum squared score in the network.
+
+\textbf{Step 1: Find the Status of All Nodes.}
+The central node commands the absolute highest eigenvector centrality. Therefore, its status is $s_1 = 1$. The raw eigenvector centrality of a peripheral node in a star graph is $\frac{1}{\sqrt{N-1}}$ times the central node. Squaring this value gives the status of every peripheral node as $s_j = \frac{1}{N-1}$.
+
+\textbf{Step 2: Calculate Average Status ($\bar{s}$).}
+Summing the status of all $N$ nodes and dividing by $N$:
+\begin{equation}
+    \bar{s} = \frac{1 + (N-1)\left(\frac{1}{N-1}\right)}{N} = \frac{2}{N}
+\end{equation}
+
+\textbf{Step 3: Find the Constraint on All Nodes.}
+Deleting the central hub fractures the graph into $N-1$ isolated vertices, which have an eigenvector centrality of $0$. Thus, $\kappa_1 = 0$. Deleting a single peripheral spoke leaves a star graph of order $N-1$. The central hub is still the absolute center, so its status remains $1$. Because the central hub was the deleted peripheral node's only neighbor, $\kappa_j = 1$.
+
+\textbf{Step 4: Calculate Average Constraint ($\bar{\kappa}$).}
+Summing the constraint of all $N$ nodes and dividing by $N$:
+\begin{equation}
+    \bar{\kappa} = \frac{0 + (N-1)(1)}{N} = \frac{N-1}{N}
+\end{equation}
+
+\textbf{Step 5: Derive the System Scalar ($\alpha$).}
+Substitute $\bar{s}$ and $\bar{\kappa}$ into the definition of $\alpha$:
+\begin{equation}
+    \alpha = \frac{\bar{\kappa}}{\bar{s}} = \frac{\frac{N-1}{N}}{\frac{2}{N}} = \frac{N-1}{2}
+\end{equation}
+
+\textbf{Final Result for \texttt{max}:}
+For the central node ($s_1 = 1, \kappa_1 = 0$):
+\begin{equation}
+    \beta_1 = \left( \frac{N-1}{2} \right)(1) - 0 = \mathbf{\frac{N-1}{2}}
+\end{equation}
+For the peripheral nodes ($s_j = \frac{1}{N-1}, \kappa_j = 1$):
+\begin{equation}
+    \beta_j = \left( \frac{N-1}{2} \right) \left( \frac{1}{N-1} \right) - 1 = \frac{1}{2} - 1 = \mathbf{-0.5}
+\end{equation}
+
+\subsection*{Derivation under \texttt{abm} Normalization}
+
+Under \texttt{abm} normalization, status ($s$) is simply the raw eigenvector centrality scaled by the largest centrality in the graph, without squaring.
+
+\textbf{Step 1: Find the Status of All Nodes.}
+The central node status remains $s_1 = 1$. The status of every peripheral node, without squaring, is $s_j = \frac{1}{\sqrt{N-1}}$.
+
+\textbf{Step 2: Calculate Average Status ($\bar{s}$).}
+Summing the status of all $N$ nodes:
+\begin{equation}
+    \bar{s} = \frac{1 + (N-1)\left(\frac{1}{\sqrt{N-1}}\right)}{N} = \frac{1 + \sqrt{N-1}}{N}
+\end{equation}
+
+\textbf{Step 3 \& 4: Find Average Constraint ($\bar{\kappa}$).}
+The logic for constraint relies purely on the structure of the node-deleted subgraphs, so it remains identical to the \texttt{max} derivation. The central node constraint is $\kappa_1 = 0$, the peripheral node constraint is $\kappa_j = 1$, and the average constraint is $\bar{\kappa} = \frac{N-1}{N}$.
+
+\textbf{Step 5: Derive the System Scalar ($\alpha$).}
+Substitute $\bar{s}$ and $\bar{\kappa}$ into the definition of $\alpha$:
+\begin{equation}
+    \alpha = \frac{\bar{\kappa}}{\bar{s}} = \frac{\frac{N-1}{N}}{\frac{1 + \sqrt{N-1}}{N}} = \frac{N-1}{1 + \sqrt{N-1}}
+\end{equation}
+
+\textbf{Final Result for \texttt{abm}:}
+For the central node ($s_1 = 1, \kappa_1 = 0$):
+\begin{equation}
+    \beta_1 = \left( \frac{N-1}{1 + \sqrt{N-1}} \right)(1) - 0 = \mathbf{\frac{N-1}{1 + \sqrt{N-1}}}
+\end{equation}
+
+For the peripheral nodes ($s_j = \frac{1}{\sqrt{N-1}}, \kappa_j = 1$):
+\begin{equation}
+    \beta_j = \left( \frac{N-1}{1 + \sqrt{N-1}} \right) \left( \frac{1}{\sqrt{N-1}} \right) - 1
+\end{equation}
+Multiply the denominators together:
+\begin{equation}
+    \beta_j = \frac{N-1}{\sqrt{N-1} + (N-1)} - 1
+\end{equation}
+Factor out $\sqrt{N-1}$ and simplify:
+\begin{equation}
+    \beta_j = \frac{\sqrt{N-1}}{1 + \sqrt{N-1}} - 1 = \frac{\sqrt{N-1} - (1 + \sqrt{N-1})}{1 + \sqrt{N-1}}
+\end{equation}
+Which gracefully leaves the final expression:
+\begin{equation}
+    \beta_j = \mathbf{\frac{-1}{1 + \sqrt{N-1}}}
+\end{equation}
