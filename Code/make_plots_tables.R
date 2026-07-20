@@ -37,11 +37,11 @@
    c7 <- make_full_graph(7, directed = FALSE) # 7-clique
    r7 <- make_ring(7) # circle graph
    k7 <- make_graph("Zachary") # zachary karate club
-   w7 <- make_wheel(7) # wheel graph
-   p7 <- make_empty_graph(7) + path(1:7) # path graph
-   sf4 <- make_full_graph(4) %du% make_full_graph(3) %>% 
+   w7 <- make_wheel(7, mode = "undirected") # wheel graph
+   p7 <- make_empty_graph(7, directed = FALSE) + path(1:7) # path graph
+   sf4 <- make_full_graph(4, directed = FALSE) %du% make_full_graph(3, directed = FALSE) %>% 
   add_edges(c(4,5, 4,6, 4,7)) # structural fold (4)
-   sf5 <- make_full_graph(5) %du% make_full_graph(4) %>% 
+   sf5 <- make_full_graph(5, directed = FALSE) %du% make_full_graph(4, directed = FALSE) %>% 
   add_edges(c(5,6, 5,7, 5,8, 5,9)) # structural fold (5)
    b3 <- add_vertices(c3 + c3, 1) + edge(7,1) + edge(7,4) # triangle broker
    b4 <- add_vertices(c4 + c4, 1) + edge(9,1) + edge(9,5) # clique broker
