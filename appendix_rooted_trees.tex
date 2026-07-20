@@ -1,16 +1,16 @@
 \section*{Appendix: Distinction Centrality in Hierarchical Trees}
 \label{sec:appendix-rooted-trees}
 
-To explore the behavior of distinction centrality within strict hierarchical structures, we compute the metric for a balanced, undirected binary rooted tree of order 7 (one root, two middle branches, and four pendant leaves). This structure classically models organizational hierarchies.
+To explore the behavior of distinction centrality within strict hierarchical structures, we compute the metric across several balanced, undirected rooted trees. These structures classically model organizational hierarchies, varying in depth (number of management layers) and branching factor (span of control). 
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.6\linewidth]{Plots/rooted_tree.png}
-    \caption{A rooted binary tree of order 7. Nodes are colored by their scaled distinction ($\beta_i$) scores.}
-    \label{fig:rooted-tree}
+    \includegraphics[width=\linewidth]{Plots/tree_comparisons.png}
+    \caption{A comparison of distinction centrality ($\beta_i$) across three different hierarchical structures: a Star Graph (Depth 1), a binary tree of Depth 2, and a binary tree of Depth 3. Nodes are colored by their scaled distinction scores.}
+    \label{fig:tree-comparisons}
 \end{figure}
 
-Table \ref{tab:tree-results} displays the computational results using the absolute maximum (\texttt{abm}) normalization scheme for the initial status ($s_i$). The global scalar adjustment factor ($\alpha = \bar{\kappa} / \bar{s}$) for this network is approximately $0.7714$.
+Table \ref{tab:tree-results} displays the computational results for a Depth 2 binary tree (order 7) using the absolute maximum (\texttt{abm}) normalization scheme. The global scalar adjustment factor ($\alpha = \bar{\kappa} / \bar{s}$) for this specific network is approximately $0.7714$.
 
 \begin{table}[ht!]
     \centering
@@ -23,33 +23,28 @@ Table \ref{tab:tree-results} displays the computational results using the absolu
     4, 5, 6, 7 & Pendant Leaves & -0.2323 & 0.5000 & 0.6180 \\
     \hline
     \end{tabular}
-    \caption{Distinction centrality metrics for nodes in the rooted binary tree.}
+    \caption{Distinction centrality metrics for nodes in the Depth 2 rooted binary tree.}
     \label{tab:tree-results}
 \end{table}
 
 \subsection*{The Leverage of Middle Management}
-Perhaps counter-intuitively, the highest distinction scores in a strict hierarchy are not held by the root node, but rather by the middle branches (Nodes 2 and 3). 
-While the middle branches share the maximum status ($s_i = 1.0$) with the root node due to their capacity to connect the top of the hierarchy to the leaves, they experience substantially less constraint ($\kappa_i = 0.1925$). If a middle branch node is deleted, its pendant leaves become structurally isolated components, dropping their status to zero, while the root node loses half of its influence. Therefore, middle managers possess immense structural leverage: their structural ``exit'' destroys the status of their dependents rather than empowering them. 
+Perhaps counter-intuitively, the highest distinction scores in a strict Depth-2 hierarchy are not held by the root node, but rather by the middle branches (Nodes 2 and 3). While the middle branches share the maximum status ($s_i = 1.0$) with the root node, they experience substantially less constraint ($\kappa_i = 0.1925$). If a middle branch node is deleted, its pendant leaves become structurally isolated components, dropping their status to zero, while the root node loses half of its influence. Therefore, middle managers possess immense structural leverage: their structural ``exit'' destroys the status of their dependents rather than empowering them. 
 
-\subsection*{A Simplified Expression for the Root Node}
-The root node (Node 1) is penalized with a negative distinction score. This formalizes a core sociological intuition common to theories of agonistic competition: a pure autocrat is maximally constrained because they represent a single point of failure for the entire system. 
+\subsection*{The Effect of Hierarchical Depth}
+As shown in Figure \ref{fig:tree-comparisons}, increasing the depth of the hierarchy shifts who holds the structural leverage. In a deep hierarchy (Depth 3; order 15), distinction is strictly reserved for the layer of management \textit{immediately above the absolute bottom}. 
 
-Under the absolute maximum normalization, we can derive a simplified, exact mathematical expression for the scaled distinction of the root node in any balanced hierarchical tree.
+When we add a third layer, the constraint on the top-level senior managers skyrockets. This occurs because deleting a high-level manager no longer isolates their subordinates. Instead, the remaining subordinates form cohesive sub-components (effectively acting as star graphs around the lower-level managers). Because the deleted component retains strong local structure, it retains high status, meaning the high-level manager is heavily constrained by the fact that their subordinates can function cohesively without them.
 
-First, because the root is maximally central to the entire connected hierarchy, its initial normalized status is equal to one:
-\begin{equation}
-    s_{root} = 1
-\end{equation}
+\subsection*{The Span of Control (Branching Factor)}
+Distinction is also highly sensitive to the span of control. If we hold depth constant but increase the number of subordinates per manager from 2 (Binary) to 3 (Ternary), the distinction score of the middle managers increases, as does the overall scalar ($\alpha$) of the network. A wider span of control means there are vastly more leaves at the bottom of the hierarchy that have low structural distinction and high constraint. This drags down the average status ($\bar{s}$) of the entire network, mathematically inflating $\alpha$. Middle managers effectively extract more distinction because they monopolize bridging pathways over a larger, more heavily constrained base of subordinates.
 
-Second, the structural constraint ($\kappa_i$) is calculated as the average status of the focal node's alters in the $N-1$ subgraph where the focal node is deleted. If the root node of a balanced tree is removed, the graph shatters into disconnected but structurally identical sub-trees. The former direct children of the root now serve as the supreme ``roots'' of their respective disconnected components. Because these components are identical, each of the former children ties for the maximum eigenvector centrality in the residual network. Under \texttt{abm} normalization, their status scores all become exactly $1$. Thus, the average status of the root's alters in the deleted subgraph is $1$:
-\begin{equation}
-    \kappa_{root} = \frac{1}{|N(root)|} \sum_{j \in N(root)} s_{j}^{(deleted)} = 1
-\end{equation}
-
-Substituting these two constants into the fundamental equation for scaled distinction ($\beta_i = \alpha s_i - \kappa_i$), the expression simplifies entirely to a function of the global network scalar:
-
+\subsection*{The Special Case of the Pure Autocrat (Star Graph Exception)}
+We can derive a simplified, exact mathematical expression for the scaled distinction of the root node in any balanced hierarchical tree of Depth $\ge 2$. Because the root is maximally central, its status is one ($s_{root} = 1$). Removing the root shatters the graph into identical sub-trees whose new roots achieve maximum status, rendering the average constraint $\kappa_{root} = 1$. This yields a fixed distinction for the root of:
 \begin{equation}
     \beta_{root} = \alpha(1) - 1 = \alpha - 1
 \end{equation}
+Because the global scalar $\alpha$ is almost always less than 1, the root node of a strict hierarchy will \textit{always} possess negative distinction. Their dominance is highly precarious: deleting the root immediately catapults their direct subordinates to maximum structural status.
 
-Because the global scalar $\alpha$ is defined as the network's ratio of average constraint to average status ($\bar{\kappa} / \bar{s}$), and is practically always less than 1 in structured networks, this mathematical proof guarantees that the single root node of a strict hierarchy will \textit{always} possess negative distinction. Their dominance is highly precarious: deleting the root immediately catapults all of their direct subordinates to the maximum possible structural status in the resulting fragmented system.
+However, \textbf{this rule only applies if the tree has middle management (Depth $\ge 2$)}. If the hierarchy is perfectly flat—a pure Star Graph (Depth 1)—the constraint of the root drops to exactly zero. Deleting the root of a star graph isolates every single alter, dropping their eigenvector status to 0. Thus, the root of a star graph achieves maximum positive distinction ($\beta_{root} = \alpha(1) - 0 = \alpha$). 
+
+This elegantly formalizes the classic dilemma of bureaucratic control: the only way to be a truly unconstrained autocrat is to maintain a flat organization where everyone reports directly to the center. But as scale forces the addition of middle management, the center becomes structurally constrained ($\beta_{root} = \alpha - 1$), and structural leverage immediately transfers to the managers directly controlling the lowest levels.
