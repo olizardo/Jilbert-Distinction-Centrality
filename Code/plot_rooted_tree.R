@@ -20,8 +20,8 @@ res_tree <- distinction(t2_7, norm = "abm")
 p <- ggraph(t2_7, layout = "tree") +
   geom_edge_link(color = "gray50", width = 1) +
   geom_node_point(aes(fill = res_tree$scd), shape = 21, size = 12, color = "black") +
-  geom_node_text(aes(label = name), color = "white", fontface = "bold") +
-  scale_fill_viridis_c(name = "Scaled\nDistinction", option = "plasma") +
+  geom_node_text(aes(label = name), color = "black", fontface = "bold") +
+  scale_fill_gradient2(low = "dodgerblue", mid = "gray90", high = "firebrick", name = "Scaled\nDistinction") +
   theme_void() +
   theme(
     plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),

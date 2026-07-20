@@ -7,7 +7,14 @@ To further understand the structural behavior of the distinction centrality meas
 
 We begin with a regular lattice graph (a circle graph or ring) of size $N = 30$. Because the graph is node-transitive, every node is structurally equivalent, yielding an identical initial eigenvector status. Under the absolute maximum (\texttt{abm}) normalization, deleting any node results in the identical residual $N-1$ path graph. Thus, at this initial state, all nodes experience identical constraint, and the variance in scaled distinction is exactly zero.
 
-From this initial state, we progressively add non-existent edges at random until the graph becomes a complete graph ($K_{30}$). At each step of the simulation, we recalculate the distinction metrics for the network and record both the standard deviation of the scaled distinction ($\beta_i$) and the mean of the constraint ($\kappa_i$) across all nodes as a function of the network's density.
+From this initial state, we progressively add non-existent edges at random until the graph becomes a complete graph ($K_{30}$). Figure \ref{fig:small-world-snapshots} visualizes three structural snapshots from this process: the initial symmetric lattice, a sparse small-world phase characterized by a few random shortcuts, and a much denser random graph approaching full connectivity. At each step of the simulation, we recalculate the distinction metrics for the network and record both the standard deviation of the scaled distinction ($\beta_i$) and the mean of the constraint ($\kappa_i$) across all nodes as a function of the network's density.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\linewidth]{Plots/small_world_snapshots.png}
+    \caption{Three snapshots from the small-world computational experiment ($N=30$), varying from the initial symmetric lattice to a dense random graph. Nodes are colored by their scaled distinction score.}
+    \label{fig:small-world-snapshots}
+\end{figure}
 
 \subsection*{Results}
 

@@ -6,7 +6,7 @@ To explore the behavior of distinction centrality within strict hierarchical str
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=\linewidth]{Plots/tree_comparisons.png}
-    \caption{A comparison of distinction centrality ($\beta_i$) across three different hierarchical structures: a Star Graph (Depth 1), a binary tree of Depth 2, and a binary tree of Depth 3. Nodes are colored by their scaled distinction scores.}
+    \caption{A comparison of distinction centrality ($\beta_i$) across three different hierarchical structures: a binary tree of Depth 2, a binary tree of Depth 3, and a binary tree of Depth 4. Nodes are colored by their scaled distinction scores.}
     \label{fig:tree-comparisons}
 \end{figure}
 
@@ -31,9 +31,9 @@ Table \ref{tab:tree-results} displays the computational results for a Depth 2 bi
 Perhaps counter-intuitively, the highest distinction scores in a strict Depth-2 hierarchy are not held by the root node, but rather by the middle branches (Nodes 2 and 3). While the middle branches share the maximum status ($s_i = 1.0$) with the root node, they experience substantially less constraint ($\kappa_i = 0.1925$). If a middle branch node is deleted, its pendant leaves become structurally isolated components, dropping their status to zero, while the root node loses half of its influence. Therefore, middle managers possess immense structural leverage: their structural ``exit'' destroys the status of their dependents rather than empowering them. 
 
 \subsection*{The Effect of Hierarchical Depth}
-As shown in Figure \ref{fig:tree-comparisons}, increasing the depth of the hierarchy shifts who holds the structural leverage. In a deep hierarchy (Depth 3; order 15), distinction is strictly reserved for the layer of management \textit{immediately above the absolute bottom}. 
+As shown in Figure \ref{fig:tree-comparisons}, increasing the depth of the hierarchy shifts who holds the structural leverage. In a deep hierarchy (e.g., Depth 3 or Depth 4), distinction is strictly reserved for the layer of management \textit{immediately above the absolute bottom}. 
 
-When we add a third layer, the constraint on the top-level senior managers skyrockets. This occurs because deleting a high-level manager no longer isolates their subordinates. Instead, the remaining subordinates form cohesive sub-components (effectively acting as star graphs around the lower-level managers). Because the deleted component retains strong local structure, it retains high status, meaning the high-level manager is heavily constrained by the fact that their subordinates can function cohesively without them.
+When we add a third or fourth layer, the constraint on the top-level senior managers skyrockets. This occurs because deleting a high-level manager no longer isolates their subordinates. Instead, the remaining subordinates form cohesive sub-components. Because the deleted component retains strong local structure, it retains high status, meaning the high-level manager is heavily constrained by the fact that their subordinates can function cohesively without them.
 
 \subsection*{The Span of Control (Branching Factor)}
 Distinction is also highly sensitive to the span of control. If we hold depth constant but increase the number of subordinates per manager from 2 (Binary) to 3 (Ternary), the distinction score of the middle managers increases, as does the overall scalar ($\alpha$) of the network. A wider span of control means there are vastly more leaves at the bottom of the hierarchy that have low structural distinction and high constraint. This drags down the average status ($\bar{s}$) of the entire network, mathematically inflating $\alpha$. Middle managers effectively extract more distinction because they monopolize bridging pathways over a larger, more heavily constrained base of subordinates.
