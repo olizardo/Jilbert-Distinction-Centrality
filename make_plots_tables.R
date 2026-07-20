@@ -11,6 +11,7 @@
    # Source functions
    invisible(lapply(c("distinction.R", "plot.graph.norm.R", "tab.cent.R"), 
           function(f) source(here("Functions", f))))
+   source(here("Code", "make.estrada.R"))
    # Wrapper for toy graph processing
    process_toy <- function(x, file, lab, cap, lay = "kk") {
       dist_data <- distinction(x)
@@ -77,6 +78,11 @@
    sw1p <- add_vertices(sw1, 1) + edge(1, 11) # sw graph with one long tie and pendant
    sw2p <- add_vertices(sw2, 1) + edge(1, 11) # sw graph with two long ties and pendant
    sw3p <- add_vertices(sw3, 1) + edge(1, 11) # sw graph with three long ties and pendant
+   
+   # Load Estrada graphs
+   estrada_graphs <- make.estrada()
+   estrada_1a <- estrada_graphs$g1 # Fig 1(a) https://doi.org/10.1103/PhysRevE.71.056103
+   estrada_1b <- estrada_graphs$g2 # Fig 1(b) https://doi.org/10.1103/PhysRevE.71.056103
 
    # A single central registry mapping graphs to their export parameters
    toy_configs <- tribble(
@@ -122,7 +128,9 @@
      krp,     "circular-lattice-plus-pendant.png","circularlatticependant","kk","Distinction centrality scores for the circular lattice plus pendant.",
      sw1p,    "sw-graph-one-long-tie-and-pendant.png","sw1p",    "kk",     "Distinction centrality scores for the sw graph with one long tie and pendant.",
      sw2p,    "sw-graph-two-long-ties-and-pendant.png","sw2p",   "kk",     "Distinction centrality scores for the sw graph with two long ties and pendant.",
-     sw3p,    "sw-graph-three-long-ties-and-pendant.png","sw3p", "kk",     "Distinction centrality scores for the sw graph with three long ties and pendant."
+     sw3p,    "sw-graph-three-long-ties-and-pendant.png","sw3p", "kk",     "Distinction centrality scores for the sw graph with three long ties and pendant.",
+     estrada_1a, "estrada-1a.png",                 "estrada1a",  "kk",     "Distinction centrality scores for the Estrada Fig 1(a) graph.",
+     estrada_1b, "estrada-1b.png",                 "estrada1b",  "kk",     "Distinction centrality scores for the Estrada Fig 1(b) graph."
    )
 
    # Process all graphs programmatically
