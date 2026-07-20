@@ -24,7 +24,7 @@ plot_network_snap <- function(g, title) {
   ggraph(g, layout = layout_coords) +
     geom_edge_link(color = "gray80", width = 0.5, alpha = 0.7) +
     geom_node_point(aes(fill = res$scd), shape = 21, size = 6, color = "black") +
-    scale_fill_viridis_c(name = "Scaled\nDist.", option = "plasma") +
+    scale_fill_gradient2(low = "dodgerblue", mid = "gray90", high = "firebrick", name = "Scaled\nDist.") +
     labs(title = title) +
     theme_void() +
     theme(
