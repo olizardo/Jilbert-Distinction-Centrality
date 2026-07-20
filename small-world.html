@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The Distinction Function – Distinction Centrality</title>
+<title>Small-World Transitions – Distinction Centrality</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -105,16 +105,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -146,12 +136,18 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="The Distinction Function – Distinction Centrality">
+<meta property="og:title" content="Small-World Transitions – Distinction Centrality">
 <meta property="og:description" content="">
+<meta property="og:image" content="https://olizardo.github.io/Jilbert-Distinction-Centrality/small-world_files/figure-html/unnamed-chunk-2-1.png">
 <meta property="og:site_name" content="Distinction Centrality">
-<meta name="twitter:title" content="The Distinction Function – Distinction Centrality">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="1920">
+<meta name="twitter:title" content="Small-World Transitions – Distinction Centrality">
 <meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://olizardo.github.io/Jilbert-Distinction-Centrality/small-world_files/figure-html/unnamed-chunk-2-1.png">
+<meta name="twitter:image-height" content="768">
+<meta name="twitter:image-width" content="1920">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -176,7 +172,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./functions.html" aria-current="page"> 
+    <a class="nav-link" href="./functions.html"> 
 <span class="menu-text">Distinction Function</span></a>
   </li>  
   <li class="nav-item">
@@ -184,7 +180,7 @@ window.Quarto = {
 <span class="menu-text">Examples</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./small-world.html"> 
+    <a class="nav-link active" href="./small-world.html" aria-current="page"> 
 <span class="menu-text">Small World Experiment</span></a>
   </li>  
 </ul>
@@ -210,10 +206,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installation-usage" id="toc-installation-usage" class="nav-link active" data-scroll-target="#installation-usage">Installation &amp; Usage</a></li>
-  <li><a href="#implementation-details" id="toc-implementation-details" class="nav-link" data-scroll-target="#implementation-details">Implementation Details</a></li>
-  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
-  <li><a href="#output" id="toc-output" class="nav-link" data-scroll-target="#output">Output</a></li>
+  <li><a href="#simulation-setup" id="toc-simulation-setup" class="nav-link active" data-scroll-target="#simulation-setup">Simulation Setup</a></li>
+  <li><a href="#structural-snapshots" id="toc-structural-snapshots" class="nav-link" data-scroll-target="#structural-snapshots">Structural Snapshots</a></li>
+  <li><a href="#evolution-of-distinction-variance-inequality" id="toc-evolution-of-distinction-variance-inequality" class="nav-link" data-scroll-target="#evolution-of-distinction-variance-inequality">Evolution of Distinction Variance (Inequality)</a></li>
+  <li><a href="#evolution-of-baseline-constraint" id="toc-evolution-of-baseline-constraint" class="nav-link" data-scroll-target="#evolution-of-baseline-constraint">Evolution of Baseline Constraint</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +218,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">The Distinction Function</h1>
+<h1 class="title">Small-World Transitions</h1>
 </div>
 
 
@@ -239,54 +235,152 @@ window.Quarto = {
 </header>
 
 
-<p>The core of this analysis is the <code>distinction()</code> function, which calculates the distinction centrality score for nodes in an <code>igraph</code> object.</p>
-<section id="installation-usage" class="level3">
-<h3 class="anchored" data-anchor-id="installation-usage">Installation &amp; Usage</h3>
-<p>To use the <code>distinction</code> function in your own R project, you can download the script or source it directly from GitHub:</p>
+<p>This page details a computational experiment on how distinction centrality evolves as a network transitions from a perfectly symmetric, highly constrained structure to a fully saturated, completely connected structure.</p>
+<section id="simulation-setup" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-setup">Simulation Setup</h2>
+<p>We begin with a regular lattice (a circle graph or ring) of size <span class="math inline">\(N = 30\)</span>. Because the graph is node-transitive, every node is structurally equivalent. Under the absolute maximum (<code>abm</code>) normalization, all nodes experience identical constraint, meaning the variance in distinction is exactly zero.</p>
+<p>From this initial state, we progressively add non-existent edges at random until the graph becomes a complete graph (<span class="math inline">\(K_{30}\)</span>). At each step of the simulation, we recalculate the distinction metrics for the network.</p>
 <div class="cell">
-<details open="" class="code-fold">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load igraph</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Source directly from GitHub (shown for your own projects)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># source("https://raw.githubusercontent.com/olizardo/Jilbert-Distinction-Centrality/main/Functions/distinction.R")</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggraph)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../Functions/distinction.R"</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage on a star graph</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../Functions/distinction.R"</span>) <span class="co"># Sourcing locally for the site build</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_star</span>(<span class="dv">7</span>, <span class="at">mode =</span> <span class="st">"undirected"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">distinction</span>(g)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(results, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">7</span>, <span class="at">dom =</span> <span class="st">'t'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(N)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>max_edges <span class="ot">&lt;-</span> N <span class="sc">*</span> (N <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>current_edges <span class="ot">&lt;-</span> <span class="fu">ecount</span>(g)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>edges_to_add <span class="ot">&lt;-</span> max_edges <span class="sc">-</span> current_edges</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>steps <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>edges_per_step <span class="ot">&lt;-</span> <span class="fu">floor</span>(edges_to_add <span class="sc">/</span> steps)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a randomized list of all non-existent edges</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>full_g <span class="ot">&lt;-</span> <span class="fu">make_full_graph</span>(N)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>missing_edges <span class="ot">&lt;-</span> <span class="fu">difference</span>(full_g, g)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>missing_edge_list <span class="ot">&lt;-</span> <span class="fu">as_edgelist</span>(missing_edges)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>missing_edge_list <span class="ot">&lt;-</span> missing_edge_list[<span class="fu">sample</span>(<span class="fu">nrow</span>(missing_edge_list)), ]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Track metrics</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">distinction</span>(g, <span class="at">norm =</span> <span class="st">"abm"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>results[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">step =</span> <span class="dv">0</span>, <span class="at">edges =</span> <span class="fu">ecount</span>(g), <span class="at">density =</span> <span class="fu">edge_density</span>(g),</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_u =</span> <span class="fu">mean</span>(res<span class="sc">$</span>u), <span class="at">sd_scd =</span> <span class="fu">sd</span>(res<span class="sc">$</span>scd)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Run simulation</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>edge_idx <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>steps) {</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  n_add <span class="ot">&lt;-</span> <span class="fu">min</span>(edges_per_step, <span class="fu">nrow</span>(missing_edge_list) <span class="sc">-</span> edge_idx <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (n_add <span class="sc">&lt;=</span> <span class="dv">0</span>) <span class="cf">break</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  edges_to_add_now <span class="ot">&lt;-</span> missing_edge_list[edge_idx<span class="sc">:</span>(edge_idx <span class="sc">+</span> n_add <span class="sc">-</span> <span class="dv">1</span>), ]</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  edge_idx <span class="ot">&lt;-</span> edge_idx <span class="sc">+</span> n_add</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="fu">add_edges</span>(g, <span class="fu">as.vector</span>(<span class="fu">t</span>(edges_to_add_now)))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">distinction</span>(g, <span class="at">norm =</span> <span class="st">"abm"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  results[[i <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">step =</span> i, <span class="at">edges =</span> <span class="fu">ecount</span>(g), <span class="at">density =</span> <span class="fu">edge_density</span>(g),</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_u =</span> <span class="fu">mean</span>(res<span class="sc">$</span>u), <span class="at">sd_scd =</span> <span class="fu">sd</span>(res<span class="sc">$</span>scd)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>df_sim <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="structural-snapshots" class="level2">
+<h2 class="anchored" data-anchor-id="structural-snapshots">Structural Snapshots</h2>
+<p>As we add random long-ties, the network transitions through a “small-world” phase before becoming a dense random graph. The visualization below maps the node color to distinction centrality: from blue (highly constrained/negative distinction) to red (highly distinctive broker).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to plot a snapshot</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plot_network_snap <span class="ot">&lt;-</span> <span class="cf">function</span>(g, title) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">V</span>(g)<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">vcount</span>(g))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">distinction</span>(g, <span class="at">norm =</span> <span class="st">"abm"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  layout_coords <span class="ot">&lt;-</span> <span class="fu">layout_in_circle</span>(g)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(g, <span class="at">layout =</span> layout_coords) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_edge_link</span>(<span class="at">color =</span> <span class="st">"gray80"</span>, <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> res<span class="sc">$</span>scd), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">"dodgerblue"</span>, <span class="at">mid =</span> <span class="st">"gray90"</span>, <span class="at">high =</span> <span class="st">"firebrick"</span>, <span class="at">name =</span> <span class="st">"Scaled</span><span class="sc">\n</span><span class="st">Dist."</span>) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">11</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Recreate specific phases for visualization</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">make_ring</span>(N)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">add_edges</span>(g1, <span class="fu">as.vector</span>(<span class="fu">t</span>(missing_edge_list[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, ])))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">add_edges</span>(g1, <span class="fu">as.vector</span>(<span class="fu">t</span>(missing_edge_list[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>, ])))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plot_network_snap</span>(g1, <span class="st">"1. Initial Lattice"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plot_network_snap</span>(g2, <span class="st">"2. Small World"</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">plot_network_snap</span>(g3, <span class="st">"3. Dense Random"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">guides =</span> <span class="st">"collect"</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-60af18615b2964a4b2a9" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-60af18615b2964a4b2a9">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["1","2","3","4","5","6","7"],[1,-0.5918,-0.5918,-0.5918,-0.5918,-0.5918,-0.5918],[1.7394,-0.2899,-0.2899,-0.2899,-0.2899,-0.2899,-0.2899],[1,0.4082,0.4082,0.4082,0.4082,0.4082,0.4082],[0,1,1,1,1,1,1],[1.7394,1.7394,1.7394,1.7394,1.7394,1.7394,1.7394]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>n<\/th>\n      <th>d<\/th>\n      <th>scd<\/th>\n      <th>s<\/th>\n      <th>u<\/th>\n      <th>scalar<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"dom":"t","columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"n","targets":1},{"name":"d","targets":2},{"name":"scd","targets":3},{"name":"s","targets":4},{"name":"u","targets":5},{"name":"scalar","targets":6}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div>
+<figure class="figure">
+<p><img src="small-world_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
 </div>
 </div>
+</div>
 </section>
-<section id="implementation-details" class="level3">
-<h3 class="anchored" data-anchor-id="implementation-details">Implementation Details</h3>
-<p>The function computes status (<span class="math inline">\(s_i\)</span>) using eigenvector centrality (processed component-wise for robustness), calculates the constraint (<span class="math inline">\(\kappa_i\)</span>) by observing the average status of neighbors in a node-deleted subgraph, and finally computes the distinction score.</p>
-<p>The mathematical formulation is: <span class="math display">\[ \beta_i = \alpha s_i - \kappa_i \]</span> Where <span class="math inline">\(\alpha\)</span> is a scalar adjustment factor: <span class="math display">\[ \alpha = \frac{\bar{\kappa}}{\bar{s}} \]</span></p>
+<section id="evolution-of-distinction-variance-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="evolution-of-distinction-variance-inequality">Evolution of Distinction Variance (Inequality)</h2>
+<p>Structural inequality in distinction follows a clear inverted U-shape. At zero density (the regular lattice) and full density (the complete graph), the variance is exactly zero. However, in the sparse, clumpy “small-world” regime, a few nodes become highly distinctive brokers while others remain locally constrained, causing structural inequality to hit its absolute peak.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sim, <span class="fu">aes</span>(<span class="at">x =</span> density, <span class="at">y =</span> sd_scd)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Network Density"</span>, <span class="at">y =</span> <span class="st">"Standard Deviation of Scaled Distinction"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Variance of Distinction vs. Density"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-world_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="parameters" class="level3">
-<h3 class="anchored" data-anchor-id="parameters">Parameters</h3>
-<ul>
-<li><strong><code>x</code></strong>: An <code>igraph</code> object representing the network.</li>
-<li><strong><code>norm</code></strong>: A character string indicating the normalization method to use for status scores:
-<ul>
-<li><code>'max'</code>: Squares the status scores and divides by the maximum squared status.</li>
-<li><code>'one'</code>: Squares the status scores.</li>
-<li><code>'abm'</code>: Divides the absolute status scores by the maximum absolute status.</li>
-<li><code>'abs'</code>: Takes the absolute value of the status scores.</li>
-</ul></li>
-<li><strong><code>digits</code></strong>: Number of decimal places for rounding the output.</li>
-</ul>
-</section>
-<section id="output" class="level3">
-<h3 class="anchored" data-anchor-id="output">Output</h3>
-<p>The function returns a <code>data.frame</code> containing: - <code>n</code>: Node names. - <code>d</code>: Raw distinction score (<span class="math inline">\(s_i - \kappa_i\)</span>). - <code>scd</code>: Scaled distinction centrality (<span class="math inline">\(\alpha s_i - \kappa_i\)</span>). - <code>s</code>: Status (eigenvector centrality). - <code>u</code>: Constraint (<span class="math inline">\(\kappa_i\)</span>). - <code>scalar</code>: The <span class="math inline">\(\alpha\)</span> adjustment factor.</p>
+<section id="evolution-of-baseline-constraint" class="level2">
+<h2 class="anchored" data-anchor-id="evolution-of-baseline-constraint">Evolution of Baseline Constraint</h2>
+<p>Mean constraint follows a monotonically increasing curve. As edges are added, nodes are increasingly connected to alters with heterogeneous and higher status scores, thereby increasing the overall structural dependence on neighbors. This constraint eventually asymptotes to exactly <span class="math inline">\(1.0\)</span> in the complete graph.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sim, <span class="fu">aes</span>(<span class="at">x =</span> density, <span class="at">y =</span> mean_u)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"dodgerblue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"dodgerblue"</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Network Density"</span>, <span class="at">y =</span> <span class="st">"Mean Constraint"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Mean Constraint vs. Density"</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-world_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
