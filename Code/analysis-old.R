@@ -1,16 +1,6 @@
----
-title: "Distinction Centrality Analysis"
-execute: 
-  eval: true
-  echo: false
-  output: true
-  warning: false
-  message: false
----
 
-## Setup
+# ## Setup
 
-```{r Loading Functions}
    library(igraph)
    library(ggraph)
    library(here)
@@ -37,11 +27,9 @@ execute:
       ggsave(here("Plots", "Toys", file), 
              plot = plot.graph.norm(x, l = lay))
    }
-```
 
-## Toy Networks
+# ## Toy Networks
 
-```{r Building Blocks}
 #| cache: true
    c3 <- make_full_graph(3, directed = FALSE) # triangle
    c4 <- make_full_graph(4, directed = FALSE) # 4-clique
@@ -57,9 +45,7 @@ execute:
    k7 <- make_graph("Zachary") 
    w7 <- make_wheel(7)
    p7 <- make_empty_graph(7) + path(1:7)
-```
 
-```{r Basic Toy Graphs}
 #| cache: true
    ## Star
    process_toy(s7, "star.png", "star", "Distinction centrality scores for the star graph.")
@@ -73,10 +59,8 @@ execute:
    process_toy(w7, "wheel.png", "wheel", "Distinction centrality scores for the wheel graph.")
    ## Path
    process_toy(p7, "path.png", "path", "Distinction centrality scores for the path graph.")
-```
 
 
-```{r Triadic Closure}
 #| cache: true
 
    plot.toys(ct, "circle-triangle1.png", "circle")
@@ -94,9 +78,7 @@ execute:
    plot.toys(st2, "star-triangle2.png", "kk")
    tab.cent(distinction(st2), name = "startriangle2", label = "star2", 
    caption = "Distinction centrality scores for the star graph with two triangles.")
-```
 
-```{r Mediator Parameters}
 #| cache: true
    ## Tree Mediator (Two Branch)
    t222 <- t2 + t2
@@ -145,9 +127,7 @@ execute:
    plot.toys(tcl, "two-connected-long.png", "kk")
    tab.cent(distinction(tcl), name = "twoconnectedlong", label = "tcl", 
    caption = "Distinction centrality scores for the two-connected graph (plus long tie).")
-```
 
-```{r Kites and Extended Networks}
 #| cache: true
 
    plot.toys(r6, "circle-edge.png", "circle")
@@ -179,10 +159,8 @@ execute:
    caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
    tab.cent(distinction(h3), name = "wheel-clique-pendant3", label = "wcp3", 
    caption = "Distinction centrality scores for the wheel plus clique plus pendant graph.")
-```
 
 
-```{r Small Worlds}
 #| cache: true
    set.seed(456)
    kr <- add_edges(make_ring(10), c(1,3, 1,9, 2,4, 5,7, 4,6, 6,8, 7,9, 10,8, 10,2, 3,5))
@@ -217,13 +195,11 @@ execute:
    plot.toys(swe3, "small-world-edge3.png", "auto")
    tab.cent(distinction(swe3), name = "sw-edge3", label = "rege3", 
    caption = "Distinction centrality scores for small world graph with three long ties and a pendant node.")
-```
 
-## Medici
-
+# ## Medici
 
 
-```{r Medici Distintion Plots}
+
 #| cache: true
    png(here("Plots", "medici.png"), height = 600, width = 1000)
       plot.graph.norm(medici1, ts = 5)
@@ -231,11 +207,9 @@ execute:
    png(here("Plots", "nomedici.png"), height = 600, width = 1000)
       plot.graph.norm(nomedici, ts = 5)
    dev.off()
-```
 
-## Political Data
+# ## Political Data
 
-```{r Loading TestPolitical Data}
 #| cache: true
    poli1 <- as.matrix(read.csv(here("Data", "poli1.csv")))
    poli1 <- graph_from_edgelist(poli1, directed = FALSE)
@@ -257,22 +231,17 @@ execute:
    png(here("Plots", "poli4.png"), height = 600, width = 1000)
    plot.graph.norm(poli4, l = "auto")
    dev.off()
-```
 
-## Search
+# ## Search
 
-```{r Search Model Distinction}
 #| cache: true
    g <- as.matrix(read.csv(here("Data", "searchmodeltest.csv")))
    g <- graph_from_edgelist(g, directed = FALSE)
    distinction(g)
-```
 
 
-```{r}
 #| cache: true
    library(networkdata)
    distinction(karate, norm = "max")
    plot.graph.norm(karate)
-```
 

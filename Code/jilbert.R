@@ -1,17 +1,11 @@
----
-title: "Untitled"
-format: html
----
 
-```{r}
    library(tidyverse)
    library(dplyr)
    library(tidygraph)
    library(ggraph)
    library(igraph)
-```
 
-##Parameter Test Networks
+# ##Parameter Test Networks
 
 #startest.csv
 startest <- read.csv(file.choose(), header=TRUE)
@@ -41,7 +35,7 @@ intraclustergraph2<-graph_from_edgelist(intracluster2df, directed=FALSE)
 distinction(intraclustergraph2)
 plot(intraclustergraph2)
 
-##Medici Network
+# ##Medici Network
 
 #MediciEdgeList.csv
 medici <- read.csv(file.choose(), header=TRUE)
@@ -61,5 +55,4 @@ betweenness(nomedeigenicigraph)
 eigen_centrality(medicigraph)
 eigen_centrality(nomedicigraph)
 
-```
 
