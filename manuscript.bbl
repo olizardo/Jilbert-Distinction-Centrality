@@ -139,11 +139,6 @@ Krackhardt, D. (2014).
 \newblock Graph theoretical dimensions of informal organizations.
 \newblock In {\em Computational organization theory}, pages 89--111. Psychology Press.
 
-\bibitem[Krackhardt and Stern, 1988]{krackhardt1988informal-42d}
-Krackhardt, D. and Stern, R.~N. (1988).
-\newblock Informal networks and organizational crises: An experimental simulation.
-\newblock {\em Social psychology quarterly}, 51(2):123--140.
-
 \bibitem[Martin, 2003]{martin2003field}
 Martin, J.~L. (2003).
 \newblock What is field theory?
@@ -178,6 +173,11 @@ Vedres, B. and Stark, D. (2010).
 Vigna, S. (2016).
 \newblock Spectral ranking.
 \newblock {\em Network Science}, 4(4):433--445.
+
+\bibitem[Watts and Strogatz, 1998]{watts1998collective-6d9}
+Watts, D.~J. and Strogatz, S.~H. (1998).
+\newblock Collective dynamics of ‘small-world’networks.
+\newblock {\em Nature}, 393(6684):440.
 
 \bibitem[Yoon et~al., 2013]{yoon2013exchange}
 Yoon, J., Thye, S.~R., and Lawler, E.~J. (2013).

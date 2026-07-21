@@ -7,24 +7,24 @@ Warning--empty journal in borgatti2020oxford-fa6
 Warning--empty journal in bourdieu1984distinction
 You've used 38 entries,
             1935 wiz_defined-function locations,
-            697 strings with 8775 characters,
-and the built_in function-call counts, 14469 in all, are:
-= -- 1467
+            697 strings with 8725 characters,
+and the built_in function-call counts, 14420 in all, are:
+= -- 1459
 > -- 417
 < -- 36
 + -- 142
 - -- 130
-* -- 1176
-:= -- 2466
+* -- 1171
+:= -- 2461
 add.period$ -- 115
 call.type$ -- 38
 change.case$ -- 246
 chr.to.int$ -- 38
 cite$ -- 40
 duplicate$ -- 581
-empty$ -- 1112
+empty$ -- 1108
 format.name$ -- 180
-if$ -- 2864
+if$ -- 2854
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 44
@@ -36,14 +36,14 @@ purify$ -- 254
 quote$ -- 0
 skip$ -- 459
 stack$ -- 0
-substring$ -- 1220
+substring$ -- 1204
 swap$ -- 80
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 214
 warning$ -- 2
-while$ -- 140
+while$ -- 139
 width$ -- 0
 write$ -- 490
 (There were 2 warnings)

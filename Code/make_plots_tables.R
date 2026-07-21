@@ -38,7 +38,7 @@
    r7 <- make_ring(7) # circle graph
    k7 <- make_graph("Zachary") # zachary karate club
    w7 <- make_wheel(7, mode = "undirected") # wheel graph
-   p7 <- make_empty_graph(7, directed = FALSE) + path(1:7) # path graph
+   p7 <- graph_from_literal(7-5-3-1-2-4-6) # path graph
    sf4 <- make_full_graph(4, directed = FALSE) %du% make_full_graph(3, directed = FALSE) %>% 
   add_edges(c(4,5, 4,6, 4,7)) # structural fold (4)
    sf5 <- make_full_graph(5, directed = FALSE) %du% make_full_graph(4, directed = FALSE) %>% 
