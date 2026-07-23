@@ -6,6 +6,7 @@ project:
     - functions.qmd
     - examples.qmd
     - small-world.qmd
+    - span-of-control.qmd
 
 website:
   title: "Distinction Centrality"
@@ -22,6 +23,8 @@ website:
         href: examples.qmd
       - text: "Small World Experiment"
         href: small-world.qmd
+      - text: "Span of Control"
+        href: span-of-control.qmd
     right:
       - icon: github
         href: https://github.com/olizardo/Jilbert-Distinction-Centrality

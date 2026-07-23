@@ -2,7 +2,7 @@
 title: "Examples"
 ---
 
-This page provides an example of how to compute and visualize distinction centrality using the classic Zachary's Karate Club network.
+This page provides examples of how to compute and visualize distinction centrality using classic network datasets: Zachary's Karate Club and the Florentine Families (Medici).
 
 ```{r}
 #| message: false
@@ -14,9 +14,20 @@ library(dplyr)
 library(networkdata)
 library(patchwork)
 library(DT)
-library(visNetwork)
+library(ggplot2)
+library(ggraph)
 source("../Functions/distinction.R")
 source("../Functions/plot.graph.norm.R")
+```
+
+## Zachary's Karate Club
+
+We load the classic Karate Club network and compute distinction centrality.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
 
 # Load the Karate Club dataset
 data(karate)
@@ -26,7 +37,7 @@ g <- karate
 results_full <- distinction(g)
 ```
 
-### Full Network Results
+### Full Network
 
 ```{r}
 #| echo: false
@@ -38,21 +49,17 @@ datatable(results_full %>% arrange(desc(scd)),
 #| message: false
 #| warning: false
 #| code-fold: true
-set.seed(42)
-# Prepare nodes and edges for visNetwork
-V(g)$title <- paste0("Node: ", V(g)$name, "<br>Distinction: ", round(results_full$scd, 3))
-# Color based on distinction
-V(g)$color <- ifelse(results_full$scd > 0.05, "blue", 
-              ifelse(results_full$scd < -0.05, "tan", "purple"))
-V(g)$color[which.max(results_full$scd)] <- "red"
+#| fig-width: 8
+#| fig-height: 6
 
-visIgraph(g) %>%
-  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
-  visInteraction(hover = TRUE) %>%
-  visLayout(randomSeed = 42)
+set.seed(42)
+plot.graph.norm(g, l = "kk", vs = 12, ts = 4) + 
+  ggtitle("Karate Club: Full Network")
 ```
 
 ### Top Nodes (Club President Removed)
+
+We remove the Club President (Node 34) to observe the shifts in structural leverage.
 
 ```{r}
 #| message: false
@@ -74,19 +81,53 @@ datatable(results_no %>% arrange(desc(scd)),
 #| message: false
 #| warning: false
 #| code-fold: true
-set.seed(42)
-V(g_no)$title <- paste0("Node: ", V(g_no)$name, "<br>Distinction: ", round(results_no$scd, 3))
-V(g_no)$color <- ifelse(results_no$scd > 0.05, "blue", 
-                 ifelse(results_no$scd < -0.05, "tan", "purple"))
-V(g_no)$color[which.max(results_no$scd)] <- "red"
+#| fig-width: 8
+#| fig-height: 6
 
-visIgraph(g_no) %>%
-  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
-  visInteraction(hover = TRUE) %>%
-  visLayout(randomSeed = 42)
+set.seed(42)
+plot.graph.norm(g_no, l = "kk", vs = 12, ts = 4) + 
+  ggtitle("Karate Club: President (34) Removed")
 ```
 
 ### Analysis
 The comparison highlights how the network hierarchy shifts in the absence of a primary broker. In the full network, the club president (Node 34) commands the highest distinction score, closely followed by the instructor (Node 1). Both act as central brokers for their respective factions. 
 
 When the president is removed, the distinction scores of the remaining members are recalculated based on their new relative network positions. The instructor (Node 1) experiences significant gains in distinction centrality, taking over as the absolute primary broker in the fragmented structure. Meanwhile, nodes that relied heavily on the president for their structural position (such as Node 33) experience a drop in their relative distinction ranking. This illustrates how individual distinction is intrinsically linked to the presence or absence of key central players.
+
+
+## Florentine Families (Medici)
+
+We can also apply the distinction metric to Padgett & Ansell's (1993) Florentine Families dataset. 
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+
+# Load the Medici dataset
+medici_el <- read.csv("../Data/MediciEdgeList.csv", header = FALSE)
+g_medici <- graph_from_data_frame(medici_el, directed = FALSE)
+
+# Calculate distinction
+res_medici <- distinction(g_medici)
+```
+
+```{r}
+#| echo: false
+datatable(res_medici %>% arrange(desc(scd)), 
+          options = list(pageLength = 5, scrollX = TRUE))
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| fig-width: 8
+#| fig-height: 6
+
+set.seed(42)
+plot.graph.norm(g_medici, l = "kk", vs = 16, ts = 5) + 
+  ggtitle("Florentine Families: Full Network")
+```
+
+The Medici family stands out with the highest distinction score, reflecting their powerful broker position connecting multiple family cliques.

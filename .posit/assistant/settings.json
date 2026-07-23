@@ -2,7 +2,9 @@
   "permission": {
     "edit": {
       "*.md": "allow",
-      "*.tex": "allow"
+      "*.tex": "allow",
+      "*.yml": "allow",
+      "*.qmd": "allow"
     },
     "bash": {
       "/usr/share/positron/resources/app/quarto/bin/quarto *": "allow",

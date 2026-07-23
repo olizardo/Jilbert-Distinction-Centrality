@@ -1,0 +1,85 @@
+---
+title: "Span of Control"
+---
+
+This page analyzes the changing distinction centrality dynamics in hierarchical tree networks as the span of control (branching factor) increases. 
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+
+library(igraph)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(DT)
+
+source("../Functions/distinction.R")
+
+spans <- 2:10
+results <- list()
+
+for (k in spans) {
+  # Calculate total nodes for a depth 2 tree with branching factor k:
+  # 1 root + k children + k^2 leaves = 1 + k + k^2
+  n_nodes <- 1 + k + k^2
+  g <- make_tree(n = n_nodes, children = k, mode = "undirected")
+  V(g)$name <- as.character(1:vcount(g))
+  
+  res <- distinction(g, norm = "abm")
+  
+  # Root is always node 1
+  root_scd <- res$scd[1]
+  
+  # A middle branch is node 2
+  mid_scd <- res$scd[2]
+  
+  alpha <- res$scalar[1]
+  
+  results[[length(results) + 1]] <- data.frame(
+    Span = k,
+    Root = root_scd,
+    `Middle Manager` = mid_scd,
+    Alpha = alpha,
+    check.names = FALSE
+  )
+}
+
+df <- bind_rows(results)
+```
+
+### Distinction Trajectories
+
+As the span of control increases, the middle manager's distinction grows faster than the root's distinction, illustrating a shift in structural leverage.
+
+```{r}
+#| echo: false
+#| warning: false
+df_long <- pivot_longer(df, cols = c("Root", "Middle Manager"), names_to = "Role", values_to = "Distinction")
+
+ggplot(df_long, aes(x = Span, y = Distinction, color = Role, group = Role)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("Root" = "dodgerblue", "Middle Manager" = "firebrick")) +
+  scale_x_continuous(breaks = spans) +
+  labs(
+    x = "Span of Control (Branching Factor)",
+    y = "Scaled Distinction"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 11)
+  )
+```
+
+### Data Table
+
+```{r}
+#| echo: false
+datatable(df, options = list(pageLength = 10))
+```
