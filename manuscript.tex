@@ -357,16 +357,31 @@ A wider span of control means there are vastly more leaves at the bottom of the 
     \label{fig:span-control}
 \end{figure}
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Plots/tree_scalar.png}
+    \caption{The global scalar adjustment factor ($\alpha$) as a function of the span of control ($k$) across hierarchies of Depth 2, 3, and 4. The dashed line marks $\alpha = 1.0$. The proliferation of low-status, highly constrained leaf nodes drives $\alpha$ upward as trees become wider and deeper.}
+    \label{fig:tree-scalar}
+\end{figure}
+
 \subsubsection{Simplified Expression for the Distinction of the Root Node}
-We can derive a simplified, exact mathematical expression for the scaled distinction of the root node in any balanced hierarchical tree of Depth $\ge 2$. Because the root is maximally central, its status is one ($s_{root} = 1$). Removing the root shatters the graph into identical sub-trees whose new roots achieve maximum status, rendering the average constraint $\kappa_{root} = 1$. This yields a fixed distinction for the root of:
+We can derive a simplified, exact mathematical expression for the scaled distinction of the root node in any balanced hierarchical tree of Depth $\ge 2$. Because the definition of scaled distinction is $\beta_i = \alpha s_i - \kappa_i$, we can evaluate the terms for the root node:
+\begin{enumerate}
+    \item \textbf{Status ($s_i = 1.0$):} Because the root is the most central node, its initial eigenvector status is perfectly $1.0$.
+    \item \textbf{Constraint ($\kappa_i = 1.0$):} When the root node is deleted, the tree shatters into $k$ identical isolated sub-trees. The root's former neighbors (the immediate managers) become the new ``roots'' of those sub-trees. Because they are the most central nodes in their respective new components, their status in the residual network maxes out at $1.0$. Since all of the root's former neighbors achieve a maximum status, the average constraint the root faces is exactly $1.0$.
+\end{enumerate}
+
+This yields a fixed distinction for the root of:
 
 \begin{equation}
     \beta_{root} = \alpha(1) - 1 = \alpha - 1
 \end{equation}
 
-Because the global scalar $\alpha$ is almost always less than 1, the root node of a strict hierarchy will \textit{always} possess negative distinction. Their dominance is highly precarious: deleting the root immediately catapults their direct subordinates to maximum structural status, which constrains their maneuvering and fixes them into the status order of the network.
+The scalar factor $\alpha$ captures the ratio of the network's average constraint to its average status ($\bar{\kappa} / \bar{s}$). In a narrow, shallow hierarchy (like a binary tree), $\alpha$ is less than 1, meaning the root node will possess negative distinction ($\beta_{root} < 0$). In such narrow hierarchies, the root's dominance is highly precarious: deleting the root immediately catapults their direct subordinates to maximum structural status, which heavily constrains their maneuvering and fixes them into the existing status order.
 
-However, as we saw earlier, \textit{this rule only applies if the tree has middle management (Depth $\ge 2$)}. If the hierarchy is perfectly flat—a pure Star Graph (Depth 1)—the constraint of the root drops to exactly zero. Deleting the root of a star graph isolates every single alter, dropping their eigenvector status to 0. Thus, the root of a star graph achieves maximum positive distinction ($\beta_{root} = \alpha(1) - 0 = \alpha$). This elegantly formalizes the classic dilemma of bureaucratic control: the only way to be a truly unconstrained autocrat is to maintain a flat organization where everyone reports directly to the center. But as scale forces the addition of middle management, the center becomes structurally constrained ($\beta_{root} = \alpha - 1$), and structural leverage immediately transfers to the intermediariess directly controlling the lowest levels.
+However, $\alpha$ is not fixed. As demonstrated in Figure~\ref{fig:tree-scalar}, the scalar factor $\alpha$ increases as a function of both the span of control ($k$) and the hierarchical depth. As the span of control widens ($k \ge 3$) or as depth increases, the tree proliferates a massive number of leaf nodes at the absolute bottom. These leaf nodes have very low status but face high constraint, driving the network-wide average constraint ($\bar{\kappa}$) up relative to average status ($\bar{s}$). Consequently, $\alpha$ eventually exceeds 1.0, pulling the root's distinction ($\beta_{root} = \alpha - 1$) into positive territory. 
+
+However, as we saw earlier, \textit{this $\beta_{root} = \alpha - 1$ rule only applies if the tree has middle management (Depth $\ge 2$)}. If the hierarchy is perfectly flat—a pure Star Graph (Depth 1)—the constraint of the root drops to exactly zero. Deleting the root of a star graph isolates every single alter, dropping their eigenvector status to 0. Thus, the root of a star graph achieves maximum positive distinction ($\beta_{root} = \alpha(1) - 0 = \alpha$). This elegantly formalizes the classic dilemma of bureaucratic control: the only way to be a truly unconstrained autocrat is to maintain a flat organization where everyone reports directly to the center. But as scale forces the addition of middle management, the center becomes structurally constrained ($\beta_{root} = \alpha - 1$), and structural leverage immediately transfers to the intermediariess directly controlling the lowest levels.
 
 \subsection{Evolution of Distinction in Small-World Transitions}
 To further understand the structural behavior of the distinction centrality measure, we conduct a computational experiment simulating the transition from a perfectly symmetric, highly constrained structure (like the circle graph we considered earlier) to a fully saturated, completely connected structure (like the clique graph we considered earlier). We trace how structural inequality (variance in scaled distinction) and structural dependence (mean constraint) evolve as the system adds long-range connections disrupting the initially locally connected, low-inequality status order.

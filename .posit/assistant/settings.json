@@ -1,12 +1,17 @@
 {
   "permission": {
     "edit": {
-      "*.md": "allow"
+      "*.md": "allow",
+      "*.tex": "allow"
     },
     "bash": {
       "/usr/share/positron/resources/app/quarto/bin/quarto *": "allow",
       "git commit *": "allow",
-      "git add *": "allow"
+      "git add *": "allow",
+      "~/bin/latexmk *": "allow"
+    },
+    "executeCode": {
+      "*": "allow"
     }
   }
 }
