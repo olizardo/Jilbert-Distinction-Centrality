@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/small-world.html</loc>
-    <lastmod>2026-07-23T17:08:47.885Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/functions.html</loc>
-    <lastmod>2026-07-23T17:08:47.885Z</lastmod>
-  </url>
-  <url>
-    <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/index.html</loc>
-    <lastmod>2026-07-23T17:08:47.885Z</lastmod>
+    <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/span-of-control.html</loc>
+    <lastmod>2026-07-23T20:48:02.874Z</lastmod>
   </url>
   <url>
     <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/examples.html</loc>
-    <lastmod>2026-07-23T17:08:47.885Z</lastmod>
+    <lastmod>2026-07-23T20:48:02.855Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/index.html</loc>
+    <lastmod>2026-07-23T20:48:02.855Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/functions.html</loc>
+    <lastmod>2026-07-23T20:48:02.855Z</lastmod>
+  </url>
+  <url>
+    <loc>https://olizardo.github.io/Jilbert-Distinction-Centrality/small-world.html</loc>
+    <lastmod>2026-07-23T20:48:02.855Z</lastmod>
   </url>
 </urlset>
