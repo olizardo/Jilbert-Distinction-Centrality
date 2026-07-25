@@ -381,13 +381,6 @@ However, $\alpha$ is not fixed. As shown in Figure~\ref{fig:tree-scalar}, the sc
 
 However, as we saw earlier, \textit{this $\beta_{root} = \alpha - 1$ rule only applies if the tree has middle management intermediaries} (depth $\ge 2$). If the hierarchy is perfectly flat—a pure Star Graph (Depth 1)—the constraint of the root drops to exactly zero. Deleting the root of a star graph isolates every single alter, dropping their eigenvector status to 0. Thus, the root of a star graph achieves maximum positive distinction ($\beta_{root} = \alpha(1) - 0 = \alpha$). This elegantly formalizes the classic dilemma of bureaucratic control: the only way to be a truly unconstrained autocrat is to maintain a flat organization where everyone reports directly to the center. But as scale forces the addition of middle management, the center becomes structurally constrained ($\beta_{root} = \alpha - 1$), and structural leverage immediately transfers to the intermediaries directly controlling the lowest levels.
 
-\subsection{Evolution of Distinction in Small-World Transitions}
-To further understand the structural behavior of the distinction centrality measure, we conduct a computational experiment simulating the transition from a perfectly symmetric, highly constrained structure (like the circle graph we considered earlier) to a fully saturated, completely connected structure (like the clique graph we considered earlier). We trace how structural inequality (variance in scaled distinction) and structural dependence (mean constraint) evolve as the system adds long-range connections disrupting the initially locally connected, low-inequality status order.
-
-We begin with a regular lattice graph (a circle graph or ring) of size $N = 30$. In the graph, every vertex is automorphically (and thus structurally) equivalent, yielding an identical initial eigenvector status for all nodes; as we have seen, deleting any node results in the identical residual $N-1$ path graph. Thus, at this initial state, all nodes experience identical constraint, and the variance in scaled distinction is exactly zero.
-
-From this initial state, we progressively add new long-range edges at random until the graph becomes a complete graph ($K_{30}$). Figure \ref{fig:small-world-snapshots} visualizes three structural snapshots from this sequence: the initial symmetric lattice, a sparse ``small-world'' phase characterized by a few random shortcuts \citep{watts1998collective-6d9}, and a much denser random graph approaching full connectivity. At each step of the simulation, we recalculate the distinction metrics for the network and record both the standard deviation of the scaled distinction ($\beta_i$) and the mean of the constraint ($\kappa_i$) across all nodes as a function of the network's density.
-
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=\linewidth]{Plots/small_world_snapshots.png}
@@ -395,7 +388,10 @@ From this initial state, we progressively add new long-range edges at random unt
     \label{fig:small-world-snapshots}
 \end{figure}
 
-Figure \ref{fig:variance-density} shows the variance of the scaled distinction scores as network density increases. The variance follows a clear inverted U-shape. At zero density (the circle graph) and full density (the clique graph), the variance is zero. Both configurations represent extreme forms of structural equality—the former through maximum local constraint, the latter through maximum structural saturation and redundancy. 
+\subsection{Evolution of Distinction in Small-World Transitions}
+To further understand the structural behavior of the distinction centrality measure, we conduct a computational experiment simulating the transition from a perfectly symmetric, highly constrained structure (like the circle graph we considered earlier) to a fully saturated, completely connected structure (like the clique graph we considered earlier). We trace how structural inequality (variance in scaled distinction) and structural dependence (mean constraint) evolve as the system adds long-range connections disrupting the initially locally connected, low-inequality status order.
+
+We begin with a regular lattice graph (a circle graph or ring) of size $N = 30$. In the graph, every vertex is automorphically (and thus structurally) equivalent, yielding an identical initial eigenvector status for all nodes; as we have seen, deleting any node results in the identical residual $N-1$ path graph. Thus, at this initial state, all nodes experience identical constraint, and the variance in scaled distinction is exactly zero.
 
 \begin{figure}[ht!]
     \centering
@@ -404,9 +400,15 @@ Figure \ref{fig:variance-density} shows the variance of the scaled distinction s
     \label{fig:variance-density}
 \end{figure}
 
+From this initial state, we progressively add new long-range edges at random until the graph becomes a complete graph ($K_{30}$). Figure \ref{fig:small-world-snapshots} visualizes three structural snapshots from this sequence: the initial symmetric lattice, a sparse ``small-world'' phase characterized by a few random shortcuts \citep{watts1998collective-6d9}, and a much denser random graph approaching full connectivity. At each step of the simulation, we recalculate the distinction metrics for the network and record both the standard deviation of the scaled distinction ($\beta_i$) and the mean of the constraint ($\kappa_i$) across all nodes as a function of the network's density.
+
+Figure \ref{fig:variance-density} shows the variance of the scaled distinction scores as network density increases. The variance follows a clear inverted U-shape. At zero density (the circle graph) and full density (the clique graph), the variance is zero. Both configurations represent extreme forms of structural equality—the former through maximum local constraint, the latter through maximum structural saturation and redundancy. 
+
 However, as the first random long-ties are added to the lattice—mimicking the emergence of a small-world topology—structural inequality skyrockets. A few nodes become highly distinctive brokers while others remain locally constrained within the lattice. The variance of distinction hits its absolute maximum in this sparse, clumpy regime (around a density of 0.15 to 0.25). As more edges are continuously added, the structural advantages of the early brokers are diluted by the emergence of redundant pathways, and the variance of distinction steadily declines back to zero.
 
 Figure \ref{fig:mean-constraint-density} plots the evolution of the mean baseline constraint. Mean constraint follows a monotonically increasing curve. It starts at its lowest point in the regular lattice. As edges are added, the mean constraint rises steadily because nodes are increasingly connected to alters with heterogeneous and higher status scores, thereby increasing the structural dependence on neighbors. This constraint eventually asymptotes to exactly $1.0$ in the complete graph, where the deletion of any node leaves a complete graph of $N-1$, ensuring all remaining neighbors have maximum status.
+
+These evolutionary dynamics perfectly mirror theoretical expectations of agonistic fields: perfect structural equality exists only at the extremes of total constraint or total saturation. Inequality in distinction peaks precisely in the intermediate, sparse ``small-world'' phase where a subset of actors successfully monopolize structural bridging.
 
 \begin{figure}[ht!]
     \centering
@@ -414,8 +416,6 @@ Figure \ref{fig:mean-constraint-density} plots the evolution of the mean baselin
     \caption{Evolution of mean constraint ($\kappa$) as edges are randomly added to a regular lattice.}
     \label{fig:mean-constraint-density}
 \end{figure}
-
-These evolutionary dynamics perfectly mirror theoretical expectations of agonistic fields: perfect structural equality exists only at the extremes of total constraint or total saturation. Inequality in distinction peaks precisely in the intermediate, sparse ``small-world'' phase where a subset of actors successfully monopolize structural bridging.
 
 \subsection{Distinction in Triadic Closure}
 Triadic closure is an observed regularity in which a connection is likely to form between two actors who, although not originally connected, are first connected to a common alter \citep{simmel1950sociology-c96}. In essence, friends of friends are more likely to become friends. The causes of this regularity and the reasons for its occasional failure are largely based on considerations of valence. Positive or negative affect drives the resulting triadic relations. The original consideration was the cognitive balance of the individual, or the psychological congruity of affect toward two objects they see as causally connected. As such, the relationships of all three actors become interdependent via their joint combination as ``the parts of a causal unit'' \citep[107]{heider1946attitudes-ff3}.
