@@ -4,13 +4,18 @@
       "*.md": "allow",
       "*.tex": "allow",
       "*.yml": "allow",
-      "*.qmd": "allow"
+      "*.qmd": "allow",
+      "*.R": "allow"
     },
     "bash": {
       "/usr/share/positron/resources/app/quarto/bin/quarto *": "allow",
       "git commit *": "allow",
       "git add *": "allow",
-      "~/bin/latexmk *": "allow"
+      "~/bin/latexmk *": "allow",
+      "Rscript *": "allow",
+      "find *": "allow",
+      "xargs *": "allow",
+      "git grep *": "allow"
     },
     "executeCode": {
       "*": "allow"
