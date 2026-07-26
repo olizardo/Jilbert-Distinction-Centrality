@@ -32,7 +32,7 @@
 
 \begin{document}
 \title{What is Distinction? A Relational Approach}
-\author[1]{Author Isaac Jilbert\thanks{isaac.jilbert@gmail.com}}
+\author[1]{Isaac Jilbert\thanks{isaac.jilbert@gmail.com}}
 \author[1]{Omar Lizardo\thanks{olizardo@soc.ucla.edu}}
 \affil[1]{Department of Sociology, UCLA}
 
@@ -43,7 +43,7 @@
 
 \newpage
 \begin{abstract}	
-This paper introduces the concept of network \textit{distinction} and develops a relational metric to capture it. The metric is theoretically inspired by Bourdieu's theory of agonistic competition for distinction in social fields, in which other actors and their actions provide opportunities and constraints for improving social positioning relative to others. The basic idea behind the network metric of distinction is to subtract each actor's \textit{autonomy} from their \textit{constraint}, so that highly autonomous and less constrained actors have greater distinction. Autonomy is measured by the focal actor's Eigenvector Centrality score (indicating connections to well-placed others), and constraint is defined by the average Eigenvector Centrality score of each actor's neighbors in a hypothetical network in which the focal actor is removed (indicating how others would benefit from that actor's exit from the network). The resulting node-level measure, when properly scaled to have a natural zero point, yields a measure of \textit{distinction}, in which the uniqueness of an actor's relations is more heavily rewarded than under the standard Eigenvector Centrality score. After exploring the mathematical properties of the new measure in a number of idealized network structures, we analyze two classic datasets, Padgett and Ansell's \citeyearpar{padgett1993robust} Medici Network and Zachary's \citeyearpar{zachary1977information} Karate Club, to show that the observed actions of the agents involved are consistent with a pursuit of distinction. We close by outlining how the resulting distinction measure can be used to both forecast network transformations and anticipate competitive changes resulting from external network shocks.    
+This paper introduces the concept of network \textit{distinction} and develops a relational metric to capture it. The metric is theoretically inspired by Bourdieu's theory of agonistic competition for distinction in social fields, in which other actors and their actions provide opportunities and constraints for improving social positioning relative to others. The basic idea behind the network metric of distinction is to subtract each actor's \textit{autonomy} from their \textit{constraint}, so that highly autonomous and less constrained actors have greater distinction. Autonomy is measured by the focal actor's Eigenvector Centrality score (indicating connections to well-placed others), and constraint is defined by the average Eigenvector Centrality score of each actor's neighbors in a hypothetical network in which the focal actor is removed (indicating how others would benefit from that actor's exit from the network). The resulting node-level measure, when properly scaled to have a natural zero point, yields a measure of \textit{distinction}, in which the uniqueness of an actor's relations is more heavily rewarded than under the standard Eigenvector Centrality score. After exploring the mathematical properties of the new measure in a number of idealized network structures, we analyze two classic datasets, Padgett and Ansell's \citeyearpar{padgett1993robust} Medici Network and Zachary's \citeyearpar{zachary1977information} Karate Club, to show that the observed actions of the agents involved are consistent with a pursuit of distinction. We close by outlining how the resulting distinction measure can be used to both forecast network transformations and anticipate competitive changes resulting from external network shocks.  
 \end{abstract}
 
 \newpage
@@ -61,7 +61,7 @@ In relation to theory, network status is another name for \textit{influence} \ci
 
 In developing a broader understanding and measure of social distinction, the interplay between actor-level incentives and structural impediments to action becomes apparent. When we understand the underlying motivations that drive actors to proactively reshape their network connections to achieve more distinct positions, historical patterns of network change can be better accounted for and, in some cases, even predicted. 
 
-\subsection{Position as the Relational Basis for a Distinction Measure}
+\subsection{Position as the Relational Basis for Distinction}
 Bourdieu's separation of distinction into habitus and position is not a sociological problem in itself \citep{martin2003field}; rather, it poses the analytical challenge of how an actor's network position generates dispositions, and how these dispositions, in turn, create opportunities for network mobility. Both dispositions and positions are fundamentally relational outcomes \citep{erikson2013formalist-400}; however, when developing a network measure of distinction, only the relational basis of position is typically considered as this greatly simplifies the already daunting measurement challenge. 
 
 However, to the extent that position and habitus reflect each other through their symbiotic connection, empirically capturing only one of the two components is sufficient to measure a social system's distinction hierarchy with confidence over a short time window. Actors should not hold a network position that does not align with their habitus, and their current habitus and social position determine their ability to radically change positions. If the transformation of habitus is a stepwise interplay with positional movement that unfolds over time, the measure becomes less informative if it captures networks over extended periods. However, even over long periods, this theoretical collapse, which permits a network-measured methodological shortcut, may still be adequate in a moderately stable social environment. 
@@ -203,7 +203,7 @@ So that the final expression for the distinction of the peripheral node is:
 
 This tells us that the distinction of the peripheral node in the star graph will always be negative (given the numerator) and will decrease steadily towards zero (at a decreasing rate) as the order of the graph increases, as given by the denominator (see Figure~\ref{fig:star-scaling}). For the example in Figure~\ref{fig:star}, Equation~\ref{eq:distinction-peripheral2} resolves itself to: $-1 \div (1 + \sqrt{6}) = -1 \div 3.45 = -0.29)$ (see Table~\ref{tab:star}). The sociological logic is that it is of greater distinction to be one of the few peripheral nodes than one of the many peripheral nodes (the ``minion'' effect). The distance between the top and bottom in the system grows towards infinity, but the absolute social meaning in comparison to another system improves. Being essentially undifferentiated in one system is preferable to being on the negative end of stratification in another. 
 
-\begin{figure}
+\begin{figure}[t!]
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
      \begin{subfigure}[b]{0.3\textwidth}
@@ -239,7 +239,7 @@ This tells us that the distinction of the peripheral node in the star graph will
     \caption{Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
 \end{figure}
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.6\linewidth]{Plots/star-roles-by-size.png}
     \caption{Scaled and non-scaled distinction centralities for the two node roles in the star graph.}
@@ -262,7 +262,7 @@ Yet there's no distinction in the circle graph structure; since $s_i = 1.0$ for 
     \beta_i = \alpha s_i - \kappa_i = \alpha - \kappa_i = \kappa_i - \kappa_i = 0
 \end{equation}
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.6\linewidth]{Plots/constraint_vs_order_circle.png}
     \caption{Average constraint in the circle graph of a given order}
@@ -282,42 +282,11 @@ Interestingly, node 1, the most central according to the usual Eigenvector centr
 \subsubsection{Distinction in the Clique Graph}
 In the clique graph, nodes have the same constant status scores as in the circle graph, set at maximum ($s_i = 1.0$) but they also experience maximum constraint ($\kappa_i = 1.0$), as shown in Table~\ref{tab:clique}. This is consistent with the idea that the clique is the structure most representative of Durkhemian mechanical solidarity, combining equality and constraint \citep{breiger1998solidarity-afa}. The reason for that is that removing a node from the clique graph has no effect on the status of its previous neighbors, which remain equal to 1.0 in the resulting node-deleted clique of order $N-1$. For that reason, since both terms of the subtraction on the right-hand side of~\ref{eq:distinction} are equal to 1.0, the resulting distinction scores for all nodes are zero: $\beta_i = 0$. This is consistent with the idea that cliques are fundamentally ``segmental'' structures in Durkheim's \citeyearpar{durkheim1933division-cfd} sense, where the removal of a single actor results in a structure that is equivalent to the one that existed before, making cliquish ``mechanical'' solidarity strong in its constraining aspect, but ``weak'' in the sense that it is prone to division because the exit of a given actor does not dramatically change the underlying remaining structure \citep{breiger1998solidarity-afa}.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes; therefore, we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
 
-%Clique addition experiment
-%Add cliques to star graph and see what happens
-%See what happens with the caveman
-
-%triadic closure graphs
-\begin{figure}[t!]
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/circle-triangle1.png}
-            \caption{Circle Graph with  Closure}
-            \label{fig:circletriangle}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/circle-long.png}
-            \caption{Circle Graph with a Long Tie}
-            \label{fig:circlelong}
-    \end{subfigure} \\
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/star-triangle1.png}
-            \caption{Star Graph with Closure}
-            \label{fig:startriangle1}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/wheel.png}
-            \caption{Wheel Graph}
-            \label{fig:wheel}
-    \end{subfigure}
-    \caption{Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
-\end{figure}
-
 \subsection{Distinction in Hierarchical Structures}
 
 The star graph represents an extreme, if overly simplified conception of hierarchy and inequality \citep{freeman79}. Rooted tree graphs provide a structure with more verisimilitude to real-world hierarchical systems. To explore the behavior of the distinction centrality measure within such hierarchical structures, we compute the metric across several balanced, undirected rooted trees. These structures classically model organizational hierarchies \citep{friedell1967organizations-81a, krackhardt2014graph}, varying in depth (number of intermediary layers) and branching factor (span of control). 
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=\linewidth]{Plots/tree_comparisons.png}
     \caption{A comparison of distinction centrality ($\beta_i$) across three different hierarchical structures: a binary tree of Depth 2, a binary tree of Depth 3, and a binary tree of Depth 4. Nodes are colored by their scaled distinction scores.}
@@ -325,6 +294,9 @@ The star graph represents an extreme, if overly simplified conception of hierarc
 \end{figure}
 
 Table \ref{tab:tree-results} displays the computational results for a depth-2 binary tree (order 7) shown in the leftmost panel of Figure~\ref{fig:tree-comparisons}. The global scalar adjustment factor ($\alpha = \bar{\kappa} / \bar{s}$) for this specific network is approximately $0.7714$.
+
+\subsubsection{The Leverage of Intermediaries}
+Perhaps counter-intuitively, the highest distinction scores in a strict depth-2 hierarchy are not held by the root node, but rather by the middle branches (Nodes 2 and 3). While the middle branches share the maximum status ($s_i = 1.0$) with the root node, they experience substantially less constraint ($\kappa_i = 0.1925$). If a middle branch node is deleted, its pendant leaves become structurally isolated components, dropping their status to zero, while the root node loses half of its influence. Therefore, intermediaries possess immense structural leverage: their structural ``exit'' destroys the status of their dependents rather than empowering them, but at the same time they leave much less of a footprint on the status order compared to the root node, affording them more autonomy from the current status order. 
 
 \begin{table}[ht!]
     \centering
@@ -341,9 +313,6 @@ Table \ref{tab:tree-results} displays the computational results for a depth-2 bi
     \label{tab:tree-results}
 \end{table}
 
-\subsubsection{The Leverage of Intermediaries}
-Perhaps counter-intuitively, the highest distinction scores in a strict depth-2 hierarchy are not held by the root node, but rather by the middle branches (Nodes 2 and 3). While the middle branches share the maximum status ($s_i = 1.0$) with the root node, they experience substantially less constraint ($\kappa_i = 0.1925$). If a middle branch node is deleted, its pendant leaves become structurally isolated components, dropping their status to zero, while the root node loses half of its influence. Therefore, intermediaries possess immense structural leverage: their structural ``exit'' destroys the status of their dependents rather than empowering them, but at the same time they leave much less of a footprint on the status order compared to the root node, affording them more autonomy from the current status order. 
-
 \subsubsection{The Effect of Hierarchical Depth}
 As shown in Figure \ref{fig:tree-comparisons}, increasing the depth of the hierarchy shifts who holds the structural leverage. In a deep hierarchy (e.g., Depth 3 or Depth 4), distinction is strictly reserved for the layer of lower-level intermediaries \textit{immediately above the absolute bottom}. When we add a third or fourth layer (see Figure~\ref{fig:tree-comparisons}), the constraint on the top-level intermediaries skyrockets, and thus their distinction plummets. This occurs because deleting a high-level intermediary no longer isolates their subordinates. Instead, the remaining subordinates form cohesive sub-components. Because the deleted component retains strong local structure, it retains high status, meaning the high-level intermediary is heavily constrained by the fact that their subordinates can function cohesively without them.
 
@@ -352,14 +321,14 @@ Distinction is also highly sensitive to the span of control in a tree-like hiera
 
 A wider span of control means there are vastly more leaves at the bottom of the hierarchy that have low structural distinction. This drags down the average status ($\bar{s}$) of the entire network, mathematically inflating $\alpha$. Because the root maintains maximum status, its distinction score ($\beta_{root} = \alpha - 1$) grows linearly with $\alpha$, eventually overtaking the intermediaries (at $k=7$). This formalizes a classic organizational dynamic: while middle management holds structural leverage in narrow, deep hierarchies, a sufficiently wide span of control restores distinction to the autocrat at the top by structurally impoverishing the intermediaries below them.
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.6\linewidth]{Plots/span_of_control_distinction.png}
     \caption{The evolution of scaled distinction ($\beta_i$) for the root node and intermediaries as a function of the span of control (branching factor) in a depth-2 hierarchy.}
     \label{fig:span-control}
 \end{figure}
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.8\linewidth]{Plots/tree_scalar.png}
     \caption{The global scalar adjustment factor ($\alpha$) as a function of the span of control ($k$) across hierarchies of Depth 2, 3, and 4. The dashed line marks $\alpha = 1.0$. The proliferation of low-status, highly constrained leaf nodes drives $\alpha$ upward as trees become wider and deeper.}
@@ -381,7 +350,7 @@ However, $\alpha$ is not fixed. As shown in Figure~\ref{fig:tree-scalar}, the sc
 
 However, as we saw earlier, \textit{this $\beta_{root} = \alpha - 1$ rule only applies if the tree has middle management intermediaries} (depth $\ge 2$). If the hierarchy is perfectly flat—a pure Star Graph (Depth 1)—the constraint of the root drops to exactly zero. Deleting the root of a star graph isolates every single alter, dropping their eigenvector status to 0. Thus, the root of a star graph achieves maximum positive distinction ($\beta_{root} = \alpha(1) - 0 = \alpha$). This elegantly formalizes the classic dilemma of bureaucratic control: the only way to be a truly unconstrained autocrat is to maintain a flat organization where everyone reports directly to the center. But as scale forces the addition of middle management, the center becomes structurally constrained ($\beta_{root} = \alpha - 1$), and structural leverage immediately transfers to the intermediaries directly controlling the lowest levels.
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=\linewidth]{Plots/small_world_snapshots.png}
     \caption{Three snapshots from the small-world computational experiment ($N=30$), varying from the initial symmetric lattice to a dense random graph. Nodes are colored by their scaled distinction score.}
@@ -393,7 +362,7 @@ To further understand the structural behavior of the distinction centrality meas
 
 We begin with a regular lattice graph (a circle graph or ring) of size $N = 30$. In the graph, every vertex is automorphically (and thus structurally) equivalent, yielding an identical initial eigenvector status for all nodes; as we have seen, deleting any node results in the identical residual $N-1$ path graph. Thus, at this initial state, all nodes experience identical constraint, and the variance in scaled distinction is exactly zero.
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.6\linewidth]{Plots/variance_vs_density.png}
     \caption{Variance (standard deviation) of scaled distinction as edges are randomly added to a regular lattice.}
@@ -410,7 +379,7 @@ Figure \ref{fig:mean-constraint-density} plots the evolution of the mean baselin
 
 These evolutionary dynamics perfectly mirror theoretical expectations of agonistic fields: perfect structural equality exists only at the extremes of total constraint or total saturation. Inequality in distinction peaks precisely in the intermediate, sparse ``small-world'' phase where a subset of actors successfully monopolize structural bridging.
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.6\linewidth]{Plots/mean_constraint_vs_density.png}
     \caption{Evolution of mean constraint ($\kappa$) as edges are randomly added to a regular lattice.}
@@ -437,18 +406,21 @@ Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measur
 What the difference between these two examples suggests is that, based on considerations for distinction, the initial spread of social organization occurs locally through the triadic balance of near neighbors. This suggests that the natural form of organizational formation is a pyramid composed of combinations of local triads, further connected by brokers or welds that create structural folds. However, the transitivity created by the initial triad formation would spread quickly throughout the network, making welding structural folds a highly advantageous strategy for members of triads who could facilitate that connection, which is further explored below. Additionally, the example of triadic closure shows that only mild additions to network ties can very quickly create stratification. The addition of a single connection between nodes 1 and 6 in Figure 3 \textit{Model (a)} stratified the network from an equal state into four hierarchical levels. 
 
 \subsubsection{Distinction and Brokerage}
-
-%welds martin2009social
-%Structural holes vs folds (need to graph out the holes)
-
-%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
-%folds vs circles
 \textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains a high status score, the status of the other nodes increases, and their constraints decrease. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This brokerage position is more constrained than in the star graph because the other actors are connected in subgroups. The actors in the subgroup can combine their interests to counterbalance Node 1's central independence. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, stratification increases, giving Node 1 a slight advantage while also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, each node's distinction would also go to 0.00, as there is no network differentiation among nodes. 
 
-%brokerage and structural folds Figure 4
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
+     \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/star-triangle1.png}
+            \caption{Star Graph with Closure}
+            \label{fig:startriangle1}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/wheel.png}
+            \caption{Wheel Graph}
+            \label{fig:wheel}
+    \end{subfigure}
     \begin{subfigure}[b]{0.32\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/sf4.png}
             \caption{Structural Fold (4-Clique)}
@@ -464,19 +436,6 @@ What the difference between these two examples suggests is that, based on consid
             \caption{Circle Weld}
             \label{fig:circleweld}
     \end{subfigure}  
-    \caption{Comparison of betweenness brokerage and structural folds Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
-\end{figure}
-
-%brokerage centrality scores
-\input{Tabs/Figure4}
-
-\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar-adjusted distinction measures well reflect this stratification, with Node 1 retaining its position, Nodes 4 and 5 occupying the middle, and Nodes 2, 3, 6, and 7 falling to the bottom. 
-
-\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs, as in Model (b). In fact, all nodes except 3 and 6 have greater distinction in this case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
     \label{fig:struct-fold}
     \begin{subfigure}[b]{0.44\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/broker4.png}
@@ -488,14 +447,22 @@ What the difference between these two examples suggests is that, based on consid
             \caption{Tree with 2 Branches, 3 Leaves}
             \label{fig:treemediator3}
     \end{subfigure}
-    \caption{Comparison of betweenness brokerage and a structural folds Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
+    \caption{Comparison of Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
 \end{figure}
 
+% \input{Tabs/Figure4}
+
+\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar-adjusted distinction measures well reflect this stratification, with Node 1 retaining its position, Nodes 4 and 5 occupying the middle, and Nodes 2, 3, 6, and 7 falling to the bottom. 
+
+\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs, as in Model (b). In fact, all nodes except 3 and 6 have greater distinction in this case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
+
 \section{Data Examples}
+
 \subsection{Betweenness vs Distinction: Revisiting the Medici Network}
+
 The interplay of influence and autonomy creates an actor’s overall distinction within the network. The combination of influence and autonomy results in capacity, and the social reward for this capacity is distinction. An increase in one aspect can often, but not necessarily, lead to a decrease in the other. For example, a connection with someone with high accessibility can lead to a decrease in one’s autonomy, and new access comes with new constraints. However, the trade-off can maximize one’s overall distinction, yielding gains from the connection. Without such gains, the connection would not be formed.
 
-One of the consecrated papers of social network analysis is Padgett and Ansell’s (1993) analysis of the centrality of the Medici to Florentine elite marriage and business networks in the 15th century. The empirics led to the theory of robust action, demonstrating that one’s position in the network can serve as the basis for one’s interests and that by balancing competitors, an actor can amplify their social position. 
+One of the consecrated papers of social network analysis is Padgett and Ansell’s \citeyearpar{padgett1993robust} analysis of the centrality of the Medici to Florentine elite marriage and business networks in the 15th century. The empirics led to the theory of robust action, demonstrating that one’s position in the network can serve as the basis for one’s interests and that by balancing competitors, an actor can amplify their social position. 
 
 A puzzle that emerges from the empirics, however, is how the balance between antagonistic factions created by the Medici was undone within a decade of Padgett and Ansell’s focus. The brokerage created social stability, yet in 1432, Rinaldo Albizzi, as leader of a coalition of conservative old oligarchic families, seized the reins of the Florentine government, exiling the leading Medici from Florence. Why was the Medici's network position as brokers so unstable? In other words, what were the network incentives of the old conservative families to attempt to remove the Medici from their network position? 
 
@@ -522,19 +489,18 @@ Results are presented in Table~\ref{tab:medicifull}. In the original state of th
 \input{Tabs/medici-full}
 \input{Tabs/medici-removed}
 
-
 In comparing the network with the Medici and the one without them, one notices that the status of the oligarchic families does not automatically increase. While those further away from the Medici, such as the Strozzi and Panciatichi, would see their status increase in the Medici’s absence, as the center of the network would shift towards them, the Guasconi and the Albizzi would lose by this straightforward measure of status change. Considering the matter of constraint, the Guasconi and Albizzi would also become more constrained in the Medici's absence from the network. Thus, even as their status declined and their constraints increased, these families still chose to act against the Medici! 
 
-The status and distinction of the Guasconi and Albizzi would still be lower without the Medici in the network than with them. However, when adjusting for the levels of status and constraint in the system, the Guasconi and Albizzi, along with the rest of the conservative oligarchs, would increase their social distinction. The overall decrease in average status within the system, along with an increase in constraint, would make the status that the Guasconi and Albizzi did have at the level of the system increasingly important. The inequality within the system would essentially increase without the presence of the Medici, and ending up in the elite cluster of a more unequal network of elites was an increase in social distinction sufficient to entice members of the Guasconi and Albizzi blocks. In contrast to the application of an edge cutting algorithm that may shear the Guasconi and Albizzi blocks from the Medici due to the weight of their connections with the rest of the network, the members of the families in these blocks had distinction to be gained, as long as their own personal connections did not otherwise tie them to the Medici.  
+The status and distinction of the Guasconi and Albizzi would still be lower without the Medici in the network than with them. However, when adjusting for the levels of status and constraint in the system, the Guasconi and Albizzi, along with the rest of the conservative oligarchs, would increase their social distinction. The overall decrease in average status within the system, along with an increase in constraint, would make the status that the Guasconi and Albizzi did have at the level of the system increasingly important. The inequality within the system would essentially increase without the presence of the Medici, and ending up in the elite cluster of a more unequal network of elites was an increase in social distinction sufficient to entice members of the Guasconi and Albizzi blocks. In contrast to the application of an edge-cutting algorithm that may shear the Guasconi and Albizzi blocks from the Medici due to the weight of their connections with the rest of the network, the members of the families in these blocks had distinction to be gained, as long as their own personal connections did not otherwise tie them to the Medici.  
 
-It was not just Cosimo de Medici who derived his sphinxlike qualities from his position in the network, but Rinaldo degli Albizzi was likewise noted for his unwillingness to take strong stances on behalf of the conservative faction of old elite families (Kent 1978:289). Given Rinaldo’s similarity to Cosimo’s brokerage network position, the structural incentives towards equivocation were similarly expressed. However, Rinaldo’s structural opportunities were transformed with the death of Niccolò da Uzzano, the previous leader of the conservative faction. While the Uzzanos are attached to the Guasconi block in the original graph of relations, they actually shared deep family ties with the Bardis, who fell into the same block as the Guasconi. Per Table B1 in Padgett and Ansell (1314-6), the Bardi were third in gross family wealth after the Strozzi and Medici. Niccolò’s mother was a Bardi, and his brother married into the family (Kent 1978:166), elevating Niccolò’s authority beyond what might otherwise be discernible from the original graph. The Uzzano and Bardi leadership of the conservatives balanced the old elites away from Rinaldo, making ties to the Medici more important for their network position. Niccolò was also seen largely as moderate despite leading the old families against the new families (Kent 1978:256). However, Niccolò’s death in 1432 created a gap in the conservative faction’s leadership for Rinaldo to fill. The center of power within the network of old families was renegotiable, and in exchange for eschewing the Medici, the Rinaldo degli Albizzi could seize leadership and shift the network's emphasis towards himself. The secondhand data from Padgett and Ansell’s block models does not allow for a clear demonstration of the movement, but the historiography would indicate the underlying shifts in network opportunity.      
+It was not just Cosimo de Medici who derived his sphinxlike qualities from his position in the network, but Rinaldo degli Albizzi was likewise noted for his unwillingness to take strong stances on behalf of the conservative faction of old elite families (Kent 1978:289). Given Rinaldo’s similarity to Cosimo’s brokerage network position, the structural incentives towards equivocation were similarly expressed. However, Rinaldo’s structural opportunities were transformed with the death of Niccolò da Uzzano, the previous leader of the conservative faction. While the Uzzanos are attached to the Guasconi block in the original graph of relations, they actually shared deep family ties with the Bardis, who fell into the same block as the Guasconi. Per Table B1 in Padgett and Ansell (1314-6), the Bardi were third in gross family wealth after the Strozzi and Medici. Niccolò’s mother was a Bardi, and his brother married into the family (Kent 1978:166), elevating Niccolò’s authority beyond what might otherwise be discernible from the original graph. The Uzzano and Bardi leadership of the conservatives balanced the old elites away from Rinaldo, making ties to the Medici more important for their network position. Niccolò was also seen largely as moderate despite leading the old families against the new families (Kent 1978:256). However, Niccolò’s death in 1432 created a gap in the conservative faction’s leadership for Rinaldo to fill. The center of power within the network of old families was renegotiable, and in exchange for eschewing the Medici, Rinaldo degli Albizzi could seize leadership and shift the network's emphasis towards himself. The secondhand data from Padgett and Ansell’s block models does not allow for a clear demonstration of the movement, but the historiography would indicate the underlying shifts in network opportunity.      
 
-With Bernardo Guadagni’s rise to the Gonfaloniere, Albizzi and the old families moved to exile Cosimo and Lorenzo de Medici, seemingly to seize the levers of city government through factional decapitation, thereby avoiding destructive conflict (289-90). While the conservatives seized government, the Medicans were not undone by the loss of their leaders but rather resisted without prompting a crisis (299). The moment of crisis came with the lottery, whereby chance, the Medici supporters came to dominate the Priors (328). The resulting re-entry of the Medici into government power threatened the conservative faction, and Rinaldo responded by mobilizing the forces of the conservative families to seize the castle where the priors were meeting. The Mediceans gained word and were able to reinforce the castle before the conservatives could arrive. In this moment of constitutional crisis, Palla Strozzi refused to commit his large force of support to Rinaldo’s cause, and even the Peruzzi demobilized upon receipt of a deal from the Medicean’s (331-4). The crisis itself was negotiated down through the intervention of the Pope, but the crisis shifted momentum to the Medicean’s side through the fragmentation of the conservatives and the outpouring of armed support flowing in from outside the city walls (Kent 1978:330-4). The leadership of the old families was subsequently undone for their crimes (Kent 1978:335-48). The conservatives would clearly improve their distinction within Florence with the removal of the Medici, yet in the end, the elite network does not explain their defeat. The threatened major social losses to the newer families explain their dogged resistance to the conservative ascension, yet the support for the Medici with the Pope and beyond Florence was critical as the balance of force among the elite families was in the conservatives’ favor (see Padgett and Ansell Appendix B).  
+With Bernardo Guadagni’s rise to the Gonfaloniere, Albizzi and the old families moved to exile Cosimo and Lorenzo de Medici, seemingly to seize the levers of city government through factional decapitation, thereby avoiding destructive conflict (289-90). While the conservatives seized government, the Medicans were not undone by the loss of their leaders but rather resisted without prompting a crisis (299). The moment of crisis came with the lottery, whereby chance, the Medici supporters came to dominate the Priors (328). The resulting re-entry of the Medici into government power threatened the conservative faction, and Rinaldo responded by mobilizing the forces of the conservative families to seize the castle where the priors were meeting. The Mediceans learned of this and were able to reinforce the castle before the conservatives could arrive. In this moment of constitutional crisis, Palla Strozzi refused to commit his large force of support to Rinaldo’s cause, and even the Peruzzi demobilized upon receipt of a deal from the Medicean’s (331-4). The crisis itself was negotiated down through the intervention of the Pope, but the crisis shifted momentum to the Medicean’s side through the fragmentation of the conservatives and the outpouring of armed support flowing in from outside the city walls (Kent 1978:330-4). The leadership of the old families was subsequently undone for their crimes (Kent 1978:335-48). The conservatives would clearly improve their distinction within Florence with the removal of the Medici, yet in the end, the elite network does not explain their defeat. The threatened major social losses to the newer families explain their dogged resistance to the conservative ascension, yet the support for the Medici with the Pope and beyond Florence was critical as the balance of force among the elite families was in the conservatives’ favor (see Padgett and Ansell Appendix B).  
 
 \subsection{Group Detection vs Distinction: Revisiting the Karate Club}
-Another consecrated paper in network analysis is Zachary’s (1977) examination of the fissure of a university karate club network. Zachary found that the tension in the group centered around questions of compensation for the outside karate teacher with the internal student group leadership. However, Zachary finds that the dispute was channeled and resolved along an already existing division in the underlying friendship connections among the club members (1977:454-5).   
+Another consecrated paper in network analysis is Zachary’s \citeyearpar{zachary1977information} examination of the fissure of a university karate club network. Zachary found that the tension in the group centered around questions of compensation for the outside karate teacher with the internal student group leadership. However, Zachary found that the dispute was channeled and resolved along an already existing division in the underlying friendship connections among the club members \citeyearpar[454-455]{zachary1977information}.
 
-The paper was an early application of an algorithm to predict the lines along which the group would divide. The original Ford-Fulkerson Labeling algorithm was a network flow model that sought to use node distances to detect community membership (1977:454). However, in the original algorithm, Node 9 was misclassified as belonging to the Officer’s network, whereas empirically, Node 9 joined the network of the karate teacher, Mr. Hi. The original discrepancy was explained by Node 9 being near achieving a black belt, so the institutional opportunity costs outweighed the social network costs. 
+The paper was an early application of an algorithm to predict the lines along which the group would divide. The original Ford-Fulkerson Labeling algorithm was a network flow model that sought to use node distances to detect community membership \citeyearpar[454]{zachary1977information}. However, in the original algorithm, Node 9 was misclassified as belonging to the Officer’s network, whereas empirically, Node 9 joined the network of the karate teacher, Mr. Hi. The original discrepancy was explained by Node 9 being near achieving a black belt, so the institutional opportunity costs outweighed the social network costs. 
 
 Contrary to expectations, the application of the distinction centrality measure did not explain why Node 9 left for Mr. Hi's network. The original hypothesis was that, because the Officer's network closely resembles a star graph, Node 9 would command less distinction in the network than in Mr. Hi's more heterogeneous network. Results are presented in Table~\ref{tab:zachary}. The measure indicates that Node 9 would have had a greater overall relative distinction if he had remained in the Officer's network. The idea being that, in Mr. Hi's network, Node 9 would be more constrained than in the officer's network, but would have higher status because he was directly connected to the high-status center in an otherwise stratified network. 
 
