@@ -17,7 +17,7 @@
 % hyperref must be loaded after natbib
 \usepackage{hyperref}
 \hypersetup{
-  pdftitle={What is Distinction? A Relational Approach},
+  pdftitle={Distinction in Networks},
   pdfauthor={Isaac Jilbert, Omar Lizardo},
   colorlinks=true,
   linkcolor={blue},
@@ -124,13 +124,12 @@ Where $\bar{\mathbf{\kappa}}$ is the mean of the vector of $\kappa_i$ constraint
 Another advantage of rescaling the $s_i$ component of equation~\ref{eq:distinction} is that it makes the distinction score of key nodes in the graph sensitive to network size, so that it increases for the most distinct nodes when less distinct actors are added to the network. For instance, Figure~\ref{fig:star-scaling} illustrates the distinction score for central and peripheral nodes in star graphs of varying sizes. As we can see, when distinction is calculated simply as $\beta^*_i = s_i - \kappa_i$, the distinction score is a constant for the star nodes across graphs of different sizes, demonstrating insensitivity to network scaling. By way of contrast, when distinction is calculated as in Equation~\ref{eq:distinction}, then we observe that the distinction score of the star node increases logarithmically with network size, which is precisely what we want, as a star mediating between many peripheral nodes should be more distinct that a star mediating between just a few peripheral nodes (we elaborate on the mathematical reasons for this below).  
 
 \section{Distinction in Idealized Relational Worlds}
-Below, we explore the properties of the proposed distinction measure by presenting distinction scores for a variety of toy models representing idealized yet informative network structures.\footnote{To conduct the analyses below, we use a custom function written for the \textit{R} statistical computing environment \citep{R}, available at [url].} The function code is reproduced in the Appendix. In each model, there are seven nodes, and node 1 is the best-connected node in the network. Thus, node 1 always has an eigenvector centrality of 1. However, node 1's distinction varies with the interconnections among the other nodes, demonstrating how distinction centrality captures the extent of the constraint exerted by neighbors. 
+Below, we explore the properties of the proposed distinction measure by presenting distinction scores for a variety of toy models representing idealized yet informative network structures.\footnote{To conduct the analyses below, we use a custom function written for the \textit{R} statistical computing environment \citep{R}, available at [url].} The function code is reproduced in the Appendix. In each model, there are seven nodes, and node 1 is the best-connected node in the network. Thus, node 1 always has an eigenvector centrality of 1. However, node 1's distinction varies with the interconnections among the other nodes, demonstrating how distinction centrality captures the extent of the constraint exerted by neighbors.
+
+\subsection{Distinction in the Star Graph}
+Figure~\ref{fig:star} shows a star graph of order seven, in which node 1 is the central node connected to six peripheral nodes, each of which has no other connections. Table~\ref{tab:star} shows the distinction scores for the central and peripheral nodes. This hub-spoke system is the simplest way to explore the linkages among distinction, status, and constraint. The reason is that for the star node 1, constraint ($\kappa_i$) is always zero. The node-deleted subgraph obtained by removing the central node from the star graph is disconnected and empty, and the status of the peripheral nodes collapses to zero. This is the limiting case in which removing a node has the minimal possible effect on the network’s status order (the peripheral nodes are low status whether the central node is present or not). This also means that distinction is maximized, because status is at a maximum relative to the other nodes in the graph. In other words, the star node has a combination of \textit{maximum status and minimum network constraint}, and thus maximum distinction.\footnote{In this respect, the distinction centrality measure obeys Freeman's \citeyearpar{freeman79} requirement of being maximized in the star graph for the central node.}
 
 \input{Tabs/star}
-
-\subsection{Maximum Inequality and Equality in Distinction}
-\subsubsection{Distinction in the Star Graph}
-Figure~\ref{fig:star} shows a star graph of order seven, in which node 1 is the central node connected to six peripheral nodes, each of which has no other connections. Table~\ref{tab:star} shows the distinction scores for the central and peripheral nodes. This hub-spoke system is the simplest way to explore the linkages among distinction, status, and constraint. The reason is that for the star node 1, constraint ($\kappa_i$) is always zero. The node-deleted subgraph obtained by removing the central node from the star graph is disconnected and empty, and the status of the peripheral nodes collapses to zero. This is the limiting case in which removing a node has the minimal possible effect on the network’s status order (the peripheral nodes are low status whether the central node is present or not). This also means that distinction is maximized, because status is at a maximum relative to the other nodes in the graph. In other words, the star node has a combination of \textit{maximum status and minimum network constraint}, and thus maximum distinction.\footnote{In this respect, the distinction centrality measure obeys Freeman's \citeyearpar{freeman79} requirement of being maximized in the star graph for the central node.}
 
 The peripheral nodes, by way of contrast, experience precisely the opposite situation; their constraint is at a maximum ($\kappa_j = 1$) and their status is always a specified fraction of the status of the star node. They thus experience \emph{maximum constraint and reduced status}. More precisely, if the maximum status in the graph---in this case corresponding to the star node---is normalized to 1.0, then the status of each peripheral node $s_j$ is always equal to:
 
@@ -140,6 +139,13 @@ The peripheral nodes, by way of contrast, experience precisely the opposite situ
 \end{equation}
 
 Which in the Figure~\ref{fig:star} example is simply $1 \div (7-1) = 0.408$. Peripheral nodes always experience maximum constraint because the node-deleted subgraph where any given peripheral node is absent is just a star graph of order $N-1$, where the constraint (average status of the remaining nodes) is just equal to the status of their only previous neighbor (the star node), which is always equal to 1.0. 
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Plots/star-roles-by-size.png}
+    \caption{Scaled and non-scaled distinction centralities for the two node roles in the star graph.}
+    \label{fig:star-scaling}
+\end{figure}
 
 \subsubsection{System Scalar in the Star Graph}
 Because of these restrictions, it is possible to derive closed-form solutions to the system scalar $\alpha$ corresponding to equation~\ref{eq:distinction} for the star graph of any order. Recall that $\alpha$ is just the ratio of two components: The average constraint $\bar{\kappa}$ and the average status of each node $\bar{s}$. We have already seen that the constraint of the central node is always 0 and the constraint of the peripheral nodes is always 1.0. Since there are $N-1$ peripheral nodes, the sum of constraints is just that same quantity, which means that the \textit{average} constraint $\bar{\kappa}$ in the star graph is just: 
@@ -206,163 +212,54 @@ This tells us that the distinction of the peripheral node in the star graph will
 \begin{figure}
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
-     \begin{subfigure}[b]{0.3\textwidth}
+     \begin{subfigure}[b]{0.44\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/star.png}
             \caption{Star Graph}
             \label{fig:star}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/circle.png}
-            \caption{Circle Graph}
-            \label{fig:circle}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.44\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/clique.png}
             \caption{Clique Graph}
             \label{fig:clique}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \end{subfigure} \\
+    \begin{subfigure}[b]{0.44\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/circle.png}
+            \caption{Circle Graph}
+            \label{fig:circle}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.44\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/path.png}
             \caption{Path Graph}
             \label{fig:path}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/7-clique-plus-pendant.png}
-            \caption{Clique Graph plus Pendant}
-            \label{fig:circle-plus-pendant}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/circular-lattice-plus-pendant.png}
-            \caption{Circle Graph plus Pendant}
-            \label{fig:clique-plus-pendant}
-    \end{subfigure}
+    % \begin{subfigure}[b]{0.3\textwidth}
+    %     \includegraphics[width=1.0\textwidth]{Plots/7-clique-plus-pendant.png}
+    %         \caption{Clique Graph plus Pendant}
+    %         \label{fig:circle-plus-pendant}
+    % \end{subfigure}
+    % \begin{subfigure}[b]{0.3\textwidth}
+    %     \includegraphics[width=1.0\textwidth]{Plots/circular-lattice-plus-pendant.png}
+    %         \caption{Circle Graph plus Pendant}
+    %         \label{fig:clique-plus-pendant}
+    % \end{subfigure}
     \caption{Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
 \end{figure}
 
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.6\linewidth]{Plots/star-roles-by-size.png}
-    \caption{Scaled and non-scaled distinction centralities for the two node roles in the star graph.}
-    \label{fig:star-scaling}
-\end{figure}
+\subsection{Distinction in Tree Graphs}
+The star graph represents an extreme, if overly simplified conception of hierarchy and inequality \citep{freeman79}. Rooted tree graphs provide a structure with more verisimilitude to real-world hierarchical systems, as these structures classically model organizational hierarchies \citep{friedell1967organizations-81a, krackhardt2014graph}, varying in depth (number of intermediary layers) and branching factor (span of control). 
 
-\subsubsection{Distinction in the Clique and Circle Graphs}
+To explore the behavior of the distinction centrality measure within such hierarchical structures, we compute the metric across several balanced, undirected rooted trees.  Table \ref{tab:tree-results} displays the computational results for a depth-2 binary tree (order 7) shown in the leftmost panel of Figure~\ref{fig:tree-comparisons}. The global scalar adjustment factor ($\alpha = \bar{\kappa} / \bar{s}$) for this specific network is approximately $0.7714$.
 
-If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction.  In these respects, distinction should be at its theoretical minimum of zero for all nodes in the case of maximum equality, such as the circle and clique graphs. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique}, this is precisely what we observe. 
 
-\input{Tabs/circle}
-\input{Tabs/path}
-\input{Tabs/clique}
-
-All the nodes in the circle graph (or any other regular lattice of a given degree \textit{k}, as the circle graph is just the special case where $k = 2$) are in a very different situation compared to the central node in the star graph: While they experience the theoretical maximum of status ($s_i = 1.0$), at the same time they experience a great deal of constraint. In the circle graph, the constraint is determined by the average status of nodes in the node-deleted path graph of order $N-1$ that results from removing any given node from the circle graph of order $N$. Because removing any one node yields the same resulting structure, all nodes in the circle graph experience the \textit{same} amount of constraint. In this respect, the nodes in the circle graph experience a non-zero level of constraint because that they are in a situation in which they all contribute equally to the original non-differentiated status order; this means that the \textit{removal} of any one node from the graph will have a \textit{disruptive} effect on such a minimal order, creating a large amount of status differentiation among the remaining where there previously was none (see Figure~\ref{fig:path}).\footnote{Thus, the distinction measure captures the intuition, common to members of solidary small groups, who experience large constraints on exit, precisely due to the consequences that such an exit will have for the others that are left behind \citep{durkheim1933division-cfd, breiger1998solidarity-afa}.} 
-
-Yet there's no distinction in the circle graph structure; since $s_i = 1.0$ for all nodes $i$, and since $\kappa_i = \theta$ where $\theta$ is a constant across nodes, $\bar{\kappa} = \kappa_i$. Substituting the relevant quantities into equation~\ref{eq:distinction} yields:
-
-\begin{equation}
-    \beta_i = \alpha s_i - \kappa_i = \alpha - \kappa_i = \kappa_i - \kappa_i = 0
-\end{equation}
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.6\linewidth]{Plots/constraint_vs_order_circle.png}
-    \caption{Average constraint in the circle graph of a given order}
-    \label{fig:circle-constraint}
-\end{figure}
-
-One interesting implication of the distinction measure is that the constraint experienced by nodes in a maximally equal system should be proportional to system size, being highest in a small system characterized by equality but declining as the number of nodes increases. Figure~\ref{fig:circle-constraint} shows the average constraint experienced by nodes in a circle graph of a given order; we can see that constraint declines as a (decreasing) function of system size, collapsing towards zero as network size approaches infinity.  
-
-\subsubsection{Distinction in the Path Graph}
-
-As we have seen, the path graph is the structure that results when we remove a single node from a circle graph (technically a tree graph). It thus represents the emergence of status differentiation from where there was none as a result of the removal of a single actor. Figure~\ref{fig:path} shows a path graph of order 7 where the central node is labeled 1, and the subsequent nodes outward are symmetrically labeled 2 and 3, then 4 and 5, with the endpoints labeled 6 and 7 (yielding the path 7-5-3-1-2-4-6). Table~\ref{tab:path} shows the relevant distinction scores. 
-
-The pendant nodes (6 and 7), which were previously neighbors of the removed node in the previous circle graph of order 8, are now the least distinct. While in the previous circle graph there was no distinction, now we can see that two nodes (4 and 5) emerge as the most distinct, because they bridge between the two pendant nodes and the inner nodes of the path. They thus experience the ``penultimate advantage''---experiencing high status combined with the lowest constraint---because their exit has very little bearing on the remaining status order, given their connection to already status-peripheral alters. 
-
-Interestingly, node 1, the most central according to the usual Eigenvector centrality, does not have the highest distinction. Despite its maximum status, it is also highly constrained (because its exit would split the single path graph into two separate path graphs, completely upturning the status order), which pulls its distinction score downward. We will see later that this (a highly constrained central node) is a general feature of highly central root nodes in tree graphs (excepting the star graph).\footnote{It is important to note that the distinction rankings correspond almost exactly to those that would be generated from the point of view of Network Exchange Theory (NET) \citep{luca2001lines} in the line graph, based on opportunities for inclusion and exclusion in exchange rounds. According to NET, nodes 4 and 5 in Figure~\ref{fig:path} are indeed the highest-power nodes (thanks to their connection to pendant nodes with no other options), while node 1 suffers despite its central position according to traditional metrics due to its non-zero likelihood of exclusion by nodes 4 and 5.}
-
-\subsubsection{Distinction in the Clique Graph}
-In the clique graph, nodes have the same constant status scores as in the circle graph, set at maximum ($s_i = 1.0$) but they also experience maximum constraint ($\kappa_i = 1.0$), as shown in Table~\ref{tab:clique}. This is consistent with the idea that the clique is the structure most representative of Durkhemian mechanical solidarity, combining equality and constraint \citep{breiger1998solidarity-afa}. The reason for that is that removing a node from the clique graph has no effect on the status of its previous neighbors, which remain equal to 1.0 in the resulting node-deleted clique of order $N-1$. For that reason, since both terms of the subtraction on the right-hand side of~\ref{eq:distinction} are equal to 1.0, the resulting distinction scores for all nodes are zero: $\beta_i = 0$. This is consistent with the idea that cliques are fundamentally ``segmental'' structures in Durkheim's \citeyearpar{durkheim1933division-cfd} sense, where the removal of a single actor results in a structure that is equivalent to the one that existed before, making cliquish ``mechanical'' solidarity strong in its constraining aspect, but ``weak'' in the sense that it is prone to division because the exit of a given actor does not dramatically change the underlying remaining structure \citep{breiger1998solidarity-afa}.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes; therefore, we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
-
-%Clique addition experiment
-%Add cliques to star graph and see what happens
-%See what happens with the caveman
-
-%triadic closure graphs
 \begin{figure}[t!]
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/circle-triangle1.png}
-            \caption{Circle Graph with  Closure}
-            \label{fig:circletriangle}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/circle-long.png}
-            \caption{Circle Graph with a Long Tie}
-            \label{fig:circlelong}
-    \end{subfigure} \\
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/star-triangle1.png}
-            \caption{Star Graph with Closure}
-            \label{fig:startriangle1}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=1.0\textwidth]{Plots/wheel.png}
-            \caption{Wheel Graph}
-            \label{fig:wheel}
-    \end{subfigure}
-    \caption{Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
-\end{figure}
-
-
-\subsection{Sensitivity to Subgraph Participation: A Comparison with Subgraph Centrality}
-
-Traditional centrality measures---such as degree, closeness, and eigenvector centrality---can sometimes fail to differentiate nodes in highly symmetric or perfectly regular graphs. To address this, \citet{estrada2005subgraph} introduced \emph{subgraph centrality}, a measure that ranks nodes by their participation in all network subgraphs, placing greater weight on smaller motifs (such as triangles and squares). 
-
-To demonstrate the discriminative power of their metric, Estrada and Rodr\'iguez-Vel\'azquez presented two challenging regular graphs: an 8-node regular graph with degree 3, and a 9-node regular graph with degree 6. In both graphs, all nodes have identical degree, identical closeness, and identical eigenvector centrality ($s_i = 1$). However, the nodes differ subtly in their participation in specific subgraphs.
-
-Despite emerging from a fundamentally different theoretical paradigm---one rooted in agonistic competition and structural constraint---distinction centrality ($\beta_i$) perfectly recovers the exact same node rankings as Estrada's subgraph centrality for both of these regular graphs. Figure~\ref{fig:estrada} visualizes the distinction scores for these two networks, and Tables~\ref{tab:estrada1a} and \ref{tab:estrada1b} provide the exact mathematical components.
-
-\begin{figure}[ht!]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Plots/estrada-1a.png}
-        \caption{Estrada Fig. 1(a) (Degree 3)}
-        \label{fig:estrada1a}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{Plots/estrada-1b.png}
-        \caption{Estrada Fig. 1(b) (Degree 6)}
-        \label{fig:estrada1b}
-    \end{subfigure}
-    \caption{Distinction Centrality applied to the two regular graphs from \citet{estrada2005subgraph}. Nodes are perfectly differentiated according to their subgraph participation.}
-    \label{fig:estrada}
-\end{figure}
-
-\input{Tabs/estrada-1a.tex}
-\input{Tabs/estrada-1b.tex}
-
-In the 8-node graph (Figure~\ref{fig:estrada1a}), nodes 1, 2, and 8 participate in triangles and receive the highest distinction score ($\beta_i = 0.030$). Nodes 4 and 6 participate in three squares and receive a moderate score ($\beta_i = 0.008$), while nodes 3, 5, and 7 participate in only two squares and receive the lowest score ($\beta_i = -0.036$). This matches the ranking of subgraph centrality perfectly. 
-
-Similarly, in the dense 9-node graph (Figure~\ref{fig:estrada1b}), all nodes participate in the same number of triangles. The only structural difference is that nodes 2, 4, 7, and 9 participate in 45 squares, whereas the remaining nodes participate in 44. Distinction centrality is sufficiently sensitive to detect this minute topological variance, assigning a slightly higher score ($\beta_i = 0.003$) to the former group over the latter ($\beta_i = -0.002$).
-
-The reason distinction centrality so gracefully detects structural motifs is due to its reliance on the node-deleted constraint metric ($\kappa_i$). Because constraint is calculated based on the spectral status of neighbors \emph{after} the focal node is removed, the presence of alternative local paths (such as the edges comprising triangles and squares) heavily dictates whether those neighbors retain their status. Thus, distinction centrality captures the same local network topology that Estrada explicitly sought to measure, doing so through the theoretical mechanism of structural redundancy and field constraint.
-\subsection{Distinction in Hierarchical Structures}
-
-The star graph represents an extreme, if overly simplified conception of hierarchy and inequality \citep{freeman79}. Rooted tree graphs provide a structure with more verisimilitude to real-world hierarchical systems. To explore the behavior of the distinction centrality measure within such hierarchical structures, we compute the metric across several balanced, undirected rooted trees. These structures classically model organizational hierarchies \citep{friedell1967organizations-81a, krackhardt2014graph}, varying in depth (number of intermediary layers) and branching factor (span of control). 
-
-\begin{figure}[ht!]
     \centering
     \includegraphics[width=\linewidth]{Plots/tree_comparisons.png}
     \caption{A comparison of distinction centrality ($\beta_i$) across three different hierarchical structures: a binary tree of Depth 2, a binary tree of Depth 3, and a binary tree of Depth 4. Nodes are colored by their scaled distinction scores.}
     \label{fig:tree-comparisons}
 \end{figure}
 
-Table \ref{tab:tree-results} displays the computational results for a depth-2 binary tree (order 7) shown in the leftmost panel of Figure~\ref{fig:tree-comparisons}. The global scalar adjustment factor ($\alpha = \bar{\kappa} / \bar{s}$) for this specific network is approximately $0.7714$.
 
-\begin{table}[ht!]
+\begin{table}
     \centering
     \begin{tabular}{l l r r r}
     \hline
@@ -388,19 +285,13 @@ Distinction is also highly sensitive to the span of control in a tree-like hiera
 
 A wider span of control means there are vastly more leaves at the bottom of the hierarchy that have low structural distinction. This drags down the average status ($\bar{s}$) of the entire network, mathematically inflating $\alpha$. Because the root maintains maximum status, its distinction score ($\beta_{root} = \alpha - 1$) grows linearly with $\alpha$, eventually overtaking the intermediaries (at $k=7$). This formalizes a classic organizational dynamic: while middle management holds structural leverage in narrow, deep hierarchies, a sufficiently wide span of control restores distinction to the autocrat at the top by structurally impoverishing the intermediaries below them.
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.6\linewidth]{Plots/span_of_control_distinction.png}
     \caption{The evolution of scaled distinction ($\beta_i$) for the root node and intermediaries as a function of the span of control (branching factor) in a depth-2 hierarchy.}
     \label{fig:span-control}
 \end{figure}
 
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.8\linewidth]{Plots/tree_scalar.png}
-    \caption{The global scalar adjustment factor ($\alpha$) as a function of the span of control ($k$) across hierarchies of Depth 2, 3, and 4. The dashed line marks $\alpha = 1.0$. The proliferation of low-status, highly constrained leaf nodes drives $\alpha$ upward as trees become wider and deeper.}
-    \label{fig:tree-scalar}
-\end{figure}
 
 \subsubsection{Simplified Expression for the Distinction of the Root Node}
 We can derive a simplified, exact mathematical expression for the scaled distinction of the root node in any balanced hierarchical tree of depth $\ge 2$. Given the definition of distinction in Equation~\ref{eq:distinction}, we can evaluate the terms for the root node, whose status $s_i = 1.0$ (it is the most central node according to the eigenvector centrality). The root node's constraint is also $\kappa_i = 1.0$, because when the root node is deleted, the tree shatters into $k$ identical isolated sub-trees. The root's former neighbors (the previous intermediaries) become the new ``roots'' of those sub-trees. Because they are the most central nodes in their respective new components, their status in the residual network maxes out at $1.0$. Since all of the root's former neighbors achieve a maximum status, the average constraint the root faces is exactly $1.0$.
@@ -413,9 +304,91 @@ This yields a fixed distinction for the root of:
 
 That is, the distinction of the root node in a tree graph is just a function of the system scalar minus one. Recall that the scalar factor $\alpha$ captures the ratio of the network's average constraint to its average status (Equation~\ref{eq:alpha}). In a narrow, shallow hierarchy (like a binary tree), $\alpha$ is less than 1, meaning the root node will possess negative distinction ($\beta_{root} < 0$). In such narrow hierarchies, the root's dominance is highly precarious: deleting the root immediately catapults their direct subordinates to maximum structural status, which heavily constrains their maneuvering and fixes them into the existing status order.
 
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Plots/tree_scalar.png}
+    \caption{The global scalar adjustment factor ($\alpha$) as a function of the span of control ($k$) across hierarchies of Depth 2, 3, and 4. The dashed line marks $\alpha = 1.0$. The proliferation of low-status, highly constrained leaf nodes drives $\alpha$ upward as trees become wider and deeper.}
+    \label{fig:tree-scalar}
+\end{figure}
+
 However, $\alpha$ is not fixed. As shown in Figure~\ref{fig:tree-scalar}, the scalar factor $\alpha$ increases as a function of both the span of control ($k$) and the hierarchical depth. As the span of control widens ($k \ge 3$) or as depth increases, the tree proliferates a massive number of leaf nodes at the absolute bottom. These leaf nodes have very low status but face high constraint, driving the network-wide average constraint ($\bar{\kappa}$) up relative to average status ($\bar{s}$). Consequently, $\alpha$ eventually exceeds 1.0, pulling the root's distinction ($\beta_{root} = \alpha - 1$) into positive territory. 
 
 However, as we saw earlier, \textit{this $\beta_{root} = \alpha - 1$ rule only applies if the tree has middle management intermediaries} (depth $\ge 2$). If the hierarchy is perfectly flat—a pure Star Graph (Depth 1)—the constraint of the root drops to exactly zero. Deleting the root of a star graph isolates every single alter, dropping their eigenvector status to 0. Thus, the root of a star graph achieves maximum positive distinction ($\beta_{root} = \alpha(1) - 0 = \alpha$). This elegantly formalizes the classic dilemma of bureaucratic control: the only way to be a truly unconstrained autocrat is to maintain a flat organization where everyone reports directly to the center. But as scale forces the addition of middle management, the center becomes structurally constrained ($\beta_{root} = \alpha - 1$), and structural leverage immediately transfers to the intermediaries directly controlling the lowest levels.
+
+\subsection{Distinction in Non-Hierarchical Structures}
+
+If the star graph is the ideal-typical representation of maximum inequality (and thus distinction), the circle and clique graphs (see Figures~\ref{fig:circle} and~\ref{fig:clique}) represent the obverse case; a representation of maximum equality and thus \textit{lack} of distinction.  In these respects, distinction should be at its theoretical minimum of zero for all nodes in the case of maximum equality, such as the circle and clique graphs. As we can see in Tables~\ref{tab:circle} and~\ref{tab:clique}, this is precisely what we observe. 
+
+\input{Tabs/circle}
+
+\subsubsection{Distinction in the Circle Graph}
+
+All the nodes in the circle graph (or any other regular lattice of a given degree \textit{k}, as the circle graph is just the special case where $k = 2$) are in a very different situation compared to the central node in the star graph: While they experience the theoretical maximum of status ($s_i = 1.0$), at the same time they experience a great deal of constraint. In the circle graph, the constraint is determined by the average status of nodes in the node-deleted path graph of order $N-1$ that results from removing any given node from the circle graph of order $N$. Because removing any one node yields the same resulting structure, all nodes in the circle graph experience the \textit{same} amount of constraint. In this respect, the nodes in the circle graph experience a non-zero level of constraint because that they are in a situation in which they all contribute equally to the original non-differentiated status order; this means that the \textit{removal} of any one node from the graph will have a \textit{disruptive} effect on such a minimal order, creating a large amount of status differentiation among the remaining where there previously was none (see Figure~\ref{fig:path}).\footnote{Thus, the distinction measure captures the intuition, common to members of solidary small groups, who experience large constraints on exit, precisely due to the consequences that such an exit will have for the others that are left behind \citep{durkheim1933division-cfd, breiger1998solidarity-afa}.} 
+
+Yet there's no distinction in the circle graph structure; since $s_i = 1.0$ for all nodes $i$, and since $\kappa_i = \theta$ where $\theta$ is a constant across nodes, $\bar{\kappa} = \kappa_i$. Substituting the relevant quantities into equation~\ref{eq:distinction} yields:
+
+\begin{equation}
+    \beta_i = \alpha s_i - \kappa_i = \alpha - \kappa_i = \kappa_i - \kappa_i = 0
+\end{equation}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Plots/constraint_vs_order_circle.png}
+    \caption{Average constraint in the circle graph of a given order}
+    \label{fig:circle-constraint}
+\end{figure}
+
+One interesting implication of the distinction measure is that the constraint experienced by nodes in a maximally equal system should be proportional to system size, being highest in a small system characterized by equality but declining as the number of nodes increases. Figure~\ref{fig:circle-constraint} shows the average constraint experienced by nodes in a circle graph of a given order; we can see that constraint declines as a (decreasing) function of system size, collapsing towards zero as network size approaches infinity.  
+
+\subsubsection{Distinction in the Path Graph}
+
+As we have seen, the path graph is the structure that results when we remove a single node from a circle graph (technically a tree graph). It thus represents the emergence of status differentiation from where there was none as a result of the removal of a single actor. Figure~\ref{fig:path} shows a path graph of order 7 where the central node is labeled 1, and the subsequent nodes outward are symmetrically labeled 2 and 3, then 4 and 5, with the endpoints labeled 6 and 7 (yielding the path 7-5-3-1-2-4-6). Table~\ref{tab:path} shows the relevant distinction scores. 
+
+The pendant nodes (6 and 7), which were previously neighbors of the removed node in the previous circle graph of order 8, are now the least distinct. While in the previous circle graph there was no distinction, now we can see that two nodes (4 and 5) emerge as the most distinct, because they bridge between the two pendant nodes and the inner nodes of the path. They thus experience the ``penultimate advantage''---experiencing high status combined with the lowest constraint---because their exit has very little bearing on the remaining status order, given their connection to already status-peripheral alters. 
+
+Interestingly, node 1, the most central according to the usual Eigenvector centrality, does not have the highest distinction. Despite its maximum status, it is also highly constrained (because its exit would split the single path graph into two separate path graphs, completely upturning the status order), which pulls its distinction score downward. We will see later that this (a highly constrained central node) is a general feature of highly central root nodes in tree graphs (excepting the star graph).\footnote{It is important to note that the distinction rankings correspond almost exactly to those that would be generated from the point of view of Network Exchange Theory (NET) \citep{luca2001lines} in the line graph, based on opportunities for inclusion and exclusion in exchange rounds. According to NET, nodes 4 and 5 in Figure~\ref{fig:path} are indeed the highest-power nodes (thanks to their connection to pendant nodes with no other options), while node 1 suffers despite its central position according to traditional metrics due to its non-zero likelihood of exclusion by nodes 4 and 5.}
+
+\input{Tabs/path}
+
+\subsubsection{Distinction in the Clique Graph}
+In the clique graph, nodes have the same constant status scores as in the circle graph, set at maximum ($s_i = 1.0$) but they also experience maximum constraint ($\kappa_i = 1.0$), as shown in Table~\ref{tab:clique}. This is consistent with the idea that the clique is the structure most representative of Durkhemian mechanical solidarity, combining equality and constraint \citep{breiger1998solidarity-afa}. The reason for that is that removing a node from the clique graph has no effect on the status of its previous neighbors, which remain equal to 1.0 in the resulting node-deleted clique of order $N-1$. For that reason, since both terms of the subtraction on the right-hand side of~\ref{eq:distinction} are equal to 1.0, the resulting distinction scores for all nodes are zero: $\beta_i = 0$. This is consistent with the idea that cliques are fundamentally ``segmental'' structures in Durkheim's \citeyearpar{durkheim1933division-cfd} sense, where the removal of a single actor results in a structure that is equivalent to the one that existed before, making cliquish ``mechanical'' solidarity strong in its constraining aspect, but ``weak'' in the sense that it is prone to division because the exit of a given actor does not dramatically change the underlying remaining structure \citep{breiger1998solidarity-afa}.\footnote{Because of the local nature of the $\kappa$ component in Equation~\ref{eq:distinction}, in a regular $(n, k)$ graph of order $n$ with prescribed degree $k$ across nodes, we should not expect scaled distinction to be exactly zero, since the focal nodes previous neighbors will have different status scores than the other nodes in the graph in the focal-node-deleted subgraph. However, we should not expect their status to be wildly different, since their degree is now only $k-1$. Instead, we should expect scaled distinction to fluctuate \textit{around} the zero value across nodes. Nevertheless, these should cancel out across nodes; therefore, we should also expect the \textit{average} distinction across nodes in a regular $(n, k)$ graph to be zero.} 
+
+\input{Tabs/clique}
+
+\subsubsection{Distinction in Regular Graphs}
+
+Traditional centrality measures---such as degree, closeness, and eigenvector centrality---will necessarily have trouble differentiating nodes in highly symmetric or perfectly regular graphs, despite the fact that these nodes may have different patterns of ``participation'' at the level of micro-structural configurations (subgraphs). To address this, \citet{estrada2005subgraph} introduced \emph{subgraph centrality}, a measure that ranks nodes by their participation in all network subgraphs, placing greater weight on smaller motifs (such as triangles and squares). 
+
+To demonstrate the discriminative power of their metric, Estrada and Rodr\'iguez-Vel\'azquez considered two challenging regular graphs: an 8-node regular graph with degree 3, and a 9-node regular graph with degree 6. In both graphs, all nodes have identical degree, identical closeness, and identical eigenvector centrality ($s_i = 1$) (they have different betweenness centrality in \label{fig:estrada1a}). However, the nodes differ subtly in their participation in specific subgraphs. Despite being inspired by a fundamentally different set of theoretical intuitions---one rooted in agonistic competition and structural constraint---distinction centrality ($\beta_i$) recovers the exact same node rankings as Estrada's subgraph centrality for both of these regular graphs. Figure~\ref{fig:estrada} visualizes the distinction scores for these two networks, and Tables~\ref{tab:estrada1a} and \ref{tab:estrada1b} provide the exact mathematical components.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Plots/estrada-1a.png}
+        \caption{Estrada Fig. 1(a) (Degree 3)}
+        \label{fig:estrada1a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Plots/estrada-1b.png}
+        \caption{Estrada Fig. 1(b) (Degree 6)}
+        \label{fig:estrada1b}
+    \end{subfigure}
+    \caption{Distinction Centrality applied to the two regular graphs from \citet{estrada2005subgraph}. Nodes are perfectly differentiated according to their subgraph participation.}
+    \label{fig:estrada}
+\end{figure}
+
+\input{Tabs/estrada-1a.tex}
+\input{Tabs/estrada-1b.tex}
+
+In the 8-node graph (Figure~\ref{fig:estrada1a}), nodes 1, 2, and 8 are the only ones that participate in a triangle and accordingly receive the highest distinction score ($\beta_i = 0.030$). Nodes 4 and 6 participate in three squares and receive a moderate score ($\beta_i = 0.008$), while nodes 3, 5, and 7 participate in only two squares and receive the lowest score ($\beta_i = -0.036$). This matches the ranking of subgraph centrality discussed by \citet{estrada2005subgraph}. 
+
+Similarly, in the dense 9-node graph (Figure~\ref{fig:estrada1b}), all nodes participate in the same number of triangles. The only structural difference is that nodes 2, 4, 7, and 9 participate in 45 squares, whereas the remaining nodes participate in 44. All nodes are equivalent in terms of the \citet{freeman79} ``big three'' centrality measures (degree, closeness, and betweenness), and all have the same status (eigenvector). Distinction centrality is sufficiently sensitive to the subgraph topology to detect this minute micro-structural variance, assigning a slightly higher score ($\beta_i = 0.003$) to the former group over the latter ($\beta_i = -0.002$).
+
+The reason distinction centrality so gracefully detects structural motifs is due to its reliance on the node-deleted constraint metric ($\kappa_i$), which uses the logic of induced centralities \citep{everett2010induced-817} at the \textit{local} level. Because constraint is calculated based on the spectral status of neighbors \emph{after} the focal node is removed, the presence of alternative local paths (such as the edges comprising triangles and squares) heavily dictates whether those neighbors retain their status. Thus, distinction centrality captures the same local network topology that \citet{estrada2005subgraph} explicitly sought to measure, doing so through the theoretical mechanism of structural redundancy and field constraint.
+
 
 \begin{figure}[ht!]
     \centering
@@ -424,10 +397,10 @@ However, as we saw earlier, \textit{this $\beta_{root} = \alpha - 1$ rule only a
     \label{fig:small-world-snapshots}
 \end{figure}
 
-\subsection{Evolution of Distinction in Small-World Transitions}
+\subsection{Emergence of Distinction in Small-World Transitions}
 To further understand the structural behavior of the distinction centrality measure, we conduct a computational experiment simulating the transition from a perfectly symmetric, highly constrained structure (like the circle graph we considered earlier) to a fully saturated, completely connected structure (like the clique graph we considered earlier). We trace how structural inequality (variance in scaled distinction) and structural dependence (mean constraint) evolve as the system adds long-range connections disrupting the initially locally connected, low-inequality status order.
 
-We begin with a regular lattice graph (a circle graph or ring) of size $N = 30$. In the graph, every vertex is automorphically (and thus structurally) equivalent, yielding an identical initial eigenvector status for all nodes; as we have seen, deleting any node results in the identical residual $N-1$ path graph. Thus, at this initial state, all nodes experience identical constraint, and the variance in scaled distinction is exactly zero.
+Following \citet{watts1998collective-6d9} begin with a regular lattice graph (a circle graph or ring) of size $N = 30$. In the graph, every vertex is automorphically (and thus structurally) equivalent, yielding an identical initial eigenvector status for all nodes; as we have seen, deleting any node results in the identical residual $N-1$ path graph. Thus, at this initial state, all nodes experience identical constraint, and the variance in scaled distinction is exactly zero.
 
 \begin{figure}[ht!]
     \centering
@@ -453,7 +426,7 @@ These evolutionary dynamics perfectly mirror theoretical expectations of agonist
     \label{fig:mean-constraint-density}
 \end{figure}
 
-\subsection{Distinction in Triadic Closure}
+\subsection{Distinction and Triadic Closure}
 Triadic closure is an observed regularity in which a connection is likely to form between two actors who, although not originally connected, are first connected to a common alter \citep{simmel1950sociology-c96}. In essence, friends of friends are more likely to become friends. The causes of this regularity and the reasons for its occasional failure are largely based on considerations of valence. Positive or negative affect drives the resulting triadic relations. The original consideration was the cognitive balance of the individual, or the psychological congruity of affect toward two objects they see as causally connected. As such, the relationships of all three actors become interdependent via their joint combination as ``the parts of a causal unit'' \citep[107]{heider1946attitudes-ff3}.
 
 Beyond the cognitive congruence account of triadic closure, there is an accounting of triadic closure based on the strains new positive network connections may or may not create in existing relationships. Networks are sets of triads that are either actualized in connection, either positive or negative, or left unrealized. Actualization is largely predicated on propinquity, and the valence of theoretically possible ties never rises to the level of concern in a social question \citep{feld1981focused, feld1982social, mollenhorst2011shared}. However, in a contested context where ties are either positive or negative, triadic closure becomes a matter of not betraying one's friends by associating with one of their enemies, and of solidifying social alliances. However, triadic closure with a friend's friend signals commitment. The endorsement effect of triadic balance, that betrayal creates two relational problems rather than one, reinforces the surety of the actors \citep{yoon2013exchange}. 
@@ -461,30 +434,33 @@ Beyond the cognitive congruence account of triadic closure, there is an accounti
 These are all laudable explanations of the phenomenon with storied histories in social network analysis. Yet we can also offer a distinction-based explanation of the relational incentives that motivate actors to engage in triadic closure. Figure 3 \textit{Model (a)} and Table 4 present a graph and corresponding measures of near-neighbor triadic closure. The distinction of nodes 1 and 6 increases to .106, compared to 0 in the circle graph, while all other nodes fall below 0 due to the reverberating effects of the new connection. Notably, node 7 increases in status from the combination, but overall decreases in scaled distinction due to the tie. This example demonstrates the fragility of the circle graph as an equality condition in a distinction-based theoretical framework, as there are opportunities for mutual increases in distinction through triadic closure. While both status and distinction would predict tie formation in this simplified social structure, the scaled distinction measure indicates that Node 7 would actually lose out in some respects under this arrangement. This matches findings that initial connections often weaken when triadic closure occurs \citep{huang2018will}, consistent with a reaction to the increased constraint placed on the closure broker. However, the actual incentives and consequences for each node in a triadic closure will depend on the overall network structure. Node 7 is worse off due to the structure of the circle graph, rather than because it will always be worse off under all conditions. If Node 7 is actually highly central to the graph, near-neighbor triadic closure can be distinguished beyond questions of balancing valence, as is the current framework for understanding triadic closure. A distinction-based theoretical framework can explain both the propensity towards triadic closure and its failure to form, depending on the initial patterning of relationships. 
 
 %triadic closure centrality scores
-\input{Tabs/Figure3}
-
-
-%https://journals.aps.org/pre/abstract/10.1103/PhysRevE.71.056103
-%\input{Tabs/intraclust}
-%\input{Tabs/interclust}
+% \input{Tabs/Figure3}
 
 Figure 3 \textit{Model (b)} and Table 5 present a graph and corresponding measures for a long-tie formation spanning the circle graph. The connected nodes 4 and 7 both have distinction-maximizing incentives to form a tie, but, notably, their scaled distinction increases more when they form a triad with a near neighbor. Thus, under sparse overall network conditions, the gains in status from local consolidation outweigh the gains in distinction from increased autonomy. Conversely, once dense local conditions prevail, long ties can become more valuable as the gain in autonomy outweighs the marginal gains in status. However, the unique topography of networks requires careful consideration in each case.
 
-What the difference between these two examples suggests is that, based on considerations for distinction, the initial spread of social organization occurs locally through the triadic balance of near neighbors. This suggests that the natural form of organizational formation is a pyramid composed of combinations of local triads, further connected by brokers or welds that create structural folds. However, the transitivity created by the initial triad formation would spread quickly throughout the network, making welding structural folds a highly advantageous strategy for members of triads who could facilitate that connection, which is further explored below. Additionally, the example of triadic closure shows that only mild additions to network ties can very quickly create stratification. The addition of a single connection between nodes 1 and 6 in Figure 3 \textit{Model (a)} stratified the network from an equal state into four hierarchical levels. 
-
-\subsubsection{Distinction and Brokerage}
-
-%welds martin2009social
-%Structural holes vs folds (need to graph out the holes)
-
-%Circles as their own, pizza pie. at least get to 0 status. Wheel can emerge
-%folds vs circles
-\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains a high status score, the status of the other nodes increases, and their constraints decrease. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This brokerage position is more constrained than in the star graph because the other actors are connected in subgroups. The actors in the subgroup can combine their interests to counterbalance Node 1's central independence. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, stratification increases, giving Node 1 a slight advantage while also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, each node's distinction would also go to 0.00, as there is no network differentiation among nodes. 
-
-%brokerage and structural folds Figure 4
-\begin{figure}
+\begin{figure}[t!]
     \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
     \centering
+     \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/circle-triangle1.png}
+            \caption{Circle Graph with  Closure}
+            \label{fig:circletriangle}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/circle-long.png}
+            \caption{Circle Graph with a Long Tie}
+            \label{fig:circlelong}
+    \end{subfigure} 
+     \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/star-triangle1.png}
+            \caption{Star Graph with Closure}
+            \label{fig:startriangle1}
+    \end{subfigure} \\
+     \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=1.0\textwidth]{Plots/wheel.png}
+            \caption{Wheel Graph}
+            \label{fig:wheel}
+    \end{subfigure} 
     \begin{subfigure}[b]{0.32\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/sf4.png}
             \caption{Structural Fold (4-Clique)}
@@ -499,33 +475,31 @@ What the difference between these two examples suggests is that, based on consid
         \includegraphics[width=1.0\textwidth]{Plots/circle-weld.png}
             \caption{Circle Weld}
             \label{fig:circleweld}
-    \end{subfigure}  
-    \caption{Comparison of betweenness brokerage and structural folds Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
-\end{figure}
-
-%brokerage centrality scores
-\input{Tabs/Figure4}
-
-\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar-adjusted distinction measures well reflect this stratification, with Node 1 retaining its position, Nodes 4 and 5 occupying the middle, and Nodes 2, 3, 6, and 7 falling to the bottom. 
-
-\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs, as in Model (b). In fact, all nodes except 3 and 6 have greater distinction in this case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
-
-\begin{figure}
-    \captionsetup[subfigure]{font=footnotesize,labelfont=footnotesize}
-    \centering
-    \label{fig:struct-fold}
-    \begin{subfigure}[b]{0.44\textwidth}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.32\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/broker4.png}
             \caption{Brokerage Mediated (4-Cliques)}
             \label{fig:broker4}
     \end{subfigure} 
-    \begin{subfigure}[b]{0.44\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \includegraphics[width=1.0\textwidth]{Plots/tree-mediator-three-branch.png}
             \caption{Tree with 2 Branches, 3 Leaves}
             \label{fig:treemediator3}
     \end{subfigure}
-    \caption{Comparison of betweenness brokerage and a structural folds Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
+    \caption{Distinction Centrality in toy graphs. Nodes are colored by their scaled distinction scores on a continuous gradient from blue (highly constrained/negative distinction) through light gray (neutral) to red (high structural distinction).}
 \end{figure}
+
+% \input{Tabs/Figure4}
+
+What the difference between these two examples suggests is that, based on considerations for distinction, the initial spread of social organization occurs locally through the triadic balance of near neighbors. This suggests that the natural form of organizational formation is a pyramid composed of combinations of local triads, further connected by brokers or welds that create structural folds. However, the transitivity created by the initial triad formation would spread quickly throughout the network, making welding structural folds a highly advantageous strategy for members of triads who could facilitate that connection, which is further explored below. Additionally, the example of triadic closure shows that only mild additions to network ties can very quickly create stratification. The addition of a single connection between nodes 1 and 6 in Figure 3 \textit{Model (a)} stratified the network from an equal state into four hierarchical levels. 
+
+\subsubsection{Distinction and Brokerage}
+
+\textit{Model (b)} presents an idealized depiction of a structural fold \citep{vedres2010structural}. The resulting measurement scores are in Table 2. While node 1 maintains a high status score, the status of the other nodes increases, and their constraints decrease. It is actually the constraint of Node 1 that increases, reaching 1.00 because all its neighbors are maximally interconnected in their respective subgroups. This brokerage position is more constrained than in the star graph because the other actors are connected in subgroups. The actors in the subgroup can combine their interests to counterbalance Node 1's central independence. In an unadjusted measure of distinction, the different nodes become remarkably close in their distinction measure. With a scalar adjustment, stratification increases, giving Node 1 a slight advantage while also highlighting the extent to which Node 1's distinction is eroded. In a maximally connected graph, each node's distinction would also go to 0.00, as there is no network differentiation among nodes. 
+
+\textit{Model (c)} presents a graph that is 2-connected in the absence of node 1. Each subgraph is one connection short of forming complete subgraphs in the absence of Node 1. Compared to the structural fold, connections 3-2 and 6-7 have been removed. Measurement results are in Table 3. Of the demonstrative networks here, this is the one that most approximates a three-tiered ordered hierarchy. The resulting scalar-adjusted distinction measures well reflect this stratification, with Node 1 retaining its position, Nodes 4 and 5 occupying the middle, and Nodes 2, 3, 6, and 7 falling to the bottom. 
+
+\textit{Model (d)} is the same 2-connected graph with the addition of a long tie connecting nodes 2 and 7. This long tie stratifies the network even more than in Model (c), bringing Nodes 2 and 7 quite close to 4 and 5. The formation of the long tie served to bolster the individual distinction of 2 and 7 more than the formation of the tie that would create the completely connected subgraphs, as in Model (b). In fact, all nodes except 3 and 6 have greater distinction in this case. This reflects the positional idea that distinction is a matter of stratification, and cohesion is at odds with creating stratification. While the status of Nodes 2 and 7 actually increases beyond that of Nodes 4 and 5 due to the long tie, the constraint also increases as they are now both further constrained by the influence of Node 1, their mutual neighbor.  
 
 \section{Data Examples}
 \subsection{Betweenness vs Distinction: Revisiting the Medici Network}
