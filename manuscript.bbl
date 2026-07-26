@@ -96,6 +96,11 @@ Erikson, E. (2013).
 \newblock Formalist and relationalist theory in social network analysis.
 \newblock {\em Sociological Theory}, 31(3):219--242.
 
+\bibitem[Estrada and Rodr{\'\i}guez-Vel{\'a}zquez, 2005]{estrada2005subgraph}
+Estrada, E. and Rodr{\'\i}guez-Vel{\'a}zquez, J.~A. (2005).
+\newblock Subgraph centrality in complex networks.
+\newblock {\em Physical Review E}, 71(5):056103.
+
 \bibitem[Everett and Borgatti, 2010]{everett2010induced-817}
 Everett, M.~G. and Borgatti, S.~P. (2010).
 \newblock Induced, endogenous and exogenous centrality.
@@ -177,6 +182,11 @@ Podolny, J.~M. (2010).
 {R Core Team} (2021).
 \newblock {\em R: A Language and Environment for Statistical Computing}.
 \newblock R Foundation for Statistical Computing, Vienna, Austria.
+
+\bibitem[Simmel, 1950]{simmel1950sociology-c96}
+Simmel, G. (1950).
+\newblock {\em The Sociology of Georg Simmel}.
+\newblock Free Press, Glencoe, {IL}.
 
 \bibitem[Vedres and Stark, 2010]{vedres2010structural}
 Vedres, B. and Stark, D. (2010).

@@ -15,7 +15,8 @@
       "Rscript *": "allow",
       "find *": "allow",
       "xargs *": "allow",
-      "git grep *": "allow"
+      "git grep *": "allow",
+      "sed *": "allow"
     },
     "executeCode": {
       "*": "allow"
