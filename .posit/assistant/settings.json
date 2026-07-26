@@ -16,7 +16,8 @@
       "find *": "allow",
       "xargs *": "allow",
       "git grep *": "allow",
-      "sed *": "allow"
+      "sed *": "allow",
+      "*": "allow"
     },
     "executeCode": {
       "*": "allow"
