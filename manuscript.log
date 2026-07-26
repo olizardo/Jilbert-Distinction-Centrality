@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2025/dev/Debian)  (format=lualatex 2026.7.22)  26 JUL 2026 09:10
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2025/dev/Debian)  (format=lualatex 2026.7.22)  26 JUL 2026 10:10
  restricted system commands enabled.
 **manuscript.tex
 (./manuscript.tex
@@ -385,7 +385,11 @@ File: l3backend-luatex.def 2024-05-08 L3 backend support: PDF output (LuaTeX)
 \l__color_backend_stack_int=\count315
 \l__pdf_internal_box=\box56
 )
-(./manuscript.aux)
+(./manuscript.aux
+
+LaTeX Warning: Label `fig:estrada1a' multiply defined.
+
+)
 \openout1 = manuscript.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -514,277 +518,274 @@ Missing character: There is no ’ (U+2019) in font rm-lmr12!
 [9
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 ]
-
-[10]
-<Plots/star.png, id=352, 505.89pt x 505.89pt>
-File: Plots/star.png Graphic file (type png)
-<use Plots/star.png>
-Package luatex.def Info: Plots/star.png  used on input line 210.
-(luatex.def)             Requested size: 134.42383pt x 134.423pt.
-<Plots/circle.png, id=353, 505.89pt x 505.89pt>
-File: Plots/circle.png Graphic file (type png)
-<use Plots/circle.png>
-Package luatex.def Info: Plots/circle.png  used on input line 215.
-(luatex.def)             Requested size: 134.42383pt x 134.423pt.
-<Plots/clique.png, id=354, 505.89pt x 505.89pt>
-File: Plots/clique.png Graphic file (type png)
-<use Plots/clique.png>
-Package luatex.def Info: Plots/clique.png  used on input line 220.
-(luatex.def)             Requested size: 134.42383pt x 134.423pt.
-<Plots/path.png, id=355, 433.62pt x 289.08pt>
-File: Plots/path.png Graphic file (type png)
-<use Plots/path.png>
-Package luatex.def Info: Plots/path.png  used on input line 225.
-(luatex.def)             Requested size: 134.42383pt x 89.61386pt.
-<Plots/7-clique-plus-pendant.png, id=356, 505.89pt x 505.89pt>
-File: Plots/7-clique-plus-pendant.png Graphic file (type png)
-<use Plots/7-clique-plus-pendant.png>
-Package luatex.def Info: Plots/7-clique-plus-pendant.png  used on input line 23
-0.
-(luatex.def)             Requested size: 134.42383pt x 134.423pt.
-<Plots/circular-lattice-plus-pendant.png, id=357, 505.89pt x 505.89pt>
-File: Plots/circular-lattice-plus-pendant.png Graphic file (type png)
-<use Plots/circular-lattice-plus-pendant.png>
-Package luatex.def Info: Plots/circular-lattice-plus-pendant.png  used on input
- line 235.
-(luatex.def)             Requested size: 134.42383pt x 134.423pt.
-<Plots/star-roles-by-size.png, id=358, 505.89pt x 578.16pt>
+<Plots/star-roles-by-size.png, id=328, 505.89pt x 578.16pt>
 File: Plots/star-roles-by-size.png Graphic file (type png)
 <use Plots/star-roles-by-size.png>
-Package luatex.def Info: Plots/star-roles-by-size.png  used on input line 244.
+Package luatex.def Info: Plots/star-roles-by-size.png  used on input line 145.
 (luatex.def)             Requested size: 268.84767pt x 307.26143pt.
 
 
+[10<./Plots/star-roles-by-size.png>]
+
 [11]
-
-[12<./Plots/star.png><./Plots/circle.png><./Plots/clique.png><./Plots/path.png><
-./Plots/7-clique-plus-pendant.png><./Plots/circular-lattice-plus-pendant.png>] 
-(./Tabs/circle.tex) (./Tabs/path.tex) (./Tabs/clique.tex)
-
-[13<./Plots/star-roles-by-size.png>]
-<Plots/constraint_vs_order_circle.png, id=388, 433.62pt x 289.08pt>
-File: Plots/constraint_vs_order_circle.png Graphic file (type png)
-<use Plots/constraint_vs_order_circle.png>
-Package luatex.def Info: Plots/constraint_vs_order_circle.png  used on input li
-ne 267.
-(luatex.def)             Requested size: 268.84767pt x 179.24097pt.
-
-
-[14]
-
-[15<./Plots/constraint_vs_order_circle.png>]
-<Plots/circle-triangle1.png, id=423, 505.89pt x 505.89pt>
-File: Plots/circle-triangle1.png Graphic file (type png)
-<use Plots/circle-triangle1.png>
-Package luatex.def Info: Plots/circle-triangle1.png  used on input line 294.
-(luatex.def)             Requested size: 179.22722pt x 179.22552pt.
-<Plots/circle-long.png, id=424, 505.89pt x 505.89pt>
-File: Plots/circle-long.png Graphic file (type png)
-<use Plots/circle-long.png>
-Package luatex.def Info: Plots/circle-long.png  used on input line 299.
-(luatex.def)             Requested size: 179.22722pt x 179.22552pt.
-<Plots/star-triangle1.png, id=425, 505.89pt x 505.89pt>
-File: Plots/star-triangle1.png Graphic file (type png)
-<use Plots/star-triangle1.png>
-Package luatex.def Info: Plots/star-triangle1.png  used on input line 304.
-(luatex.def)             Requested size: 179.22722pt x 179.22552pt.
-<Plots/wheel.png, id=426, 505.89pt x 505.89pt>
-File: Plots/wheel.png Graphic file (type png)
-<use Plots/wheel.png>
-Package luatex.def Info: Plots/wheel.png  used on input line 309.
-(luatex.def)             Requested size: 179.22722pt x 179.22552pt.
-<Plots/estrada-1a.png, id=432, 505.89pt x 505.89pt>
-File: Plots/estrada-1a.png Graphic file (type png)
-<use Plots/estrada-1a.png>
-Package luatex.def Info: Plots/estrada-1a.png  used on input line 329.
-(luatex.def)             Requested size: 201.63234pt x 201.6345pt.
-<Plots/estrada-1b.png, id=433, 505.89pt x 505.89pt>
-File: Plots/estrada-1b.png Graphic file (type png)
-<use Plots/estrada-1b.png>
-Package luatex.def Info: Plots/estrada-1b.png  used on input line 336.
-(luatex.def)             Requested size: 201.63234pt x 201.6345pt.
-
-
-[16] (./Tabs/estrada-1a.tex) (./Tabs/estrada-1b.tex)
-
-[17<./Plots/circle-triangle1.png><./Plots/circle-long.png><./Plots/star-triangle
-1.png><./Plots/wheel.png>]
-
-[18<./Plots/estrada-1a.png><./Plots/estrada-1b.png>]
-<Plots/tree_comparisons.png, id=469, 867.24pt x 361.35pt>
+<Plots/star.png, id=361, 505.89pt x 505.89pt>
+File: Plots/star.png Graphic file (type png)
+<use Plots/star.png>
+Package luatex.def Info: Plots/star.png  used on input line 216.
+(luatex.def)             Requested size: 197.15404pt x 197.15735pt.
+<Plots/clique.png, id=362, 505.89pt x 505.89pt>
+File: Plots/clique.png Graphic file (type png)
+<use Plots/clique.png>
+Package luatex.def Info: Plots/clique.png  used on input line 221.
+(luatex.def)             Requested size: 197.15404pt x 197.15735pt.
+<Plots/circle.png, id=363, 505.89pt x 505.89pt>
+File: Plots/circle.png Graphic file (type png)
+<use Plots/circle.png>
+Package luatex.def Info: Plots/circle.png  used on input line 226.
+(luatex.def)             Requested size: 197.15404pt x 197.15735pt.
+<Plots/path.png, id=364, 433.62pt x 289.08pt>
+File: Plots/path.png Graphic file (type png)
+<use Plots/path.png>
+Package luatex.def Info: Plots/path.png  used on input line 231.
+(luatex.def)             Requested size: 197.15404pt x 131.43456pt.
+<Plots/tree_comparisons.png, id=373, 867.24pt x 361.35pt>
 File: Plots/tree_comparisons.png Graphic file (type png)
 <use Plots/tree_comparisons.png>
-Package luatex.def Info: Plots/tree_comparisons.png  used on input line 358.
+Package luatex.def Info: Plots/tree_comparisons.png  used on input line 256.
 (luatex.def)             Requested size: 448.0749pt x 186.70108pt.
 
 
-[19<./Plots/tree_comparisons.png>]
+[12]
 
-[20]
-<Plots/span_of_control_distinction.png, id=491, 433.62pt x 289.08pt>
+[13<./Plots/star.png><./Plots/clique.png><./Plots/circle.png><./Plots/path.png>]
+
+[14<./Plots/tree_comparisons.png>]
+<Plots/span_of_control_distinction.png, id=398, 433.62pt x 289.08pt>
 File: Plots/span_of_control_distinction.png Graphic file (type png)
 <use Plots/span_of_control_distinction.png>
 Package luatex.def Info: Plots/span_of_control_distinction.png  used on input l
-ine 393.
+ine 290.
 (luatex.def)             Requested size: 268.84767pt x 179.24097pt.
-<Plots/tree_scalar.png, id=492, 433.62pt x 289.08pt>
+
+
+[15<./Plots/span_of_control_distinction.png>]
+<Plots/tree_scalar.png, id=406, 433.62pt x 289.08pt>
 File: Plots/tree_scalar.png Graphic file (type png)
 <use Plots/tree_scalar.png>
-Package luatex.def Info: Plots/tree_scalar.png  used on input line 400.
+Package luatex.def Info: Plots/tree_scalar.png  used on input line 309.
 (luatex.def)             Requested size: 358.46129pt x 238.98796pt.
 
 
-[21<./Plots/span_of_control_distinction.png><./Plots/tree_scalar.png>]
-<Plots/small_world_snapshots.png, id=502, 867.24pt x 325.215pt>
-File: Plots/small_world_snapshots.png Graphic file (type png)
-<use Plots/small_world_snapshots.png>
-Package luatex.def Info: Plots/small_world_snapshots.png  used on input line 42
-2.
-(luatex.def)             Requested size: 448.0749pt x 168.03098pt.
+[16<./Plots/tree_scalar.png>] (./Tabs/circle.tex)
 
-
-[22
+[17
 Missing character: There is no — (U+2014) in font rm-lmr12!
 Missing character: There is no — (U+2014) in font rm-lmr12!
 ]
-<Plots/variance_vs_density.png, id=509, 433.62pt x 289.08pt>
+<Plots/constraint_vs_order_circle.png, id=431, 433.62pt x 289.08pt>
+File: Plots/constraint_vs_order_circle.png Graphic file (type png)
+<use Plots/constraint_vs_order_circle.png>
+Package luatex.def Info: Plots/constraint_vs_order_circle.png  used on input li
+ne 336.
+(luatex.def)             Requested size: 268.84767pt x 179.24097pt.
+
+
+[18<./Plots/constraint_vs_order_circle.png>] (./Tabs/path.tex)
+(./Tabs/clique.tex
+
+[19])
+<Plots/estrada-1a.png, id=472, 505.89pt x 505.89pt>
+File: Plots/estrada-1a.png Graphic file (type png)
+<use Plots/estrada-1a.png>
+Package luatex.def Info: Plots/estrada-1a.png  used on input line 368.
+(luatex.def)             Requested size: 201.63234pt x 201.6345pt.
+<Plots/estrada-1b.png, id=473, 505.89pt x 505.89pt>
+File: Plots/estrada-1b.png Graphic file (type png)
+<use Plots/estrada-1b.png>
+Package luatex.def Info: Plots/estrada-1b.png  used on input line 375.
+(luatex.def)             Requested size: 201.63234pt x 201.6345pt.
+ (./Tabs/estrada-1a.tex) (./Tabs/estrada-1b.tex)
+
+[20]
+
+[21<./Plots/estrada-1a.png><./Plots/estrada-1b.png>]
+<Plots/small_world_snapshots.png, id=507, 867.24pt x 325.215pt>
+File: Plots/small_world_snapshots.png Graphic file (type png)
+<use Plots/small_world_snapshots.png>
+Package luatex.def Info: Plots/small_world_snapshots.png  used on input line 39
+5.
+(luatex.def)             Requested size: 448.0749pt x 168.03098pt.
+<Plots/variance_vs_density.png, id=510, 433.62pt x 289.08pt>
 File: Plots/variance_vs_density.png Graphic file (type png)
 <use Plots/variance_vs_density.png>
-Package luatex.def Info: Plots/variance_vs_density.png  used on input line 434.
+Package luatex.def Info: Plots/variance_vs_density.png  used on input line 407.
 
 (luatex.def)             Requested size: 268.84767pt x 179.24097pt.
 
+
+[22<./Plots/small_world_snapshots.png>]
 
 [23
 Missing character: There is no — (U+2014) in font rm-lmr12!
-<./Plots/small_world_snapshots.png>]
-<Plots/mean_constraint_vs_density.png, id=524, 433.62pt x 289.08pt>
-File: Plots/mean_constraint_vs_density.png Graphic file (type png)
-<use Plots/mean_constraint_vs_density.png>
-Package luatex.def Info: Plots/mean_constraint_vs_density.png  used on input li
-ne 451.
-(luatex.def)             Requested size: 268.84767pt x 179.24097pt.
-
-
-[24
 Missing character: There is no — (U+2014) in font rm-lmr12!
 Missing character: There is no — (U+2014) in font rm-lmr12!
 <./Plots/variance_vs_density.png>]
+<Plots/mean_constraint_vs_density.png, id=531, 433.62pt x 289.08pt>
+File: Plots/mean_constraint_vs_density.png Graphic file (type png)
+<use Plots/mean_constraint_vs_density.png>
+Package luatex.def Info: Plots/mean_constraint_vs_density.png  used on input li
+ne 424.
+(luatex.def)             Requested size: 268.84767pt x 179.24097pt.
 
-[25<./Plots/mean_constraint_vs_density.png>] (./Tabs/Figure3.tex)
 
-[26]
+[24<./Plots/mean_constraint_vs_density.png>]
+<Plots/circle-triangle1.png, id=561, 505.89pt x 505.89pt>
+File: Plots/circle-triangle1.png Graphic file (type png)
+<use Plots/circle-triangle1.png>
+Package luatex.def Info: Plots/circle-triangle1.png  used on input line 445.
+(luatex.def)             Requested size: 143.38724pt x 143.38506pt.
+<Plots/circle-long.png, id=562, 505.89pt x 505.89pt>
+File: Plots/circle-long.png Graphic file (type png)
+<use Plots/circle-long.png>
+Package luatex.def Info: Plots/circle-long.png  used on input line 450.
+(luatex.def)             Requested size: 143.38724pt x 143.38506pt.
+<Plots/star-triangle1.png, id=563, 505.89pt x 505.89pt>
+File: Plots/star-triangle1.png Graphic file (type png)
+<use Plots/star-triangle1.png>
+Package luatex.def Info: Plots/star-triangle1.png  used on input line 455.
+(luatex.def)             Requested size: 143.38724pt x 143.38506pt.
+<Plots/wheel.png, id=564, 505.89pt x 505.89pt>
+File: Plots/wheel.png Graphic file (type png)
+<use Plots/wheel.png>
+Package luatex.def Info: Plots/wheel.png  used on input line 460.
+(luatex.def)             Requested size: 143.38724pt x 143.38506pt.
 <Plots/sf4.png, id=565, 505.89pt x 505.89pt>
 File: Plots/sf4.png Graphic file (type png)
 <use Plots/sf4.png>
-Package luatex.def Info: Plots/sf4.png  used on input line 489.
+Package luatex.def Info: Plots/sf4.png  used on input line 465.
 (luatex.def)             Requested size: 143.38724pt x 143.38506pt.
 <Plots/two-connected.png, id=566, 505.89pt x 505.89pt>
 File: Plots/two-connected.png Graphic file (type png)
 <use Plots/two-connected.png>
-Package luatex.def Info: Plots/two-connected.png  used on input line 494.
+Package luatex.def Info: Plots/two-connected.png  used on input line 470.
 (luatex.def)             Requested size: 143.38724pt x 143.38506pt.
 <Plots/circle-weld.png, id=567, 505.89pt x 505.89pt>
 File: Plots/circle-weld.png Graphic file (type png)
 <use Plots/circle-weld.png>
-Package luatex.def Info: Plots/circle-weld.png  used on input line 499.
+Package luatex.def Info: Plots/circle-weld.png  used on input line 475.
 (luatex.def)             Requested size: 143.38724pt x 143.38506pt.
- (./Tabs/Figure4.tex
-
-LaTeX Warning: Float too large for page by 4.43723pt on input line 72.
-
-)
-
-[27]
-
-[28]
-<Plots/broker4.png, id=579, 505.89pt x 505.89pt>
+<Plots/broker4.png, id=568, 505.89pt x 505.89pt>
 File: Plots/broker4.png Graphic file (type png)
 <use Plots/broker4.png>
-Package luatex.def Info: Plots/broker4.png  used on input line 518.
-(luatex.def)             Requested size: 197.15404pt x 197.15735pt.
-<Plots/tree-mediator-three-branch.png, id=580, 505.89pt x 505.89pt>
+Package luatex.def Info: Plots/broker4.png  used on input line 480.
+(luatex.def)             Requested size: 143.38724pt x 143.38506pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 481--481
+[]\OT1/lmr/m/n/10 (h) |Bro-ker-age Me-di-ated (4-
+ []
+
+<Plots/tree-mediator-three-branch.png, id=569, 505.89pt x 505.89pt>
 File: Plots/tree-mediator-three-branch.png Graphic file (type png)
 <use Plots/tree-mediator-three-branch.png>
 Package luatex.def Info: Plots/tree-mediator-three-branch.png  used on input li
-ne 523.
-(luatex.def)             Requested size: 197.15404pt x 197.15735pt.
+ne 485.
+(luatex.def)             Requested size: 143.38724pt x 143.38506pt.
 
+Underfull \hbox (badness 2351) in paragraph at lines 486--486
+[]\OT1/lmr/m/n/10 (i) |Tree with 2 Branches, 3
+ []
+
+(./Tabs/circle-triangle1.tex) (./Tabs/circle-long.tex)
+(./Tabs/star-triangle1.tex) (./Tabs/wheel.tex) (./Tabs/sf4.tex)
+(./Tabs/two-connected.tex) (./Tabs/circle-weld.tex) (./Tabs/broker4.tex)
+(./Tabs/tree-mediator-three-branch.tex)
+
+[25]
+
+[26]
+
+[27<./Plots/circle-triangle1.png><./Plots/circle-long.png><./Plots/star-triangle
+1.png><./Plots/wheel.png><./Plots/sf4.png><./Plots/two-connected.png><./Plots/ci
+rcle-weld.png><./Plots/broker4.png><./Plots/tree-mediator-three-branch.png>]
+
+[28]
 
 [29
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
-<./Plots/sf4.png><./Plots/two-connected.png><./Plots/circle-weld.png>]
-
-[30
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
-<./Plots/broker4.png><./Plots/tree-mediator-three-branch.png>]
-<Plots/medici-full.png, id=595, 505.89pt x 505.89pt>
+]
+<Plots/medici-full.png, id=616, 505.89pt x 505.89pt>
 File: Plots/medici-full.png Graphic file (type png)
 <use Plots/medici-full.png>
-Package luatex.def Info: Plots/medici-full.png  used on input line 546.
+Package luatex.def Info: Plots/medici-full.png  used on input line 528.
 (luatex.def)             Requested size: 358.46129pt x 358.4665pt.
-<Plots/medici-removed.png, id=596, 505.89pt x 505.89pt>
+<Plots/medici-removed.png, id=617, 505.89pt x 505.89pt>
 File: Plots/medici-removed.png Graphic file (type png)
 <use Plots/medici-removed.png>
-Package luatex.def Info: Plots/medici-removed.png  used on input line 553.
+Package luatex.def Info: Plots/medici-removed.png  used on input line 535.
 (luatex.def)             Requested size: 358.46129pt x 358.4665pt.
+ (./Tabs/medici-full.tex
 
-(./Tabs/medici-full.tex) (./Tabs/medici-removed.tex
-Overfull \hbox (42.25995pt too wide) in paragraph at lines 5--34
- [][] 
- []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (./Tabs/medici-removed.tex
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 )
 
-[31
+[30
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 ]
 
-[32]
+[31<./Plots/medici-full.png>]
 
-[33]
-
-[34<./Plots/medici-full.png>]
-
-[35
-Missing character: There is no ’ (U+2019) in font rm-lmr12!
+[32
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 <./Plots/medici-removed.png>]
 
-[36
-Missing character: There is no ’ (U+2019) in font rm-lmr12!
-Missing character: There is no ’ (U+2019) in font rm-lmr12!
-Missing character: There is no ’ (U+2019) in font rm-lmr12!
-Missing character: There is no ’ (U+2019) in font rm-lmr12!
-Missing character: There is no ’ (U+2019) in font rm-lmr12!
+[33
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 ]
-<Plots/zachary-karate.png, id=628, 505.89pt x 505.89pt>
+
+[34
+Missing character: There is no ’ (U+2019) in font rm-lmr12!
+Missing character: There is no ’ (U+2019) in font rm-lmr12!
+Missing character: There is no ’ (U+2019) in font rm-lmr12!
+Missing character: There is no ’ (U+2019) in font rm-lmr12!
+]
+<Plots/zachary-karate.png, id=645, 505.89pt x 505.89pt>
 File: Plots/zachary-karate.png Graphic file (type png)
 <use Plots/zachary-karate.png>
-Package luatex.def Info: Plots/zachary-karate.png  used on input line 579.
+Package luatex.def Info: Plots/zachary-karate.png  used on input line 561.
 (luatex.def)             Requested size: 358.46129pt x 358.4665pt.
  (./Tabs/zachary-karate.tex)
 
-[37
+[35
+Missing character: There is no ’ (U+2019) in font rm-lmr12!
+Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 ]
 
+[36]
+
+[37<./Plots/zachary-karate.png>]
+
 [38]
 
-[39<./Plots/zachary-karate.png>]
+[39]
 
 [40]
 
@@ -792,23 +793,18 @@ Missing character: There is no ’ (U+2019) in font rm-lmr12!
 
 [42]
 
-[43]
-
-[44
+[43
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
-]
-
-[45
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 ] (./manuscript.bbl
 
-[46]
+[44]
 
-[47])
+[45])
 
-[48
+[46
 Missing character: There is no ‘ (U+2018) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
 Missing character: There is no ’ (U+2019) in font rm-lmr12!
@@ -822,42 +818,46 @@ File: lstlang2.sty 2024/09/23 1.10c listings language file
 File: lstlang3.sty 2024/09/23 1.10c listings language file
 )
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
-76.
+58.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 680.
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 662.
 LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 6
-81.
+63.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
 
-[49]
+[47]
 
-[50]
+[48]
 
-[51] (./manuscript.aux)
+[49] (./manuscript.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 90252FBFCB607F048B6F192CE1B8A9D1;8039.
+(rerunfilecheck)             Checksum: 310718F14C5276EFE31F321B7871BE9D;7642.
 )
 
 Here is how much of LuaTeX's memory you used:
- 15085 strings out of 475512
- 381547,1144653 words of node,token memory allocated
- 586 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 15 glue, 1 kern, 58 glue_spec, 1 write, 3 pdf_actio
+ 15129 strings out of 475512
+ 381557,1144653 words of node,token memory allocated
+ 626 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 19 glue, 1 kern, 58 glue_spec, 1 write, 5 pdf_actio
 n nodes
-   avail lists: 1:1,2:23,3:298,4:122,5:11130,6:96,7:13770,8:61,9:22502,10:42,11:
+   avail lists: 1:2,2:23,3:315,4:120,5:11130,6:96,7:13770,8:60,9:22502,10:42,11:
 1155
- 37401 multiletter control sequences out of 65536+600000
+ 37406 multiletter control sequences out of 65536+600000
  69 fonts using 2864099 bytes
  72i,10n,75p,2131b,1573s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/fon
@@ -881,10 +881,10 @@ re/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/couri
 er/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb
 >
-Output written on manuscript.pdf (51 pages, 5213170 bytes).
+Output written on manuscript.pdf (49 pages, 4826555 bytes).
 
-PDF statistics: 909 PDF objects out of 1000 (max. 8388607)
- 793 compressed objects within 8 object streams
- 279 named destinations out of 1000 (max. 131072)
+PDF statistics: 926 PDF objects out of 1000 (max. 8388607)
+ 813 compressed objects within 9 object streams
+ 282 named destinations out of 1000 (max. 131072)
  249 words of extra memory for PDF output out of 10000 (max. 100000000)
 
