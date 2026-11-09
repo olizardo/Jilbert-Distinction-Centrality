@@ -1,0 +1,200 @@
+---
+title: "Distinction Centrality versus PageRank"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, cache = FALSE)
+library(igraph)
+library(dplyr)
+library(purrr)
+library(tibble)
+source(here::here("Functions", "distinction.R"))
+```
+
+# The question
+
+Distinction centrality ($\beta_i$) trades status ($s_i$, eigenvector centrality) against constraint ($\kappa_i$, the mean status of a node's neighbors in the node-deleted subgraph), with the scalar $\alpha = \bar{\kappa}/\bar{s}$ putting the two on a common scale. PageRank, by contrast, rewards being connected to well-connected neighbors, and its random surfer has no interest in what remains of the network once a focal node is deleted. The two measures can therefore agree strongly on ordinary networks while disagreeing sharply exactly where the theory of agonistic competition predicts disagreement: nodes whose neighborhoods are held together by their own presence.
+
+This report compares scaled distinction (`scd`) with undirected PageRank across the empirical networks in `Data/` and the toy-graph registry, asking where the measures converge and where they part ways.
+
+```{r helpers}
+# Correlations between scaled distinction and PageRank for one graph
+compare_pr <- function(g, label) {
+  dd <- distinction(g, norm = "abm")
+  pr <- page_rank(g, directed = FALSE)$vector
+  tibble(
+    network = label,
+    n = vcount(g),
+    pearson = cor(dd$scd, pr, method = "pearson"),
+    spearman = cor(dd$scd, pr, method = "spearman"),
+    kendall = cor(dd$scd, pr, method = "kendall")
+  )
+}
+```
+
+# Empirical networks
+
+```{r empirical}
+read_edges <- function(f) {
+  e <- read.csv(here::here("Data", f), fileEncoding = "UTF-8-BOM")
+  graph_from_data_frame(unique(e), directed = FALSE)
+}
+
+medici  <- read_edges("MediciEdgeList.csv")
+karate  <- read_edges("karate.csv")
+medici_main <- induced_subgraph(medici, which(components(medici)$membership ==
+  which.max(components(medici)$csize)))
+
+empirical <- bind_rows(
+  compare_pr(medici, "Medici (full, 33 families)"),
+  compare_pr(medici_main, "Medici (largest component, 28)"),
+  compare_pr(karate, "Karate club")
+)
+
+empirical
+```
+
+The two empirical networks sit at opposite ends of the agreement spectrum, and the Medici network shows how much small components can distort the comparison. In the karate club, where there is no architectural tension between status and constraint, scaled distinction and PageRank are nearly interchangeable (Pearson 0.95, Spearman 0.98). On the full 33-family Medici edge list the association looks weak (Pearson 0.58), but most of that weakness lives in the disconnected dyads and small triangles, where the jackknife normalizes status locally and manufactures rank differences that have nothing to do with agonistic structure. Restricted to the largest component of 28 families, the two measures agree closely (Pearson 0.89, Spearman 0.96, Kendall 0.84), and the residual disagreement concentrates in exactly the places the theory points to, as the node-level comparison below shows.
+
+# The toy-graph registry
+
+The toy graphs make the mechanism visible. Cliques, circles, and regular lattices return no comparison at all: every node is structurally equivalent, distinction is constant, and no ordering exists to correlate. Away from those degenerate cases, the pattern is systematic.
+
+```{r toys}
+c3 <- make_full_graph(3); c4 <- make_full_graph(4); c5 <- make_full_graph(5)
+c7 <- make_full_graph(7); r7 <- make_ring(7); s7 <- make_star(7, mode = "undirected")
+t2 <- make_tree(3, children = 2, mode = "undirected")
+t3 <- make_tree(4, children = 3, mode = "undirected")
+p7 <- graph_from_literal(7-5-3-1-2-4-6)
+w7 <- make_wheel(7, mode = "undirected")
+sf5 <- make_full_graph(5) %du% make_full_graph(4) %>% add_edges(c(5,6, 5,7, 5,8, 5,9))
+b3 <- add_vertices(c3 + c3, 1) + edge(7,1) + edge(7,4)
+b4 <- add_vertices(c4 + c4, 1) + edge(9,1) + edge(9,5)
+cl <- r7 + edge(7,4)
+st1 <- s7 + edge(2,3)
+t222 <- t2 + t2; t222 <- add_vertices(t222, 1); t222 <- t222 + edge(7,1) + edge(7,4)
+kr <- connect(make_ring(10), order = 2)
+sw1 <- add_edges(kr, c(4,9))
+krp <- add_vertices(kr, 1) + edge(1, 11)
+
+toy_set <- list(
+  "path" = p7, "2-tree" = t2, "3-tree" = t3, "star" = s7,
+  "wheel" = w7, "structural fold (5)" = sf5,
+  "triangle broker (b3)" = b3, "clique broker (b4)" = b4,
+  "circle + long tie" = cl, "star + triangle" = st1,
+  "tree mediator" = t222, "small-world + long tie" = sw1,
+  "lattice + pendant (krp)" = krp
+)
+
+toys <- imap_dfr(toy_set, ~ compare_pr(.x, .y)) |>
+  arrange(desc(kendall))
+
+toys
+```
+
+```{r toy-plot, fig.height=5.5}
+library(ggplot2)
+library(ggrepel)
+ggplot(toys, aes(x = pearson, y = kendall)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey60") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey60") +
+  geom_point(size = 2.5) +
+  geom_text_repel(aes(label = network), size = 3, max.overlaps = 20) +
+  labs(x = "Pearson correlation", y = "Kendall's tau",
+       title = "Agreement between scaled distinction and PageRank") +
+  theme_minimal()
+```
+
+Agreement is high for trees, circles with long ties, star-plus-triangle variants, and small-world networks, with Kendall's tau ranging from about 0.45 to 1.00. The failures concentrate where theory says they should.
+
+# Where the measures part ways
+
+Three structural situations drive the disagreement, and each one is diagnostic rather than incidental.
+
+```{r toy-plots, fig.width=8, fig.height=8}
+#| fig-cap: "The four toy networks where the measures disagree most, colored by scaled distinction (blue low, red high). In each, the node that distinction penalizes is the one PageRank rewards."
+library(ggraph)
+library(patchwork)
+source(here::here("Functions", "plot.graph.norm.R"))
+
+p_b3  <- plot.graph.norm(b3,  l = "kk")      + labs(tag = "a")
+p_b4  <- plot.graph.norm(b4,  l = "kk")      + labs(tag = "b")
+p_sf5 <- plot.graph.norm(sf5, l = "kk")      + labs(tag = "c")
+p_krp <- plot.graph.norm(krp, l = "circle")  + labs(tag = "d")
+
+(p_b3 | p_b4) / (p_sf5 | p_krp) +
+  plot_layout(guides = "collect") &
+  theme(legend.position = "bottom", legend.title = element_text(face = "bold"))
+```
+
+In the two clique-broker graphs, the broker node sits between cliques and has the lowest distinction, but PageRank does not place it at the top either; Kendall's tau is mildly negative ($-0.14$ for the triangle broker, $-0.20$ for the clique broker) because the two measures disagree about the ordering of the clique members relative to the broker.
+
+The structural fold is the sharpest case. Node 5, the hinge between the two cliques in the five-clique fold, simultaneously has the highest PageRank in the graph and the lowest distinction. PageRank reads it as the best-connected position; distinction reads it as the most constrained. This is not a numerical accident but the conceptual disagreement between the two measures rendered as a single node.
+
+Finally, the lattice with a pendant (`krp`) produces Kendall's tau near zero: the pendant and the lattice nodes are ordered almost arbitrarily by the two measures, because distinction is nearly constant across the regular lattice while PageRank is pulled around by the pendant's single tie.
+
+# Which Medici nodes disagree?
+
+Because the Medici edge list contains several small components (dyads and a small triangle) alongside the main marriage network, the node-level comparison below restricts attention to the largest connected component of 28 families. Small components get their own local normalizations in the jackknife and would otherwise manufacture spurious rank gaps.
+
+```{r medici-nodes}
+medici_main <- induced_subgraph(medici, which(components(medici)$membership ==
+  which.max(components(medici)$csize)))
+dd <- distinction(medici_main, norm = "abm")
+pr <- page_rank(medici_main, directed = FALSE)$vector
+
+medici_nodes <- tibble(
+  family = V(medici_main)$name,
+  scd = dd$scd,
+  pagerank = round(pr, 4),
+  rank_scd = rank(-dd$scd, ties.method = "min"),
+  rank_pr = rank(-pr, ties.method = "min"),
+  gap = rank_scd - rank_pr
+) |>
+  arrange(desc(abs(gap)))
+
+medici_nodes
+```
+
+Ranking every family in the main component by scaled distinction and by PageRank and taking the difference exposes exactly which nodes carry the two measures' disagreement. The table below shows the largest gaps, positive meaning distinction ranks the family far higher than PageRank does (a constrained position PageRank undervalues), negative meaning the reverse.
+
+```{r medici-top, echo=FALSE}
+medici_nodes |>
+  filter(abs(gap) >= 3) |>
+  knitr::kable(digits = 3, caption = "Medici families in the largest component with the largest rank gaps between distinction and PageRank.")
+```
+
+The main finding is how little disagreement the main component contains once the small components are gone. The largest gap is six places (Da Uzzano), and most families agree within two or three positions. The elite core almost fully converges: Peruzzi and Albizzi hold the top two spots under both measures, and the Medici family's four-place drop (7th under distinction against 3rd under PageRank) is the only large disagreement among the magnates, still reflecting the same mechanism of a neighborhood that survives its deletion. Distinction's remaining promotions over PageRank — Da Uzzano and Ginori — are mid-tier positions whose deletion would strand neighbors, while Valori is the largest case in the other direction, a single-tie house that PageRank undervalues less than distinction does.
+
+```{r medici-gap-plot, fig.width=8, fig.height=6}
+#| fig-cap: "The largest component of the Medici network colored by the rank gap between scaled distinction and PageRank (positive red means distinction ranks the family higher; negative blue means PageRank does)."
+library(ggraph)
+
+gap_tbl <- tibble(family = V(medici_main)$name,
+  rank_scd = rank(-dd$scd, ties.method = "min"),
+  rank_pr = rank(-pr, ties.method = "min")) |>
+  mutate(gap = rank_scd - rank_pr)
+
+V(medici_main)$gap <- gap_tbl$gap[match(V(medici_main)$name, gap_tbl$family)]
+
+ggraph(medici_main, layout = "kk") +
+  geom_edge_link(color = "gray50", edge_width = 1) +
+  geom_node_point(aes(fill = gap), shape = 21, size = 7, color = "black") +
+  geom_node_text(aes(label = name), size = 3.2, fontface = "bold", repel = TRUE) +
+  scale_fill_gradient2(low = "dodgerblue", mid = "gray90", high = "firebrick",
+    midpoint = 0, name = "Rank gap\n(dist. − PR)", limits = c(-6, 6)) +
+  theme_graph() +
+  coord_cartesian(clip = "off") +
+  theme(legend.position = "bottom", legend.title = element_text(face = "bold"))
+```
+
+Reading the main component through the gap shows a mostly washed-out map. The warm spots concentrate around Da Uzzano and Ginori in the center, with the Medici node itself lightly red at the heart of the graph, while the blue fringe of Valori and Dietisalvi marks single-tie positions whose PageRank exceeds anything their deletion could cost. Where the earlier full-network comparison showed deep blue islands of distinction-promoted dyads, the connected network agrees with itself: disagreement here is a matter of a few places, concentrated on mid-tier houses, not a structural chasm.
+
+# Interpretation
+
+The comparison shows that distinction centrality is not a monotone re-ranking of PageRank. The two agree when constraint is low and diffuse, as in the karate club and the tree-like toy graphs. They diverge exactly at the positions Bourdieu's theory singles out: bridges and brokers whose social capital depends on their remaining in place. PageRank treats the structural fold's hinge as the network's most valuable node; distinction treats it as the network's most dependent. A random surfer and an agonistic competitor look at the same node and reach opposite conclusions, which is the point of the metric.
